@@ -1,0 +1,71 @@
+.white {
+    color: white;
+}
+
+.black {
+    color: black;
+}
+
+.silver {
+    color: silver;
+}
+
+.brown {
+    color: brown;
+}
+
+.orange {
+    color: orange;
+}
+
+.gray {
+    color: gray;
+}
+
+.blue {
+    color: blue;
+}
+
+.lightblue {
+    color: lightblue;
+}
+
+.cyan {
+    color: cyan;
+}
+
+.red {
+    color: red;
+}
+
+.orangered {
+    color: orangered
+}
+
+.green {
+    color: green;
+}
+
+.lightgreen {
+    color: lightgreen;
+}
+
+.white-bg {
+    background-color: white;
+}
+
+.black-bg {
+    background-color: black;
+}
+
+.lightgray-bg {
+    background-color: lightgray;
+}
+
+.darkgray-bg {
+    background-color: #4F4F4F;
+}
+
+.darkblue-bg {
+    background-color: #12024d;
+}

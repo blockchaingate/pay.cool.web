@@ -1,0 +1,110 @@
+
+<div *ngIf="txid" class="text-center">
+    txid: {{txid}}
+</div>
+<div class="container" *ngIf="isContractOwner">
+    <div class="row">
+        <div class="col col-6">
+            <div>join</div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">{{"walletAddr"|translate}} *</label>
+                <input type="text" class="form-control" id="walletAddr" [(ngModel)]="walletAddr" aria-describedby="walletAddr" placeholder="{{'walletAddr'| translate}}">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">{{"Referal"|translate}} *</label>
+                <input type="text" class="form-control" id="referal" [(ngModel)]="referal" aria-describedby="referal" placeholder="{{'referal'| translate}}">
+            </div>    
+            <div class="text-center">
+                <button class="btn add-wallet btnitem black handcursor" (click)="join()">
+                    {{"Join"| translate }}
+                </button>                    
+            </div>            
+            
+        </div>
+
+        <div class="col col-6">
+            <div>modifyReferRecord</div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">{{"from"|translate}} *</label>
+                <input type="text" class="form-control" id="from" [(ngModel)]="from" aria-describedby="from" placeholder="{{'from'| translate}}">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">{{"to"|translate}} *</label>
+                <input type="text" class="form-control" id="to" [(ngModel)]="to" aria-describedby="to" placeholder="{{'to'| translate}}">
+            </div>    
+            <div class="text-center">
+                <button class="btn add-wallet btnitem black handcursor" (click)="modifyReferRecord()">
+                    {{"modifyReferRecord"| translate }}
+                </button>                    
+            </div>              
+        </div>        
+    </div>
+
+
+    <div class="row">
+        <div class="col col-6">
+            <div>deleteLink</div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">{{"walletAddr"|translate}} *</label>
+                <input type="text" class="form-control" id="walletAddr" [(ngModel)]="walletAddr" aria-describedby="walletAddr" placeholder="{{'walletAddr'| translate}}">
+            </div>
+ 
+            <div class="text-center">
+                <button class="btn add-wallet btnitem black handcursor" (click)="deleteLink()">
+                    {{"Delete link"| translate }}
+                </button>                    
+            </div>            
+            
+        </div>
+
+        <div class="col col-6">
+            <div>join Subtree</div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">{{"walletAddr"|translate}} *</label>
+                <input type="text" class="form-control" id="walletAddr" [(ngModel)]="walletAddr" aria-describedby="walletAddr" placeholder="{{'walletAddr'| translate}}">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">{{"Referal"|translate}} *</label>
+                <input type="text" class="form-control" id="referal" [(ngModel)]="referal" aria-describedby="referal" placeholder="{{'referal'| translate}}">
+            </div>     
+            <div class="text-center">
+                <button class="btn add-wallet btnitem black handcursor" (click)="joinSubtree()">
+                    {{"modifyReferRecord"| translate }}
+                </button>                    
+            </div>              
+        </div>        
+    </div>
+
+    <div class="row">
+        <div class="col col-6">
+            <div>get followers</div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">{{"walletAddr"|translate}} *</label>
+                <input type="text" class="form-control" id="rootWalletAddr" [(ngModel)]="rootWalletAddr" aria-describedby="rootWalletAddr" placeholder="{{'rootWalletAddr'| translate}}">
+            </div>
+ 
+            <div class="text-center">
+                <button class="btn add-wallet btnitem black handcursor" (click)="getFollowers()">
+                    {{"Get followers"| translate }}
+                </button>                    
+            </div>            
+            
+        </div>
+        <div class="col col-6">
+            <div *ngIf="noFollower">
+                No followers for this address.
+            </div>
+            <div *ngFor="let follower of followers">
+                {{follower}}
+            </div>
+        </div>
+    </div>    
+    <app-tf-tree [children]="children" [walletAddress]="rootWalletAddr"></app-tf-tree>
+</div>
+
+<div class="container text-center" *ngIf="!isContractOwner">
+    You are not the contract owner.
+</div>

@@ -1,0 +1,33 @@
+
+    <div class="CreateCollection--actions">
+      <div class="ActionButtonrContainer">
+          <div class="ActionButton--content text-center py-3 border" (click)="exportFile()" style="min-width: 120px;">
+              {{'Export' | translate}}
+          </div>
+      </div> 
+  </div>
+
+<div class="container">
+      <ul class="responsive-table">
+        <li class="table-header">
+          <div class="col col-4">
+              {{'Address' | translate}}
+          </div>
+          
+          <div class="col col-2">{{'Coin' | translate}}</div>
+          <div class="col col-4">{{'Downline' | translate}}</div>
+        </li>
+        <li class="table-row" *ngFor="let item of rewards">
+          <div class="col col-4" data-label="Address">
+              <small>{{(item.id)}}</small>
+          </div>
+          <div class="col col-2" data-label="Coin">{{item.bst}}</div>
+          <div class="col col-4" data-label="Downline">
+              <div *ngFor="let child of item.children">
+                <small [ngClass]="item.children.length > 7 ? 'text-danger' : ''">{{child}}</small>
+              </div>
+          </div>
+        </li>
+      </ul>
+</div>
+    

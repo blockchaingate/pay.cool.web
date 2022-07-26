@@ -1,0 +1,177 @@
+<div class="container">
+    <h4>法币支付接入流程</h4>
+    <ol>
+        <li>创建或导入钱包</li>
+        <div>
+            要使用七星支付,商户必须首先<a target="_blank" href="/wallet/create">创建</a>或<a target="_blank" href="/wallet/import">导入</a>钱包.
+        </div>
+        <li>获取燃料</li>
+        <div>
+            如果是新创建的钱包,还可以免费获取燃料.进入<a target="_blank" href="/wallet">钱包页面</a>,点击<a>获取免费燃料</a>按钮.每个新钱包只能获取一次.
+        </div>
+        <li>注册七星会员</li>
+        <div>
+            进入<a target="_blank" href="/user-tree">会员页面</a>,输入推荐码,免费加入七星消费商生态会员系统.
+        </div>
+        <li>注册商户</li>
+        <div>
+            进入<a target="_blank" href="/merchants/new-merchant">商家页面</a>,输入商家名称,商家标志,地址,联系人姓名,电话,传真,电子邮件,网站,开放时间,关闭时间,业务内容,返利百分比,主币种,税率,锁定天数,商家推荐地址等信息, 点击<a>创建</a>按钮,
+            完成商家的注册过程并等待七星官方的审核, 审核通过后即可使用.
+        </div>
+        <li>商户信用充值</li>
+        <div>
+            进入<a target="_blank" href="/merchants/new-merchant">商家页面</a>,点击<a>商家信用账户</a>页面, 在新页面中点击左上方的<a>添加</a>按钮, 选择要充值的币种和数量,点击<a>确认</a>,完成充值过程.充值前请确保交易所有足够的该币种的余额.如果余额不足,可以通过钱包的<a>存币</a>操作或交易所的<a>交易</a>功能获取足够的余额.
+        </div>
+        <li>获取商户通证押金</li>
+        <div>
+            进入<a target="_blank" href="/merchants/new-merchant">商家页面</a>,点击<a>显示通证押金</a>链接,输入钱包密码,即可获取商户通证押金, 该通证押金在下一步的调用payWithFiat接口中使用.
+        </div>
+        <li>获取商家ID</li>
+        <div>
+            进入<a target="_blank" href="/merchants/new-merchant">商家页面</a>,得到商家ID.
+        </div>
+        <li>完成法币支付</li>
+        <div>
+            通过常规的法币支付接口(信用卡,paypal,苹果支付,google支付等)完成法币支付过程.
+        </div>
+        <li>调用payWithFiat接口完成七星支付</li>
+        <div>
+            <div>
+            法币支付确认后,调用payWithFiat接口完成七星支付,接口输入输出数据格式为JSON。
+            </div>
+            <div>
+                请求方式: POST请求
+            </div>
+            <div>
+                <div>
+                    请求url: 
+                </div>
+                <div>
+                    测试网:https://test.blockchaingate.com/v2/orders/create7StarOrderFiat
+                </div>
+                <div>
+                    生产网:https://api.blockchaingate.com/v2/orders/create7StarOrderFiat
+                </div>
+            </div>
+            <div>请求参数列表:</div>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">名称</th>
+                    <th scope="col">变量名</th>
+                    <th scope="col">必填</th>
+                    <th scope="col">类型</th>
+                    <th scope="col" width="300px">示例值</th>
+                    <th scope="col" width="300px">描述</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>商户通证押金</td>
+                    <td>token</td>
+                    <td>是</td>
+                    <td>String(132)</td>
+                    <td >0x930729b91441b99ca8f9f71424b180ef808c615f561c15ec07b7aa63b52d3cfa1fefd03691ec4edc17af9acd1fac72176a87144b2e4ea4e3319fb2e18a46757f1b</td>
+                    <td>上一步中获取的商户通证押金</td>
+                  </tr>
+                  <tr>
+                    <td>邮件地址</td>
+                    <td>email</td>
+                    <td>是</td>
+                    <td>String(200)</td>
+                    <td>mark@gmail.com</td>
+                    <td>付款用户的邮件地址,用于接受付款后的邮件通知</td>
+                  </tr>
+                  <tr>
+                    <td>总销售额</td>
+                    <td>totalSale</td>
+                    <td>是</td>
+                    <td>Number</td>
+                    <td>128</td>
+                    <td>总的销售额</td>
+                  </tr>
+                  <tr>
+                    <td>税费销售额</td>
+                    <td>totalTax</td>
+                    <td>是</td>
+                    <td>Number</td>
+                    <td>128</td>
+                    <td>总的税费额</td>
+                  </tr>
+                  <tr>
+                    <td>商品明细列表</td>
+                    <td>items</td>
+                    <td>是</td>
+                    <td>Array</td>
+                    <td>
+                        [&#123; "title":"apple","giveAwayRate":13,"taxRate":13,"lockedDays":366,"price":"2","quantity":"2"&#125;]
+                    </td>
+                    <td>
+                        商品明细列表,每个商品包含title(商品名称),giveAwayRate(返利百分比),lockedDays(锁定天数),price(单价)和quantity(数量),其中giveAwayRate和lockedDays为可选项,默认为在<a>注册商户</a>中的设定值
+                    </td>
+                  </tr>   
+                  <tr>
+                    <td>支付币种</td>
+                    <td>currency</td>
+                    <td>是</td>
+                    <td>String(20)</td>
+                    <td>USDT</td>
+                    <td>虚拟货币的支付币种</td>
+                  </tr>   
+                  <tr>
+                    <td>商家ID</td>
+                    <td>store</td>
+                    <td>是</td>
+                    <td>String(20)</td>
+                    <td>USDT</td>
+                    <td>商家ID</td>
+                  </tr>        
+                </tbody>
+            </table>
+            <div>请求参数示例:</div>
+            <div>
+              &#123;“token”:”0xb5297630db9901cc2b39388f3f63fa2c68fecf6eb12e9fcb0ded0704d055aab368bb0a3ef415b92eb49a9ccdfab603d1a6164b7e2a6d41ea0fa2f3c4aacc102d1b”,”email”:”abc@gmail.com”,"totalSale":4,"totalTax":0.52,"items":[&#123;"title":"apple","giveAwayRate":13,"taxRate":13,"lockedDays":366,"price":"2","quantity":"2"&#125;],"currency":"USDT","store":"620bc00f2670171289caee54"&#125;
+            </div>
+            <div>返回值示例:</div>
+            <div>
+              &#123;
+                "ok": true,
+                "_body": &#123;
+                    "order": &#123;
+                        "merchantIds": [],
+                        "_id": "6269717be081e409cdacedb9",
+                        "store": "620bc00f2670171289caee54",
+                        "totalSale": 4,
+                        "totalTax": 0.52,
+                        "currency": "USDT",
+                        "items": [
+                            &#123;
+                                "customizeTemplate": &#123;
+                                    "img": [],
+                                    "txt": []
+                                &#125;,
+                                "_id": "6269717be081e409cdacedba",
+                                "title": "apple",
+                                "giveAwayRate": 13,
+                                "taxRate": 13,
+                                "lockedDays": 366,
+                                "price": 2,
+                                "quantity": 2,
+                                "customizeDesign": []
+                            &#125;
+                        ],
+                        "totalShipping": 0,
+                        "refunds": [],
+                        "dateCreated": "2022-04-27T16:38:19.758Z",
+                        "lastUpdated": "2022-04-27T16:38:19.762Z",
+                        "__v": 0
+                    &#125;,
+                    "transactionHash": "0x6a2e0fefc75f97cf19ecd448556d50d0a4e0979d8944b6ded380d89016b0feec",
+                    "status": "0x1"
+                &#125;
+            &#125;
+            </div>
+        </div>
+    </ol>
+</div>
+

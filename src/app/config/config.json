@@ -1,0 +1,7 @@
+{
+    "appid": "60498ae4e82d2009713a12c0",
+    "appname": "7StarPay",
+    "domain": "Defipack.com",
+    "apiUrl2": "https://api.blockchaingate.com/v2/",
+    "apiUrl": "http://localhost:3002/v2/"
+}

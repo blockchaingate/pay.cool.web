@@ -1,0 +1,67 @@
+
+<div class="container">
+  <div class="CreateCollection--actions">
+    <div class="ActionButtonrContainer">
+        <div class="ActionButton--content text-center py-3 border" (click)="showAllRewardDetails()" style="min-width: 120px;">
+            {{'All reward details' | translate}}
+        </div>
+    </div> 
+</div>
+
+  <div class="d-flex justify-content-center">
+    <div class="px-2">
+      <a (click)="prev()" >
+        Prev
+      </a>
+    </div>
+    <div class="px-2">
+      {{pageNum}}
+    </div>
+    <div class="px-2">
+      <a (click)="next()">
+        Next
+      </a>
+    </div>
+  </div>
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="col col-4">
+          <div>
+            {{'From' | translate}}
+          </div>
+          <div>{{'Merchant' | translate}}</div>
+        </div>
+        
+        <div class="col col-2">{{'Coin' | translate}}</div>
+        <div class="col col-2">{{'Detail' | translate}}</div>
+        <div class="col col-2">{{'Date created' | translate}}</div>
+        <div class="col col-2"></div>
+      </li>
+      <li class="table-row" *ngFor="let item of charges">
+        <div class="col col-4" data-label="From and Merchant">
+          <div>
+            <small>{{(item.from)}}</small>
+          </div>
+          <div>
+            <small>{{(item.merchantRecipient)}}</small>
+          </div>
+        </div>
+        <div class="col col-2" data-label="Coin">{{showCoinName(item.coinType)}}</div>
+        <div class="col col-2" data-label="Address">
+          <div>Merchant Get:{{showAmount(item.merchantGet)}}</div>
+          <div>tax:{{showAmount(item.tax)}}</div>
+          <div>reward:{{showAmount(item.rewardAmount)}}</div>
+        </div>
+        <div class="col col-2" data-label="Date created">{{item.dateCreated | date}}</div>
+        <div class="col col-2 text-right" data-label="Operations">
+  
+          <div class="d-inline-block px-2">
+            <a (click)="rewardDetails(item)">
+              Reward details
+            </a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  

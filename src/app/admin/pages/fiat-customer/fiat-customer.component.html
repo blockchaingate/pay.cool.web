@@ -1,0 +1,22 @@
+
+<div class="container">
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="col col-4">{{'Email' | translate}}</div>
+        <div class="col col-4">{{'Address' | translate}}</div>
+        <div class="col col-2">{{'Date created' | translate}}</div>
+        <div class="col col-2"></div>
+      </li>
+      <li class="table-row" *ngFor="let item of customers">
+        <div class="col col-4" data-label="Email">{{item.email}}</div>
+        <div class="col col-4" data-label="Address">{{item.address}}</div>
+        <div class="col col-2" data-label="Date created">{{item.dateCreated | date}}</div>
+        <div class="col col-2 text-right" data-label="Operations">
+  
+          <div class="d-inline-block px-2">
+
+          </div>
+        </div>
+      </li>
+    </ul>
+</div>

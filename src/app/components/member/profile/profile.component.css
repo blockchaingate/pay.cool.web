@@ -1,0 +1,17 @@
+.container {
+    margin-top: 5em;
+    width: 100vw;
+    min-height: 400px;
+}
+
+.navitemtext {
+    color: black;
+}
+
+.nav-link {
+    cursor: pointer;
+}
+
+.selected {
+    background-color: #afafaf;
+}

@@ -1,0 +1,464 @@
+.container-fluid {
+    background: #0f0e1c;
+}
+
+.about-box {
+    padding: 5em 0 0;
+    display: flex;
+}
+
+h1,
+h2 {
+    font-size: 56px;
+    font-family: "Sora", "Microsoft YaHei", "微軟正黑體", "蘋果儷中黑", Helvetica, Arial, sans-serif;
+    span {
+        color: #1ed5f1;
+    }
+}
+
+.Title1 {
+    background: #14172a;
+    font-size: 100px;
+    font-weight: bold;
+    font-family: "Sora", "Microsoft YaHei", "微軟正黑體", "蘋果儷中黑", "New Roman", sans-serif;
+    color: #b6b2e0;
+    padding: 100px 0;
+}
+  /*
+div:lang(en) {
+    font-size: 40px;
+}
+
+div:lang(sc) {
+    font-size: 100px;
+}
+*/
+.Title2 {
+    font-size: 60px;
+    font-weight: bold;
+    font-family: Sora, sans-serif;
+    color: #575186;
+    padding: 56px 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+.video-section {
+    background-color: #eae8ff;
+    margin-top: 1em;
+    padding-top: 5em;
+    padding-bottom: 8em;
+}
+
+.blueTitle {
+    color: #1ed5f1;
+}
+
+.theme-banner-two {
+    background-color: #0f0e1c;
+    margin-top: -46px;
+    p {
+        font-size: 16px;
+        color: #eae8ff;
+    }
+}
+
+.banner-img {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    img {
+        margin-top: 70px;
+    }
+}
+
+.theme-banner-two .illustration {
+    position: absolute;
+    right: 280px;
+    z-index: -1;
+}
+
+.button-group li a {
+    background-color: #1ed5f1;
+    color: #131313;
+    border-radius: 50px;
+    border: none;
+    min-width: 150px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.button-group li a:hover {
+    background-color: #aae8f1;
+}
+
+.partner-slider {
+    padding: 10px 0;
+}
+
+.partner-slider img {
+    max-width: 130px;
+    max-height: 30px;
+    filter: brightness(0) invert(1);
+}
+
+.about-cryto {
+    // background: #14172a;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(45deg, rgb(9, 8, 39) 0%, rgb(30, 30, 99) 35%, rgb(25, 1, 59) 100%);
+}
+
+#theme-banner2 {
+    z-index: 4;
+}
+
+.theme-title .text {
+    color: #eee;
+}
+
+.mockup {
+    max-width: 330px;
+}
+
+.token-sale-inner {
+    overflow: visible;
+}
+
+.imageDiv2 {
+    background: #14172a;
+    color: #aba8c0;
+    display: block;
+    // float: right;
+    padding: 25px 40px;
+    // height: 220px;
+    // padding: 10px;
+    .leading {
+        padding-bottom: 30px;
+        color: #eae8ff;
+        letter-spacing: 3px;
+        // font-weight: bold;
+        font-size: 26px;
+    }
+    h2,
+    p {
+        padding-bottom: 30px;
+        color: #eae8ff;
+    }
+    a {
+        line-height: 48px;
+    }
+}
+
+.our-features-three {
+    background: #14172a;
+    padding: 150px 0 20px;
+    .app-img {
+        margin: 0 auto;
+    }
+}
+
+.color-two{
+    background-color: #14172a;   
+}
+
+.apps-overview.color-two {
+    // background: #0c0d21;
+    background-color: #14172a;
+    // background: linear-gradient(135deg, rgb(0, 0, 0) 0%, rgb(4, 4, 49) 35%, rgb(25, 1, 59) 100%);
+    margin-bottom: 0;
+}
+
+.inner-wrapper {
+    margin-top: -80px;
+}
+
+.apps-overview .inner-wrapper .button-group li a {
+    font-size: 16px;
+    color: #313131;
+}
+
+.contact-section-dark {
+    position: relative;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(45deg, rgb(9, 8, 39) 0%, rgb(30, 30, 99) 35%, rgb(25, 1, 59) 100%);
+    padding: 295px 0 140px;
+    button {
+        background-color: #1ed5f1;
+    }
+}
+
+.small.square {
+    width: 20px;
+    height: 20px;
+    color: #00d672;
+    background-color: #3dd2ec55;
+    margin: 5px;
+    border-radius: 100%;
+}
+
+.moredetail {
+    padding: 5em 0;
+}
+
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.imageLogoBg {
+    // position: absolute;
+    // top: 0;
+    img {
+        opacity: 0.2;
+        // right: 0;
+        // top: 0;
+        // bottom: 0;
+        right: -50%;
+        width: 100%;
+        position: absolute;
+        -webkit-animation: spin 20s linear infinite;
+        -moz-animation: spin 20s linear infinite;
+        animation: spin 20s linear infinite;
+    }
+}
+
+.icon-box {
+    svg {
+        width: 150px;
+        height: 150px;
+    }
+    .st0 {
+        fill: none;
+        stroke-miterlimit: 10;
+    }
+    .line1 {
+        stroke: #1ed5f1bb;
+        stroke-width: 5;
+    }
+    .line2 {
+        stroke: #ffffff;
+        stroke-width: 3;
+    }
+    .line3 {
+        stroke: #1ed5f144;
+        stroke-width: 4;
+    }
+    .line4 {
+        stroke: #ffffffbb;
+        stroke-width: 3;
+    }
+}
+
+@media (max-width: 1000px) {
+}
+
+@media (max-width: 1200px) {
+    .Title1 {
+        font-size: 7vw;
+        padding: 6vw 0;
+    }
+
+    .Title2 {
+        font-size: 4.2vw;
+        padding: 3.4vw 0 0;
+    }
+
+    .partner-slider .item img {
+        margin: 0 auto;
+    }
+   
+    .theme-banner-two {
+        margin-top: -60px;
+        p {
+            font-size: 12px;
+        }
+    }
+
+    .theme-banner-two .illustration {
+        top: 280px;
+        width: 600px;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 1000px) {
+    h2 {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 900px) {
+    .theme-banner-two {
+        margin-top: -100px;
+        p {
+            font-size: 12px;
+        }
+    }
+
+    .bannerCon {
+        background: none;
+    }
+    .theme-banner-two .illustration {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .about {
+        // background-color: #eae8ff;
+        position: relative;
+    }
+    .about-box {
+        position: relative;
+        max-width: 100% !important;
+        margin-top: 80px;
+    }
+    .imageDiv {
+        // background: #fff;
+        display: block;
+        width: 80%;
+        // height: 220px;
+        // padding: 10px;
+    }
+    .bottomDiv {
+        position: relative;
+        position: absolute;
+        right: 0%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(0%) translateY(-50%);
+        // bottom:150px;
+        // right:0;
+    }
+    .about-box2 {
+        position: relative;
+        max-width: 100% !important;
+    }
+    .bottomDiv2 {
+        position: relative;
+        position: absolute;
+        left: 0%;
+        top: 50%;
+        transform: translateX(0%) translateY(-50%);
+        -webkit-transform: translateX(0%) translateY(-50%);
+        // bottom:150px;
+        // right:0;
+    }
+    .imageDiv-bottom {
+        text-align: right;
+        margin-left: auto;
+        height: 100%;
+        img {
+            text-align: right;
+            margin-left: auto;
+        }
+        // background-color: #00D672;
+        // position: absolute;
+        // right: 0%;
+        // top: 50%;
+        // transform: translateX(0%) translateY(-50%);
+        // -webkit-transform: translateX(0%) translateY(-50%);
+    }
+    .moredetail {
+        padding: 120px 0 120px;
+        .about {
+            height: 100vh;
+        }
+        background-color: #eae8ff;
+    }
+    .main-text-wrapper {
+        // max-width: 50%;
+        text-align: left;
+        // max-width: 62%;
+        // margin: 0 auto;
+        // height: 100vh;
+        span {
+            // font-size: 95px;
+            text-transform: uppercase;
+        }
+    }
+    .imageDiv2 {
+        width: 45%;
+    }
+
+    .bgImg,
+    .bgImg2 {
+        display: none;
+    }
+
+}
+
+@media (max-width: 450px) {
+    .theme-banner-two {
+        margin-top: -140px;
+        p {
+            font-size: 12px;
+        }
+    }
+        
+    h1,
+    h2 {
+        font-size: 2em !important;
+    }
+    .apps-overview .inner-wrapper .button-group li {
+        text-align: center;
+    }
+}
+
+.bgImg {
+    background-image: url("/assets/images/professional-executive-business-team3DUL63X.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+}
+
+.bgImg2 {
+    background-image: url("/assets/images/confident-businessmen-RJDZ99T.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+}
+
+.qrcode {
+    display: flex;
+}
+
+.qrcode div {
+    margin: 2em 3em;
+}
+
+.linkBtn li {
+    margin: 0em 5em;
+}
+
+.iframe-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    border: 1px solid gray;
+    box-shadow: 6px 6px 3px gray;
+}
+
+.iframe-container iframe {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+h3 {
+    color: white;
+}

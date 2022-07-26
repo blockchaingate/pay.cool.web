@@ -1,0 +1,50 @@
+.user-tree-page {
+    width: audo;
+    overflow: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    color: red;
+}
+
+.tf-tree {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+}
+
+span.tf-nc {
+    background: #f5f5f5;
+}
+
+.link {
+    color: blue;
+}
+
+label {
+    margin-right: 1em;
+}
+
+.wrapper-center {
+    display: flex;
+    justify-content: center;
+}
+
+.inputfiled {
+    border-radius: 5px;
+}
+
+input {
+    width: 320px;
+    font-size: small;
+}
+
+
+.aa {
+    border: 1px solid red;
+}

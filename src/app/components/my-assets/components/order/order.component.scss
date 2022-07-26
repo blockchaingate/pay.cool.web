@@ -1,0 +1,60 @@
+.item {
+    display: flex;
+}
+
+.leftitem {
+    width: 120px;
+    font-weight: 600;
+}
+
+.title {
+    width: 100%;
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.leftarea {
+    width: 120px;
+    font-weight: 600;
+}
+
+.operpanel {
+    margin-top: 5em;
+    width: 100%;
+    text-align: center;
+}
+
+.oppanel {
+    width: 320px;
+}
+
+.btn {
+    cursor: pointer;
+    padding: 10px 24px;
+    background-color: blue;
+    color: white;
+}
+
+.btn:hover {
+    color: yellow;
+}
+
+.confirmpay {
+    margin-top: 2em;
+}
+
+.noorder {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    color: red;
+}
+
+.errmsg {
+    margin-top: 2em;
+    color: red;
+}
+
+input {
+    width: 100%;
+}

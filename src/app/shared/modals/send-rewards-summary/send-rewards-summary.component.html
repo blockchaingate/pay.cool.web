@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">{{'Rewards summary' | translate}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <div>{{'Order id' | translate}}:{{ showId(orderId) }}</div>
+        <div>{{'Release time' | translate}}:{{ showReleaseTime(releaseTime) }}</div>
+        <div>{{'Locker period' | translate}}:{{ lockPeriod }}</div>
+        <ul class="responsive-table">
+            <li class="table-header">
+              <div class="col col-8">{{'User' | translate}}</div>
+              <div class="col col-4">{{'amount' | translate}}</div>
+            </li>
+            <li class="table-row" *ngFor="let reward of rewards">   
+                <div class="col col-8">{{reward.user}}</div>
+                <div class="col col-4">{{reward.amount}}</div>
+            </li>
+        </ul>
+
+        <div class="CreateCollection--actions" *ngIf="rewards && (rewards.length > 0)">
+            <div class="ActionButtonrContainer">
+                <div class="ActionButton--content text-center py-3 border" (click)="send()" style="min-width: 120px;">
+                    {{'Send' | translate}}
+                </div>
+            </div> 
+          </div>
+    </div>
+</div>

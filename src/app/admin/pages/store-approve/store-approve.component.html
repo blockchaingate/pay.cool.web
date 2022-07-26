@@ -1,0 +1,82 @@
+<div *ngIf="store">
+    <div class="container">
+        <div class="text-right py-2" *ngIf="isCoinPoolOwner">
+            <button class="btn signinbtn" (click)="approve()">{{('Approve') | translate}}</button>
+        </div>
+        <div *ngIf="store.name">
+            <label for="email"><b>{{'Name' | translate}}:</b></label> {{store.name.en}}
+            <label for="email"><b>{{'中文名称' | translate}}:</b></label> {{store.name.sc}}
+        </div>
+        <div>
+            <label for="owner"><b>{{'Owner' | translate}}:</b></label> {{store.owner}}
+        </div>
+        <div *ngIf="store.merchant && store.merchant.addressLan">
+            <label for="email"><b>{{'Address' | translate}}:</b></label> {{store.merchant.addressLan.en}}
+            <label for="email"><b>{{'地址' | translate}}:</b></label> {{store.merchant.addressLan.sc}}
+        </div>
+        <div *ngIf="store.merchant && store.merchant.contactNameLan">
+
+            <label for="email"><b>{{'Contact name' | translate}}:</b></label> {{store.merchant.contactNameLan.en}}
+            <label for="email"><b>{{'联系人' | translate}}:</b></label> {{store.merchant.contactNameLan.sc}}
+        </div>
+
+        <div *ngIf="store.merchant && store.merchant.businessContentsLan">
+            <div>
+                <label for="email"><b>{{'Business contents' | translate}}:</b></label> {{store.merchant.businessContentsLan.en}}
+            </div>
+            <div>
+                <label for="email"><b>{{'主营业务' | translate}}:</b></label> {{store.merchant.businessContentsLan.sc}}
+            </div>
+
+        </div>
+
+
+
+        <div *ngIf="store.merchant">
+            <div>
+                <label for="email"><b>{{'Phone' | translate}}:</b></label> {{store.merchant.phone}}
+            </div>
+            <div>
+                <label for="email"><b>{{'Fax' | translate}}:</b></label> {{store.merchant.fax}}
+            </div>
+            <div>
+                <label for="email"><b>{{'Email' | translate}}:</b></label> {{store.merchant.email}}
+            </div>
+            <div>
+                <label for="email"><b>{{'Website' | translate}}:</b></label> {{store.merchant.website}}
+            </div>
+            <div>
+                <label for="email"><b>{{'Open time' | translate}}:</b></label> {{store.merchant.openTime}}
+            </div>
+            <div>
+                <label for="email"><b>{{'Close time' | translate}}:</b></label> {{store.merchant.closeTime}}
+            </div>
+        </div>
+
+        <div>
+            <label for="email"><b>{{'Ref address' | translate}}:</b></label> {{store?.refAddress}}
+        </div>
+
+        <div>
+            <label for="email"><b>{{'Coin' | translate}}:</b></label> {{store?.coin}}
+        </div>
+
+        <div>
+            <label for="email"><b>{{'Rebate rate' | translate}}:</b></label> {{store?.giveAwayRate}}%
+        </div>
+
+        <div>
+            <label for="email"><b>{{'Tax rate' | translate}}:</b></label> {{store?.taxRate}}%
+        </div>
+
+        <div>
+            <label for="email"><b>{{'Locked days' | translate}}:</b></label> {{store?.lockedDays}}
+        </div>
+
+        <div>
+            <label for="email"><b>{{'FeeCharger Smart contract address' | translate}}:</b></label> {{store?.feeChargerSmartContractAddress}}
+        </div>
+
+
+    </div>
+</div>

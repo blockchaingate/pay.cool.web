@@ -1,0 +1,107 @@
+.container {
+    background-color: white;
+    color: black;
+}
+
+.campaign-card {
+    margin: 1em 0em;
+    color: black;
+}
+
+mat-card {
+    background-color: white;
+    color: black;
+}
+
+.imgbox {
+    width: 98%;
+    max-width: 800px;
+    margin-bottom: 2em;
+}
+
+.textoverimg {
+    position: absolute;
+    top: 28%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.btn {
+    border: 1px solid black;
+}
+
+.btn01 {
+    margin-left: 0.5em;
+}
+
+.boardarea {
+    margin: 1em;
+}
+
+.accitem {
+    margin-bottom: 0.5em;
+}
+
+.order-row {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    margin-top: 1em;
+    border-bottom: 1px solid silver;
+    padding-bottom: 3px;
+}
+
+.item {
+    width: 64px;
+}
+
+.partic {
+    font-size: medium;
+}
+
+.paybox {
+    margin-top: 0.2em;
+}
+
+mat-radio-button {
+    border-color: black;
+    margin-right: 0.5em;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: rgb(66, 134, 244);
+}
+
+.address {
+    font-size: small;
+}
+
+.btnitem {
+    margin-right: 1em;
+}
+
+.fontfit {
+    font-size: 1.25vw;
+}
+
+@media screen and (max-width: 600px) {
+    .box {
+        font-size: small;
+    }
+    .textoverimg {
+        top: 28%;
+        left: 46%;
+    }
+    .fontfit {
+        font-size: 4vw;
+    }
+}
+
+.participate {
+    font-size: 15px;
+    cursor: pointer;
+    background-color: #1ed5f1;
+    padding: 6px 10px;
+}

@@ -1,0 +1,39 @@
+
+<div class="container">
+  <ul class="responsive-table">
+    <li class="table-header">
+      <div class="col col-2">{{'From' | translate}}</div>
+      <div class="col col-2">{{'Merchant' | translate}}</div>
+      <div class="col col-2">{{'Coin' | translate}}</div>
+      <div class="col col-2">{{'Detail' | translate}}</div>
+      <div class="col col-2">{{'Date created' | translate}}</div>
+      <div class="col col-2"></div>
+    </li>
+    <li class="table-row" *ngFor="let item of charges">
+      <div class="col col-2" data-label="From">
+        <small>{{showAddr(item.from)}}</small>
+      </div>
+      <div class="col col-2" data-label="Merchant">
+        <small>{{showAddr(item.merchantRecipient)}}</small>
+      </div>
+      <div class="col col-2" data-label="Coin">{{showCoinName(item.coinType)}}</div>
+      <div class="col col-2" data-label="Address">
+        <div>total:{{showAmount(item.totalAmount)}}</div>
+        <div>tax:{{showAmount(item.tax)}}</div>
+        <div>reward:{{showAmount(item.rewardAmount)}}</div>
+      </div>
+      <div class="col col-2" data-label="Date created">{{item.dateCreated | date}}</div>
+      <div class="col col-2 text-right" data-label="Operations">
+
+        <div class="d-inline-block px-2">
+          <a (click)="requestRefund(item)">
+            Request refund
+          </a>
+          <a (click)="transferOwnership(item)">
+            Transfer ownership
+          </a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

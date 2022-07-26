@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="text-right py-2 mb-4">
+        <button type="submit" class="btn btn-primary" (click)="myStore()">{{(myStoreExisted ? 'Merchant Information' : 'New Merchant Registration') | translate}}</button>
+      </div>
+    <div class="store" *ngFor="let item of stores">
+        <app-store-detail  [store]="item"></app-store-detail>
+    </div>
+    
+</div>

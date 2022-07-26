@@ -1,0 +1,25 @@
+<div *ngIf="isValidMember != undefined">
+    <div *ngIf="!isValidMember" class="text-center">
+        You are not a member of 7star
+        <div class="text-left form-container pt-3">
+            <div class="form-group">
+                <label for="exampleInputEmail1">{{"Referral (mandatory)"|translate}} *</label>
+                <input type="text" class="form-control" id="referral" [(ngModel)]="referral" aria-describedby="referral" placeholder="{{'Referral'| translate}}">
+            </div>  
+            
+            <div class="text-center">
+                <button class="btn add-wallet btnitem black handcursor" (click)="join()">
+                    {{"Join"| translate }}
+                </button>                    
+            </div>            
+        </div>
+     
+    </div>
+    
+    <div *ngIf="isValidMember"  class="text-center">
+        <div class="text-center">
+            You are a member of 7star
+        </div>
+        
+    </div>
+</div>

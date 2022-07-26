@@ -1,0 +1,499 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+/*
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import '@angular/material/prebuilt-themes/pink-bluegrey.css';
+*/
+
+// Bootstrap
+// @import "~bootstrap/scss/bootstrap-reboot";
+// @import "~bootstrap/scss/bootstrap-grid";
+@import "colours";
+@import "fonts";
+@import "sizing";
+@import "forms";
+@import "./styles/margin.css";
+@import "./styles/padding.css";
+@import "./styles/size.css";
+@import "./styles/color.css";
+@import '@angular/material/prebuilt-themes/purple-green.css';
+
+.align-right {
+    position: absolute;
+    right: 0px;
+}
+
+html,
+body {
+    color: $secondary-light;
+    font-family: Verdana, sans-serif, SimHei, "Microsoft YaHei";
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #edeff0;
+}
+
+a {
+    color: inherit;
+}
+
+p {
+    font-weight: 500;
+}
+
+body:not(:-moz-handler-blocked) fieldset {
+    display: table-cell;
+}
+
+fieldset {
+    background: none;
+    border: none;
+    height: inherit;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    width: inherit;
+}
+
+// max out spread
+.max-out {
+    margin: 0 auto;
+    max-width: 1140px;
+    // max-width: 65em;
+}
+
+.child-route {
+    background-color: $white;
+    min-height: 80vh;
+    padding: 0 0 3em 0 !important;
+    max-height: none !important;
+    @include small-angular {
+        @include padding-default;
+    }
+    &form:before {
+        content: "";
+        margin: 1em;
+        position: absolute;
+    }
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.xxsmall {
+    font-size: xx-small;
+}
+
+.xsmall {
+    font-size: x-small;
+}
+
+.small {
+    font-size: small;
+}
+
+.medium {
+    font-size: medium;
+}
+
+.large {
+    font-size: large;
+}
+
+.xlarge {
+    font-size: x-large;
+}
+
+.xxlarge {
+    font-size: xx-large;
+}
+
+.largest {
+    font-size: 100px;
+}
+
+// vimeo screen
+.custom-vimeo-screen {
+    background-color: rgba(0, 0, 0, 0.75);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+    button {
+        background: none;
+        box-shadow: none;
+        color: $white;
+        font-size: 2em;
+        position: absolute;
+        right: 1em;
+        top: 1em;
+    }
+    iframe {
+        @include small-angular {
+            height: calc(100% - 14.5em);
+            margin-left: 0.5em;
+            margin-top: 7em;
+            width: calc(100% - 4em);
+        }
+        height: 100%;
+        width: 100%;
+    }
+}
+
+// generic util classes
+.inline-block {
+    display: inline-block;
+}
+
+.block {
+    display: block;
+}
+
+.center {
+    text-align: center;
+}
+
+.middle {
+    margin: 0 auto;
+}
+
+// center for div
+.div-center {
+    margin: auto;
+    width: 50%;
+}
+
+.input {
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+    min-height: 1.8em;
+    padding: 0.7em 1.3em;
+}
+
+.button {
+    border: none;
+    box-shadow: none;
+    display: inline-block;
+    font-size: 0.85em;
+    padding: 0.68em 1.3em;
+    min-height: 1.3em;
+    min-width: 5em;
+    &.white {
+        background-color: $white;
+        color: $secondary;
+    }
+    &.secondary {
+        background-color: $secondary;
+        color: $white;
+    }
+}
+
+.background-primary {
+    background-color: $primary;
+}
+
+.background-primary-bold {
+    background-color: $primary;
+}
+
+.background-secondary {
+    background-color: $secondary;
+}
+
+.background-warning {
+    background-color: $warning;
+}
+
+.color-primary {
+    // @include icon-color($primary);
+    color: $primary !important;
+}
+
+// .color-primary-dark {
+//   @include icon-color($primary-dark);
+//   color: $primary-dark !important;
+// }
+.color-primary-bold {
+    // @include icon-color($primary);
+    color: $primary;
+}
+
+.color-secondary {
+    //   @include icon-color($secondary);
+    color: $secondary;
+}
+
+.color-white {
+    // @include icon-color($white);
+    color: $white !important;
+}
+
+.color-black {
+    // @include icon-color($black);
+    color: $black !important;
+}
+
+.color-warning {
+    // @include icon-color($black);
+    color: $warning !important;
+}
+
+.regular {
+    font-family: Verdana, sans-serif, SimHei, "Microsoft YaHei";
+    font-weight: 500;
+}
+
+.semi-bold {
+    font-family: Verdana, sans-serif, SimHei, "Microsoft YaHei";
+    font-weight: 600;
+}
+
+.bold {
+    font-family: Verdana, sans-serif, SimHei, "Microsoft YaHei";
+    font-weight: 700;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.table {
+    display: table;
+}
+
+.table-row {
+    display: table-row;
+}
+
+.table-cell {
+    display: table-cell;
+}
+
+.text-divider {
+    margin: 0 1em;
+}
+
+.modal-bg-grey {
+    background-color: #ebeef5 !important;
+}
+
+.modal-content {
+    border: none;
+    border-radius: 0;
+}
+
+.text-muted {
+    color: white;
+}
+
+.row-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.content {
+    height: 100%;
+}
+
+a.explorer-link {
+    color: #3498db;
+    background-color: transparent;
+}
+
+.color-silver {
+    color: silver;
+}
+
+.hand-cursor {
+    cursor: pointer;
+}
+
+.main-work-area {
+    min-height: 680px;
+}
+
+.exg-bg {
+    background-color: #282840;
+}
+
+.exg-bg-light {
+    background-color: #2c2c4e;
+}
+
+.exg-bg-dark {
+    background-color: #112233;
+}
+
+.gradient-back-title {
+    background-image: linear-gradient(to right, #e6b572, #d9736e, #95629b, #63539e, #3a4ba3);
+}
+
+.gradient-back-area {
+    color: white;
+    // background-image: linear-gradient(to right, #fbc879, #eb7f75, #a26aa7, #695aad, #3e51b0);
+    background-color: #1ed5f1;
+}
+
+.gradient-back-area:hover {
+    background-color: #aae8f1;
+}
+
+.btn-gradient {
+    background-image: linear-gradient(to right, #f2ac0e, #d56a70, #bb2ad1);
+    color: white;
+}
+
+@media only screen and (max-width: 959px) {
+    .fxHide-sm {
+        display: none !important;
+    }
+}
+
+@media only screen and (min-width: 960px) {
+    .fxHide-gt-sm {
+        display: none !important;
+    }
+}
+
+*:focus {
+    outline: none !important;
+    border: 0 !important;
+}
+
+.container-wallet-main {
+    height: 325px;
+}
+
+.color-purple {
+    color: #871fff;
+}
+
+.scroll-bar::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+}
+
+.scroll-bar::-webkit-scrollbar-thumb {
+    background-color: #424266;
+}
+
+.btn-fixed-width {
+    width: 100px !important;
+}
+
+.btn-lg-fixed-width {
+    width: 130px !important;
+}
+
+.custom-snackbar {
+    background: rgb(182, 98, 98);
+    color: white;
+}
+
+.custom-snackbar-success {
+    background: rgb(34, 139, 34);
+    color: white;
+}
+
+.custom-snackbar .mat-button-wrapper,
+.custom-snackbar-success .mat-button-wrapper {
+    color: white;
+}
+
+.exbtn {
+    // background: linear-gradient(to right, #cd45ff 0%, #7368ff 50%, #cd45ff 100%);
+    background: rgba(59, 173, 227, 1);
+    background: linear-gradient( 45deg, rgba(255, 53, 127, 1) 0%, rgba(87, 111, 230, 1) 25%, rgba(152, 68, 183, 1) 51%, rgba(255, 53, 127, 1) 100%);
+    border: 0 !important;
+    border-radius: 50px;
+    color: #fff;
+    font-weight: 900;
+    text-transform: uppercase;
+    transition: all 450ms ease-in-out;
+    background-size: 200%;
+    background-position: -100%;
+    &:hover {
+        background-position: 100%;
+    }
+    &:disabled {
+        background-color: #777;
+        background-image: none;
+    }
+}
+
+//campaign page only
+.promotionData {
+    .mat-form-field-appearance-legacy .mat-form-field-label {
+        color: rgba(255, 252, 252, 0.54) !important;
+    }
+    .example-radio-group {
+        display: flex;
+        flex-direction: column;
+        /* display: inline-grid; */
+        /* display: grid; */
+        margin: 15px 0;
+    }
+    .mat-radio-outer-circle {
+        border-color: rgba(255, 255, 255, .84)
+    }
+    .exdisabled .mat-form-field-underline {
+        background-color: #999;
+    }
+    .step2 #currency-radio-group-label,
+    .step2 #method-radio-group-label {
+        margin-left: 20px;
+    }
+}
+
+.modal {
+    z-index: 9999;
+}
+
+.sortable {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.mat-checkbox-frame {
+    border-color: black;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: rgb(66, 134, 244);
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+    color: rgb(66, 134, 244);
+    background-color: rgb(66, 134, 244);
+}
+
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color: rgb(255, 37, 37, .26);
+}
+
+.ActionButton--content {
+    color: rgb(66, 134, 244);
+}
+.ActionButton--content:hover {
+    cursor: pointer;
+    color: blue;
+}
+
+.auto-wrap {
+    word-wrap:break-word;word-break:break-all;
+}

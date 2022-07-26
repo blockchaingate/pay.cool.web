@@ -1,0 +1,377 @@
+<mat-card class="container">
+
+
+    <div *ngIf="!participated" class="red d-flex justify-content-around">
+        <mat-card-actions class="text-center">
+            <button class="btn add-wallet btnitem black handcursor" *ngIf="!isValidMember" (click)="enroll(templateCustomer, campaigns[0]._id)">
+                {{"Join as a customer"| translate }}
+            </button>
+
+            <button class="btn add-wallet btnitem black handcursor participate" (click)="enroll(template, campaigns[0]._id)">
+                {{"Participate this project"| translate }}
+            </button>
+        </mat-card-actions>
+    </div>    
+
+    <div class="row boardarea">
+        <mat-card class="col-md-6 col-sm-12 box">
+            <div>
+                <h2>{{"My account summary"|translate}}</h2>
+            </div>
+            <div class="accitem">
+                {{"My level"| translate}}: <span *ngIf="walletAdd">{{"Global ecosystem geographic node
+                    owner"|translate}}</span>
+            </div>
+            <div class="accitem">
+                {{"Governing territory"|translate}}: {{"To be decided"|translate}}
+            </div>
+            <div class="accitem">
+                {{"My 7StarPay assets total value"| translate}}: {{totalAssetValue}} USD
+            </div>
+            <div class="accitem">
+                {{"My total rewards"| translate}}: {{"Not calculated yet"| translate}}
+            </div>
+        </mat-card>
+        <mat-card class="col-md-6 col-sm-12 center mt-2 box">
+            <div class="small">{{"Referral link"| translate}}: {{reflink}}</div>
+
+            <div>
+                <qrcode [allowEmptyString]="true" [qrdata]="walletAddress" [width]="200" [errorCorrectionLevel]="'M'">
+                </qrcode>
+            </div>
+
+            <div class="small">{{"My referral code"| translate}}: {{walletAddress}}</div>
+        </mat-card>
+    </div>
+
+    <mat-card class="campaign-card" *ngFor="let campaign of campaigns">
+        <mat-card-header>
+            <div mat-card-avatar *ngIf="campaign.avatarUrl"><img src="{{campaign.avatarUrl}}" width="40px"> </div>
+            <mat-card-title>{{getTitle(campaign)}}</mat-card-title>
+        </mat-card-header>
+        <div mat-card-image></div>
+        <mat-card-content>
+            <div class="imgbox center" *ngIf="campaign.imageUrl">
+                <img src="{{campaign.imageUrl}}" width="100%">
+                <div class="textoverimg">
+                    <div class="fontfit">{{getSlogan(campaign)}}</div>
+                    <div class="fontfit">{{getSubslogan(campaign)}}</div>
+                </div>
+            </div>
+            <p>
+                <b>{{"Brief Introduction"|translate}}</b><br> {{getDesc(campaign)}}
+            </p>
+            <p>
+                {{"Status"|translate}}: {{getCampaignStatus(campaign) | translate}}
+            </p>
+        </mat-card-content>
+
+        <hr>
+
+        <h3>{{"My participation"|translate}}</h3>
+        <mat-card-content>
+            <div *ngIf="participated">
+                <div class="green partic">{{"I participated this campaign already"|translate}}</div>
+                <!--
+                <div>
+                    <div class="order-row">
+                        <div class="item">{{"Amount"|translate}}</div>
+                        <div>{{campaignOrders[campaign._id].amount}} {{campaignOrders[campaign._id].currency}}</div>
+                    </div>
+                    <div class="order-row">
+                        <div class="item">{{"Status"|translate}}</div>
+                        <div [ngStyle]="{'color': getStatusColor(campaignOrders[campaign._id].status)}">
+                            {{ getOrderStatus(campaignOrders[campaign._id].status)|translate}}
+
+                            <button class="btn btn01 add-wallet btnitem black handcursor" *ngIf="campaignOrders[campaign._id].status === 0" (click)="makepayment(PayPad, campaign._id)">
+                                {{"Make payment"| translate }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                -->
+            </div>
+            <div *ngIf="!participated" class="red">
+                <div class="partic">{{"I haven't participate this campaign yet"|translate}}</div>
+                <mat-card-actions>
+                    <button class="btn add-wallet btnitem black handcursor" (click)="enroll(template, campaign._id)">
+                        {{"Participate this project"| translate }}
+                    </button>
+
+                    <!--
+                    <button mat-button class="btn01">{{"Participate"|translate}}</button>
+                      -->
+                </mat-card-actions>
+            </div>
+        </mat-card-content>
+
+    </mat-card>
+
+    <!--
+
+    <div class="responsive-table table-hover">
+        <li class="table-header">
+            <div class="col col-3">{{'Asset'| translate}}</div>
+            <div class="col col-3">{{'Balance'| translate}}</div>
+            <div class="col col-3">{{'Locked Balance'| translate}}</div>
+            <div class="col col-3">{{'Value'| translate}}</div>
+        </li>
+        <li class="table-row" *ngIf="!assets||assets.length<1">
+            <div>{{"You have no any DEFI asset"| translate}}</div>
+        </li>
+        <li class="table-row" *ngFor="let coin of assets">
+            <div>
+                <div *ngIf="!campaginAsset">
+
+                </div>
+
+                <div class="col col-3 text-black" data-label="Coin">{{utilServ.getCoinNameByTypeId(coin.coinType)}}</div>
+                <div class="col col-3" data-label="Balance">
+                    <div *ngIf="coin.unlockedAmount && (coin.unlockedAmount >= 0)" class="text-black">
+                        {{utilServ.toNumber(utilServ.showAmount(coin.unlockedAmount, 18))}}
+                    </div>
+                </div>
+
+                <div class="col col-3" data-label="Locked Balance">
+                    <div class="text-black" *ngIf="coin.lockedAmount && (coin.lockedAmount > 0)">
+                        {{utilServ.toNumber(utilServ.showAmount(coin.lockedAmount, 18))}}
+                    </div>
+                </div>
+
+                <div class="col col-3 text-right" data-label="Operations">
+
+                    <div class="d-inline-block px-2">
+                        <a (click)="withdraw(coin.coinType, utilServ.getCoinNameByTypeId(coin.coinType))">
+                            <img src="/assets/svg/withdraw.svg">
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </li>
+    </div>
+</mat-card>
+-->
+
+
+
+
+<ng-template #templateCustomer>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">{{"Enroll as a customer"| translate}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">{{"Wallet address"| translate}}: </label>
+            <small>{{walletAdd}}</small>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">{{"Referral (mandatory)"|translate}} *</label>
+            <input type="text" class="form-control" id="referral" [(ngModel)]="referral"
+                (ngModelChange)="getPaymentQrcode()" aria-describedby="referral"
+                placeholder="{{'Referral'| translate}}">
+        </div>
+
+
+        <div>
+            <div class="text-center">
+                <button class="btn add-wallet btnitem black handcursor" (click)="enrollAsCustomer()">
+                    {{"Join as a customer"| translate }}
+                </button>
+            </div>
+            <div>
+                {{"Gas"|translate}}: {{gas}}
+            </div>
+        </div>
+
+
+        <div *ngIf="errMsg" class="red">
+            {{errMsg | translate}}.
+        </div>
+
+    </div>
+</ng-template>
+
+
+
+
+    <ng-template #template>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">{{"Enroll"| translate}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">{{"Wallet address"| translate}}: </label>
+                <small>{{walletAdd}}</small>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">{{"Amount"|translate}}: </label>
+                <span> {{amount}}</span> <span> DUSD/USDT</span>
+                <!--
+                <input type="text" class="form-control" id="amount" [(ngModel)]="amount" aria-describedby="amount" placeholder="{{'Enter amount'| translate}}">
+                -->
+            </div>
+
+            <div class="form-group d-flex">
+                <h4 class="pr-3">{{"Select payment method"|translate}}</h4>
+                <div appearance="fill">
+                    <select matNativeControl required [(value)]="paymentMethod"
+                        (change)="onPaymentMethodSelect($event.target.value)">
+                        <option value="DUSD">DUSD</option>
+                        <option value="USDT">USDT</option>
+                    </select>
+                </div>
+            </div>
+            <!--
+            <div class="form-group">
+                <label for="exampleInputEmail1">{{"Currency"|translate}}</label>
+                <input type="text" class="form-control" id="currency" [(ngModel)]="currency" aria-describedby="currency" placeholder="{{'Currency'| translate}}">
+            </div>
+        -->
+            <div class="form-group">
+                <label for="exampleInputEmail1">{{"Referral (mandatory)"|translate}} *</label>
+                <input type="text" class="form-control" id="referral" [(ngModel)]="referral"
+                    (ngModelChange)="getPaymentQrcode()" aria-describedby="referral"
+                    placeholder="{{'Referral'| translate}}">
+            </div>
+
+            <!--
+            <div class="text-center" *ngIf="referral.length > 32">
+                <button class="btn add-wallet border" (click)="placeOrder()">{{"Confirm"| translate}}</button>
+            </div>
+        -->
+
+            <div class="form-group paybox">
+                <label for="exampleInputEmail1">{{"Pay through your BindPay account"| translate}}: 2000 {{paymentMethod}}</label>
+            </div>
+
+            <div>
+                <div class="text-center">
+                    <button class="btn add-wallet btnitem black handcursor" (click)="pay()">
+                        {{"Pay directly"| translate }}
+                    </button>
+                </div>
+                <div class="mt-4">
+                    {{"Your BindPay account balance"|translate}}: {{balance}}{{paymentMethod}}
+                </div>
+                <div>
+                    {{"Gas"|translate}}: {{gas}}
+                </div>
+            </div>
+
+
+            <div *ngIf="errMsg" class="red">
+                {{errMsg | translate}}.
+            </div>
+
+        </div>
+    </ng-template>
+
+    <ng-template #PayPad>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">{{"Make payment"| translate}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <h4>{{"Select payment method"|translate}}</h4>
+            <div appearance="fill">
+                <select matNativeControl required [(value)]="paymentMethod"
+                    (change)="onPaymentMethodSelect($event.target.value)">
+                    <option value="DUSD">DUSD</option>
+                    <option value="USDT">USDT</option>
+                </select>
+            </div>
+            <br>
+            <!--
+                <div class="form-group paybox">
+                <label for="exampleInputEmail1">{{"Please pay"| translate}} 2000 {{paymentMethod}} {{"to below address"|translate}}: </label>
+                <div class="text-center">
+                    <qrcode [qrdata]="qrcodeData" [allowEmptyString]="true" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+                </div>
+            </div>
+        -->
+            <div class="text-center">
+                <button class="btn add-wallet btnitem black handcursor" (click)="pay()">
+                    {{"Pay directly"| translate }}
+                </button>
+            </div>
+            <!--
+            <div class="form-group paybox" *ngIf="paymentMethod === 'USDT'">
+                <div><b>{{"Please select a blockchain"|translate}}: </b></div>
+                <mat-radio-group aria-label="Select blockchain">
+                    <mat-radio-button value="1" [checked]="chainRadio === 'TRC-20'" (change)="chainRadio = 'TRC-20'">{{"Tron"| translate}} (TRC-20)</mat-radio-button>
+                    <mat-radio-button value="2" [checked]="chainRadio === 'ERC-20'" (change)="chainRadio = 'ERC-20'">{{"Ethereum"|translate}} (ERC-20)</mat-radio-button>
+                </mat-radio-group>
+
+                <label for="exampleInputEmail1">{{"Please pay"| translate}} 2000 {{paymentMethod}} ({{chainRadio}}) {{"to below address"|translate}}: </label>
+                <div *ngIf="chainRadio === 'TRC-20'">
+                    <qrcode [qrdata]="officialUSDTTRC20add" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+                    <div>{{"Receiving address"| translate}} (TRC-20 USDT): </div>
+                    <div class="address"> {{officialUSDTTRC20add}} </div>
+                </div>
+                <div *ngIf="chainRadio === 'ERC-20'">
+                    <qrcode [qrdata]="officialUSDTERC20add" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+                    <div>{{"Receiving address"| translate}} (ERC-20 USDT): </div>
+                    <div class="address"> {{officialUSDTERC20add}}</div>
+                </div>
+            </div>
+-->
+            <div *ngIf="errMsg" class="red">
+                {{errMsg | translate}}.
+            </div>
+
+        </div>
+    </ng-template>
+
+    <!--
+    <ng-template #ConfirmPayment>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">{{"Confirm payment"| translate}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <h4>{{"Select payment method"|translate}}</h4>
+            <div appearance="fill">
+                <select matNativeControl required [(value)]="paymentMethod" (change)="onPaymentMethodSelect($event.target.value)">
+                <option value="DUSD">DUSD</option>
+                <option value="USDT(TRC-20)">USDT (TRC-20)</option>
+                <option value="USDT(ERC-20)">USDT (ERC-20)</option>
+              </select>
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label for="exampleInputText">{{"TransactionId (mandatory)"|translate}} *</label>
+                <input type="text" class="form-control" id="txId" [(ngModel)]="txId" aria-describedby="txId" placeholder="{{'txId'| translate}}">
+            </div>
+
+            <div class="text-center" *ngIf="txId.length > 40">
+                <button class="btn add-wallet border" (click)="createPayment()">{{"Confirm"| translate}}</button>
+            </div>
+
+            <div *ngIf="errMsg" class="red">
+                {{errMsg | translate}}.
+            </div>
+
+        </div>
+    </ng-template>
+
+-->

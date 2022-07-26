@@ -1,0 +1,22 @@
+
+
+<div class="container">
+
+    <div>
+        <a (click)="add()">
+          <img src="/assets/svg/add.svg">
+        </a>
+      </div>
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="col col-6">{{'Merchant' | translate}}</div>
+        <div class="col col-3">{{'Coin' | translate}}</div>
+        <div class="col col-3">{{'Amount' | translate}}</div>
+      </li>
+      <li class="table-row" *ngFor="let item of merchant_credit_list">
+        <div class="col col-6" data-label="Merchant">{{item.store ? item.store.owner : ''}}</div>
+        <div class="col col-3" data-label="Coin">{{getCoinName(item.coinType)}}</div>
+        <div class="col col-3" data-label="Amount">{{item.amount}}(<span>{{item.realAmount}}</span>)</div>
+      </li>
+    </ul>
+</div>

@@ -1,0 +1,102 @@
+.container {
+    padding: 1em;
+    background-color: #1c1c31;
+    color:#f5f5f5
+}
+
+.toparea {
+    padding-left: 1em;
+}
+
+select {
+    width: auto;
+}
+
+.btn{
+    background-color: #1ed5f1;
+}
+
+.responsive-table .table-header{
+    background-color: #1ed5f1;
+    color: #333;
+}
+
+
+.current-tab {
+    color: blue;
+    background-color: #c0c0cf;
+    font-weight: 600;
+}
+
+
+
+.add-wallet {
+    width: 250px;
+}
+
+.btnitem:hover {
+    color: blue;
+    font-weight: 600;
+}
+
+// .border {
+//     border: 1px solid red!important;
+// }
+
+.menu {
+    padding-left: 4em;
+    margin-top: 3em;
+    width: 100%;
+}
+
+.menu a {
+    display: block;
+    cursor: pointer;
+}
+
+.btnarea {
+    padding-left: 1em;
+}
+
+.btnrs {
+    width: 120px;
+}
+
+.menu a:hover {
+    background-color: #8f8fcf;
+    color: white;
+}
+
+@media screen and (max-width: 600px) {
+    .toparea {
+        font-size: small;
+    }
+}
+
+.btn.btn1.gradient-back-area{
+    background-color: #1ed5f1;
+}
+
+
+.btn.btn1.gradient-back-area:hover{
+    background-color: #aae8f1;
+}
+
+.walletName{
+    display: flex;
+
+}
+
+.walletNameText{
+    padding-right: 10px;
+    color: #1ed5f1;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.qrDiv{
+    background-color: #071126;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+}

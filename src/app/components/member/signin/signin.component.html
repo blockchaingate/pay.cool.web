@@ -1,0 +1,31 @@
+<div class="py-1 signin-page">
+    <div class="container">
+        <main class="form-signin">
+            <form>
+                <div>
+                    <img class="mb-4" src="./assets/img/7star-logo.png" alt="7StarPay" width="64"> <span class="title">
+            {{"Sevenstar" | translate}}</span>
+                </div>
+                <h1 class="h3 mb-3 fw-normal">{{"Login" | translate}}</h1>
+                <label for="inputEmail" class="visually-hidden">{{"Email address"| translate}}</label>
+                <input type="email" id="inputEmail" class="form-control" placeholder="{{'Email address'| translate}}" [(ngModel)]="email" name="email" required autofocus>
+                <label for="inputPassword" class="visually-hidden">{{"Password"|translate}}</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="{{'Password'|translate}}" [(ngModel)]="password" name="password" required>
+                <div class="checkbox mb-3">
+                    <label>
+            <input type="checkbox" value="remember-me"> {{"Remember me"|translate}}
+          </label>
+                </div>
+
+                <button class="mt-3 mb-3 w-100 btn btn-lg btn-primary" type="submit" (click)="onSubmit()">{{"Login" | translate}}</button>
+                <div class="errmessage mt-3" *ngIf="errMsg">
+                    {{errMsg| translate}}.
+                </div>
+                <p class="mt-3 mb-3 text-muted">
+                    <a href='/forgot-pwd'> {{"Forgetpwd"| translate}} ?</a><br>
+                    <a href='/register'> {{"Donthaveacct"| translate}} ?</a>
+                </p>
+            </form>
+        </main>
+    </div>
+</div>

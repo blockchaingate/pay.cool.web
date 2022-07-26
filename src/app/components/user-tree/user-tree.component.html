@@ -1,0 +1,43 @@
+<div class="py-5 user-tree-page">
+    <div class="container text-center mb-5" *ngIf="!wallet">
+        <p class="orangered">{{"NoWalletNote2"|translate}}</p>
+    </div>
+
+    <div class="container text-center mb-5" *ngIf="!myReferralUrl && wallet">
+        <div class="py-4">
+            <h4 class="title">{{"You are NOT a 7StarPay member"|translate}}.</h4>
+        </div>
+        <div>
+            <div class="center py-4">
+                <label for="refcode">{{"Referral code"| translate}}</label>
+                <input type="text" class="inputfield" placeholder="{{'Enter refcode'|translate}}" [(ngModel)]="refCode" name="refcode" [disabled]="refCodeComeIn" width="560" required>
+            </div>
+            <div *ngIf="errMsg" class="red">
+                {{errMsg|translate}}
+            </div>
+            <div class="wrapper-center py-3">
+                <button class="btn btn-primary" (click)="joinForFree()" type="submit" [disabled]="!refCode">{{"Join for free"|translate}}</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center mb-5" *ngIf="myReferralUrl">
+        <h5>{{"My wallet"| translate}}: <u>{{wallet.name}}</u></h5>
+        <br>
+        <div>
+            {{"My referral link"| translate}}:
+            <a class="link lightgreen">
+                <span class="cyan">{{myReferralUrl}}</span>
+            </a>
+        </div>
+        <div id="myWalletId">
+            <div class="py-2">{{"My referral-code"| translate}}: {{walletAddress}}</div>
+            <qrcode [qrdata]="walletAddress" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+        </div>
+    </div>
+
+    <div *ngIf="children">
+        <app-tf-tree [children]="children" [walletAddress]="walletAddress"></app-tf-tree>
+    </div>
+
+</div>

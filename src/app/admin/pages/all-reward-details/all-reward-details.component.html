@@ -1,0 +1,43 @@
+
+<div class="container">
+    <div class="CreateCollection--actions">
+      <div class="ActionButtonrContainer">
+          <div class="ActionButton--content text-center py-3 border" (click)="sendRewards()" style="min-width: 120px;">
+              {{'Send rewards' | translate}}
+          </div>
+      </div> 
+  </div>
+
+      <ul class="responsive-table">
+        <li class="table-header">
+          <div class="col col-6">
+            <div>
+              {{'ID' | translate}}
+            </div>
+            <div>{{'Address' | translate}}</div>
+            <div>{{'User types' | translate}}</div>
+          </div>
+          
+          <div class="col col-2">{{'Should get' | translate}}</div>
+          <div class="col col-2">{{'Actual get' | translate}}</div>
+          <div class="col col-2">{{'Date created' | translate}}</div>
+        </li>
+        <li class="table-row" *ngFor="let item of rewards">
+          <div class="col col-6" data-label="ID, Address, User types">
+            <div>
+              <small>{{(item.id)}}</small>
+            </div>
+            <div>
+              <small>{{(item.address)}}</small>
+            </div>
+            <div *ngFor="let userType of item.userTypes">{{userType}}</div>
+          </div>
+          <div class="col col-2" data-label="Coin">{{item.shouldGet}}</div>
+          <div class="col col-2" data-label="Address">
+            <div>{{item.actualGet}}</div>
+          </div>
+          <div class="col col-2" data-label="Date created">{{item.dateCreated | date}}</div>
+        </li>
+      </ul>
+    </div>
+    

@@ -1,0 +1,85 @@
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{'Reward details' | translate}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div>
+      <span *ngIf="paidCoinType">
+        Paid coin: {{getCoinName(paidCoinType)}}({{paidCoinValue}}),
+      </span>  
+      <span *ngIf="rewardCoinType">
+        Reward coin: {{getCoinName(rewardCoinType)}}({{rewardCoinValue}})
+      </span>
+    </div>
+    <div>
+      Locked days: {{lockedDays}} 
+    </div>
+    <div>
+      total rewards in paid coin: {{totalRewards}} {{getCoinName(paidCoinType)}}
+    </div>
+    <div>
+      total rewards in reward coin: {{totalRewardsInRewardCoin}} {{getCoinName(rewardCoinType)}}
+    </div>
+    <div class="container">
+
+      <ul class="responsive-table">
+          <li class="table-header">
+            <div class="col col-2">{{'User' | translate}}</div>
+            <div class="col col-2">{{'Details' | translate}}</div>
+            <div class="col col-2">{{'Release time' | translate}}</div>
+            <div class="col col-2">{{'Txids' | translate}}</div>
+            <div class="col col-2">{{'Status' | translate}}</div>
+          </li>
+          <li class="table-row" *ngFor="let reward of rewards">   
+            <div class="col col-2" data-label="{{'User' | translate}}">
+              <div>
+                {{showId(reward.user)}}
+              </div>
+              <div *ngFor="let item of getUserType(reward.user)">
+                ({{item}})
+              </div>
+            </div>      
+            <div class="col col-2" data-label="{{'Details' | translate}}">
+              <div>
+                Actual:{{showDetail(reward) }}
+              </div>
+              <div>
+                Should:{{reward.shouldGet}}
+              </div>
+            </div>
+            <div class="col col-2" data-label="{{'Release time' | translate}}">
+              {{showReleaseTime(reward) }}
+            </div>    
+            <div class="col col-2" data-label="{{'Txids' | translate}}">
+              <div *ngFor="let txid of reward.txids">
+                <a target="_blank" href="{{getTxidUrl(txid)}}">
+                  {{showId(txid)}}
+                </a>
+              </div>
+            </div>      
+            <div class="col col-2" data-label="{{'Status' | translate}}">
+              <div>
+                {{showStatus(reward.status) | translate}}
+              </div>
+            </div>                  
+          </li>
+      </ul>  
+      <div>
+        <div class="CreateCollection--actions">
+          <div class="ActionButtonrContainer">
+              <div class="ActionButton--content text-center py-3 border" (click)="sendRewards()" style="min-width: 120px;">
+                  {{'Send rewards' | translate}}
+              </div>
+          </div> 
+        </div>
+      </div>              
+    </div>
+  </div>
+</div>
+</div>

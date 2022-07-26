@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="d-flex">
+        <div class="px-3" (click)="changeTab('pay')">Pay</div>
+        <div class="px-3" (click)="changeTab('history')">Transaction History</div>
+    </div>
+</div>
+<div class="container py-3" *ngIf="tab == 'pay'">
+    <div class="row">
+        <div class="col col-8">
+            <div *ngIf="name">
+                Name: {{name}}
+            </div>
+            <div *ngIf="to">
+                To: {{to}}
+            </div>
+            <div *ngIf="data">
+                Data: {{data}}
+            </div>
+        </div>
+        <div class="col col-4">
+            <div class="ActionButtonrContainer ">
+                <div class="ActionButton--content" (click)="submit()" style="min-width: 120px;">
+                    {{'Submit' | translate}}
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+
+<div *ngIf="tab == 'history'">
+    <app-order-history [transactionHistories]="transactionHistories"></app-order-history>
+</div>

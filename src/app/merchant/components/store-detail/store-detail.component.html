@@ -1,0 +1,39 @@
+<div class="container my-3">
+    <div class="row">
+        <div class="col col-md-2">
+            <div *ngIf="store.image" >
+                <img src="{{store.image}}">
+            </div>
+        </div>
+        <div class="col col-md-10">
+            <h6 class="auto-wrap d-flex justify-content-between">
+                <div>
+                    {{showName(store.name)}}
+                </div>
+                <div *ngIf="store.status == 1">
+                    <i class="fa fa-check text-success" aria-hidden="true"></i>
+                </div>
+
+            </h6>
+            <div class="text-muted auto-wrap">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                {{store.owner}}
+            </div>
+            <div class="text-muted auto-wrap" *ngIf="store.phone">
+                <i class="fa fa-phone"></i>
+                {{store.phone}}
+            </div>
+            <div class="text-muted auto-wrap" *ngIf="store.merchant && store.merchant.email">
+                <i class="fa fa-envelope"></i>
+                {{store.merchant.email}}
+            </div>      
+            <div class="text-muted auto-wrap" *ngIf="store.merchant && store.merchant.addressLan">
+                <i class="fa fa-location-arrow"></i>
+                {{showName(store.merchant.addressLan)}}
+            </div>
+            <div class="auto-wrap" *ngIf="store.merchant && store.merchant.businessContentsLan">
+                {{showName(store.merchant.businessContentsLan)}}
+            </div>
+        </div>
+    </div>
+</div>

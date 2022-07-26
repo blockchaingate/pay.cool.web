@@ -1,0 +1,321 @@
+<div class="container">
+    <div class="title"><b>{{"orderTitle"|translate}}</b></div>
+    <div class="noorder" *ngIf="!order">
+        <div>
+            {{"No order"| translate}}
+        </div>
+        <div class="createOrder">
+            <button class="btn add-wallet border" (click)="createOrder(createOrderTemplate)">
+                {{"Create order"| translate}}
+              </button>
+        </div>
+    </div>
+
+    <div *ngIf="order">
+        <div class="datapanel">
+            <div class="d-flex">
+                <div class="leftarea">{{'Wallet address' | translate}}:</div>
+                <div>{{order.walletAdd}}</div>
+            </div>
+            <div class="d-flex">
+                <div class="leftarea">{{'Amount' | translate}}:</div>
+                <div>{{order.amount}}</div>
+            </div>
+            <div class="d-flex">
+                <div class="leftarea">{{'Currency' | translate}}:</div>
+                <div>{{order.currency}}</div>
+            </div>
+            <div class="d-flex">
+                <div class="leftarea">{{'Status' | translate}}:</div>
+                <div>{{'PayStatus' + order.status| translate}}</div>
+            </div>
+            <div class="d-flex">
+                <div class="leftarea">{{'Created date' | translate}}:</div>
+                <div>{{order.dateCreated | date}}</div>
+            </div>
+            <div class="d-flex">
+                <div class="leftarea">{{'Last updated' | translate}}:</div>
+                <div>{{order.lastUpdated| date}}</div>
+            </div>
+        </div>
+
+        <div class="operpanel" *ngIf="!payment">
+            <div><b>{{"Select payment method"|translate}}</b></div>
+            <div class="d-flex justify-content-between oppanel">
+
+                <button class="btn add-wallet border" (click)="payWithWallet(templateWallet)">
+                    {{'Wallet'}}
+                </button>
+                <button class="btn add-wallet border" (click)="payWithDUSD(templateDUSD)">
+          {{'DUSD'}}
+        </button>
+
+                <button class="btn add-wallet border" (click)="payWithEpay()">
+          {{'Epay'}}
+        </button>
+
+                <button class="btn add-wallet border" (click)="payWithCashApp(cashAppModalTemplate)">
+          {{'CashApp'}}
+        </button>
+            </div>
+
+            <div class="text-center" *ngIf="payment">
+                <div *ngIf="payment.status === 1 || payment.status === 2">
+                    {{'You have already paid this order' | translate}}
+                </div>
+                <div *ngIf="payment.status !== 0 && !payment.status">
+                    <div>
+                        {{'Your payment is on the way' | translate}}
+                    </div>
+                    <div>
+                        <button class="btn add-wallet border" (click)="repay()">
+              {{"Make another payment"| translate}}
+            </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<ng-template #templatePassword>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">{{"Password"|translate}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div>
+            <input type="password" placeholder="{{'Password'| translate}}" [(ngModel)]="password" name="password" required>
+        </div>
+        <div class="text-center py-3">
+            <button class="btn" (click)="confirmPassword()">
+          {{'Confirm'| translate}}
+        </button>
+        </div>
+
+    </div>
+
+</ng-template>
+
+<ng-template #templateWallet>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">{{"Pay from wallet"|translate}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group">
+            <div>
+                <label for="exampleInputEmail1">{{"Rceiving Address"|translate}}: {{receivingAddress}}</label>
+            </div>
+
+            <div>{{'Currency' | translate}}:
+                <select [(ngModel)]="currentCoin" name="currentCoin">
+              <option value="">{{'Select Currency' | translate}}:</option>
+        
+              <option *ngFor="let coin of coins" value="{{coin.coin}}">
+                <span *ngIf="coin.coin == 'USDTX'">
+                    USDT(TRC20)
+                </span>
+                <span *ngIf="coin.coin == 'USDT'">
+                    USDT(ERC20)
+                </span>  
+                <span *ngIf="coin.coin == 'DUSD'">
+                    DUSD
+                </span>                               
+                ({{coin.balance}})
+              </option>
+        
+            </select>
+            </div>
+
+            <div>
+                {{"Amount"|translate}} {{order.amount}} {{currentCoin}}
+            </div>
+
+            <div *ngIf="currentCoin == 'USDT' || currentCoin =='DUSD'">
+                <label for="exampleInputEmail1">{{"Gas Price"|translate}}: 
+                    <input type="number" class="form-control" [(ngModel)]="gasPrice" id="gasPrice" placeholder="{{'Gas Price'|translate}}">
+                </label>
+            </div>
+
+            <div *ngIf="currentCoin == 'USDT' || currentCoin =='DUSD'">
+                <label for="exampleInputEmail1">{{"Gas Limit"|translate}}: 
+                    <input type="number" class="form-control" [(ngModel)]="gasLimit" id="gasLimit" placeholder="{{'Gas Limit'|translate}}">
+                </label>
+            </div>
+
+            <div *ngIf="currentCoin =='DUSD'">
+                <label for="exampleInputEmail1">{{"Fiu/Bytes"|translate}}: 
+                    <input type="number" class="form-control" [(ngModel)]="satoshisPerBytes" id="gasLimit" placeholder="{{'Fiu/Bytes'|translate}}">
+                </label>
+            </div>
+
+            <div *ngIf="currentCoin == 'USDTX'">
+                <label for="exampleInputEmail1">{{"Fee Limit"|translate}}: 
+                    <input type="number" class="form-control" [(ngModel)]="feeLimit" id="feeLimit" placeholder="{{'Fee Limit'|translate}}">
+                </label>
+            </div>
+
+            <div class="text-center">
+                <button class="btn confirmpay border" (click)="confirmWalletPayment(templatePassword)">
+          {{"Confirm" |translate}}
+        </button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #templateDUSD>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">{{"PayDUSD"|translate}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group">
+            <div>
+                <label for="exampleInputEmail1">{{"Rceiving Address"|translate}}: {{receivingAddress}}</label>
+            </div>
+            <div class="text-center">
+                <qrcode [qrdata]="receivingAddress" id="address_qr_code" style="display: inline-block" [size]="150" [level]="'M'"></qrcode>
+            </div>
+
+            <div class="text-center">
+                {{"Send"|translate}} {{order.amount}} DUSD {{"to the above address"|translate}}.
+            </div>
+
+            <div class="text-center">
+                <button class="btn confirmpay border" (click)="confirmPayment(templateConfirmPayment)">
+          {{"Click to confirm payment after payment made" |translate}}
+        </button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #templateConfirmPayment>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">{{"Confirm payment with DUSD"|translate}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group">
+            <div class="form-group">
+                <label for="exampleInputEmail1">{{"Txid"|translate}} *</label>
+                <input type="text" class="form-control" [(ngModel)]="txid" id="txid" aria-describedby="emailHelp" placeholder="{{'Enter txid'|translate}}">
+            </div>
+
+            <div class="text-center">
+                <button class="btn add-wallet border" (click)="confirmPaymentDone('DUSD')">
+          {{"Confirm" |translate}}
+        </button>
+            </div>
+        </div>
+
+
+    </div>
+</ng-template>
+
+
+<ng-template #cashAppModalTemplate>
+    <div class="modal-bg-grey">
+        <div class="modal-header">
+            <h4 class="modal-title text-center">{{'Pay by Cash App' | translate}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="exampleInputEmail1">{{'Cash App Account Name' | translate}}</label>
+                <input type="text" [(ngModel)]="accountName" class="form-control" id="inputAccountName" aria-describedby="emailHelp" placeholder="{{'Enter Account Name'|translate}}">
+                <small id="emailHelp" class="form-text text-muted">
+          {{'Not in Cash App yet? click' | translate}} <a target="_blank"
+            href="https://cash.app/app/LGPXWPX">https://cash.app/app/LGPXWPX</a>
+          {{'to register' | translate}}</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">{{'Amount' | translate}}: {{order.amount}}
+          {{order.currency | translate}}</label>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">{{'Rceiving Address' | translate}}: {{order.walletAdd}}</label>
+            </div>
+        </div>
+
+        <div class="modal-footer justify-content-center">
+            <div *ngIf="goPayStep == 1 || goPayStep == 2">
+                <div class="text-center">
+                    <button *ngIf="goPayStep == 1" class="btn btn-gradient py-2 px-5 border" type="button" (click)="confirmCashAppPay()" [disabled]="!accountName || !receivingAddress">
+            {{'Confirm and Pay' | translate}}
+          </button>
+                    <button *ngIf="goPayStep == 2" class="btn btn-gradient py-2 px-5 border" (click)="markAsPaid()" mat-raised-button color="primary">
+            {{'Marked as paid' | translate}}
+          </button>
+                </div>
+                <div class="pt-2 color-warning">
+                    {{"CashAppRequiredNote"|translate}}{{order._id}}
+                </div>
+            </div>
+
+            <div *ngIf="goPayStep == 3">
+                {{'You finshed your payment' | translate}}
+            </div>
+        </div>
+    </div>
+
+</ng-template>
+
+<ng-template #createOrderTemplate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">{{"Enroll"| translate}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">{{"Wallet address"| translate}}</label>
+            <input type="text" class="form-control" [(ngModel)]="walletAdd" id="walletAdd" aria-describedby="walletAdd" placeholder="{{'Enter wallet address'| translate}}">
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">{{"Amount"|translate}}</label>
+            <input type="text" class="form-control" id="amount" [(ngModel)]="amount" aria-describedby="amount" placeholder="{{'Enter amount'| translate}}">
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">{{"Currency"|translate}}</label>
+            <input type="text" class="form-control" id="currency" [(ngModel)]="currency" aria-describedby="currency" placeholder="{{'Currency'| translate}}">
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">{{"Referral"|translate}}</label>
+            <input type="text" class="form-control" id="referral" [(ngModel)]="referral" aria-describedby="referral" placeholder="{{'Referral'| translate}}">
+        </div>
+
+        <div class="text-center">
+            <button class="btn add-wallet border" (click)="placeOrder()">
+        {{"Confirm"| translate}}
+      </button>
+        </div>
+
+        <div class="errmsg" *ngIf="errMsg">
+            {{errMsg| translate}}
+        </div>
+
+    </div>
+</ng-template>

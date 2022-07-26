@@ -1,0 +1,105 @@
+<div class="container">
+    <div class="row" *ngIf="!wallets">
+        <div>
+            <app-no-wallet></app-no-wallet>
+        </div>
+    </div>
+
+    <div class="row toparea" *ngIf="wallets">
+        <div class="col col-6">
+            <div class="row">
+                <div class="col walletName">
+                    <div class="walletNameText">{{"Wallet name"| translate}}</div>
+                    <select (change)="onChange($event.target.value)">
+                        <option *ngFor="let item of wallets.items" [value]="item.id" [selected]="item.id == wallet.id">
+                            {{item.name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="py-2 text-center">
+                <div class="qrDiv">
+                    <qrcode [qrdata]="walletAddress" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+                </div>
+                <div class="text-left">{{"Universal ID" | translate}}: {{walletAddress}}</div>
+                <div class="text-left">{{"Kanban Gas" | translate}}: {{gas}}</div>
+            </div>
+
+            <!--
+                        <div class="py-2 text-black">
+                            {{"Gas"| translate}}: {{gas}}
+                        </div>
+                    -->
+        </div>
+
+        <div class="col col-6 text-center">
+            <!--
+                <div class="text-left">
+                    EXG {{walletBalance}}
+                </div>
+                <div>
+                    {{walletValue}} USD
+                </div>
+            -->
+            <div class="pt-4 menu text-left">
+                <a href="/wallet/import">{{"Import Wallet"|translate}}</a>
+                <a href="/wallet/create">{{"Create Wallet"|translate}}</a>
+                <a (click)="tab = 'wallet_assets'">{{"Wallet Balance"|translate}}</a>
+                <a (click)="tab = 'exchange_assets'">{{"Exchange Balance"|translate}}</a>
+                <a (click)="tab = 'history'">{{"Transaction History"|translate}}</a>
+
+                <a (click)="changeTab('rewards')">{{'Rewards' | translate}}</a>
+                <a (click)="changeTab('historyCustomer')">{{'Order history for customer' | translate}}</a>
+                <a (click)="changeTab('historyMerchant')">{{'Order history for merchant' | translate}}</a>
+
+                <a (click)="loginSetting()">{{"Login Setting"|translate}}</a>
+                <a (click)="showSeedPhrase()">{{"Show seed phrase"|translate}}</a>
+                <a (click)="deleteWallet()">{{"DeleteWallet"|translate}}</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row text-center" *ngIf="wallets">
+        <div class="btnarea">
+            <button class="btn btnrs mx-3 border" (click)="receive()">
+                {{"Receive"|translate}}
+            </button>
+
+            <button class="btn mx-3 btnrs border" (click)="send()">
+                {{"Send$"|translate}}
+            </button>
+
+            <button class="btn mx-3 btnrs border" *ngIf="gas < 0.00001" (click)="getFreeGas()">
+                {{"Get free gas"|translate}}
+            </button>
+        </div>
+    </div>
+
+
+    <div class="row my-3" *ngIf="wallets">
+        <div class="col col-12">
+            <app-admin-coins-list *ngIf="tab == 'wallet_assets'" [coins]="coins">
+            </app-admin-coins-list>
+
+            <app-admin-assets-list *ngIf="tab == 'exchange_assets'" [assets]="assets">
+            </app-admin-assets-list>
+
+            <app-transaction-history *ngIf="tab == 'history'" [transactions]="transactions" [walletId]="wallet.id">
+            </app-transaction-history>
+
+            <div *ngIf="tab == 'rewards'">
+                <app-wallet-star-rewards [rewards]="rewards"></app-wallet-star-rewards>
+            </div>  
+            <div *ngIf="tab == 'historyCustomer'">
+                <app-order-history [transactionHistories]="transactionHistories" [type]="'customer'"></app-order-history>
+            </div> 
+            
+              <div *ngIf="tab == 'historyMerchant'">
+                <app-order-history [transactionHistories]="merchantTransactionHistories" [type]="'merchant'"></app-order-history>
+              </div> 
+        </div>
+    </div>
+
+</div>

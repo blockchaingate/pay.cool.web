@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">{{'Transfer ownership' | translate}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="container customCheckbox">
+        <div class="row mt-0 ml-4">
+            <div class="col-12 my_checkbox ">
+                <div class="row"> 
+                    <input type="text" class="form-control border-1 height-40" placeholder="{{'new owner' | translate}}" [(ngModel)]="address" name="address" required>
+                </div>      
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal-footer">
+
+    <div class="CreateCollection--actions">
+        <div class="ActionButtonrContainer">
+            <div class="ActionButton--content" (click)="confirm()" style="min-width: 120px;">
+                {{'Transfer ownership' | translate}}
+            </div>
+        </div> 
+    </div>
+ 
+</div>

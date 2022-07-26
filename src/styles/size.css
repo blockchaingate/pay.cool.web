@@ -1,0 +1,31 @@
+.xlarge {
+    font-size: x-large;
+}
+
+.large {
+    font-size: large;
+}
+
+.medium {
+    font-size: medium;
+}
+
+.small {
+    font-size: small;
+}
+
+.xsmall {
+    font-size: x-small;
+}
+
+@media screen and (min-width: 601px) {
+    .ff-large {
+        font-size: 32px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .ff-large {
+        font-size: 16px;
+    }
+}

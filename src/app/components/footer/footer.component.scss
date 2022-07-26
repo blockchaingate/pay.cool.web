@@ -1,0 +1,43 @@
+.theme-footer.dark-style {
+    background: #0c0d21;
+}
+
+.logo{
+    text-align: center;
+
+    svg{
+        width: 500px;
+        max-width: 90%;
+
+        path{
+            stroke-width: 2;
+        }
+    }
+}
+
+.footer-list{
+    text-align: center;
+}
+
+.footerLinks{
+    margin-top: 60px;
+}
+
+.bottom-footer{
+    text-align: center;
+}
+
+.theme-footer .bottom-footer .copyright{
+    float: none;
+}
+
+.theme-footer .bottom-footer ul{
+    float: none;
+    margin-top: 30px;
+}
+
+.logo-thumbnail {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+}

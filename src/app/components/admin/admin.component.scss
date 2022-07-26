@@ -1,0 +1,65 @@
+$height: 60px;
+.main-container {
+    position: relative;
+    background: #f6f6f6;
+}
+
+.img-logo {
+    width: 40px;
+    height: 40px;
+}
+#header {
+    width: 100%;
+    border-bottom: 1px solid rgb(229, 232, 235);
+    box-shadow: rgb(14 14 14 / 25%) 0px 0px 8px 0px;
+    height: $height;
+    padding: 0;
+    margin: 0;
+    position: sticky;
+    top: 0px;
+    z-index: 30;
+    transition: top 0.5s ease 0s;
+    background-color: rgb(255, 255, 255); 
+
+}
+
+@media (min-width: 768px) {
+    #header .navbar-header {
+        display: inline-block;
+    }
+}
+
+#header .navbar-header {
+    transition: 0.3s all;
+    width: 235px;
+    display: flex;
+    vertical-align: middle;
+    height: $height;
+}
+
+
+
+.navbar-brand {
+    padding: 14px 15px;
+    font-size: 17px;
+    line-height: 18px;
+    height: 100%;
+}
+
+.navbar-brand>img {
+    display: block;
+}
+
+img {
+    vertical-align: middle;
+}
+
+.nav-right .mat-button {
+    line-height: $height;
+    padding: 0 20px;
+    color: #6D6D6D;
+}
+
+.img-circle {
+    border-radius: 50%;
+}
