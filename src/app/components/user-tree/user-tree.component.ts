@@ -69,7 +69,7 @@ export class UserTreeComponent implements OnInit {
       (res: any) => {
         console.log('res in checkAddress=', res);
         if(res && res.isValid) {
-          this.myReferralUrl = 'https://7starpay.com/ref/' + this.walletAddress;
+          this.myReferralUrl = 'https://pay.cool/ref/' + this.walletAddress;
 
           this.starServ.getTree(this.walletAddress).toPromise().then(
             (res: any) => {

@@ -143,7 +143,7 @@ export class MyAssetDashboardComponent implements OnInit {
         }
       );
 
-      this.reflink = 'https://www.7starpay.com/ref/' + this.walletAdd;
+      this.reflink = 'https://pay.cool/ref/' + this.walletAdd;
       this.loadWallet(1);
       this.getMyOrder(1);
 

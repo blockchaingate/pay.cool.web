@@ -1,5 +1,5 @@
-1. 商家到https://7starpay.com/merchants/new-merchant,点击Merchant credit,完成充值过程.
-2. 商家到https://7starpay.com/merchants/new-merchant, 点击 show token, 把token复制并保存到https://cashier.7starpay.com/
+1. 商家到https://pay.cool/merchants/new-merchant,点击Merchant credit,完成充值过程.
+2. 商家到https://pay.cool/merchants/new-merchant, 点击 show token, 把token复制并保存到https://cashier.pay.cool/
 3. 客户完成信用卡或现金付款,并告知商家他的email地址
-4. 商家在https://cashier.7starpay.com/输入订单信息,点击“Pay with Fiat”,输入客户的email地址,推荐人的fab地址,完成全过程
+4. 商家在https://cashier.pay.cool/输入订单信息,点击“Pay with Fiat”,输入客户的email地址,推荐人的fab地址,完成全过程
 5. 客户会收到相关邮件, 并可通过邮件链接把他的所有locker和推荐关系转到新的fab钱包

@@ -105,7 +105,7 @@ export class StoreComponent implements OnInit {
 
   showTokenDo(seed: Buffer) {
     const data = {
-      application: '7StarPay'
+      application: 'Pay.cool'
     };
 
     const keyPair = this.coinServ.getKeyPairs('FAB', seed, 0, 0, 'b');

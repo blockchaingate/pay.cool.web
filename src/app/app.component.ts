@@ -10,7 +10,7 @@ import { WalletService } from './services/wallet.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  title = '7StarPay';
+  title = 'Pay.cool';
   constructor(private localSt: LocalStorage,
     private walletServ: WalletService,
     private dataServ: DataService,private storeServ: StoreService) {
