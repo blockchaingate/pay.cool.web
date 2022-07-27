@@ -24,15 +24,19 @@
 .title {
     margin-top: auto;
     margin-bottom: auto;
-    margin-left: 0.5em;
-    font-size: 24px;
+    margin-left: 0;
+    font-size: 32px;
     color: white;
-    font-family: Verdana, sans-serif, SimHei, "Microsoft YaHei";
+    font-family: "Microsoft YaHei";
     font-weight: 600;
 }
 
 .logoImg {
     max-height: 42px;
+}
+
+.reddot {
+    color: red;
 }
 
 @media (max-width: 1200px) {
