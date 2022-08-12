@@ -21,7 +21,7 @@ h2 {
     font-size: 86px;
     font-weight: bold;
     font-family: "Sora", "Microsoft YaHei", "微軟正黑體", "蘋果儷中黑", "New Roman", sans-serif;
-    color: #b6b2e0;
+    color: #0ae0ff; // #b6b2e0;
     padding: 100px 0;
 }
   /*
@@ -43,6 +43,11 @@ div:lang(sc) {
     justify-content: center;
 }
 
+.clearfix {
+    margin-left: 8em;
+    margin-top: 10em;
+}
+
 .video-section {
     background-color: #eae8ff;
     margin-top: 1em;
@@ -55,8 +60,12 @@ div:lang(sc) {
 }
 
 .theme-banner-two {
-    background-color: #0f0e1c;
+    background-image: url("/assets/images/mobile-payment-bg.jpg");
+    background-repeat: repeat;
+  // background-color: #0f0e1c;
     margin-top: -46px;
+    height: 738px;
+
     p {
         font-size: 16px;
         color: #eae8ff;
