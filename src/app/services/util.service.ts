@@ -53,7 +53,7 @@ export class UtilService {
     
     ObjectId2SequenceId(objectId: string) {
         const bytes = bs58.decode(objectId);
-        return bytes.toString('hex');
+        return bytes.toString();
     }
     
     fixedLengh(obj: any, length: number) {
@@ -285,7 +285,7 @@ export class UtilService {
 
     fabToExgAddress(address: string) {
         const bytes = bs58.decode(address);
-        const addressInWallet = bytes.toString('hex');
+        const addressInWallet = bytes.toString();
         return '0x' + addressInWallet.substring(2, 42);
     }
 

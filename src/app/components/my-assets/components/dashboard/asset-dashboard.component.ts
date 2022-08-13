@@ -427,7 +427,7 @@ export class MyAssetDashboardComponent implements OnInit {
     if (currentCoin.name === 'BTC' || currentCoin.name === 'FAB' || currentCoin.name === 'DOGE' || currentCoin.name === 'LTC') {
       const bytes = bs58.decode(addressInWallet);
       console.log('bytes=', bytes);
-      addressInWallet = bytes.toString('hex');
+      addressInWallet = bytes.toString();
 
       console.log('addressInWallet=', addressInWallet);
     } else if (currentCoin.name === 'BCH') {
@@ -464,7 +464,7 @@ export class MyAssetDashboardComponent implements OnInit {
         return;
       }
       const bytes = bs58.decode(fabAddress);
-      addressInWallet = bytes.toString('hex');
+      addressInWallet = bytes.toString();
       console.log('addressInWallet for exg', addressInWallet);
     }
 

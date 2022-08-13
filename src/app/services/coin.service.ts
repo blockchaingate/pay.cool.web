@@ -6,7 +6,8 @@ import BigNumber from 'bignumber.js/bignumber';
 import { MyCoin } from '../models/mycoin';
 import * as bchaddr from 'bchaddrjs';
 import * as Btc from 'bitcoinjs-lib';
-import * as BIP32 from 'node_modules/bip32';
+// import * as BIP32 from 'bitcoinjs-lib/node_modules/bip32/types/bip32';
+import * as BIP32 from 'bip32';
 import { environment } from '../../environments/environment';
 import * as hdkey from 'ethereumjs-wallet/hdkey';
 import * as wif from 'wif';
@@ -631,7 +632,7 @@ export class CoinService {
 
         if (name === 'ETH') {
 
-            const root = hdkey.fromMasterSeed(seed);
+            const root = hdkey.default.fromMasterSeed(seed);
             const childNode = root.derivePath(path);
 
             const wallet = childNode.getWallet();

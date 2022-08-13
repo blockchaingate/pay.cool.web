@@ -1,8 +1,3 @@
-// import { OrderBookItem } from '../modules/market/models/order-book';
-import { number } from 'bitcoinjs-lib/types/script';
-
-// import { Block } from 'bitcoinjs-lib';
-
 export interface OfficialAddress {
     name: string;
     address: string;

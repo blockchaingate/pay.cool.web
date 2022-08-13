@@ -7,13 +7,16 @@
     display: flex;
 }
 
-h1,
-h2 {
-    font-size: 56px;
+h1 {
+    font-size: 96px;
     font-family: "Sora", "Microsoft YaHei", "微軟正黑體", "蘋果儷中黑", Helvetica, Arial, sans-serif;
     span {
-        color: #1ed5f1;
+        color: #ddf5ff;
     }
+}
+
+.lefttxt {
+    padding: 4em;
 }
 
 .Title1 {
@@ -60,11 +63,13 @@ div:lang(sc) {
 }
 
 .theme-banner-two {
-    background-image: url("/assets/images/mobile-payment-bg.jpg");
-    background-repeat: repeat;
+    background-image: url("/assets/images/blue-grid-hq.jpg");
+    background-size: cover;
+    background-repeat:no-repeat;
+    width: 100%;
   // background-color: #0f0e1c;
     margin-top: -46px;
-    height: 738px;
+  //  height: 738px;
 
     p {
         font-size: 16px;
