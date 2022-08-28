@@ -6,7 +6,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "john-exchangily": {
+        "pay_cool": {
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:component": {
@@ -20,7 +20,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/john-exchangily",
+                        "outputPath": "dist/pay_cool",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
@@ -74,18 +74,18 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "john-exchangily:build"
+                        "browserTarget": "pay_cool:build"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "john-exchangily:build:production"
+                            "browserTarget": "pay_cool:build:production"
                         }
                     }
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "john-exchangily:build"
+                        "browserTarget": "pay_cool:build"
                     }
                 },
                 "test": {
@@ -122,11 +122,11 @@
                     "builder": "@angular-devkit/build-angular:protractor",
                     "options": {
                         "protractorConfig": "e2e/protractor.conf.js",
-                        "devServerTarget": "john-exchangily:serve"
+                        "devServerTarget": "pay_cool:serve"
                     },
                     "configurations": {
                         "production": {
-                            "devServerTarget": "john-exchangily:serve:production"
+                            "devServerTarget": "pay_cool:serve:production"
                         }
                     }
                 }

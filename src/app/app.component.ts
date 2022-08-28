@@ -24,9 +24,7 @@ export class AppComponent implements OnInit{
           //this.router.navigate(['/wallet']);
           return false;
         }
-        this.walletServ.refreshWallets(wallets);
-
-              
+        this.walletServ.refreshWallets(wallets);            
       }
     );
   }
