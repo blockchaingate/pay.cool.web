@@ -285,7 +285,7 @@ export class UtilService {
 
     fabToExgAddress(address: string) {
         const bytes = bs58.decode(address);
-        const addressInWallet = bytes.toString();
+        const addressInWallet = bytes.toString('hex');
         return '0x' + addressInWallet.substring(2, 42);
     }
 

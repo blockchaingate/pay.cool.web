@@ -399,11 +399,13 @@ export class StoreComponent implements OnInit {
       return;      
     }
     let refAddressHex = '';
+    console.log('this.refAddress====', this.refAddress);
     try {
       refAddressHex = this.utilServ.fabToExgAddress(this.refAddress);
     } catch(e) {
 
     }
+    console.log('refAddressHex===', refAddressHex);
     if(!refAddressHex || (refAddressHex.length != 42)) {
       this.toastr.error('Your referral address is not in correct format.');
       return;        
