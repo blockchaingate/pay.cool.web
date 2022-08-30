@@ -320,6 +320,7 @@ export class StoreComponent implements OnInit {
         '0x1'
       ];
 
+      console.log('args2====', args2);
       const resp2: any = await this.kanbanSmartContractServ.deploySmartContract(seed, feeChargerABI, feeChargerBytecode, args2);
   
       if(resp2 && resp2.ok && resp2._body && resp2._body.status == '0x1') { 

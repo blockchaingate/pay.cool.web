@@ -7,8 +7,7 @@ import { UtilService } from './util.service';
 import { Web3Service } from './web3.service';
 import BigNumber from 'bignumber.js';
 import Common from 'ethereumjs-common';
-import KanbanTxService from './kanban.tx.service';
-
+import * as Eth from 'ethereumjs-tx';
 @Injectable({ providedIn: 'root' })
 export class KanbanService {
     baseUrl = environment.endpoints.kanban;
@@ -80,7 +79,7 @@ export class KanbanService {
           },
           environment.chains.ETH.hardfork,
         );
-        const tx = new KanbanTxService(txObject, { common: customCommon });
+        const tx = new Eth.Transaction(txObject, { common: customCommon });
     
         tx.sign(fromPrivateKey);
         const serializedTx = tx.serialize();
