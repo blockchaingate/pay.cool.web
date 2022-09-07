@@ -58,6 +58,7 @@ import { VersionComponent } from './components/version/version.component';
 import { ManualComponent } from './components/manual/manual.component';
 import { ScComponent } from './components/manual/sc/sc.component';
 import { TransferOwnershipComponent } from './components/transfer-ownership/transfer-ownership.component';
+import { SupportComponent } from './components/support/support.component'
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -68,8 +69,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeComponent,
     UserTreeComponent,
     NavbarComponent,
-    // MyAssetsComponent,
-    // OrderComponent,
     PaymentSuccessComponent,
     PaymentFailComponent,
     DeleteWalletModalComponent,
@@ -81,6 +80,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     VersionComponent,
     ManualComponent,
     ScComponent,
+    SupportComponent,
     TransferOwnershipComponent
   ],
   imports: [

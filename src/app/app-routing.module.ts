@@ -10,6 +10,7 @@ import { AboutComponent } from './components/about/about.component';
 import { JobComponent } from './components/job/job.component';
 import { VersionComponent } from './components/version/version.component';
 import { TransferOwnershipComponent } from './components/transfer-ownership/transfer-ownership.component';
+import { SupportComponent } from './components/support/support.component'
 
 const routes: Routes = [
   {
@@ -53,6 +54,7 @@ const routes: Routes = [
   { path: 'ref/:refcode', component: UserTreeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'privacy', component: PrivacyComponent },
+  { path: 'support', component: SupportComponent },
   { path: 'about', component: AboutComponent },
   { path: 'job', component: JobComponent },
   {
