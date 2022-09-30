@@ -8,6 +8,7 @@ import { Web3Service } from './web3.service';
 import BigNumber from 'bignumber.js';
 import Common from 'ethereumjs-common';
 import * as Eth from 'ethereumjs-tx';
+
 @Injectable({ providedIn: 'root' })
 export class KanbanService {
     baseUrl = environment.endpoints.kanban;
