@@ -2,15 +2,15 @@
     "Home": "Home",
     "Why PAY.COOL": "Why PAY.COOL",
     "Pay.cool Payment": "Pay.cool Payment",
-    "All Right Reserved":"All Right Reserved",
-    "paycoll":"",
+    "All Right Reserved": "All Right Reserved",
+    "paycoll": "",
     "Pay.cool": "Pay.cool",
     "pay.cool": "pay.cool",
     "PAY.COOL": "PAY.COOL",
-    "WHY PAY.COOL":"WHY PAY.COOL",
+    "WHY PAY.COOL": "WHY PAY.COOL",
     "Turncontoin": "Turn consumption into investment",
     "Spend1": "Spend Once, Earn Twice",
-    "Paytoearn":"Pay to earn is cool",
+    "Paytoearn": "Pay to earn is cool",
     "Topdesc1": "Fast, low cost, easy to use, cross border worldwide.",
     "Topdesc2": "Turn consumption into investment, spend once, earn twice! Pay.cool bring the revolutionary innovaiton into life.",
     "Topdesc3": "For individuals, you not only have a chance to earn back your spending as a consumer, but an opportunity to build up your business system to make passive income by referral others to join.",
@@ -27,7 +27,7 @@
     "Create": "Create",
     "Update": "Update",
     "Wallet Balance": "Wallet Balance",
-   
+
     "Show token": "Show token",
     "Down line": "Down line",
     "Register": "Register",
@@ -260,5 +260,8 @@
     "Enter refcode": "Enter refcode",
     "You are NOT a Pay.cool member": "You are NOT a Pay.cool member",
     "Apple store app": "Apple store app download",
-    "Google play app": "Google play app download"
+    "Google play app": "Google play app download",
+    "Privacy Policy": "Privacy Policy",
+    "No Data Collection": "No Data Collection",
+    "privacycontent": "Pay.cool is an open source decentralized application, user can use it freely by generating his/her own wallet, no registration or signup required, password used to encrypt mnemonics or private key on user local device, no any user data collected."
 }
