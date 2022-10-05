@@ -10,6 +10,5 @@ export class PrivacyComponent {
   lan = 'en';
   constructor(private localSt: LocalStorage) {
     this.lan = localStorage.getItem('_lan') || 'en';
-    alert(this.lan)
   }
 }
