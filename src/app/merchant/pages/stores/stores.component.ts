@@ -42,6 +42,6 @@ export class StoresComponent implements OnInit {
   }
 
   myStore() {
-    this.router.navigate(['/merchants/new-merchant']);
+    this.router.navigate(['/merchants/new-store']);
   }
 }
