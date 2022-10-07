@@ -12,6 +12,7 @@ export const environment = {
     prod: 'https://api.blockchaingate.com/v2/',
     blockchaingate: 'https://api.blockchaingate.com/v2/',
     website: 'http://ecombar.com/',
+    api: 'https://fabexplorer.com/api/',
     kanban: 'https://kanbanprod.fabcoinapi.com/',
     BTC: {
       exchangily: 'https://btcprod.fabcoinapi.com/'
@@ -144,6 +145,8 @@ addresses: {
     },
 
     smartContract: {
+        smartConractMerchantInfo: '',
+        smartConractFeeCharger: '',
         
         feeDistribution: '0xf3b46ef452099ec2b6f81644b6da75c91c5e116a',
         locker: '0x08283086b2192666128b7a6eaf66df2dfd3f1b6b',

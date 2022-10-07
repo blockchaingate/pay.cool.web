@@ -159,13 +159,11 @@ export class StarService {
       return this.http.get(url);
    }
 
-   get7StarPayOrder(id: string, address: string) {
-      const url = environment.endpoints.blockchaingate + 'orders/' + id + '/7starpay';
-      const data = {
-         address
-      };
-      return this.http.post(url, data);
+   getPaycoolRewardInfo(id: string, address: string) {
+      const url = environment.endpoints.api + 'userpay/order/' + id + '/' + address + '/rewardInfo';
+      return this.http.get(url);
    }
+   ///order/:id/:address/rewardInfo
 
    async get7StarPayOrderPromise(id: string, address: string): Promise<any> {
       const url = environment.endpoints.blockchaingate + 'orders/' + id + '/7starpay';

@@ -5,17 +5,25 @@ import { MerchantCreditComponent } from './pages/merchant-credit/merchant-credit
 import { MerchantCreditAddComponent } from './pages/merchant-credit-add/merchant-credit-add.component';
 import { StoreComponent } from './pages/store/store.component';
 import { StoresComponent } from './pages/stores/stores.component';
+import { NewMerchantComponent } from './pages/new-merchant/new-merchant.component';
+import { MerchantsComponent } from './pages/merchants/merchants.component';
 
 const routes: Routes = [
   {
     path: '', component: MerchantComponent,
     children: [
       {
-        path: 'new-merchant', component: StoreComponent
+        path: 'new-merchant', component: NewMerchantComponent
       },     
       {
-        path: '', redirectTo: 'stores'
+        path: '', redirectTo: 'merchants'
       },
+      {
+        path: 'merchants', component: MerchantsComponent
+      },
+      {
+        path: 'new-store', component: StoreComponent
+      },    
       {
         path: 'stores', component: StoresComponent
       },

@@ -12,6 +12,7 @@ import { UtilService } from '../../../services/util.service';
 import { NgxSpinnerService } from 'ngx-bootstrap-spinner';
 import { CoinService } from 'src/app/services/coin.service';
 import BigNumber from 'bignumber.js';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-wallet-starpay',
@@ -71,20 +72,11 @@ export class StarpayComponent implements OnInit{
                 if(walletAddress) {
                   this.walletAddress = walletAddress;
                   if(this.id) {
-                    this.starServ.get7StarPayOrder(this.id, walletAddress).subscribe(
+                    this.starServ.getPaycoolRewardInfo(this.id, walletAddress).subscribe(
                       (ret: any) => {
                         console.log('ret from here=', ret);
-                        if(ret && ret.ok) {
-                          this.order = ret._body;
-                        }
+                        this.order = ret;
                       }
-                    );
-                  } else {
-                    this.starServ.getParents(walletAddress).subscribe(
-                        (ret: any) => {
-                            console.log('ret for getParents=', ret);
-                            this.parents = ret.map(item => this.utilServ.fabToExgAddress(item));
-                        }
                     );
                   }
                 }
@@ -185,7 +177,12 @@ export class StarpayComponent implements OnInit{
           "inputs": [
             {
               "internalType": "bytes32",
-              "name": "_orderID",
+              "name": "_merchantId",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "_orderId",
               "type": "bytes32"
             },
             {
@@ -204,16 +201,6 @@ export class StarpayComponent implements OnInit{
               "type": "uint256"
             },
             {
-              "internalType": "address[]",
-              "name": "_regionalAgents",
-              "type": "address[]"
-            },
-            {
-              "internalType": "bytes32[]",
-              "name": "_rewardBeneficiary",
-              "type": "bytes32[]"
-            },
-            {
               "internalType": "bytes",
               "name": "_rewardInfo",
               "type": "bytes"
@@ -221,26 +208,21 @@ export class StarpayComponent implements OnInit{
           ],
           "name": "chargeFundsWithFee",
           "outputs": [
-            {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+            
           ],
           "stateMutability": "nonpayable",
           "type": "function"
         };
         console.log('this.order====', this.order);
         args = [
-          '0x' + this.id,
-          this.coinServ.getCoinTypeIdByName(this.order.currency),
+          this.order.merchantId,
+          this.order.orderId,
+          this.order.paidCoin,
           '0x' + new BigNumber(this.order.totalAmount).shiftedBy(18).toString(16),
           '0x' + new BigNumber(this.order.totalTax).shiftedBy(18).toString(16),
-          this.order.regionalAgents,
-          this.order.rewardBeneficiary,
           this.order.rewardInfo
         ];
-        to = this.order.feeChargerSmartContractAddress;
+        to = environment.addresses.smartContract.smartConractFeeCharger;
       } else
       if(this.templateId) {
         const ret1 = await this.starServ.createOrderFromTemplatePromise(this.templateId);
@@ -314,6 +296,7 @@ export class StarpayComponent implements OnInit{
         
       }
 
+      console.log('args=====', args);
       const ret = await this.kanbanSmartContractServ.execSmartContract(seed, to, abi, args);
       this.spinner.hide();
       if(ret && ret.ok && ret._body && ret._body.status == '0x1') {

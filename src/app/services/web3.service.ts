@@ -45,6 +45,11 @@ export class Web3Service {
     return abi;
   }
 
+  randomHex(length: number) {
+    const web3 = this.getWeb3Provider();
+    return web3.utils.randomHex(length);
+  }
+
   getCreateIDABI(typeId: number, hashData: string) {
     const func: any = {
       "constant": false,

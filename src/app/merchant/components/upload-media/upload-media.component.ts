@@ -22,7 +22,8 @@ export class UploadMediaComponent implements OnInit {
   successMsg = '';
   url = '';
   uploadSuccess = false;
-
+  @Output()
+  imagesChange = new EventEmitter<any>();
   constructor(private uploadService: UploadService) { }
 
   ngOnInit(): void {
@@ -71,7 +72,7 @@ export class UploadMediaComponent implements OnInit {
           retn => {
             this.images.push(this.url);
             // this.uploaded.emit(this.url);
-
+            this.imagesChange.emit(this.images);
             this.successMsg = 'Uploaded'; this.uploadSuccess = true;
           },
           err => { this.errMsg = 'Error in uploading.'; });

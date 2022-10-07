@@ -7,7 +7,6 @@ import { KanbanService } from '../../../services/kanban.service';
 import { KanbanSmartContractService } from '../../../services/kanban.smartcontract.service';
 import { StorageService } from '../../../services/storage.service';
 import { UtilService } from '../../../services/util.service';
-import { IddockService } from '../../../services/iddock.service';
 import { DataService } from '../../../services/data.service';
 import { StoreService } from '../../../services/store.service';
 import { NgxSpinnerService } from "ngx-bootstrap-spinner";

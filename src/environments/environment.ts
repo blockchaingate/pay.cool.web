@@ -20,6 +20,7 @@ export const environment = {
     test: 'https://test.blockchaingate.com/v2/',
     prod: 'https://blockchaingate.com/v2/',
     kanban: 'https://kanbantest.fabcoinapi.com/',
+    api: 'https://fabtest.info/api/',
     // blockchaingate: 'https://api.blockchaingate.com/v2/',
     //blockchaingate: 'http://localhost:3002/v2/',
     blockchaingate: 'https://test.blockchaingate.com/v2/',
@@ -142,6 +143,9 @@ export const environment = {
         FAB: '1FNEhT8uTmrEMvHGCGohnEFv6Q1z4qRhQu'
       },
     smartContract: {
+        smartConractMerchantInfo: '0xa924803224459fd2cbac7475aa25efa98c527c6c',
+        smartConractFeeCharger: '0x0f054c740767fa09c54f8ef984e54bbd16512eb6',
+
         
         feeDistribution: '0x81dd9357bf85bdb272e9ee1ec0ec2baa8bdffd06',
         locker: '0xab64a2a910a6dda85620a109cd012bb4a7b20b6f',
