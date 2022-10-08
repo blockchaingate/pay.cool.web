@@ -130,7 +130,6 @@ export class NewMerchantComponent implements OnInit {
       this.utilServ.fabToExgAddress(this.walletAddress)
     ];
     
-    console.log('args====', args);
     this.kanbanSmartContractServ.execSmartContract(seed, address, abi, args).then(
       (ret: any) => {
         console.log('ret for exec smart contract:', ret);

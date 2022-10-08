@@ -1,1 +1,9 @@
-<p>merchants works!</p>
+<div class="container">
+    <div class="text-right py-2 mb-4">
+        <button type="submit" class="btn btn-primary" (click)="myMerchant()">{{(myMerchantExisted ? 'Merchant Information' : 'New Merchant Registration') | translate}}</button>
+      </div>
+    <div class="store" *ngFor="let item of merchants">
+        <app-merchant-detail  [merchant]="item"></app-merchant-detail>
+    </div>
+    
+</div>
