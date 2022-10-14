@@ -1,0 +1,70 @@
+<div *ngIf="merchant">
+    <div class="container">
+        <div class="text-right py-2">
+            <button class="btn signinbtn" (click)="approve()">{{('Approve') | translate}}</button>
+        </div>
+        <div *ngIf="merchant.name">
+            <label for="name"><b>{{'Name' | translate}}:</b></label> {{merchant.name}}
+        </div>
+        <div>
+            <label for="owner"><b>{{'Owner' | translate}}:</b></label> {{merchant.owner}}
+        </div>
+        <div *ngIf="merchant.address">
+            <label for="address"><b>{{'Address' | translate}}:</b></label> {{merchant.address}}
+        </div>
+        <div *ngIf="merchant.contactName">
+
+            <label for="email"><b>{{'Contact name' | translate}}:</b></label> {{merchant.contactName}}
+        </div>
+
+        <div *ngIf="merchant.businessContents">
+            <div>
+                <label for="email"><b>{{'Business contents' | translate}}:</b></label> {{merchant.businessContents}}
+            </div>
+        </div>
+
+
+
+        <div>
+            <div>
+                <label for="email"><b>{{'Phone' | translate}}:</b></label> {{merchant.phone}}
+            </div>
+            <div>
+                <label for="email"><b>{{'Fax' | translate}}:</b></label> {{merchant.fax}}
+            </div>
+            <div>
+                <label for="email"><b>{{'Email' | translate}}:</b></label> {{merchant.email}}
+            </div>
+            <div>
+                <label for="email"><b>{{'Website' | translate}}:</b></label> {{merchant.website}}
+            </div>
+            <div>
+                <label for="email"><b>{{'Open time' | translate}}:</b></label> {{merchant.openTime}}
+            </div>
+            <div>
+                <label for="email"><b>{{'Close time' | translate}}:</b></label> {{merchant.closeTime}}
+            </div>
+        </div>
+
+        <div>
+            <label for="email"><b>{{'Ref address' | translate}}:</b></label> {{merchant.referral}}
+        </div>
+
+        <div>
+            <label for="email"><b>{{'Coin' | translate}}:</b></label> {{merchant.coin}}
+        </div>
+
+        <div>
+            <label for="email"><b>{{'Rebate rate' | translate}}:</b></label> {{merchant.rebateRate}}%
+        </div>
+
+        <div>
+            <label for="email"><b>{{'Tax rate' | translate}}:</b></label> {{merchant.taxRate}}%
+        </div>
+
+        <div>
+            <label for="email"><b>{{'Locked days' | translate}}:</b></label> {{merchant.lockedDays}}
+        </div>
+
+    </div>
+</div>

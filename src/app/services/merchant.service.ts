@@ -9,4 +9,8 @@ export class MerchantService {
   getAllPagination(pageNum: number, pageSize: number) {
     return this.http.getRaw(environment.endpoints.api + 'merchantreferral/' + pageSize + '/' + pageNum);
   }
+
+  getMerchant(id) {
+    return this.http.getRaw(environment.endpoints.api + 'merchantreferral/' + id);
+  }
 }

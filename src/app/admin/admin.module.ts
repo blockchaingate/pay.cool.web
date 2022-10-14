@@ -26,6 +26,9 @@ import { FiatCustomerComponent } from './pages/fiat-customer/fiat-customer.compo
 import { PaymentsComponent } from './pages/payments/payments.component';
 import { VipsComponent } from './pages/vips/vips.component';
 import { AllRewardDetailsComponent } from './pages/all-reward-details/all-reward-details.component';
+import { MerchantsComponent } from './pages/merchants/merchants.component';
+import { MerchantApproveComponent } from './pages/merchant-approve/merchant-approve.component';
+
 @NgModule({
   declarations: [
     AdminComponent,
@@ -45,7 +48,9 @@ import { AllRewardDetailsComponent } from './pages/all-reward-details/all-reward
     FiatCustomerComponent,
     PaymentsComponent,
     VipsComponent,
-    AllRewardDetailsComponent
+    AllRewardDetailsComponent,
+    MerchantsComponent,
+    MerchantApproveComponent
   ],
   imports: [
     AdminRoutingModule,

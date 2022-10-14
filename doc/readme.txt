@@ -1,5 +1,7 @@
-http://localhost:4200/transfer-ownership/0x15103025759299f1476fa5c1d269227e05b589e94512dbb6c5f4976fa8b792ff4c2f7e4c5c7b99af84e83729ce98bbc0ddf3b65dec667252f9cfa5ef12d2a32d1c
+approve txid: 0x8abf5e84081d5542857f5acf28e157cc8a4b8d65e67cfe9f6de434634f9ff08c
+brand ndw
 
+faculty hour almost rival awkward soft way cloth swallow sentence comfort eagle
 
 moneris:
 ken

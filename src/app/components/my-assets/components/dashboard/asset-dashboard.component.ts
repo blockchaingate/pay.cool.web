@@ -136,7 +136,7 @@ export class MyAssetDashboardComponent implements OnInit {
           }
       });
 
-      this.starSer.isValidMember(this.walletAdd).subscribe(
+      this.starSer.checkAddress(this.walletAdd).subscribe(
         (ret: any) => {
           this.isValidMember = ret.isValid;
           console.log('this.isValidMember==', this.isValidMember);
@@ -921,7 +921,7 @@ export class MyAssetDashboardComponent implements OnInit {
       this.toastr.info('You cannot refer yourself.');
       return;
     }
-    this.starSer.isValidMember(this.referral).subscribe(
+    this.starSer.checkAddress(this.referral).subscribe(
       (ret: any) => {
         if(ret && ret.isValid) {
           this.modalRef.hide();

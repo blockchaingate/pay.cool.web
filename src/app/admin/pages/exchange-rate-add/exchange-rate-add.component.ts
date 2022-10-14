@@ -42,7 +42,7 @@ export class ExchangeRateAddComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.to = environment.addresses.smartContract.exchangeRate2;
+    this.to = environment.addresses.smartContract.smartConractAdressExchangeRate;
     this.checkOwner();
 
     this.dataServ.currentWalletAddress.subscribe(

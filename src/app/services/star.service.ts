@@ -15,7 +15,7 @@ export class StarService {
    }
 
    async createOrderFromTemplatePromise(templateId: string): Promise<any> {
-      const url = environment.endpoints.blockchaingate + 'orders/7starpay/createFromTemplate';
+      const url = environment.endpoints.api + 'userpay/createOrderFromTemplate';
       const body = {
          id: templateId
       }
@@ -130,7 +130,7 @@ export class StarService {
    }
 
    checkAddress(address: string) {
-      const url = environment.endpoints.blockchaingate + '7star-ref/isValid/' + address;
+      const url = environment.endpoints.api + 'userreferral/isValid/' + address;
       return this.http.get(url);
    }
 
@@ -144,10 +144,6 @@ export class StarService {
       return this.http.post(url, data);
    }
 
-   isValidMember(address: string) {
-      const url = environment.endpoints.blockchaingate + '7star-ref/isValidMember/' + address;
-      return this.http.get(url);
-   }
 
    getTree(address: string) {
       const url = environment.endpoints.blockchaingate + '7star-ref/tree/' + address;

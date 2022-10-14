@@ -11,6 +11,7 @@ import { JobComponent } from './components/job/job.component';
 import { VersionComponent } from './components/version/version.component';
 import { TransferOwnershipComponent } from './components/transfer-ownership/transfer-ownership.component';
 import { SupportComponent } from './components/support/support.component'
+import { RefComponent } from './components/ref/ref.component';
 
 const routes: Routes = [
   {
@@ -51,7 +52,7 @@ const routes: Routes = [
   { path: 'membership', component: MembershipComponent },
   { path: 'user-tree', component: UserTreeComponent },
   { path: 'transfer-ownership/:sig', component: TransferOwnershipComponent },
-  { path: 'ref/:refcode', component: UserTreeComponent },
+  { path: 'ref/:refcode', component: RefComponent },
   { path: 'home', component: HomeComponent },
   { path: 'privacy', component: PrivacyComponent },
   { path: 'support', component: SupportComponent },

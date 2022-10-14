@@ -143,9 +143,11 @@ export const environment = {
         FAB: '1FNEhT8uTmrEMvHGCGohnEFv6Q1z4qRhQu'
       },
     smartContract: {
+        
         smartConractMerchantInfo: '0xa924803224459fd2cbac7475aa25efa98c527c6c',
         smartConractFeeCharger: '0x0f054c740767fa09c54f8ef984e54bbd16512eb6',
-
+        smartConractAdressExchangeRate: '0x44b9c6409fbb133f4f0ebbb07b4fb61c0d20181b',
+        smartConractAdressReferral: '0xa76af08ba89012e617cd33641f70cb6c2ec957e6',
         
         feeDistribution: '0x81dd9357bf85bdb272e9ee1ec0ec2baa8bdffd06',
         locker: '0xab64a2a910a6dda85620a109cd012bb4a7b20b6f',

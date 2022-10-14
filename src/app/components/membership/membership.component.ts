@@ -38,7 +38,7 @@ export class MembershipComponent implements OnInit {
       }
       this.wallet = wallets.items[wallets.currentIndex];
       this.walletAdd = this.wallet.addresses.filter(c => c.name === 'FAB')[0].address;
-      this.starServ.isValidMember(this.walletAdd).subscribe(
+      this.starServ.checkAddress(this.walletAdd).subscribe(
         (ret: any) => {
           console.log('ret===', ret);
           this.isValidMember = ret.isValid;

@@ -11,6 +11,7 @@ export class MerchantsComponent implements OnInit {
   merchants: any;
   pageSize = 100;
   pageNum = 0;
+  myMerchantExisted: boolean = false;
   constructor(
     private merchantServ: MerchantService,
     private router: Router) { }

@@ -226,71 +226,15 @@ export class StarpayComponent implements OnInit{
       } else
       if(this.templateId) {
         const ret1 = await this.starServ.createOrderFromTemplatePromise(this.templateId);
-        if(ret1 && ret1.ok) {
-          const order = ret1._body;
-          const ret2 = await this.starServ.get7StarPayOrderPromise(order._id, this.walletAddress);
-          if(ret2.ok) {
-            const payorder = ret2._body;
-            abi = {
-              "inputs": [
-                {
-                  "internalType": "bytes32",
-                  "name": "_orderID",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "uint32",
-                  "name": "_paidCoin",
-                  "type": "uint32"
-                },
-                {
-                  "internalType": "uint256",
-                  "name": "_totalAmount",
-                  "type": "uint256"
-                },
-                {
-                  "internalType": "uint256",
-                  "name": "_totalTax",
-                  "type": "uint256"
-                },
-                {
-                  "internalType": "address[]",
-                  "name": "_regionalAgents",
-                  "type": "address[]"
-                },
-                {
-                  "internalType": "bytes32[]",
-                  "name": "_rewardBeneficiary",
-                  "type": "bytes32[]"
-                },
-                {
-                  "internalType": "bytes",
-                  "name": "_rewardInfo",
-                  "type": "bytes"
-                }
-              ],
-              "name": "chargeFundsWithFee",
-              "outputs": [
-                {
-                  "internalType": "bool",
-                  "name": "",
-                  "type": "bool"
-                }
-              ],
-              "stateMutability": "nonpayable",
-              "type": "function"
-            };
-            args = [
-              '0x' + order._id,
-              this.coinServ.getCoinTypeIdByName(payorder.currency),
-              '0x' + new BigNumber(payorder.totalAmount).shiftedBy(18).toString(16),
-              '0x' + new BigNumber(payorder.totalTax).shiftedBy(18).toString(16),
-              payorder.regionalAgents,
-              payorder.rewardBeneficiary,
-              payorder.rewardInfo
-            ];
-            to = payorder.feeChargerSmartContractAddress;
-          }
+        if(ret1 && ret1._id) {
+          this.id = ret1._id;
+          this.starServ.getPaycoolRewardInfo(this.id, this.walletAddress).subscribe(
+            (ret: any) => {
+              console.log('ret from here=', ret);
+              this.order = ret;
+              this.submitDo(seed);
+            }
+          );
         }
         
         

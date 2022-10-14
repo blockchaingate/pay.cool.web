@@ -31,9 +31,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.setSize();
 
-    this.route.paramMap.subscribe(
+    this.route.queryParams.subscribe(
       (params: ParamMap) => {
-        const refCode = params.get('refcode');
+        const refCode = params['ref'];
         if (refCode) {
           this.starServ.checkAddress(refCode).subscribe(
             (res: any) => {

@@ -5,6 +5,9 @@ import { LocalStorage } from '@ngx-pwa/local-storage';
 import { StarService } from '../../services/star.service';
 import { PasswordModalComponent } from '../../shared/modals/password-modal/password-modal.component';
 import { KanbanService } from 'src/app/services/kanban.service';
+import { UtilService } from 'src/app/services/util.service';
+import { KanbanSmartContractService } from 'src/app/services/kanban.smartcontract.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user-tree',
@@ -25,12 +28,14 @@ export class UserTreeComponent implements OnInit {
   constructor(
     private modalService: BsModalService,
     private kanbanServ: KanbanService,
+    private utilServ: UtilService,
+    private kanbanSmartContractServ: KanbanSmartContractService,
     private route: ActivatedRoute, private localSt: LocalStorage, private starServ: StarService, private modalServ: BsModalService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(
       (params: ParamMap) => {
-        const refCode = params.get('refcode');
+        const refCode = params['ref'];
         if (refCode) {
           this.starServ.checkAddress(refCode).subscribe(
             (res: any) => {
@@ -42,7 +47,18 @@ export class UserTreeComponent implements OnInit {
                 this.errMsg = 'Invalid referral code';
               }
             });
+        } else {
+          this.localSt.getItem('7star_ref').subscribe(
+            (refCode: string) => {
+              console.log('refCode===',refCode);
+              if(refCode) {
+                this.refCode = refCode;
+                this.refCodeComeIn = true;
+              }
+            }
+          );
         }
+
 
       }
     )
@@ -65,11 +81,11 @@ export class UserTreeComponent implements OnInit {
     const walletAddressItem = addresses.filter(item => item.name == 'FAB')[0];
     this.walletAddress = walletAddressItem.address;
 
-    this.starServ.isValidMember(this.walletAddress).subscribe(
+    this.starServ.checkAddress(this.walletAddress).subscribe(
       (res: any) => {
         console.log('res in checkAddress=', res);
         if(res && res.isValid) {
-          this.myReferralUrl = 'https://pay.cool/ref/' + this.walletAddress;
+          this.myReferralUrl = window.location.href + '?ref=' + this.walletAddress;
 
           this.starServ.getTree(this.walletAddress).toPromise().then(
             (res: any) => {
@@ -93,7 +109,7 @@ export class UserTreeComponent implements OnInit {
     }
 
     if(!this.refCodeComeIn) {
-    this.starServ.isValidMember(this.refCode).subscribe(
+    this.starServ.checkAddress(this.refCode).subscribe(
       (res: any) => {
         if (res && res.isValid) {
           this.joinProcess();
@@ -117,34 +133,38 @@ export class UserTreeComponent implements OnInit {
     }
     this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
 
-    this.modalRef.content.onCloseFabPrivateKey.subscribe( (privateKey: any) => {
-      this.joinProcessDo(privateKey);
+    this.modalRef.content.onClose.subscribe( (seed: any) => {
+      this.joinProcessDo(seed);
     });
   }
 
-  joinProcessDo(privateKey) {
+  joinProcessDo(seed) {
     if(!this.refCode) {
       console.log('no refCode');
       return;
     }
-    const data ={
-      parentId: this.refCode
+    const abi = {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_referral",
+          "type": "address"
+        }
+      ],
+      "name": "createAccount",
+      "outputs": [
+        
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
     };
-
-    console.log('data===', data);
-    const sig = this.kanbanServ.signJsonData(privateKey, data);
-    data['sig'] = sig.signature;  
-// NEED SIGN DATA HERE
-
-    this.starServ.createRef(data).subscribe(
-      (res: any) => {
-        // location.reload();
-        this.loadWallet();
-      },
-      (error: any ) => {
-        this.errMsg = error.message || error.Message || JSON.stringify(error);
+    const hexAddress = this.utilServ.fabToExgAddress(this.refCode);
+    this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.smartConractAdressReferral, abi, [hexAddress]).then(
+      (res) => {
+        console.log('res===', res);
       }
     );
+  
   }
 
 }

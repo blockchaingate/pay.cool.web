@@ -56,13 +56,18 @@ export class AdminComponent implements OnInit {
         link: 'fiat-payment',
         icon: 'store'
       },      
-        
+      /*
       {
         title: 'Stores',
         link: 'stores',
         icon: 'store'
       },      
-        
+      */   
+      {
+        title: 'Merchants',
+        link: 'merchants',
+        icon: 'store'
+      },          
       {
         title: 'Exchange rate',
         link: 'exchange-rate',
