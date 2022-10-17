@@ -13,7 +13,7 @@ import { WalletComponent } from './wallet.component';
 import { WalletDashboardComponent } from './components/wallet-dashboard/wallet-dashboard.component';
 import { MnemonicComponent } from './components/mnemonic/mnemonic.component';
 import { MnemeditComponent} from './components/mnemonic/mnemedit.component';
-import { StarpayComponent } from './components/starpay/starpay.component';
+import { PaycoolComponent } from './components/paycool/paycool.component';
 import { CreateWalletComponent } from './components/create-wallet/create-wallet.component';
 import { ConfirmMnemonicsComponent } from './components/create-wallet/confirmmnem.component';
 import { CoinsListComponent } from './components/coins-list/coins-list.component';
@@ -69,7 +69,7 @@ import { GetFreeFabModal } from './modals/get-free-fab/get-free-fab.modal';
     AssetsListComponent,
     SendComponent,
     TransactionDetailComponent,
-    StarpayComponent,
+    PaycoolComponent,
     LoginSettingModal,
     ShowSeedPhraseModal,
     GetFreeFabModal

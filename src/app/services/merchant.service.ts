@@ -14,6 +14,14 @@ export class MerchantService {
     return this.http.getRaw(environment.endpoints.api + 'merchantreferral/' + id);
   }
 
+  update(id, data) {
+    return this.http.putRaw(environment.endpoints.api + 'merchantreferral/' + id, data);
+  }
+  createMerchantReferral(data: any) {
+    const url = environment.endpoints.api + 'merchantreferral';
+    return this.http.postRaw(url, data);
+  }
+
   getMerchantsByAddress(address: string) {
     return this.http.getRaw(environment.endpoints.api + 'merchantreferral/owner/' + address + '/10/0');
   }

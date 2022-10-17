@@ -1,26 +1,22 @@
-
-
 <div class="container">
+  <div>
+    <a (click)="add()">
+      <img src="/assets/svg/add.svg">
+    </a>
+  </div>
 
-    <div>
-        <a (click)="add()">
-          <img src="/assets/svg/add.svg">
-        </a>
-      </div>
-
-      <table class="table table-striped">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">{{'Coin' | translate}}</th>
-            <th scope="col">{{'Value' | translate}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of merchant_credit_list">
-            <td>{{getCoinName(item.coinType)}}</td>
-            <td>@{{item.value}}</td>
-          </tr>
-        </tbody>
-      </table>
-
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">{{'Coin' | translate}}</th>
+        <th scope="col">{{'Value' | translate}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of merchant_credit_list">
+        <td>{{getCoinName(item.coinType)}}</td>
+        <td>@{{item.value}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

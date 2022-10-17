@@ -7,7 +7,7 @@ import { CreateWalletComponent } from './components/create-wallet/create-wallet.
 import { ImportWalletComponent } from './components/import-wallet/import-wallet.component';
 import { ConfirmMnemonicsComponent } from './components/create-wallet/confirmmnem.component';
 import { WalletPwdComponent } from './components/create-wallet/wallet-pwd.component';
-import { StarpayComponent } from './components/starpay/starpay.component';
+import { PaycoolComponent } from './components/paycool/paycool.component';
 
 const routes: Routes = [
     {
@@ -15,7 +15,7 @@ const routes: Routes = [
         children: [
             { path: 'dashboard', component: WalletDashboardComponent },
             { path: 'create', component: CreateWalletComponent},
-            { path: 'starpay', component: StarpayComponent},
+            { path: 'paycool', component: PaycoolComponent},
             { path: 'import', component: ImportWalletComponent},
             { path: 'confirm', component: ConfirmMnemonicsComponent},
             { path: 'pwd', component: WalletPwdComponent},

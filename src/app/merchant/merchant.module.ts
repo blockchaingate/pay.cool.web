@@ -20,6 +20,7 @@ import { StoreDetailComponent } from './components/store-detail/store-detail.com
 import { MerchantDetailComponent } from './components/merchant-detail/merchant-detail.component';
 import { NewMerchantComponent } from './pages/new-merchant/new-merchant.component';
 import { MerchantsComponent } from './pages/merchants/merchants.component';
+import { MerchantInfoComponent } from './pages/merchant-info/merchant-info.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MerchantsComponent } from './pages/merchants/merchants.component';
     StoreDetailComponent,
     MerchantDetailComponent,
     NewMerchantComponent,
-    MerchantsComponent
+    MerchantsComponent,
+    MerchantInfoComponent
   ],
   imports: [
     BsDropdownModule.forRoot(),

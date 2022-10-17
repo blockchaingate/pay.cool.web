@@ -15,12 +15,12 @@ import BigNumber from 'bignumber.js';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-wallet-starpay',
+  selector: 'app-wallet-paycool',
   providers: [],
-  templateUrl: './starpay.component.html',
-  styleUrls: ['./starpay.component.scss']
+  templateUrl: './paycool.component.html',
+  styleUrls: ['./paycool.component.scss']
 })
-export class StarpayComponent implements OnInit{
+export class PaycoolComponent implements OnInit{
     modalRef: BsModalRef;
     wallet: any;
     name: string;
@@ -34,6 +34,7 @@ export class StarpayComponent implements OnInit{
     id: string;
     transactionHistories: any;
     parents: string[];
+    payType: string;
 
     constructor(    
         private kanbanSmartContractServ: KanbanSmartContractService,
@@ -50,6 +51,7 @@ export class StarpayComponent implements OnInit{
     ngOnInit() {
         this.tab =  'pay';
         this.parents = [];
+        this.payType = 'withBalance';
         this.dataServ.currentWallet.subscribe(
             (wallet: any) => {
               this.wallet = wallet;
@@ -173,55 +175,106 @@ export class StarpayComponent implements OnInit{
       to = this.to;
       } else 
       if(this.id){
-        abi = {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "_merchantId",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "_orderId",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "uint32",
-              "name": "_paidCoin",
-              "type": "uint32"
-            },
-            {
-              "internalType": "uint256",
-              "name": "_totalAmount",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "_totalTax",
-              "type": "uint256"
-            },
-            {
-              "internalType": "bytes",
-              "name": "_rewardInfo",
-              "type": "bytes"
-            }
-          ],
-          "name": "chargeFundsWithFee",
-          "outputs": [
-            
-          ],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        };
-        console.log('this.order====', this.order);
-        args = [
-          this.order.merchantId,
-          this.order.orderId,
-          this.order.paidCoin,
-          '0x' + new BigNumber(this.order.totalAmount).shiftedBy(18).toString(16),
-          '0x' + new BigNumber(this.order.totalTax).shiftedBy(18).toString(16),
-          this.order.rewardInfo
-        ];
+        if(this.payType == 'withBalance') {
+          abi = {
+            "inputs": [
+              {
+                "internalType": "bytes32",
+                "name": "_merchantId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "_orderId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint32",
+                "name": "_paidCoin",
+                "type": "uint32"
+              },
+              {
+                "internalType": "uint256",
+                "name": "_totalAmount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "_totalTax",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes",
+                "name": "_rewardInfo",
+                "type": "bytes"
+              }
+            ],
+            "name": "chargeFundsWithFee",
+            "outputs": [
+              
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+          };
+          args = [
+            this.order.merchantId,
+            this.order.orderId,
+            this.order.paidCoin,
+            '0x' + new BigNumber(this.order.totalAmount).shiftedBy(18).toString(16),
+            '0x' + new BigNumber(this.order.totalTax).shiftedBy(18).toString(16),
+            this.order.rewardInfo
+          ];
+        } else {
+          abi = {
+            "inputs": [
+              {
+                "internalType": "bytes32",
+                "name": "_merchantId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "_orderId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint32",
+                "name": "_paidCoin",
+                "type": "uint32"
+              },
+              {
+                "internalType": "uint256",
+                "name": "_totalAmount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "_totalTax",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes",
+                "name": "_rewardInfo",
+                "type": "bytes"
+              }
+            ],
+            "name": "chargeFundsWithCredit",
+            "outputs": [
+              
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+          };
+          args = [
+            this.order.merchantId,
+            this.order.orderId,
+            this.order.paidCoin,
+            '0x' + new BigNumber(this.order.totalAmount).shiftedBy(18).toString(16),
+            '0x' + new BigNumber(this.order.totalTax).shiftedBy(18).toString(16),
+            this.order.rewardInfo
+          ];
+        }
+
         to = environment.addresses.smartContract.smartConractFeeCharger;
       } else
       if(this.templateId) {

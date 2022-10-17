@@ -117,12 +117,6 @@
         <input type="text" class="form-control small" placeholder="{{'locked days' | translate}}" [(ngModel)]="lockedDays" name="lockedDays" id="lockedDays">
       </div>
     </div> 
-    <div class="form-group row  my-2">
-      <label for="exampleInputEmail1" class="col-sm-2 col-form-label">referral address</label>
-      <div class="col-sm-10">
-          <input type="text" [(ngModel)]="referral" class="form-control" id="referralAddress" aria-describedby="referralAddress">
-      </div>
-    </div>
 
     <div class="form-check">
       <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" [(ngModel)]="hideOnStore">
@@ -130,12 +124,10 @@
       {{'Hide on Madearn.com' | translate}}
       </label>
     </div>
-    <div class="d-grid gap-2 d-flex justify-content-between">
-      <div class="text-left py-2 mb-4">
-        <button type="submit" class="btn btn-info" (click)="import()">{{('import from 7star') | translate}}</button>
-      </div>
+    
+    <div class="d-grid gap-2">
         <div class="text-right py-2 mb-4">
-            <button type="submit" class="btn btn-primary" (click)="createMerchant()">{{('Create') | translate}}</button>
+            <button type="submit" class="btn btn-primary" (click)="updateMerchant()">{{ 'Update' | translate}}</button>
         </div>
 
     </div> 

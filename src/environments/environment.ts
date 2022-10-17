@@ -144,8 +144,8 @@ export const environment = {
       },
     smartContract: {
         
-        smartConractMerchantInfo: '0xa924803224459fd2cbac7475aa25efa98c527c6c',
-        smartConractFeeCharger: '0x0f054c740767fa09c54f8ef984e54bbd16512eb6',
+        smartConractMerchantInfo: '0x097e47f88467a77722d4cc6dd1b3dbdbcffb52f3',
+        smartConractFeeCharger: '0xb087b17089a46064103da800c69a10684b512513',
         smartConractAdressExchangeRate: '0x44b9c6409fbb133f4f0ebbb07b4fb61c0d20181b',
         smartConractAdressReferral: '0xa76af08ba89012e617cd33641f70cb6c2ec957e6',
         
