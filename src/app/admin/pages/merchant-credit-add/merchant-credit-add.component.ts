@@ -16,10 +16,10 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./merchant-credit-add.component.scss']
 })
 export class MerchantCreditAddComponent implements OnInit {
-  merchantWalletAddress: string;
+  merchantId: string;
   modalRef: BsModalRef;
   coin: string;
-  amount: number;
+  value: number;
   wallet: any;
 
   coins = ['DUSD', 'USDT', 'USDC', 'DCAD', 'DCNY', 'DJPY', 'DGBP', 
@@ -64,9 +64,9 @@ export class MerchantCreditAddComponent implements OnInit {
     const abi = {
       "inputs": [
         {
-          "internalType": "address",
-          "name": "_merchant",
-          "type": "address"
+          "internalType": "bytes32",
+          "name": "_id",
+          "type": "bytes32"
         },
         {
           "internalType": "uint32",
@@ -80,40 +80,26 @@ export class MerchantCreditAddComponent implements OnInit {
         }
       ],
       "name": "addCreditByOwner",
-      "outputs": [],
+      "outputs": [
+        
+      ],
       "stateMutability": "nonpayable",
       "type": "function"
     };
 
-    this.storeServ.getStoresByAddress(this.merchantWalletAddress).subscribe(
-      async (ret: any) => {
-        if(ret && ret.ok) {
-          const store = ret._body[0];
-          if(!store || store.status != 1) {
-            this.toastr.error('store for the merchant is not valid');
-            return;
-          }
-          console.log('store=', store);
-          const feeChargerSmartContractAddress = store.feeChargerSmartContractAddress;
-          const args = [
-            feeChargerSmartContractAddress, 
-            this.coinServ.getCoinTypeIdByName(this.coin), 
-            '0x' + new BigNumber(this.amount).shiftedBy(18).toString(16)
-          ];
+    const args = [
+      this.merchantId, 
+      this.coinServ.getCoinTypeIdByName(this.coin), 
+      '0x' + new BigNumber(this.value).shiftedBy(18).toString(16)
+    ];
 
-          console.log('args===', args);
-          console.log('abi=', abi);
-          console.log('environment.addresses.smartContract.merchantCredit2===', environment.addresses.smartContract.merchantCredit2);
-          const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.merchantCredit2, abi, args);
-          if(ret2 && ret2.ok && ret2._body && ret2._body.status == '0x1') {
-            this.toastr.success('merchant credit was added successfully');
-            this.router.navigate(['/admin/merchant-credit']);
-          } else {
-            this.toastr.error('Error while adding merchant credit');
-          }
-        }
-      }
-    );
+    const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.smartConractMerchantInfo, abi, args);
+    if(ret2 && ret2.ok && ret2._body && ret2._body.status == '0x1') {
+      this.toastr.success('merchant credit was added successfully');
+      this.router.navigate(['/admin/merchant-credit']);
+    } else {
+      this.toastr.error('Error while adding merchant credit');
+    }
   }
 
 }

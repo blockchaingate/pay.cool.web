@@ -74,6 +74,57 @@ export class MerchantApproveComponent implements OnInit {
     });
   }
 
+  enableCredit() {
+    const initialState = {
+      pwdHash: this.wallet.pwdHash,
+      encryptedSeed: this.wallet.encryptedSeed
+    };          
+    if(!this.wallet || !this.wallet.pwdHash) {
+      this.router.navigate(['/wallet']);
+      return;
+    }
+    this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
+
+    this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
+      this.spinner.show();
+      this.enableCreditDo(seed);
+    });    
+  }
+
+  async enableCreditDo(seed: Buffer) {
+    try {
+      const args = [
+        this.merchant.id
+      ];
+      const abi = {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "_id",
+            "type": "bytes32"
+          }
+        ],
+        "name": "enableCredit",
+        "outputs": [
+          
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      };
+  
+      const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.smartConractMerchantInfo, abi, args);
+  
+      if(ret2 && ret2.ok && ret2._body && ret2._body.status == '0x1') {
+        this.toastr.success('the merchant was enabled credit.');
+        this.router.navigate(['/admin/merchants']);
+      } else {
+        this.toastr.error('Failed to enable credit merchant.');
+        this.spinner.hide();  
+      }
+    } catch(e) {
+      this.spinner.hide();
+    }
+    }
 
 async approveDo(seed: Buffer) {
   try {

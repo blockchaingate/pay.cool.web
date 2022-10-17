@@ -12,11 +12,13 @@
     </div>
 
     <div class="form-group row" *ngIf="id">
+        <!--
         <label for="staticEmail" class="col-sm-2">
             <a (click)="showToken()">{{'Show token'|translate}}</a>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <a *ngIf="token" (click)="copyToken()">{{'Copy' | translate}}</a>
         </label>
+        -->
         <div class="col-sm-10" style="word-break:break-all; word-wrap:break-all;" *ngIf="token">
             {{token}}
         </div>

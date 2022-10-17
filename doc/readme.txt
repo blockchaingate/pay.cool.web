@@ -1,6 +1,9 @@
 approve txid: 0x8abf5e84081d5542857f5acf28e157cc8a4b8d65e67cfe9f6de434634f9ff08c
 brand ndw
 
+merchant credit added: 0x6c4f0e6121f99a1979a057cdfc574410a3dfb0094bac3de8edc6cac8e38ac491
+
+
 faculty hour almost rival awkward soft way cloth swallow sentence comfort eagle
 
 moneris:

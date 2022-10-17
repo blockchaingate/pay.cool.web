@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
-import { StarService } from 'src/app/services/star.service';
+import { MerchantService } from 'src/app/services/merchant.service';
 import { UtilService } from 'src/app/services/util.service';
 
 @Component({
@@ -13,18 +13,16 @@ export class MerchantCreditComponent implements OnInit {
   merchant_credit_list: any;
   constructor(
     private dataServ: DataService,
-    private starServ:StarService, private router: Router, private utilServ: UtilService) { }
+    private merchantServ:MerchantService, private router: Router, private utilServ: UtilService) { }
 
   ngOnInit(): void {
     this.dataServ.currentMyStore.subscribe(
       (store: any) => {
-        console.log('store==', store);
+        console.log('storedddd==', store);
         if(store && store._id) {
-          this.starServ.get7StarMerchantCreditsByStore(store._id).subscribe(
+          this.merchantServ.getMerchantCreditsByID(store.id).subscribe(
             (ret: any) => {
-              if(ret && ret.ok) {
-                this.merchant_credit_list = ret._body;
-              }
+              this.merchant_credit_list = ret;
             }
           );
         }

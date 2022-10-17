@@ -80,6 +80,7 @@ export class StoreComponent implements OnInit {
     private storeServ: StoreService) {
   }
 
+  /*
   copyToken() {
     this.utilServ.copy(this.token);
   }
@@ -112,7 +113,7 @@ export class StoreComponent implements OnInit {
     const sig = this.kanbanServ.signJsonData(privateKey, data);
     this.token = sig.signature;
   }
-
+  */
   initStore(store) {
     
     

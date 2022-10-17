@@ -3,8 +3,8 @@
       <h1>{{'Add merchant\'s credit' | translate}}</h1>
       <hr>
 
-        <label for="email"><b>{{'Merchant\'s wallet address' | translate}}</b></label>
-        <input type="text" placeholder="Enter merchant's wallet address" [(ngModel)]="merchantWalletAddress" name="merchantWalletAddress" required>
+        <label for="email"><b>{{'Merchant\'s id' | translate}}</b></label>
+        <input type="text" placeholder="Enter merchant's id" [(ngModel)]="merchantId" name="merchanId" required>
 
 
         <div class="form-group">
@@ -17,8 +17,8 @@
             </div>
         </div>
 
-        <label for="email"><b>{{'Amount' | translate}}</b></label>
-        <input type="text" placeholder="Amount" [(ngModel)]="amount" name="amount" required>
+        <label for="email"><b>{{'Value' | translate}}</b></label>
+        <input type="text" placeholder="Value" [(ngModel)]="value" name="value" required>
 
 
         <div class="text-right py-2">

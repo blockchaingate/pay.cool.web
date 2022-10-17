@@ -16,13 +16,14 @@ import { Wallet } from '../models/wallet';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 import { DataService } from './data.service';
 import { StoreService } from './store.service';
+import { MerchantService } from './merchant.service';
 
 @Injectable({ providedIn: 'root' })
 export class WalletService {
     constructor(
         private dataServ: DataService,
-        private storeServ: StoreService,
         private localSt: LocalStorage, 
+        private merchantServ: MerchantService,
         private utilServ: UtilService, 
         private coinServ: CoinService) {}
 
@@ -36,10 +37,11 @@ export class WalletService {
         if(walletAddress) {
           this.dataServ.changeWalletAddress(walletAddress); 
 
-          this.storeServ.getStoresByAddress(walletAddress).subscribe(
+          this.merchantServ.getMerchantsByAddress(walletAddress).subscribe(
             (ret: any) => {
-              if(ret && ret.ok && ret._body && ret._body.length > 0) {
-                const store = ret._body[ret._body.length - 1];
+                console.log('rettt=', ret);
+              if(ret && ret.length > 0) {
+                const store = ret[0];
                 this.dataServ.changeMyStore(store);
               } else {
                 this.dataServ.changeMyStore(null);

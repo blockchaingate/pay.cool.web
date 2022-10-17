@@ -1,6 +1,7 @@
 <div *ngIf="merchant">
     <div class="container">
         <div class="text-right py-2">
+            <button class="btn signinbtn" (click)="enableCredit()">{{('Enable Credit') | translate}}</button>
             <button class="btn signinbtn" (click)="approve()">{{('Approve') | translate}}</button>
         </div>
         <div *ngIf="merchant.name">
@@ -8,6 +9,9 @@
         </div>
         <div>
             <label for="owner"><b>{{'Owner' | translate}}:</b></label> {{merchant.owner}}
+        </div>
+        <div *ngIf="merchant.id">
+            <label for="address"><b>{{'ID' | translate}}:</b></label> {{merchant.id}}
         </div>
         <div *ngIf="merchant.address">
             <label for="address"><b>{{'Address' | translate}}:</b></label> {{merchant.address}}

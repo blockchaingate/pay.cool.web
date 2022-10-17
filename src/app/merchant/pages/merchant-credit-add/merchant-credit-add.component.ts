@@ -20,7 +20,7 @@ export class MerchantCreditAddComponent implements OnInit {
   modalRef: BsModalRef;
   coin: string;
   amount: number;
-  feeChargerSmartContractAddress: string;
+  merchantId: string;
   wallet: any;
 
   coins = ['DUSD', 'USDT', 'USDC', 'DCAD', 'DCNY', 'DJPY', 'DGBP', 
@@ -46,10 +46,9 @@ export class MerchantCreditAddComponent implements OnInit {
     this.dataServ.currentMyStore.subscribe(
       (store: any) => {
         if(store && store._id) {
-         if(store.status == 1) {
-          this.feeChargerSmartContractAddress = store.feeChargerSmartContractAddress;
-         } else {
-           this.toastr.error('your store is not approved');
+          this.merchantId = store.id;
+         if(store.status != 2) {
+          this.toastr.error('your store is not approved');
          }
         }
       }
@@ -76,9 +75,9 @@ export class MerchantCreditAddComponent implements OnInit {
     const abi = {
       "inputs": [
         {
-          "internalType": "address",
-          "name": "_merchant",
-          "type": "address"
+          "internalType": "bytes32",
+          "name": "_id",
+          "type": "bytes32"
         },
         {
           "internalType": "uint32",
@@ -92,18 +91,21 @@ export class MerchantCreditAddComponent implements OnInit {
         }
       ],
       "name": "addCredit",
-      "outputs": [],
+      "outputs": [
+        
+      ],
       "stateMutability": "nonpayable",
       "type": "function"
     };
 
     const args = [
-      this.feeChargerSmartContractAddress, 
+      this.merchantId, 
       this.coinServ.getCoinTypeIdByName(this.coin), 
       '0x' + new BigNumber(this.amount).shiftedBy(18).toString(16)
     ];
 
-    const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.merchantCredit2, abi, args);
+    console.log('args====', args);
+    const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.smartConractMerchantInfo, abi, args);
     if(ret2 && ret2.ok && ret2._body && ret2._body.status == '0x1') {
       this.toastr.success('merchant credit was added successfully');
       this.router.navigate(['/merchants/merchant-credit']);

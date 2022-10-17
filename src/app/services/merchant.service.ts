@@ -13,4 +13,16 @@ export class MerchantService {
   getMerchant(id) {
     return this.http.getRaw(environment.endpoints.api + 'merchantreferral/' + id);
   }
+
+  getMerchantsByAddress(address: string) {
+    return this.http.getRaw(environment.endpoints.api + 'merchantreferral/owner/' + address + '/10/0');
+  }
+
+  getMerchantCredits(pageSize: number, pageNum: number) {
+    return this.http.getRaw(environment.endpoints.api + 'merchantcredit/' + pageSize + '/' + pageNum);
+  }
+
+  getMerchantCreditsByID(id: string) {
+    return this.http.getRaw(environment.endpoints.api + 'merchantcredit/' + id);
+  }
 }
