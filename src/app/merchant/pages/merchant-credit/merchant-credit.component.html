@@ -1,8 +1,11 @@
 <div class="container">
-  <div>
+  <div class="d-flex justify-content-between">
     <a (click)="add()">
       <img src="/assets/svg/add.svg">
     </a>
+    <div>
+      <button type="submit" class="btn btn-info" (click)="setCharger()">{{ 'Set charger' | translate}}</button>
+    </div>
   </div>
 
   <table class="table table-striped">
@@ -16,6 +19,19 @@
       <tr *ngFor="let item of merchant_credit_list">
         <td>{{getCoinName(item.coinType)}}</td>
         <td>@{{item.value}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">{{'Charger' | translate}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of merchant_credit_charger_list">
+        <td>{{item.charger}}</td>
       </tr>
     </tbody>
   </table>

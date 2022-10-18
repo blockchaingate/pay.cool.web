@@ -33,4 +33,8 @@ export class MerchantService {
   getMerchantCreditsByID(id: string) {
     return this.http.getRaw(environment.endpoints.api + 'merchantcredit/' + id);
   }
+
+  getMerchantCreditChargersByID(id: string) {
+    return this.http.getRaw(environment.endpoints.api + 'merchantcreditcharger/' + id);
+  }
 }

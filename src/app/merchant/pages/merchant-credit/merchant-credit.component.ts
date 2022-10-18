@@ -11,9 +11,11 @@ import { UtilService } from 'src/app/services/util.service';
 })
 export class MerchantCreditComponent implements OnInit {
   merchant_credit_list: any;
+  merchant_credit_charger_list: any;
   constructor(
     private dataServ: DataService,
-    private merchantServ:MerchantService, private router: Router, private utilServ: UtilService) { }
+    private merchantServ:MerchantService, 
+    private router: Router, private utilServ: UtilService) { }
 
   ngOnInit(): void {
     this.dataServ.currentMyStore.subscribe(
@@ -23,6 +25,11 @@ export class MerchantCreditComponent implements OnInit {
           this.merchantServ.getMerchantCreditsByID(store.id).subscribe(
             (ret: any) => {
               this.merchant_credit_list = ret;
+            }
+          );
+          this.merchantServ.getMerchantCreditChargersByID(store.id).subscribe(
+            (ret: any) => {
+              this.merchant_credit_charger_list = ret;
             }
           );
         }
@@ -38,5 +45,9 @@ export class MerchantCreditComponent implements OnInit {
   
   add() {
     this.router.navigate(['/merchants/merchant-credit/add']);
+  }
+
+  setCharger() {
+    this.router.navigate(['/merchants/merchant-credit/add-charger']);
   }
 }

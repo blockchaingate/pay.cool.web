@@ -7,6 +7,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { PasswordModalComponent } from '../../../shared/modals/password-modal/password-modal.component';
 import { CoinService } from 'src/app/services/coin.service';
 import { KanbanService } from 'src/app/services/kanban.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-merchant-info',
@@ -42,6 +43,7 @@ export class MerchantInfoComponent implements OnInit {
   coins = coins;
 
   constructor(
+    private router: Router,
     private kanbanServ: KanbanService,
     private modalService: BsModalService,
     private toastr: ToastrService,
@@ -107,6 +109,10 @@ export class MerchantInfoComponent implements OnInit {
     this.modalRef.content.onClose.subscribe( (seed: Buffer) => {
       this.updateMerchantDo(seed);
     });
+  }
+
+  credit() {
+    this.router.navigate(['/merchants/merchant-credit']);
   }
 
   updateMerchantDo(seed) {

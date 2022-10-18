@@ -21,6 +21,7 @@ import { MerchantDetailComponent } from './components/merchant-detail/merchant-d
 import { NewMerchantComponent } from './pages/new-merchant/new-merchant.component';
 import { MerchantsComponent } from './pages/merchants/merchants.component';
 import { MerchantInfoComponent } from './pages/merchant-info/merchant-info.component';
+import { MerchantCreditAddChargerComponent } from './pages/merchant-credit-add-charger/merchant-credit-add-charger.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MerchantInfoComponent } from './pages/merchant-info/merchant-info.compo
     MerchantDetailComponent,
     NewMerchantComponent,
     MerchantsComponent,
-    MerchantInfoComponent
+    MerchantInfoComponent,
+    MerchantCreditAddChargerComponent
   ],
   imports: [
     BsDropdownModule.forRoot(),

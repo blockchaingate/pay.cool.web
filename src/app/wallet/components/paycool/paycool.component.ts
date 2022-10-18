@@ -87,6 +87,9 @@ export class PaycoolComponent implements OnInit{
 
         
     }
+    changePayType(type:string) {
+      this.payType = type;
+    }
 
     changeTab(tab: string) {
       this.tab = tab;
