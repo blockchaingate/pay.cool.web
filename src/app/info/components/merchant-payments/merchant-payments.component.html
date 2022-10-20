@@ -1,0 +1,26 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">type</th>
+        <th scope="col">merchantId</th>
+        <th scope="col">totalReward</th>
+        <th scope="col">dateCreated</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of payments;; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{item.type}}</td>
+        <td>{{showId(item.merchantId)}}</td>
+        <td>{{showAmount(item.totalReward)}}</td>
+        <td>{{item.dateCreated}}</td>
+        <td>
+          <button *ngIf="item.refunds && (item.refunds.length > 0) && !(item.refunds.status)" type="button" class="btn btn-primary" (click)="approveRefund(item)">
+            approve refund
+          </button>
+        </td>
+      </tr>
+    </tbody>
+</table>

@@ -47,6 +47,7 @@ import { AirdropService } from './services/airdrop.service';
 import { IddockService } from './services/iddock.service';
 import { DataService } from './services/data.service';
 import { StoreService } from './services/store.service';
+import { ChargeService } from './services/charge.service';
 import { MerchantService } from './services/merchant.service';
 import { UploadService } from './services/upload.service';
 import { WalletGuardService } from './services/wallet-guard.service';
@@ -136,6 +137,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     UploadService,
     AirdropService,
     DataService,
+    ChargeService,
     MerchantService,
     WalletGuardService,
     StoreService,

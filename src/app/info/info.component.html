@@ -1,0 +1,28 @@
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" [ngClass]="(tabName=='payments')?'active' : ''" (click)="changeTabName('payments')">Payments</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" [ngClass]="(tabName=='merchant-payments')?'active' : ''" (click)="changeTabName('merchant-payments')">Merchant Payments</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="(tabName=='rewards')?'active' : ''"  (click)="changeTabName('rewards')">Rewards</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="(tabName=='lockers')?'active' : ''" (click)="changeTabName('lockers')">Lockers</a>
+        </li>
+    </ul>
+    <div *ngIf="tabName=='payments'">
+        <app-payments></app-payments>
+    </div>
+    <div *ngIf="tabName=='merchant-payments'">
+      <app-merchant-payments></app-merchant-payments>
+  </div>
+    <div *ngIf="tabName=='rewards'">
+        <app-rewards></app-rewards>
+    </div>
+    <div *ngIf="tabName=='lockers'">
+        <app-lockers></app-lockers>
+    </div>
+</div>

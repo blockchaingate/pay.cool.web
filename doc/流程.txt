@@ -1,0 +1,148 @@
+场景:
+n24Jz5SA53wjbUSrqT94oFKndGYccQkm6c充值2次,每次10usdt,奖励比例是8%,锁仓90天;下注3次,一次5usdt,两次8usdt, 奖励比例是7%,锁仓50天
+
+预设: gamearn的merchantid是0x42a066862e4177b6d2d573f0acc98ff1626425e71ce2503d14ce5ecad459d5b3
+credit charger是n2AaWrYEfYQckdqPAaQXCxiXcowsGU6GZe
+fee charger address: 0xb087b17089a46064103da800c69a10684b512513
+1. 创建订单
+post:
+https://fabtest.info/api/userpay/createOrder
+
+body:
+{"items":[{"title":"充值","rebateRate":8,"taxRate":0,"lockedDays":90,"price":10,"quantity":2},{"title":"下注","rebateRate":7,"taxRate":0,"lockedDays":50,"price":5,"quantity":1},{"title":"下注","rebateRate":7,"taxRate":0,"lockedDays":50,"price":8,"quantity":2}],"currency":"USDT","merchantId":"0x42a066862e4177b6d2d573f0acc98ff1626425e71ce2503d14ce5ecad459d5b3","owner":"n24Jz5SA53wjbUSrqT94oFKndGYccQkm6c"}
+
+response:
+{
+    "owner": "n24Jz5SA53wjbUSrqT94oFKndGYccQkm6c",
+    "totalAmount": 41,
+    "totalTax": 0,
+    "totalShipping": 0,
+    "currency": "USDT",
+    "merchantId": "0x42a066862e4177b6d2d573f0acc98ff1626425e71ce2503d14ce5ecad459d5b3",
+    "items": [
+        {
+            "title": "充值",
+            "taxRate": 0,
+            "lockedDays": 90,
+            "rebateRate": 8,
+            "price": 10,
+            "quantity": 2,
+            "_id": "6350916283b807e42e251106"
+        },
+        {
+            "title": "下注",
+            "taxRate": 0,
+            "lockedDays": 50,
+            "rebateRate": 7,
+            "price": 5,
+            "quantity": 1,
+            "_id": "6350916283b807e42e251107"
+        },
+        {
+            "title": "下注",
+            "taxRate": 0,
+            "lockedDays": 50,
+            "rebateRate": 7,
+            "price": 8,
+            "quantity": 2,
+            "_id": "6350916283b807e42e251108"
+        }
+    ],
+    "paymentStatus": 0,
+    "_id": "6350916283b807e42e251105",
+    "__v": 0
+}
+
+2.从response中得到order id: 6350916283b807e42e251105
+
+3.调用https://fabtest.info/api/userpay/order/6350916283b807e42e251105/n2AaWrYEfYQckdqPAaQXCxiXcowsGU6GZe/rewardInfo
+得到rewardInfo的所有信息,返回对象order
+
+{
+   "orderId":"0x6350916283b807e42e251105",
+   "totalAmount":41,
+   "totalTax":0,
+   "totalShipping":0,
+   "paidCoin":196609,
+   "merchantId":"0x42a066862e4177b6d2d573f0acc98ff1626425e71ce2503d14ce5ecad459d5b3",
+   "totalRewards":[
+      {
+         "lockedDays":90,
+         "rewards":"1.6"
+      },
+      {
+         "lockedDays":50,
+         "rewards":"1.47"
+      }
+   ],
+   "rewardDetails":[
+      {
+         "lockedDays":90,
+         "type":"marketingRewards.level1",
+         "user":"n1eXG5oe6wJ6h43akutyGfphqQsY1UfAUR",
+         "value":0.128
+      },
+      {
+         "lockedDays":50,
+         "type":"marketingRewards.level1",
+         "user":"n1eXG5oe6wJ6h43akutyGfphqQsY1UfAUR",
+         "value":0.1176
+      }
+   ],
+   "rewardInfo":"0x00020000005adcd0f23125f74ef621dfa3310625f8af0dcd971b00000000000000000000000000000000000000000000000001c6bf5263400000000200000032dcd0f23125f74ef621dfa3310625f8af0dcd971b00000000000000000000000000000000000000000000000001a1cc93b1960000"
+}
+
+4.根据得到的rewwardInfo信息以credit charger的身份调用智能合约
+合约地址 fee charger address: 0xb087b17089a46064103da800c69a10684b512513
+abi:
+
+{
+            "inputs": [
+              {
+                "internalType": "bytes32",
+                "name": "_merchantId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "_orderId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint32",
+                "name": "_paidCoin",
+                "type": "uint32"
+              },
+              {
+                "internalType": "uint256",
+                "name": "_totalAmount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "_totalTax",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes",
+                "name": "_rewardInfo",
+                "type": "bytes"
+              }
+            ],
+            "name": "chargeFundsWithCredit",
+            "outputs": [
+              
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+          }
+
+          args = [
+            order.merchantId,
+            order.orderId,
+            order.paidCoin,
+            '0x' + new BigNumber(order.totalAmount).shiftedBy(18).toString(16),
+            '0x' + new BigNumber(order.totalTax).shiftedBy(18).toString(16),
+            order.rewardInfo
+          ];
+

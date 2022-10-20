@@ -19,6 +19,10 @@ const routes: Routes = [
     loadChildren: () => import('./wallet/wallet.module').then(w => w.WalletModule)
   },
   {
+    path: 'info',
+    loadChildren: () => import('./info/info.module').then(w => w.InfoModule)
+  },
+  {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(w => w.AdminModule)
   }, 
