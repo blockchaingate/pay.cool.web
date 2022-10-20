@@ -20,6 +20,11 @@ import { AllRewardDetailsComponent } from './pages/all-reward-details/all-reward
 import { MerchantsComponent } from './pages/merchants/merchants.component';
 import { MerchantApproveComponent } from './pages/merchant-approve/merchant-approve.component';
 
+import { ProjectsComponent } from './pages/projects/projects.component';
+import { ProjectAddComponent } from './pages/project-add/project-add.component';
+import { ProjectUsersComponent } from './pages/project-users/project-users.component';
+import { ProjectUserAddComponent } from './pages/project-user-add/project-user-add.component';
+
 import { 
   WalletGuardService as WalletGuard 
 } from '../services/wallet-guard.service';
@@ -33,8 +38,17 @@ const routes: Routes = [
         path: 'dashboard', component: DashboardComponent
       },
       {
-        path: 'stores', component: StoresComponent
+        path: 'projects', component: ProjectsComponent
       },  
+      {
+        path: 'project/add', component: ProjectAddComponent
+      }, 
+      {
+        path: 'project-users', component: ProjectUsersComponent
+      },  
+      {
+        path: 'project-user/add', component: ProjectUserAddComponent
+      }, 
       {
         path: 'merchants', component: MerchantsComponent
       },  

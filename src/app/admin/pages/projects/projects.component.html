@@ -1,0 +1,15 @@
+<div class="container">
+    <div>
+        <a (click)="add()">
+          <img src="/assets/svg/add.svg">
+        </a>
+      </div>
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="col col-6">{{'Project' | translate}}</div>
+      </li>
+      <li class="table-row" *ngFor="let item of projects">
+        <div class="col col-6" data-label="Project">{{item.id}}</div>
+      </li>
+    </ul>
+</div>

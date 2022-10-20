@@ -42,8 +42,13 @@ export class AdminComponent implements OnInit {
         icon: 'store'
       }, 
       {
-        title: 'Vips',
-        link: 'vips',
+        title: 'Projects',
+        link: 'projects',
+        icon: 'store'
+      }, 
+      {
+        title: 'Project Users',
+        link: 'project-users',
         icon: 'store'
       }, 
       {

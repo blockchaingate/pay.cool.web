@@ -148,6 +148,8 @@ export const environment = {
         smartConractFeeCharger: '0xb087b17089a46064103da800c69a10684b512513',
         smartConractAdressExchangeRate: '0x44b9c6409fbb133f4f0ebbb07b4fb61c0d20181b',
         smartConractAdressReferral: '0xa76af08ba89012e617cd33641f70cb6c2ec957e6',
+        smartConractProjectUserRelation: '0xc8379312d5e9188bb8e8b40ede24da9141575925',
+        Zap: '0x2f42822f03e7b7abee9303f69a5ba634acdeb823',
         
         feeDistribution: '0x81dd9357bf85bdb272e9ee1ec0ec2baa8bdffd06',
         locker: '0xab64a2a910a6dda85620a109cd012bb4a7b20b6f',

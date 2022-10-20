@@ -1,0 +1,19 @@
+<div style="border:1px solid #ccc">
+    <div class="container">
+      <h1>{{'Add project user' | translate}}</h1>
+      <hr>
+
+        <label for="email"><b>{{'Project id' | translate}}</b></label>
+        <input type="text" placeholder="Enter project id" [(ngModel)]="projectId" name="projectId" required>
+
+        <label for="email"><b>{{'User' | translate}}</b></label>
+        <input type="text" placeholder="Enter user" [(ngModel)]="user" name="user" required>
+
+        <label for="email"><b>{{'Status' | translate}}</b></label>
+        <input type="text" placeholder="Enter status" [(ngModel)]="status" name="status" required>
+
+        <div class="text-right py-2">
+            <button class="btn signinbtn" (click)="confirm()">{{('Confirm') | translate}}</button>
+        </div>
+    </div>
+</div>

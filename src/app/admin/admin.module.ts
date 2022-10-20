@@ -28,6 +28,10 @@ import { VipsComponent } from './pages/vips/vips.component';
 import { AllRewardDetailsComponent } from './pages/all-reward-details/all-reward-details.component';
 import { MerchantsComponent } from './pages/merchants/merchants.component';
 import { MerchantApproveComponent } from './pages/merchant-approve/merchant-approve.component';
+import { ProjectsComponent } from './pages/projects/projects.component';
+import { ProjectAddComponent } from './pages/project-add/project-add.component';
+import { ProjectUsersComponent } from './pages/project-users/project-users.component';
+import { ProjectUserAddComponent } from './pages/project-user-add/project-user-add.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +54,11 @@ import { MerchantApproveComponent } from './pages/merchant-approve/merchant-appr
     VipsComponent,
     AllRewardDetailsComponent,
     MerchantsComponent,
-    MerchantApproveComponent
+    MerchantApproveComponent,
+    ProjectsComponent,
+    ProjectAddComponent,
+    ProjectUsersComponent,
+    ProjectUserAddComponent
   ],
   imports: [
     AdminRoutingModule,

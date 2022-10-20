@@ -33,8 +33,7 @@ export class MerchantCreditAddComponent implements OnInit {
     private dataServ: DataService,
     private router: Router,
     private modalService: BsModalService,
-    private toastr: ToastrService,
-    private storeServ: StoreService) { }
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.dataServ.currentWallet.subscribe(

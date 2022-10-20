@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import BigNumber from 'bignumber.js';
-import { KanbanService } from 'src/app/services/kanban.service';
 import { MerchantService } from 'src/app/services/merchant.service';
 import { UtilService } from 'src/app/services/util.service';
-import { Web3Service } from 'src/app/services/web3.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-merchant-credit',
@@ -15,8 +11,6 @@ import { environment } from 'src/environments/environment';
 export class MerchantCreditComponent implements OnInit {
   merchant_credit_list: any;
   constructor(
-    private kanbanServ: KanbanService,
-    private web3Serv: Web3Service,
     private merchantServ:MerchantService, 
     private router: Router, 
     private utilServ: UtilService) { }
@@ -33,6 +27,7 @@ export class MerchantCreditComponent implements OnInit {
   showId(id: string) {
     return id.substring(0, 3) + '...' + id.substring(id.length - 3);
   }
+  
   getCoinName(coinType: number) {
     const coinName = this.utilServ.getCoinNameByTypeId(coinType);
     return coinName;
