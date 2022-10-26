@@ -129,10 +129,6 @@ export class StarService {
       return this.http.get(url);
    }
 
-   checkAddress(address: string) {
-      const url = environment.endpoints.api + 'userreferral/isValid/' + address;
-      return this.http.get(url);
-   }
 
    getVipTree() {
       const url = environment.endpoints.blockchaingate + '7star-ref/vips';
@@ -145,10 +141,6 @@ export class StarService {
    }
 
 
-   getTree(address: string) {
-      const url = environment.endpoints.blockchaingate + '7star-ref/tree/' + address;
-      return this.http.get(url);
-   }
 
    getParents(address: string) {
       const url = environment.endpoints.blockchaingate + '7star-ref/parents/' + address;

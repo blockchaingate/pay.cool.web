@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 import BigNumber from 'bignumber.js/bignumber';
 import { Signature } from '../../../../interfaces/kanban.interface';
 import { Web3Service } from '../../../../services/web3.service';
-import { StarService } from '../../../../services/star.service';
+import { UserReferralService } from '../../../../services/userreferral.service';
 import { environment } from '../../../../../environments/environment';
 import * as bs58 from 'bs58';
 import * as createHash from 'create-hash';
@@ -21,6 +21,7 @@ import { StarOrder } from '../../../../models/order';
 import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 import { KanbanSmartContractService } from 'src/app/services/kanban.smartcontract.service';
 import { Console } from 'node:console';
+import { StarService } from 'src/app/services/star.service';
 
 @Component({
   selector: 'app-my-asset-dashboard',
@@ -103,6 +104,7 @@ export class MyAssetDashboardComponent implements OnInit {
     private kanbanSmartContractServ:KanbanSmartContractService,
     public ngxSmartModalService: NgxSmartModalService,
     private kanbanServ: KanbanService,
+    private userreferalSer: UserReferralService,
     private starSer: StarService,
     private router: Router) {
   }
@@ -128,7 +130,7 @@ export class MyAssetDashboardComponent implements OnInit {
       this.walletAdd = this.wallet.addresses.filter(c => c.name === 'FAB')[0].address;
 
       
-      this.starSer.checkAddress(this.walletAdd).subscribe(
+      this.userreferalSer.checkAddress(this.walletAdd).subscribe(
         (res: any) => {
           console.log('ressss=', res);
           if (res) {
@@ -136,7 +138,7 @@ export class MyAssetDashboardComponent implements OnInit {
           }
       });
 
-      this.starSer.checkAddress(this.walletAdd).subscribe(
+      this.userreferalSer.checkAddress(this.walletAdd).subscribe(
         (ret: any) => {
           this.isValidMember = ret.isValid;
           console.log('this.isValidMember==', this.isValidMember);
@@ -921,7 +923,7 @@ export class MyAssetDashboardComponent implements OnInit {
       this.toastr.info('You cannot refer yourself.');
       return;
     }
-    this.starSer.checkAddress(this.referral).subscribe(
+    this.userreferalSer.checkAddress(this.referral).subscribe(
       (ret: any) => {
         if(ret && ret.isValid) {
           this.modalRef.hide();
@@ -1014,7 +1016,7 @@ export class MyAssetDashboardComponent implements OnInit {
     }
 
     if (this.referral && this.referral.length > 32) {
-      this.starSer.checkAddress(this.referral).subscribe(
+      this.userreferalSer.checkAddress(this.referral).subscribe(
         (res: any) => {
           console.log('hehre');
           if (res && res.isValid || !environment.production) {

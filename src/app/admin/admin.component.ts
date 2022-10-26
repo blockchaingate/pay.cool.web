@@ -69,10 +69,21 @@ export class AdminComponent implements OnInit {
       },      
       */   
       {
+        title: 'Merchant Nodes',
+        link: 'merchant-nodes',
+        icon: 'store'
+      },  
+      {
         title: 'Merchants',
         link: 'merchants',
         icon: 'store'
-      },          
+      },  
+      {
+        title: 'Users',
+        link: 'users',
+        icon: 'store'
+      },  
+      /*    
       {
         title: 'Exchange rate',
         link: 'exchange-rate',
@@ -83,11 +94,13 @@ export class AdminComponent implements OnInit {
         link: 'fee-distribution',
         icon: 'collection'
       },
+      
       {
         title: 'Merchant credit',
         link: 'merchant-credit',
         icon: 'collection'
       }  
+      */
     ];
 
 

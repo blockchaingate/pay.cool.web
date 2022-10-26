@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { LocalStorage } from '@ngx-pwa/local-storage';
-import { StarService } from '../../services/star.service';
+import { UserReferralService } from '../../services/userreferral.service';
 import { PasswordModalComponent } from '../../shared/modals/password-modal/password-modal.component';
 import { KanbanService } from 'src/app/services/kanban.service';
 import { UtilService } from 'src/app/services/util.service';
@@ -30,14 +30,15 @@ export class UserTreeComponent implements OnInit {
     private kanbanServ: KanbanService,
     private utilServ: UtilService,
     private kanbanSmartContractServ: KanbanSmartContractService,
-    private route: ActivatedRoute, private localSt: LocalStorage, private starServ: StarService, private modalServ: BsModalService) { }
+    private route: ActivatedRoute, 
+    private localSt: LocalStorage, private userreferralServ: UserReferralService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(
       (params: ParamMap) => {
         const refCode = params['ref'];
         if (refCode) {
-          this.starServ.checkAddress(refCode).subscribe(
+          this.userreferralServ.checkAddress(refCode).subscribe(
             (res: any) => {
               if (res && res.isValid) {
                 this.refCode = refCode;
@@ -81,13 +82,13 @@ export class UserTreeComponent implements OnInit {
     const walletAddressItem = addresses.filter(item => item.name == 'FAB')[0];
     this.walletAddress = walletAddressItem.address;
 
-    this.starServ.checkAddress(this.walletAddress).subscribe(
+    this.userreferralServ.checkAddress(this.walletAddress).subscribe(
       (res: any) => {
         console.log('res in checkAddress=', res);
         if(res && res.isValid) {
           this.myReferralUrl = window.location.href + '?ref=' + this.walletAddress;
 
-          this.starServ.getTree(this.walletAddress).toPromise().then(
+          this.userreferralServ.getTree(this.walletAddress).toPromise().then(
             (res: any) => {
               this.children = res;
               document.getElementById("myWalletId").focus();
@@ -109,7 +110,7 @@ export class UserTreeComponent implements OnInit {
     }
 
     if(!this.refCodeComeIn) {
-    this.starServ.checkAddress(this.refCode).subscribe(
+    this.userreferralServ.checkAddress(this.refCode).subscribe(
       (res: any) => {
         if (res && res.isValid) {
           this.joinProcess();

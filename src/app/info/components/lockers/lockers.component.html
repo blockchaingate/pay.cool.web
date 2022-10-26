@@ -1,1 +1,26 @@
-<p>lockers works!</p>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">ID</th>
+        <th scope="col">Coin</th>
+        <th scope="col">Amount</th>
+        <th scope="col">ReleaseTime</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of lockers; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{item.id}}</td>
+        <td>{{showCoinName(item.coinType)}}</td>
+        <td>{{item.amount}}</td>
+        <td>{{timeConverter(item.releaseTime)}}</td>
+        <td>
+          <a (click)="unlock(item)">
+            Unlock
+          </a>
+        </td>
+      </tr>
+    </tbody>
+</table>

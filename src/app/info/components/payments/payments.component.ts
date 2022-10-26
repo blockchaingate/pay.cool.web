@@ -38,11 +38,9 @@ export class PaymentsComponent implements OnInit {
           this.chargeServ.getChargesByUser(walletAddress).subscribe(
             (payments) => {
               this.payments = payments;
-              console.log('payments=', payments);
             }
           );
         }
-
       }
     );
 

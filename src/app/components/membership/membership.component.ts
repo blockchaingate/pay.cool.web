@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { KanbanSmartContractService } from 'src/app/services/kanban.smartcontract.service';
 import { Web3Service } from 'src/app/services/web3.service';
 import { UtilService } from 'src/app/services/util.service';
+import { UserReferralService } from 'src/app/services/userreferral.service';
 
 @Component({
   selector: 'app-membership',
@@ -28,6 +29,7 @@ export class MembershipComponent implements OnInit {
     private localSt: LocalStorage,
     private web3Serv: Web3Service,
     private kanbanSmartContractServ:KanbanSmartContractService,
+    private userreferalServ: UserReferralService,
     private starServ: StarService) { }
 
   ngOnInit(): void {
@@ -38,7 +40,7 @@ export class MembershipComponent implements OnInit {
       }
       this.wallet = wallets.items[wallets.currentIndex];
       this.walletAdd = this.wallet.addresses.filter(c => c.name === 'FAB')[0].address;
-      this.starServ.checkAddress(this.walletAdd).subscribe(
+      this.userreferalServ.checkAddress(this.walletAdd).subscribe(
         (ret: any) => {
           console.log('ret===', ret);
           this.isValidMember = ret.isValid;

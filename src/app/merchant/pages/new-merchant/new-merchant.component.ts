@@ -66,12 +66,19 @@ export class NewMerchantComponent implements OnInit {
     );
     this.dataServ.currentWalletAddress.subscribe(
       (walletAddress: string) => {
-        this.walletAddress = walletAddress;
+        if(walletAddress) {
+          this.walletAddress = walletAddress;
+        }
+
       }
     );
   }
 
   import() {
+    if(!this.walletAddress) {
+      this.toastr.error('Please create or import your wallet first');
+      return;
+    }
     this.storeServ.getStoresByAddress(this.walletAddress).subscribe(
       (ret: any) => {
           console.log('rettt for stores=', ret);

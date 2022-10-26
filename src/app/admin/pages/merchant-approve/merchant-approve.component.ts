@@ -24,6 +24,7 @@ export class MerchantApproveComponent implements OnInit {
   modalRef: BsModalRef;
   wallet: any;
   merchant: any;
+  nodeId: number;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -58,6 +59,10 @@ export class MerchantApproveComponent implements OnInit {
 
   approve() {
 
+    if(!this.nodeId) {
+      this.toastr.error('Node id should be provided.');
+      return;
+    }
     const initialState = {
       pwdHash: this.wallet.pwdHash,
       encryptedSeed: this.wallet.encryptedSeed
@@ -129,15 +134,21 @@ export class MerchantApproveComponent implements OnInit {
 async approveDo(seed: Buffer) {
   try {
     const args = [
-      this.merchant.id
+      this.merchant.id,
+      this.nodeId
     ];
-    console.log('args===', args);
+    
     const abi = {
       "inputs": [
         {
           "internalType": "bytes32",
           "name": "_id",
           "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_merchantNodeId",
+          "type": "uint256"
         }
       ],
       "name": "approveMerchant",
@@ -153,6 +164,7 @@ async approveDo(seed: Buffer) {
     if(ret2 && ret2.ok && ret2._body && ret2._body.status == '0x1') {
       this.toastr.success('the merchant was approved.');
       this.router.navigate(['/admin/merchants']);
+      this.spinner.hide();
     } else {
       this.toastr.error('Failed to approve merchant.');
       this.spinner.hide();  

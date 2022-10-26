@@ -45,6 +45,16 @@ export class Web3Service {
     return abi;
   }
 
+  asciiToHex(str: string) {
+    const web3 = new Web3();
+    return web3.utils.asciiToHex(str);
+  }
+
+  hexToAscii(hex: string) {
+    const web3 = new Web3();
+    return web3.utils.hexToAscii(hex);    
+  }
+  
   randomHex(length: number) {
     const web3 = this.getWeb3Provider();
     return web3.utils.randomHex(length);

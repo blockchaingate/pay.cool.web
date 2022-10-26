@@ -8,6 +8,7 @@ import { Web3Service } from '../../services/web3.service';
 import { UtilService } from '../../services/util.service';
 import { environment } from '../../../environments/environment';
 import { StarService } from '../../services/star.service';
+import { UserReferralService } from 'src/app/services/userreferral.service';
 
 @Component({
   selector: 'app-admin',
@@ -36,6 +37,7 @@ export class AdminComponent implements OnInit {
     private web3Serv: Web3Service,
     private starServ: StarService,
     public utilServ: UtilService,
+    private userreferralServ: UserReferralService,
     private kanbanSmartContractServ:KanbanSmartContractService,
     private modalService: BsModalService) { }
 
@@ -63,7 +65,7 @@ export class AdminComponent implements OnInit {
     });
 
     this.rootWalletAddr = environment.production ? '0x9d95ee21e4f1b05bbfd0094daf4ce110deb00931' : '0x0000000000000000000000000000000000000001';
-    this.starServ.getTree(this.rootWalletAddr).subscribe(
+    this.userreferralServ.getTree(this.rootWalletAddr).subscribe(
       (res: any) => {
         this.children = res;
       }

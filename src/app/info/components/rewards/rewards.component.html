@@ -1,1 +1,20 @@
-<p>rewards works!</p>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">type</th>
+        <th scope="col">Coin</th>
+        <th scope="col">Amount</th>
+        <th scope="col">LockedDays</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of rewards; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{item.type}}</td>
+        <td>{{item.coin}}</td>
+        <td>{{item.amount}}</td>
+        <td>{{item.lockedDays}}</td>
+      </tr>
+    </tbody>
+</table>

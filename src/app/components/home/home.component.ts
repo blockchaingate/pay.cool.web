@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { LocalStorage } from '@ngx-pwa/local-storage';
+import { UserReferralService } from 'src/app/services/userreferral.service';
 import { StarService } from '../../services/star.service';
 declare var anime: any;
 
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit {
     @Inject(DOCUMENT) private _document: Document,
     private localSt: LocalStorage, 
     private route: ActivatedRoute, 
+    private userreferralServ: UserReferralService,
     private starServ: StarService) {
     this.lan = localStorage.getItem('_lan');
   }
@@ -35,7 +37,7 @@ export class HomeComponent implements OnInit {
       (params: ParamMap) => {
         const refCode = params['ref'];
         if (refCode) {
-          this.starServ.checkAddress(refCode).subscribe(
+          this.userreferralServ.checkAddress(refCode).subscribe(
             (res: any) => {
               if (res && res.isValid) {
                 this.localSt.setItem('7star_ref', refCode).subscribe(() => { });

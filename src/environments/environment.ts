@@ -138,18 +138,23 @@ export const environment = {
   },
 
   addresses: {
-      ecombarOfficial: {
+    Referral_ROOT: 'n1eXG5oe6wJ6h43akutyGfphqQsY1UfAUR',
+
+    ecombarOfficial: {
         ETH: '0x450C53c50F8c0413a5829B0A9ab9Fa7e38f3eD2E',
         FAB: '1FNEhT8uTmrEMvHGCGohnEFv6Q1z4qRhQu'
-      },
+    },
     smartContract: {
         
-        smartConractMerchantInfo: '0x097e47f88467a77722d4cc6dd1b3dbdbcffb52f3',
-        smartConractFeeCharger: '0xb087b17089a46064103da800c69a10684b512513',
+        smartConractMerchantInfo: '0x9771e98070bb9c3a93f208bcf768722046a61ec4',
+        smartConractFeeCharger: '0xa567d5815c718f9e3fbda26608a973dcf78fe179',
+        smartContractMerchantNode: '0xc2f52d79994ed8f0b68e73edf28f3f562da75a06',
+        smartContractRewardDistribution: '0x63b9fe156d4a57354708795de847ac7baefbbeda',
         smartConractAdressExchangeRate: '0x44b9c6409fbb133f4f0ebbb07b4fb61c0d20181b',
         smartConractAdressReferral: '0xa76af08ba89012e617cd33641f70cb6c2ec957e6',
         smartConractProjectUserRelation: '0xc8379312d5e9188bb8e8b40ede24da9141575925',
-        Zap: '0x2f42822f03e7b7abee9303f69a5ba634acdeb823',
+        smartContractLocker: '0x266a9a762edd46a7f183cd81e0bf5057d630f03c',
+        smartContractZap: '0x2f42822f03e7b7abee9303f69a5ba634acdeb823',
         
         feeDistribution: '0x81dd9357bf85bdb272e9ee1ec0ec2baa8bdffd06',
         locker: '0xab64a2a910a6dda85620a109cd012bb4a7b20b6f',

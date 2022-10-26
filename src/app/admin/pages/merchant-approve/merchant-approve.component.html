@@ -4,6 +4,11 @@
             <button class="btn signinbtn" (click)="enableCredit()">{{('Enable Credit') | translate}}</button>
             <button class="btn signinbtn" (click)="approve()">{{('Approve') | translate}}</button>
         </div>
+
+        <div>
+            <label for="owner"><b>{{'Node id' | translate}}:</b></label> 
+            <input type="text" placeholder="Enter node id" [(ngModel)]="nodeId" name="nodeId" required>
+        </div>
         <div *ngIf="merchant.name">
             <label for="name"><b>{{'Name' | translate}}:</b></label> {{merchant.name}}
         </div>
@@ -55,7 +60,11 @@
         </div>
 
         <div>
-            <label for="email"><b>{{'Coin' | translate}}:</b></label> {{merchant.coin}}
+            <label for="email"><b>{{'Business primary coin' | translate}}:</b></label> {{merchant.coin}}
+        </div>
+
+        <div>
+            <label for="email"><b>{{'Reward coin' | translate}}:</b></label> {{merchant.rewardCoin}}
         </div>
 
         <div>
@@ -69,6 +78,8 @@
         <div>
             <label for="email"><b>{{'Locked days' | translate}}:</b></label> {{merchant.lockedDays}}
         </div>
-
+        <div>
+            <label for="email"><b>{{'NodeId' | translate}}:</b></label> {{merchant.merchantNodeId}}
+        </div>
     </div>
 </div>

@@ -24,6 +24,10 @@ import { ProjectsComponent } from './pages/projects/projects.component';
 import { ProjectAddComponent } from './pages/project-add/project-add.component';
 import { ProjectUsersComponent } from './pages/project-users/project-users.component';
 import { ProjectUserAddComponent } from './pages/project-user-add/project-user-add.component';
+import { UserReferralsComponent } from './pages/user-referrals/user-referrals.component';
+
+import { MerchantNodesComponent } from './pages/merchant-nodes/merchant-nodes.component';
+import { MerchantNodeAddComponent } from './pages/merchant-node-add/merchant-node-add.component';
 
 import { 
   WalletGuardService as WalletGuard 
@@ -51,6 +55,15 @@ const routes: Routes = [
       }, 
       {
         path: 'merchants', component: MerchantsComponent
+      },  
+      {
+        path: 'merchant-nodes', component: MerchantNodesComponent
+      },  
+      {
+        path: 'merchant-node/add', component: MerchantNodeAddComponent
+      }, 
+      {
+        path: 'users', component: UserReferralsComponent
       },  
       {
         path: 'vips', component: VipsComponent

@@ -10,6 +10,7 @@ import { KanbanService } from '../../../../services/kanban.service';
 import { UtilService } from '../../../../services/util.service';
 import { CoinService } from '../../../../services/coin.service';
 import { TranslateService } from '@ngx-translate/core';
+import { UserReferralService } from '../../../../services/userreferral.service';
 
 @Component({
   selector: 'app-order',
@@ -78,6 +79,7 @@ export class OrderComponent implements OnInit {
     private kanbanServ: KanbanService,
     private apiServ: ApiService,
     private toastr: ToastrService,
+    private userreferalServ: UserReferralService,
     private modalService: BsModalService,
     private starServ: StarService, 
     private localSt: LocalStorage,
@@ -458,7 +460,7 @@ export class OrderComponent implements OnInit {
 
   placeOrder() {
     if(this.referral && this.referral.length > 32) {
-      this.starServ.checkAddress(this.referral).subscribe(
+      this.userreferalServ.checkAddress(this.referral).subscribe(
         (res: any) => {
           if(res && res.isValid) {
             this.createOrderDo();

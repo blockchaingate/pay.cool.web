@@ -19,6 +19,7 @@ import { MyCoin } from 'src/app/models/mycoin';
 import { WalletService } from 'src/app/services/wallet.service';
 import { ShowSeedPhraseModal } from '../../modals/show-seed-phrase/show-seed-phrase.modal';
 import { GetFreeFabModal } from '../../modals/get-free-fab/get-free-fab.modal';
+import { UserReferralService } from 'src/app/services/userreferral.service';
 
 @Component({
   selector: 'app-wallet-dashboard',
@@ -88,6 +89,7 @@ export class WalletDashboardComponent implements OnInit {
     private coinServ: CoinService,
     private kanbanServ: KanbanService,
     private starSer: StarService,
+    private userreferralServ: UserReferralService,
     private router: Router) {
   }
 
@@ -522,7 +524,7 @@ export class WalletDashboardComponent implements OnInit {
 
   placeOrder() {
     if (this.referral && this.referral.length > 36) {
-      this.starSer.checkAddress(this.referral).subscribe(
+      this.userreferralServ.checkAddress(this.referral).subscribe(
         (res: any) => {
           if (res && res.isValid) {
             this.createOrderDo();
