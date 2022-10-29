@@ -1,0 +1,65 @@
+<div style="border:1px solid #ccc">
+    <div class="container">
+      <h1>{{'Add project package' | translate}}</h1>
+      <hr>
+
+      <div class="form-group row my-2">
+        <label class="col-sm-2 col-form-label">{{"Project logo"|translate}}</label>
+        <div class="col-sm-10">
+          <app-admin-upload-media class="ml-4" id="logo" [(images)]="images" [singleFile]="true"></app-admin-upload-media>
+        </div>
+      </div>   
+
+      <div>
+        <label for="email"><b>{{'Project name' | translate}}</b></label>
+        <input type="text" placeholder="Enter project name" [(ngModel)]="name" name="name" required>
+      </div>
+      <div>
+        <label for="email"><b>{{'Project description' | translate}}</b></label>
+        <textarea type="text" class="form-control small" placeholder="Enter project description" [(ngModel)]="description" name="description" id="description">
+        </textarea>
+      </div>
+      <div>
+        <label for="email"><b>{{'项目名称' | translate}}</b></label>
+        <input type="text" placeholder="输入项目名称" [(ngModel)]="nameChinese" name="nameChinese" required>
+      </div>
+      <div>
+        <label for="email"><b>{{'项目描述' | translate}}</b></label>
+        <textarea type="text" class="form-control small" placeholder="输入项目描述" [(ngModel)]="descriptionChinese" name="descriptionChinese" id="descriptionChinese">
+        </textarea>
+      </div>
+
+      <div>
+        <label for="email"><b>{{'Value' | translate}}</b></label>
+        <input type="number" placeholder="Enter value" [(ngModel)]="value" name="value" required>
+      </div>
+
+      <div>
+        <label for="email"><b>{{'Coins' | translate}}</b></label>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" [checked]="selectedUSDT"
+          (change)="selectedUSDT = !selectedUSDT" >
+          <label class="form-check-label" for="flexCheckDefault">
+            USDT
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" [checked]="selectedDUSD"
+          (change)="selectedDUSD = !selectedDUSD">
+          <label class="form-check-label" for="flexCheckChecked">
+            DUSD
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" [checked]="selectedUSDC"
+          (change)="selectedUSDC = !selectedUSDC">
+          <label class="form-check-label" for="flexCheckChecked">
+            USDC
+          </label>
+        </div>
+      </div>
+        <div class="text-right py-2">
+            <button class="btn signinbtn" (click)="confirm()">{{('Confirm') | translate}}</button>
+        </div>
+    </div>
+</div>

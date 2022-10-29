@@ -30,6 +30,10 @@ import { MerchantNodesComponent } from './pages/merchant-nodes/merchant-nodes.co
 import { MerchantNodeAddComponent } from './pages/merchant-node-add/merchant-node-add.component';
 import { ProjectEditComponent } from './pages/project-edit/project-edit.component';
 
+import { ProjectPackagesComponent } from './pages/project-packages/project-packages.component';
+import { ProjectPackageAddComponent } from './pages/project-package-add/project-package-add.component';
+import { ProjectPackageEditComponent } from './pages/project-package-edit/project-package-edit.component';
+
 import { 
   WalletGuardService as WalletGuard 
 } from '../services/wallet-guard.service';
@@ -56,6 +60,15 @@ const routes: Routes = [
       },  
       {
         path: 'project-user/add', component: ProjectUserAddComponent
+      }, 
+      {
+        path: 'project-packages', component: ProjectPackagesComponent
+      },  
+      {
+        path: 'project-package/add', component: ProjectPackageAddComponent
+      }, 
+      {
+        path: 'project-package/:id/edit', component: ProjectPackageEditComponent
       }, 
       {
         path: 'merchants', component: MerchantsComponent
