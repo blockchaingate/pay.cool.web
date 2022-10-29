@@ -12,6 +12,7 @@ import { PasswordModalComponent } from './modals/password-modal/password-modal.c
 import { RequestRefundComponent } from './modals/request-refund/request-refund.component';
 import { RefundComponent } from './modals/refund/refund.component';
 import { StarRewardsComponent } from './star-rewards/star-rewards.component';
+import { UploadMediaComponent } from './upload-media/upload-media.component';
 import { TransferOwnershipComponent } from './modals/transfer-ownership/transfer-ownership.component';
 import { RewardDetailsComponent } from './modals/reward-details/reward-details.component';
 import { SendRewardsSummaryComponent } from './modals/send-rewards-summary/send-rewards-summary.component';
@@ -29,7 +30,8 @@ import { FormsModule } from '@angular/forms';
     StarRewardsComponent,
     OrderRewardsComponent,
     RewardDetailsComponent,
-    SendRewardsSummaryComponent
+    SendRewardsSummaryComponent,
+    UploadMediaComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +51,8 @@ import { FormsModule } from '@angular/forms';
     StarRewardsComponent,
     RefundComponent,
     RewardDetailsComponent,
-    SendRewardsSummaryComponent
+    SendRewardsSummaryComponent,
+    UploadMediaComponent
   ]
 })
 export class SharedModule { }

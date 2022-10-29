@@ -1,6 +1,6 @@
 
 import { Component, OnInit, ViewChild, EventEmitter, Input, ElementRef, Output } from '@angular/core';
-import { UploadService, DocType } from '../../../services/upload.service';
+import { UploadService, DocType } from '../../services/upload.service';
 
 @Component({
   selector: 'app-admin-upload-media',

@@ -28,6 +28,7 @@ import { UserReferralsComponent } from './pages/user-referrals/user-referrals.co
 
 import { MerchantNodesComponent } from './pages/merchant-nodes/merchant-nodes.component';
 import { MerchantNodeAddComponent } from './pages/merchant-node-add/merchant-node-add.component';
+import { ProjectEditComponent } from './pages/project-edit/project-edit.component';
 
 import { 
   WalletGuardService as WalletGuard 
@@ -46,6 +47,9 @@ const routes: Routes = [
       },  
       {
         path: 'project/add', component: ProjectAddComponent
+      }, 
+      {
+        path: 'project/:id/edit', component: ProjectEditComponent
       }, 
       {
         path: 'project-users', component: ProjectUsersComponent

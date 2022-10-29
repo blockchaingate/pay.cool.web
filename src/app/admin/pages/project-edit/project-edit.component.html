@@ -1,10 +1,10 @@
 <div style="border:1px solid #ccc">
     <div class="container">
-      <h1>{{'Add project' | translate}}</h1>
+      <h1>{{'Edit project' | translate}}</h1>
       <hr>
       <div>
         <label for="email"><b>{{'Project id' | translate}}</b></label>
-        <input type="text" placeholder="Enter project id" [(ngModel)]="projectId" name="projectId" required>
+        {{id}}
       </div>
 
       <div class="form-group row my-2">
@@ -33,7 +33,7 @@
         </textarea>
       </div>
         <div class="text-right py-2">
-            <button class="btn signinbtn" (click)="confirm()">{{('Confirm') | translate}}</button>
+            <button class="btn signinbtn" (click)="confirm()">{{('Update') | translate}}</button>
         </div>
     </div>
 </div>

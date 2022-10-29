@@ -24,7 +24,7 @@ export class MerchantNodeAddComponent implements OnInit {
 
   tokenTypes: any = [
     {
-      value: 2,
+      value: 0,
       text:'Senor'
     },
     {
@@ -33,7 +33,7 @@ export class MerchantNodeAddComponent implements OnInit {
     }
     ,
     {
-      value: 0,
+      value: 2,
       text: 'Junior'
     }
     

@@ -4,6 +4,7 @@ import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from "ngx-bootstrap-spinner";
 import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
@@ -35,6 +36,7 @@ import { ProjectUserAddComponent } from './pages/project-user-add/project-user-a
 import { UserReferralsComponent } from './pages/user-referrals/user-referrals.component';
 import { MerchantNodesComponent } from './pages/merchant-nodes/merchant-nodes.component';
 import { MerchantNodeAddComponent } from './pages/merchant-node-add/merchant-node-add.component';
+import { ProjectEditComponent } from './pages/project-edit/project-edit.component';
 
 @NgModule({
   declarations: [
@@ -64,13 +66,15 @@ import { MerchantNodeAddComponent } from './pages/merchant-node-add/merchant-nod
     ProjectUserAddComponent,
     UserReferralsComponent,
     MerchantNodesComponent,
-    MerchantNodeAddComponent
+    MerchantNodeAddComponent,
+    ProjectEditComponent
   ],
   imports: [
     AdminRoutingModule,
     CommonModule,
     FormsModule,
     QRCodeModule,
+    SharedModule,
     ModalModule.forRoot(),
     TranslateModule.forChild(),
     ReactiveFormsModule,

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { MerchantRoutingModule } from './merchant-routing.module';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { SharedModule } from '../shared/shared.module';
 import { MerchantComponent } from './merchant.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { UploadMediaComponent } from './components/upload-media/upload-media.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { StoreComponent } from './pages/store/store.component';
 import { CommonModule } from '@angular/common';
@@ -26,7 +26,6 @@ import { MerchantCreditAddChargerComponent } from './pages/merchant-credit-add-c
 @NgModule({
   declarations: [
     MerchantComponent,
-    UploadMediaComponent,
     StoreComponent,
     AddCreditComponent,
     MerchantCreditComponent,
@@ -46,6 +45,7 @@ import { MerchantCreditAddChargerComponent } from './pages/merchant-credit-add-c
     FormsModule,
     QRCodeModule,
     ModalModule.forRoot(),
+    SharedModule,
     TranslateModule.forChild(),
     ReactiveFormsModule,
     RichTextEditorModule,

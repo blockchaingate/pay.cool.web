@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MerchantService } from 'src/app/services/merchant.service';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-merchant-nodes',
@@ -13,6 +14,7 @@ export class MerchantNodesComponent implements OnInit {
   constructor(
     private router: Router, 
     private merchantServ: MerchantService,
+    private utilServ: UtilService
   ) { }
 
   ngOnInit(): void {
@@ -26,16 +28,21 @@ export class MerchantNodesComponent implements OnInit {
   add() {
     this.router.navigate(['/admin/merchant-node/add']);
   }
-
+  showAddress(exgAddress) {
+    return this.utilServ.exgToFabAddress(exgAddress);
+  }
   showType(type: number) {
     let text = '';
     switch(type) {
-      case 2:
+      case 0:
         text = 'Senior';
+        break;
       case 1:
         text = 'Intermediate';
-      case 0: 
+        break;
+      case 2: 
         text = 'Junior';
+        break;
     }
     return text;
   }
