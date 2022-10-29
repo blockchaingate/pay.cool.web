@@ -19,7 +19,7 @@ const hash = require('object-hash');
   styleUrls: ['./new-merchant.component.scss']
 })
 export class NewMerchantComponent implements OnInit {
-
+  currentTab: string;
   modalRef: any;
   wallet: any;
   name: string = '';
@@ -43,6 +43,10 @@ export class NewMerchantComponent implements OnInit {
   taxRate: number;
   id: string;
   walletAddress: string;
+  nameChinese: string;
+  businessAddressChinese: string;
+  contactNameChinese: string;
+  businessContentsChinese: string;
   lockedDays: number;
   hideOnStore: boolean;
   coins = coins;
@@ -59,6 +63,7 @@ export class NewMerchantComponent implements OnInit {
     private utilServ: UtilService) { }
 
   ngOnInit(): void {
+    this.currentTab = 'EN';
     this.dataServ.currentWallet.subscribe(
       (wallet: any) => {
         this.wallet = wallet;
@@ -74,6 +79,10 @@ export class NewMerchantComponent implements OnInit {
     );
   }
 
+  changeTab(tabName: string) {
+    this.currentTab = tabName;
+  }
+
   import() {
     if(!this.walletAddress) {
       this.toastr.error('Please create or import your wallet first');
@@ -85,7 +94,10 @@ export class NewMerchantComponent implements OnInit {
         if(ret && ret.ok) {
           const store = ret._body[0];
           console.log('store==', store);
-          this.name = store.name.sc ? store.name.sc : store.name.en;
+          if(store.name) {
+            this.name = store.name.en;
+            this.nameChinese = store.name.sc;
+          }
           this.images = [store.image];
           this.phone = store.phone;
           this.fax = store.fax;
@@ -94,10 +106,19 @@ export class NewMerchantComponent implements OnInit {
           this.openTime = store.openTime;
           this.closeTime = store.closeTime;
           if(store.merchant) {
-            this.businessAddress = store.merchant.addressLan.sc ? store.merchant.addressLan.sc : store.merchant.addressLan.en;
-            this.contactName = store.merchant.contactNameLan.sc ? store.merchant.contactNameLan.sc : store.merchant.contactNameLan.en;
-            this.businessContents = store.merchant.businessContentsLan.sc ? store.merchant.businessContentsLan.sc : store.merchant.businessContentsLan.en;
-            if(store.merchant.phone) {
+            if(store.merchant.addressLan) {
+              this.businessAddress = store.merchant.addressLan.en;
+              this.businessAddressChinese = store.merchant.addressLan.sc;
+            }
+            if(store.merchant.contactNameLan) {
+              this.contactName = store.merchant.contactNameLan.en;
+              this.contactNameChinese = store.merchant.contactNameLan.sc;
+            }
+            if(store.merchant.businessContentsLan) {
+              this.businessContents = store.merchant.businessContentsLan.en;
+              this.businessContentsChinese = store.merchant.businessContentsLan.sc;
+            }
+           if(store.merchant.phone) {
               this.phone = store.merchant.phone;
             } 
             if(store.merchant.fax) {
@@ -167,16 +188,28 @@ export class NewMerchantComponent implements OnInit {
       referral: this.referral,
       paymentReceiver: this.walletAddress,
       owner: this.walletAddress,
-      name: this.name,
+      name: {
+        en:this.name,
+        sc: this.nameChinese
+      },
       image: this.images[0],
-      businessAddress: this.businessAddress,
-      contactName: this.contactName,
+      businessAddress: {
+        en: this.businessAddress,
+        sc: this.businessAddressChinese
+      },
+      contactName: {
+        en: this.contactName,
+        sc: this.contactNameChinese
+      },
       phone: this.phone,
       email: this.email,
       website: this.website,
       openTime: this.openTime,
       closeTime: this.closeTime,
-      businessContents: this.businessContents,
+      businessContents: {
+        en: this.businessContents,
+        sc: this.businessContentsChinese
+      },
       rebateRate: this.rebateRate,
       coin: this.coin,
       rewardCoin: this.rewardCoin,

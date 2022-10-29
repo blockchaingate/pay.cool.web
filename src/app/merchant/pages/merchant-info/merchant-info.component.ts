@@ -15,6 +15,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./merchant-info.component.scss']
 })
 export class MerchantInfoComponent implements OnInit {
+  currentTab: string;
+  nameChinese: string;
+  businessAddressChinese: string;
+  contactNameChinese: string;
+  businessContentsChinese: string;
   modalRef: any;
   wallet: any;
   name: string = '';
@@ -52,6 +57,7 @@ export class MerchantInfoComponent implements OnInit {
     private dataServ: DataService) { }
 
   ngOnInit(): void {
+    this.currentTab = 'EN';
     this.dataServ.currentWallet.subscribe(
       (wallet: any) => {
         this.wallet = wallet;
@@ -66,17 +72,21 @@ export class MerchantInfoComponent implements OnInit {
             if(ret && (ret.length > 0)) {
               const merchant = ret[0];
               this.id = merchant.id;
-              this.name = merchant.name;
+              this.name = merchant.name.en;
+              this.nameChinese = merchant.name.sc;
               this.images = [merchant.image];
-              this.businessAddress = merchant.businessAddress;
-              this.contactName = merchant.contactName;
+              this.businessAddress = merchant.businessAddress.en;
+              this.businessAddressChinese = merchant.businessAddress.sc;
+              this.contactName = merchant.contactName.en;
+              this.contactNameChinese = merchant.contactName.sc;
               this.phone = merchant.phone;
               this.fax = merchant.fax;
               this.email = merchant.email;
               this.website = merchant.website;
               this.openTime = merchant.openTime;
               this.closeTime = merchant.closeTime;
-              this.businessContents = merchant.businessContents;
+              this.businessContents = merchant.businessContents.en;
+              this.businessContentsChinese = merchant.businessContents.sc;
               this.rebateRate = merchant.rebateRate;
               this.coin = merchant.coin;
               this.rewardCoin = merchant.rewardCoin;
@@ -88,6 +98,10 @@ export class MerchantInfoComponent implements OnInit {
         );
       }
     );
+  }
+
+  changeTab(tabName: string) {
+    this.currentTab = tabName;
   }
 
   updateMerchant() {
@@ -121,16 +135,28 @@ export class MerchantInfoComponent implements OnInit {
     const privateKey = keyPair.privateKeyBuffer.privateKey;
 
     const data = {
-      name: this.name,
+      name: {
+        en:this.name,
+        sc: this.nameChinese
+      },
       image: this.images[0],
-      businessAddress: this.businessAddress,
-      contactName: this.contactName,
+      businessAddress: {
+        en: this.businessAddress,
+        sc: this.businessAddressChinese
+      },
+      contactName: {
+        en: this.contactName,
+        sc: this.contactNameChinese
+      },
       phone: this.phone,
       email: this.email,
       website: this.website,
       openTime: this.openTime,
       closeTime: this.closeTime,
-      businessContents: this.businessContents,
+      businessContents: {
+        en: this.businessContents,
+        sc: this.businessContentsChinese
+      },
       rebateRate: this.rebateRate,
       coin: this.coin,
       rewardCoin: this.rewardCoin,

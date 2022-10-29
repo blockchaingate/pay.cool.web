@@ -28,7 +28,6 @@ export class MerchantPaymentsComponent implements OnInit {
     private kanbanSmartContractServ: KanbanSmartContractService,
     private toastr: ToastrService,
     private dataServ: DataService,
-    private kanbanServ: KanbanService,
     private chargeServ: ChargeService
     ) { }
 
@@ -64,7 +63,13 @@ export class MerchantPaymentsComponent implements OnInit {
   }
 
   approveRefund(item: any) {
-    this.payment = item;
+    
+    const id = item._id;
+    this.chargeServ.getRefundInfo(id).subscribe(
+      payment => {
+        this.payment = payment;
+      }
+    );
     const initialState = {
       pwdHash: this.wallet.pwdHash,
       encryptedSeed: this.wallet.encryptedSeed
@@ -81,83 +86,23 @@ export class MerchantPaymentsComponent implements OnInit {
   }
 
   async approveRefundDo(seed: any) {
-    console.log('payment=', this.payment);
-    const abi = {
-      "inputs": [
-        {
-          "internalType": "bytes32[3]",
-          "name": "_ids",
-          "type": "bytes32[3]"
-        },
-        {
-          "internalType": "uint32",
-          "name": "_paidCoin",
-          "type": "uint32"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_totalAmount",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_refundTax",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_refundRewardInPaidCoin",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address[]",
-          "name": "_users",
-          "type": "address[]"
-        },
-        {
-          "internalType": "uint8",
-          "name": "v",
-          "type": "uint8"
-        },
-        {
-          "internalType": "bytes32",
-          "name": "r",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "bytes32",
-          "name": "s",
-          "type": "bytes32"
-        }
-      ],
-      "name": "refundAllWithSig",
-      "outputs": [
-        
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    };
-    const args = [
-      [
-        this.payment.merchantId, 
-        this.payment.refunds[0].requestRefundId,
-        this.payment.orderId
-      ],
-      this.payment.paidCoin, 
-      '0x' + new BigNumber(this.payment.paymentFee).toString(16),
-      '0x' + new BigNumber(this.payment.tax).toString(16),
-      '0x' + new BigNumber(this.payment.totalReward).toString(16),
-      [this.payment.customer],
-      this.payment.refunds[0].v,
-      this.payment.refunds[0].r,
-      this.payment.refunds[0].s,
-    ];
-    console.log('args===', args);
-    const ret = await this.kanbanSmartContractServ.execSmartContract(seed, this.payment.address, abi, args);
+    if(!this.payment) {
+      this.toastr.error('Failed to connect to the api server');
+      return;
+    }
+    const params = this.payment.params;
+    console.log('params==', params);
+
+    let ret = await this.kanbanSmartContractServ.execSmartContractAbiHex(seed, params[0].to, params[0].data);
     if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
-      this.toastr.success('Refund was approved successfully');
+      ret = await this.kanbanSmartContractServ.execSmartContractAbiHex(seed, params[1].to, params[1].data);
+      if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
+        this.toastr.success('the transaction was procssed successfully');
+      } else {
+        this.toastr.error('Failed to refund, txid:' + ret._body.transactionHash);
+      }
     } else {
-      this.toastr.error('Error while approve the refund');
+      this.toastr.error('Failed to authorizeOperator, txid:' + ret._body.transactionHash);
     }
   }
 }

@@ -147,8 +147,8 @@ export class StarService {
       return this.http.get(url);
    }
 
-   getPaycoolRewardInfo(id: string, address: string) {
-      const url = environment.endpoints.api + 'userpay/order/' + id + '/' + address + '/rewardInfo';
+   getPaycoolRewardInfo(id: string, address: string, payType: string) {
+      const url = environment.endpoints.api + 'userpay/order/' + id + '/' + address + '/rewardInfo/' + payType;
       return this.http.get(url);
    }
    ///order/:id/:address/rewardInfo

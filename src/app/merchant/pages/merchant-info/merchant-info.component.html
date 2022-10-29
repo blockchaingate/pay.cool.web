@@ -1,4 +1,14 @@
 <div class="container my-3">
+  <div class="d-flex align-items-center navigate-bar my-3">
+    <div class="py-3 cursor-pointer" [class.selected]="currentTab==='EN'" (click)="changeTab('EN')">
+        {{'English Contents'|translate}}
+    </div>
+    <div class="px-3 py-3 cursor-pointer" [class.selected]="currentTab==='SC'" (click)="changeTab('SC')">
+        {{'Simplified Chinese Contents'|translate}}
+    </div>
+  </div>
+
+  <div *ngIf="currentTab=='EN'">
     <div class="form-group row">
       <label class="col-sm-2 col-form-label">{{"Merchant name"|translate}}</label>
       <div class="col-sm-10">
@@ -117,6 +127,41 @@
         <input type="text" class="form-control small" placeholder="{{'locked days' | translate}}" [(ngModel)]="lockedDays" name="lockedDays" id="lockedDays">
       </div>
     </div> 
+  </div>
+
+
+  <div *ngIf="currentTab=='SC'">
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">名称</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control small" placeholder="输入名称" [(ngModel)]="nameChinese" name="nameChinese" id="nameChinese">
+        </div>
+    </div>  
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">地址</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control small" placeholder="输入地址" [(ngModel)]="businessAddressChinese" name="businessAddressChinese" id="businessAddressChinese">
+        </div>
+    </div>  
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">联系人</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control small" placeholder="输入联系人" [(ngModel)]="contactNameChinese" name="contactNameChinese" id="contactnameChinase">
+        </div>
+    </div>  
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">业务内容</label>
+        <div class="col-sm-10">
+            <textarea type="text" class="form-control small" placeholder="输入业务内容" [(ngModel)]="businessContentsChinese" name="businessContentsChinese" id="businesscontactChinse">
+            </textarea>
+        </div>
+    </div>  
+
+</div>  
 
     <div class="form-check">
       <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" [(ngModel)]="hideOnStore">
@@ -126,9 +171,7 @@
     </div>
     
     <div class="d-flex justify-content-between gap-2">
-      <div class="text-right py-2 mb-4">
-        <button type="submit" class="btn btn-info" (click)="credit()">{{ 'Credits' | translate}}</button>
-      </div>
+
         <div class="text-right py-2 mb-4">
             <button type="submit" class="btn btn-primary" (click)="updateMerchant()">{{ 'Update' | translate}}</button>
         </div>

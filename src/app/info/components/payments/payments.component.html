@@ -24,7 +24,9 @@
           <button *ngIf="item.refunds && (item.refunds.length > 0) && (item.refunds[0].status != 1)" type="button" class="btn btn-info" (click)="cancelRequestRefund(item)">
             Cancel request refund
           </button>
-
+          <div *ngIf="item.refunds && (item.refunds.length > 0) && (item.refunds[0].status == 1)" >
+            Refunded
+          </div>
         </td>
       </tr>
     </tbody>

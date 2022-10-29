@@ -10,7 +10,7 @@
             <input type="text" placeholder="Enter node id" [(ngModel)]="nodeId" name="nodeId" required>
         </div>
         <div *ngIf="merchant.name">
-            <label for="name"><b>{{'Name' | translate}}:</b></label> {{merchant.name}}
+            <label for="name"><b>{{'Name' | translate}}:</b></label> {{showName(merchant.name)}}
         </div>
         <div>
             <label for="owner"><b>{{'Owner' | translate}}:</b></label> {{merchant.owner}}
@@ -19,16 +19,16 @@
             <label for="address"><b>{{'ID' | translate}}:</b></label> {{merchant.id}}
         </div>
         <div *ngIf="merchant.address">
-            <label for="address"><b>{{'Address' | translate}}:</b></label> {{merchant.address}}
+            <label for="address"><b>{{'Address' | translate}}:</b></label> {{showName(merchant.businessAddress)}}
         </div>
         <div *ngIf="merchant.contactName">
 
-            <label for="email"><b>{{'Contact name' | translate}}:</b></label> {{merchant.contactName}}
+            <label for="email"><b>{{'Contact name' | translate}}:</b></label> {{showName(merchant.contactName)}}
         </div>
 
         <div *ngIf="merchant.businessContents">
             <div>
-                <label for="email"><b>{{'Business contents' | translate}}:</b></label> {{merchant.businessContents}}
+                <label for="email"><b>{{'Business contents' | translate}}:</b></label> {{showName(merchant.businessContents)}}
             </div>
         </div>
 

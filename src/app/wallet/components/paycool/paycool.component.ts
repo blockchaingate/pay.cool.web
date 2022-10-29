@@ -51,7 +51,7 @@ export class PaycoolComponent implements OnInit{
     ngOnInit() {
         this.tab =  'pay';
         this.parents = [];
-        this.payType = 'withBalance';
+        this.payType = 'WithFee';
         this.dataServ.currentWallet.subscribe(
             (wallet: any) => {
               this.wallet = wallet;
@@ -74,7 +74,7 @@ export class PaycoolComponent implements OnInit{
                 if(walletAddress) {
                   this.walletAddress = walletAddress;
                   if(this.id) {
-                    this.starServ.getPaycoolRewardInfo(this.id, walletAddress).subscribe(
+                    this.starServ.getPaycoolRewardInfo(this.id, walletAddress, this.payType).subscribe(
                       (ret: any) => {
                         console.log('ret from here=', ret);
                         this.order = ret;
@@ -89,6 +89,12 @@ export class PaycoolComponent implements OnInit{
     }
     changePayType(type:string) {
       this.payType = type;
+      this.starServ.getPaycoolRewardInfo(this.id, this.walletAddress, this.payType).subscribe(
+        (ret: any) => {
+          console.log('ret from here=', ret);
+          this.order = ret;
+        }
+      );
     }
 
     changeTab(tab: string) {
@@ -107,6 +113,10 @@ export class PaycoolComponent implements OnInit{
 
 
     submit() {
+      if(!this.order) {
+        this.toastr.error('Reward info not found');
+        return;
+      }
         const initialState = {
             pwdHash: this.wallet.pwdHash,
             encryptedSeed: this.wallet.encryptedSeed
@@ -178,113 +188,27 @@ export class PaycoolComponent implements OnInit{
       to = this.to;
       } else 
       if(this.id){
-        if(this.payType == 'withBalance') {
-          abi = {
-            "inputs": [
-              {
-                "internalType": "bytes32",
-                "name": "_merchantId",
-                "type": "bytes32"
-              },
-              {
-                "internalType": "bytes32",
-                "name": "_orderId",
-                "type": "bytes32"
-              },
-              {
-                "internalType": "uint32",
-                "name": "_paidCoin",
-                "type": "uint32"
-              },
-              {
-                "internalType": "uint256",
-                "name": "_totalAmount",
-                "type": "uint256"
-              },
-              {
-                "internalType": "uint256",
-                "name": "_totalTax",
-                "type": "uint256"
-              },
-              {
-                "internalType": "bytes",
-                "name": "_rewardInfo",
-                "type": "bytes"
-              }
-            ],
-            "name": "chargeFundsWithFee",
-            "outputs": [
-              
-            ],
-            "stateMutability": "nonpayable",
-            "type": "function"
-          };
-          args = [
-            this.order.merchantId,
-            this.order.orderId,
-            this.order.paidCoin,
-            '0x' + new BigNumber(this.order.totalAmount).shiftedBy(18).toString(16),
-            '0x' + new BigNumber(this.order.totalTax).shiftedBy(18).toString(16),
-            this.order.rewardInfo
-          ];
+        const params = this.order.params;
+        console.log('params==', params);
+
+        let ret = await this.kanbanSmartContractServ.execSmartContractAbiHex(seed, params[0].to, params[0].data);
+        if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
+          ret = await this.kanbanSmartContractServ.execSmartContractAbiHex(seed, params[1].to, params[1].data);
+          if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
+            this.toastr.success('the transaction was procssed successfully');
+          } else {
+            this.toastr.error('Failed to chargeFund with fee, txid:' + ret._body.transactionHash);
+          }
         } else {
-          abi = {
-            "inputs": [
-              {
-                "internalType": "bytes32",
-                "name": "_merchantId",
-                "type": "bytes32"
-              },
-              {
-                "internalType": "bytes32",
-                "name": "_orderId",
-                "type": "bytes32"
-              },
-              {
-                "internalType": "uint32",
-                "name": "_paidCoin",
-                "type": "uint32"
-              },
-              {
-                "internalType": "uint256",
-                "name": "_totalAmount",
-                "type": "uint256"
-              },
-              {
-                "internalType": "uint256",
-                "name": "_totalTax",
-                "type": "uint256"
-              },
-              {
-                "internalType": "bytes",
-                "name": "_rewardInfo",
-                "type": "bytes"
-              }
-            ],
-            "name": "chargeFundsWithCredit",
-            "outputs": [
-              
-            ],
-            "stateMutability": "nonpayable",
-            "type": "function"
-          };
-          args = [
-            this.order.merchantId,
-            this.order.orderId,
-            this.order.paidCoin,
-            '0x' + new BigNumber(this.order.totalAmount).shiftedBy(18).toString(16),
-            '0x' + new BigNumber(this.order.totalTax).shiftedBy(18).toString(16),
-            this.order.rewardInfo
-          ];
+          this.toastr.error('Failed to authorizeOperator, txid:' + ret._body.transactionHash);
         }
 
-        to = environment.addresses.smartContract.smartConractFeeCharger;
       } else
       if(this.templateId) {
         const ret1 = await this.starServ.createOrderFromTemplatePromise(this.templateId);
         if(ret1 && ret1._id) {
           this.id = ret1._id;
-          this.starServ.getPaycoolRewardInfo(this.id, this.walletAddress).subscribe(
+          this.starServ.getPaycoolRewardInfo(this.id, this.walletAddress, this.payType).subscribe(
             (ret: any) => {
               console.log('ret from here=', ret);
               this.order = ret;
@@ -296,14 +220,7 @@ export class PaycoolComponent implements OnInit{
         
       }
 
-      console.log('args=====', args);
-      const ret = await this.kanbanSmartContractServ.execSmartContract(seed, to, abi, args);
-      this.spinner.hide();
-      if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
-        this.toastr.success('the transaction was procssed successfully');
-      } else {
-        this.toastr.error('Failed to process the transaction, txid:' + ret._body.transactionHash);
-      }
+
     }
 
 }

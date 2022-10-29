@@ -26,6 +26,10 @@ export class MerchantsComponent implements OnInit {
     );
   }
 
+  showName(name) {
+    return this.utilServ.showName(name);
+  }
+  
   showAddress(address: string) {
     if(!address) {
       return '';

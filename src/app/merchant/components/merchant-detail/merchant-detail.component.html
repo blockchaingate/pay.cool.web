@@ -8,7 +8,7 @@
         <div class="col col-md-10">
             <h6 class="auto-wrap d-flex justify-content-between">
                 <div>
-                    {{merchant.name}}
+                    {{showName(merchant.name)}}
                 </div>
                 <div *ngIf="merchant.status == 2">
                     <i class="fa fa-check text-success" aria-hidden="true"></i>
@@ -27,12 +27,12 @@
                 <i class="fa fa-envelope"></i>
                 {{merchant.email}}
             </div>      
-            <div class="text-muted auto-wrap" *ngIf="merchant.address">
+            <div class="text-muted auto-wrap" *ngIf="merchant.businessAddress">
                 <i class="fa fa-location-arrow"></i>
-                {{merchant.address}}
+                {{showName(merchant.businessAddress)}}
             </div>
             <div class="auto-wrap" *ngIf="merchant.businessContents">
-                {{merchant.businessContents}}
+                {{showName(merchant.businessContents)}}
             </div>
         </div>
     </div>

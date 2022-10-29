@@ -17,9 +17,12 @@
         <td>{{showAmount(item.totalReward)}}</td>
         <td>{{item.dateCreated}}</td>
         <td>
-          <button *ngIf="item.refunds && (item.refunds.length > 0) && !(item.refunds.status)" type="button" class="btn btn-primary" (click)="approveRefund(item)">
+          <button *ngIf="item.refunds && (item.refunds.length > 0) && !(item.refunds[0].status)" type="button" class="btn btn-primary" (click)="approveRefund(item)">
             approve refund
           </button>
+          <div *ngIf="item.refunds && (item.refunds.length > 0) && (item.refunds[0].status == 1)" >
+            Refunded
+          </div>
         </td>
       </tr>
     </tbody>

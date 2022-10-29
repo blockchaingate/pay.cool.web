@@ -18,4 +18,7 @@ export class MerchantDetailComponent implements OnInit {
     console.log('merchant====', this.merchant);
   }
 
+  showName(name) {
+    return this.utilServ.showName(name);
+  }
 }

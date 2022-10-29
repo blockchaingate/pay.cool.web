@@ -173,4 +173,8 @@ async approveDo(seed: Buffer) {
     this.spinner.hide();
   }
   }
+
+  showName(name) {
+    return this.utilServ.showName(name);
+  }
 }

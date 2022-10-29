@@ -20,14 +20,14 @@
 
         <div>
             {{payType}}
-            <div (click)="changePayType('withBalance')">
-                <input class="form-check-input" type="radio" name="payType" [value]="'withBalance'"  [(ngModel)]="payType" >
+            <div (click)="changePayType('WithFee')">
+                <input class="form-check-input" type="radio" name="payType" [value]="'WithFee'"  [(ngModel)]="payType" >
                 <label class="form-check-label" for="flexRadioDefault1">
                   Pay with your balance
                 </label>
             </div>
-            <div (click)="changePayType('withCredit')">
-                <input class="form-check-input" type="radio" name="payType" [value]="'withCredit'"  [(ngModel)]="payType">
+            <div (click)="changePayType('FromCredit')">
+                <input class="form-check-input" type="radio" name="payType" [value]="'FromCredit'"  [(ngModel)]="payType">
                 <label class="form-check-label" for="flexRadioDefault2">
                   Pay with merchant's credit
                 </label>

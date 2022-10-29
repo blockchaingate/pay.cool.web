@@ -8,6 +8,7 @@ import { KanbanService } from 'src/app/services/kanban.service';
 import { UtilService } from 'src/app/services/util.service';
 import { KanbanSmartContractService } from 'src/app/services/kanban.smartcontract.service';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-tree',
@@ -29,6 +30,7 @@ export class UserTreeComponent implements OnInit {
     private modalService: BsModalService,
     private kanbanServ: KanbanService,
     private utilServ: UtilService,
+    private toastr: ToastrService,
     private kanbanSmartContractServ: KanbanSmartContractService,
     private route: ActivatedRoute, 
     private localSt: LocalStorage, private userreferralServ: UserReferralService) { }
@@ -38,6 +40,9 @@ export class UserTreeComponent implements OnInit {
       (params: ParamMap) => {
         const refCode = params['ref'];
         if (refCode) {
+          if(refCode == environment.addresses.Referral_ROOT) {
+            return;
+          }
           this.userreferralServ.checkAddress(refCode).subscribe(
             (res: any) => {
               if (res && res.isValid) {
@@ -45,7 +50,7 @@ export class UserTreeComponent implements OnInit {
                 this.refCodeComeIn = true;
                 this.localSt.setItem('7star_ref', refCode).subscribe(() => { });
               } else {
-                this.errMsg = 'Invalid referral code';
+                this.errMsg = 'Invalid referral code11';
               }
             });
         } else {
@@ -109,7 +114,7 @@ export class UserTreeComponent implements OnInit {
       return;
     }
 
-    if(!this.refCodeComeIn) {
+    if(this.refCode != environment.addresses.Referral_ROOT) {
     this.userreferralServ.checkAddress(this.refCode).subscribe(
       (res: any) => {
         if (res && res.isValid) {
@@ -162,7 +167,11 @@ export class UserTreeComponent implements OnInit {
     const hexAddress = this.utilServ.fabToExgAddress(this.refCode);
     this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.smartConractAdressReferral, abi, [hexAddress]).then(
       (res) => {
-        console.log('res===', res);
+        if(res && res.ok && res._body && res._body.status == '0x1') {
+          this.toastr.success('Join as a member successfully');
+        } else {
+          this.toastr.error('Failed to join as a member');
+        }
       }
     );
   

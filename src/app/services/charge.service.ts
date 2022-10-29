@@ -12,7 +12,6 @@ export class ChargeService {
 
     getChargesByMerchant(walletAddress: string) {
         const url = environment.endpoints.api + 'charge/merchant/' + walletAddress + '/100/0';
-        console.log('url--==', url);
         return this.http.get(url);
     }
     
@@ -24,6 +23,11 @@ export class ChargeService {
     cancelRequestRefund(id: string) {
         const url = environment.endpoints.api + 'charge/cancelRequestRefund/' + id;
         return this.http.delete(url);
+    }
+
+    getRefundInfo(id: string) {
+        const url = environment.endpoints.api + 'charge/refundInfo/' + id;
+        return this.http.get(url); 
     }
 }
    
