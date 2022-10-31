@@ -32,6 +32,10 @@
         <textarea type="text" class="form-control small" placeholder="输入项目描述" [(ngModel)]="descriptionChinese" name="descriptionChinese" id="descriptionChinese">
         </textarea>
       </div>
+      <div>
+        <label for="email"><b>{{'K value' | translate}}</b></label>
+        <input type="number" placeholder="Enter k value" [(ngModel)]="kvalue" name="kvalue" required>
+      </div>
         <div class="text-right py-2">
             <button class="btn signinbtn" (click)="confirm()">{{('Update') | translate}}</button>
         </div>

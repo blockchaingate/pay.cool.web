@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="row">
+        <div class="col col-4" *ngFor="let item of packages" (click)="gotoPackage(item._id)">
+            <div *ngIf="item.image">
+                <img src="{{item.image}}">
+            </div>
+            <div>
+                {{showName(item.name)}}
+            </div>
+        </div>
+    </div>
+</div>

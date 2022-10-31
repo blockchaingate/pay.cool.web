@@ -4,28 +4,37 @@
       <hr>
 
       <div class="form-group row my-2">
-        <label class="col-sm-2 col-form-label">{{"Project logo"|translate}}</label>
+        <label class="col-sm-2 col-form-label">{{"Project"|translate}}</label>
+        <div class="col-sm-10">
+          <select [(ngModel)]="project" name="project">
+            <option *ngFor="let item of projects" [value]="item._id">{{showName(item.name)}}</option>
+          </select>
+        </div>
+      </div>   
+
+      <div class="form-group row my-2">
+        <label class="col-sm-2 col-form-label">{{"Package logo"|translate}}</label>
         <div class="col-sm-10">
           <app-admin-upload-media class="ml-4" id="logo" [(images)]="images" [singleFile]="true"></app-admin-upload-media>
         </div>
       </div>   
 
       <div>
-        <label for="email"><b>{{'Project name' | translate}}</b></label>
-        <input type="text" placeholder="Enter project name" [(ngModel)]="name" name="name" required>
+        <label for="email"><b>{{'Package name' | translate}}</b></label>
+        <input type="text" placeholder="Enter package name" [(ngModel)]="name" name="name" required>
       </div>
       <div>
-        <label for="email"><b>{{'Project description' | translate}}</b></label>
-        <textarea type="text" class="form-control small" placeholder="Enter project description" [(ngModel)]="description" name="description" id="description">
+        <label for="email"><b>{{'Package description' | translate}}</b></label>
+        <textarea type="text" class="form-control small" placeholder="Enter package description" [(ngModel)]="description" name="description" id="description">
         </textarea>
       </div>
       <div>
-        <label for="email"><b>{{'项目名称' | translate}}</b></label>
-        <input type="text" placeholder="输入项目名称" [(ngModel)]="nameChinese" name="nameChinese" required>
+        <label for="email"><b>{{'套装名称' | translate}}</b></label>
+        <input type="text" placeholder="输入套装名称" [(ngModel)]="nameChinese" name="nameChinese" required>
       </div>
       <div>
-        <label for="email"><b>{{'项目描述' | translate}}</b></label>
-        <textarea type="text" class="form-control small" placeholder="输入项目描述" [(ngModel)]="descriptionChinese" name="descriptionChinese" id="descriptionChinese">
+        <label for="email"><b>{{'套装描述' | translate}}</b></label>
+        <textarea type="text" class="form-control small" placeholder="输入套装描述" [(ngModel)]="descriptionChinese" name="descriptionChinese" id="descriptionChinese">
         </textarea>
       </div>
 

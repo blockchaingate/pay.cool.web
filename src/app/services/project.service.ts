@@ -6,13 +6,16 @@ import { environment } from 'src/environments/environment';
 export class ProjectService {
     constructor(
         private http: HttpService) { }
-    getAllProjects(pageNum: number, pageSize: number) {
+    getAllProjects(pageSize: number, pageNum: number) {
         return this.http.getRaw(environment.endpoints.api + 'project/' + pageSize + '/' + pageNum);
     }  
-    getAllProjectPackages(pageNum: number, pageSize: number) {
+    getAllProjectPackages(pageSize: number, pageNum: number) {
         return this.http.getRaw(environment.endpoints.api + 'projectpackage/' + pageSize + '/' + pageNum);
     }  
-    getAllProjectUsers(pageNum: number, pageSize: number) {
+    getAllProjectPackagesByProjectId(id: string, pageSize: number, pageNum: number) {
+        return this.http.getRaw(environment.endpoints.api + 'projectpackage/project/' + id + '/' + pageSize + '/' + pageNum);
+    }  
+    getAllProjectUsers(pageSize: number, pageNum: number) {
         return this.http.getRaw(environment.endpoints.api + 'projectuser/' + pageSize + '/' + pageNum);
     }      
     createProject(data: any) {
@@ -33,5 +36,9 @@ export class ProjectService {
     
     updateProjectPackage(id: string, data: any) {
         return this.http.putRaw(environment.endpoints.api + 'projectpackage/' + id, data);
+    }
+
+    getParams(projectPackageId: string, walletAddress: string, paidCoin: string) {
+        return this.http.getRaw(environment.endpoints.api + 'projectpackage/' + projectPackageId + '/params/' + walletAddress + '/' + paidCoin);
     }
 }

@@ -7,18 +7,21 @@ import { DataService } from 'src/app/services/data.service';
 import { ProjectService } from 'src/app/services/project.service';
 import { CoinService } from 'src/app/services/coin.service';
 import { KanbanService } from 'src/app/services/kanban.service';
+import { UtilService } from 'src/app/services/util.service';
+
 @Component({
   selector: 'app-project-package-edit',
   templateUrl: './project-package-edit.component.html',
   styleUrls: ['./project-package-edit.component.scss']
 })
 export class ProjectPackageEditComponent implements OnInit {
+  projects: any;
+  project: string;
   id: string;
   selectedUSDC: boolean;
   selectedUSDT: boolean;
   selectedDUSD: boolean;
   images: any;
-  projectId: string;
   name: string;
   value: number;
   nameChinese: string;
@@ -32,6 +35,7 @@ export class ProjectPackageEditComponent implements OnInit {
     private dataServ: DataService,
     private toastr: ToastrService,
     private route: ActivatedRoute,
+    private utilServ: UtilService,
     private projectServ: ProjectService,
     private modalService: BsModalService,
     private coinServ: CoinService,
@@ -53,27 +57,33 @@ export class ProjectPackageEditComponent implements OnInit {
         const id = param.get('id');
         this.id = id;
         this.projectServ.getProjectPackage(id).subscribe(
-          (project: any) => {
-            if(project) {
-              if(project.image) {
-                this.images = [project.image];
+          (thepackage: any) => {
+            this.projectServ.getAllProjects(100, 0).subscribe(
+              (projects: any) => {
+                this.projects = projects;
               }
-              if(project.name) {
-                this.name = project.name.en;
-                this.nameChinese = project.name.sc;
+            );
+            if(thepackage) {
+              this.project = thepackage.project;
+              if(thepackage.image) {
+                this.images = [thepackage.image];
               }
-              if(project.description) {
-                this.description = project.description.en;
-                this.descriptionChinese = project.description.sc;
+              if(thepackage.name) {
+                this.name = thepackage.name.en;
+                this.nameChinese = thepackage.name.sc;
               }
-              this.value = project.value;
-              if(project.coins.indexOf('USDT') >= 0) {
+              if(thepackage.description) {
+                this.description = thepackage.description.en;
+                this.descriptionChinese = thepackage.description.sc;
+              }
+              this.value = thepackage.value;
+              if(thepackage.coins.indexOf('USDT') >= 0) {
                 this.selectedUSDT = true;
               }
-              if(project.coins.indexOf('DUSD') >= 0) {
+              if(thepackage.coins.indexOf('DUSD') >= 0) {
                 this.selectedDUSD = true;
               }
-              if(project.coins.indexOf('USDC') >= 0) {
+              if(thepackage.coins.indexOf('USDC') >= 0) {
                 this.selectedUSDC = true;
               }
             }
@@ -83,7 +93,14 @@ export class ProjectPackageEditComponent implements OnInit {
     );
   }
 
+  showName(name) {
+    return this.utilServ.showName(name);
+  }
   confirm() {
+    if(!this.project) {
+      this.toastr.error('Project not selected');
+      return;
+    }
     const initialState = {
       pwdHash: this.wallet.pwdHash,
       encryptedSeed: this.wallet.encryptedSeed
@@ -95,15 +112,15 @@ export class ProjectPackageEditComponent implements OnInit {
     this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
 
     this.modalRef.content.onClose.subscribe( (seed: Buffer) => {
-      this.addProjectPackageDo(seed);
+      this.editProjectPackageDo(seed);
     });
   }
 
-  addProjectPackageDo(seed: Buffer) {
+  editProjectPackageDo(seed: Buffer) {
 
-
+    console.log('thiis.project=', this.project);
     const data = {
-      id: this.projectId,
+      project: this.project,
       name: {
         en: this.name,
         sc: this.nameChinese

@@ -1,0 +1,21 @@
+<div class="container" *ngIf="package">
+    <div class="row">
+        <div class="col col-3">
+            <img *ngIf="package.image" src="{{package.image}}">
+
+        </div>
+        <div class="col col-9">
+            <h2>{{showName(package.name)}}</h2>
+            <div>{{showName(package.description)}}</div>
+            <div>
+                <select [(ngModel)]="coin" name="coin">
+                    <option *ngFor="let item of package.coins" value="{{item}}">{{item}}</option>
+                </select>                
+            </div>
+            <div>Value: {{package.value}}</div>
+            <div>
+                <button type="button" class="btn btn-primary" (click)="enroll()">Enroll</button>
+            </div>
+        </div>
+    </div>
+</div>

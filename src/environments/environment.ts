@@ -149,7 +149,7 @@ export const environment = {
         smartConractMerchantInfo: '0xcf6b25bc02b8d9a59f84a2ed8dedb6e1c495737b',
         smartConractFeeCharger: '0x1d9835f3d8942170aecef89690bf41638c6ee6a8',
         smartContractMerchantNode: '0xc2f52d79994ed8f0b68e73edf28f3f562da75a06',
-        smartContractRewardDistribution: '0x63b9fe156d4a57354708795de847ac7baefbbeda',
+        smartContractRewardDistribution: '0x6ef9ad58f8ac314b42e97078a1967d1375adb32d',
         smartConractAdressExchangeRate: '0x44b9c6409fbb133f4f0ebbb07b4fb61c0d20181b',
         smartConractAdressReferral: '0xa76af08ba89012e617cd33641f70cb6c2ec957e6',
         smartConractProjectUserRelation: '0xc8379312d5e9188bb8e8b40ede24da9141575925',

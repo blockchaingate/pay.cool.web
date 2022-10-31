@@ -22,6 +22,7 @@ export class ProjectAddComponent implements OnInit {
   nameChinese: string;
   description: string;
   descriptionChinese: string;
+  kvalue: number;
   wallet: any;
   modalRef: BsModalRef;
   constructor(
@@ -89,7 +90,8 @@ export class ProjectAddComponent implements OnInit {
       description: {
         en: this.description,
         sc: this.descriptionChinese
-      }
+      },
+      kvalue: this.kvalue
     }
 
     if(this.images && (this.images.length > 0)) {

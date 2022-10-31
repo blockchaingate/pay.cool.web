@@ -7,6 +7,7 @@ import { DataService } from 'src/app/services/data.service';
 import { ProjectService } from 'src/app/services/project.service';
 import { CoinService } from 'src/app/services/coin.service';
 import { KanbanService } from 'src/app/services/kanban.service';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-project-package-add',
@@ -14,11 +15,12 @@ import { KanbanService } from 'src/app/services/kanban.service';
   styleUrls: ['./project-package-add.component.scss']
 })
 export class ProjectPackageAddComponent implements OnInit {
+  projects: any;
+  project: string;
   selectedUSDC: boolean;
   selectedUSDT: boolean;
   selectedDUSD: boolean;
   images: any;
-  projectId: string;
   name: string;
   value: number;
   nameChinese: string;
@@ -31,6 +33,7 @@ export class ProjectPackageAddComponent implements OnInit {
     private router: Router,
     private dataServ: DataService,
     private toastr: ToastrService,
+    private utilServ: UtilService,
     private projectServ: ProjectService,
     private modalService: BsModalService,
     private coinServ: CoinService,
@@ -46,9 +49,21 @@ export class ProjectPackageAddComponent implements OnInit {
         this.wallet = wallet;
       }
     ); 
+    this.projectServ.getAllProjects(100, 0).subscribe(
+      (projects: any) => {
+        this.projects = projects;
+      }
+    );
   }
 
+  showName(name) {
+    return this.utilServ.showName(name);
+  }
   confirm() {
+    if(!this.project) {
+      this.toastr.error('Project not selected');
+      return;
+    }
     const initialState = {
       pwdHash: this.wallet.pwdHash,
       encryptedSeed: this.wallet.encryptedSeed
@@ -68,7 +83,7 @@ export class ProjectPackageAddComponent implements OnInit {
 
 
     const data = {
-      id: this.projectId,
+      project: this.project,
       name: {
         en: this.name,
         sc: this.nameChinese

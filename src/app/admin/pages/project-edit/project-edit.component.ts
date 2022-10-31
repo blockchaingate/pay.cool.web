@@ -21,6 +21,7 @@ export class ProjectEditComponent implements OnInit {
   nameChinese: string;
   description: string;
   descriptionChinese: string;
+  kvalue: number;
   wallet: any;
   modalRef: BsModalRef;
   constructor(
@@ -57,6 +58,9 @@ export class ProjectEditComponent implements OnInit {
                 this.description = project.description.en;
                 this.descriptionChinese = project.description.sc;
               }
+              if(project.kvalue) {
+                this.kvalue = project.kvalue;
+              }
             }
           }
         );
@@ -89,7 +93,8 @@ export class ProjectEditComponent implements OnInit {
       description: {
         en: this.description,
         sc: this.descriptionChinese
-      }
+      },
+      kvalue: this.kvalue
     }
 
     if(this.images && (this.images.length > 0)) {
