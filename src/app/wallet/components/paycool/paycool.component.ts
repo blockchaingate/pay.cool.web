@@ -11,8 +11,6 @@ import { StarService } from '../../../services/star.service';
 import { UtilService } from '../../../services/util.service';
 import { NgxSpinnerService } from 'ngx-bootstrap-spinner';
 import { CoinService } from 'src/app/services/coin.service';
-import BigNumber from 'bignumber.js';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-wallet-paycool',

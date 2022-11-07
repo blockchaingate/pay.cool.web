@@ -40,7 +40,7 @@ export class PackageComponent implements OnInit {
         this.projectServ.getProjectPackage(id).subscribe(
           (thepackage:any) => {
             this.package = thepackage;
-            this.coin = 'USDT';
+            this.coin = 'DUSD';
           }
         );
       });
@@ -55,7 +55,6 @@ export class PackageComponent implements OnInit {
           if(walletAddress) {
             this.walletAddress = walletAddress;
           }
-  
         }
       );      
   }
@@ -69,22 +68,30 @@ export class PackageComponent implements OnInit {
       this.toastr.error('Coin not selected');
       return;
     }
+    
+       
+    
     this.projectServ.getParams(this.id, this.walletAddress, this.coin).subscribe(
       (order: any) => {
         this.order = order;
+
+        const initialState = {
+          pwdHash: this.wallet.pwdHash,
+          encryptedSeed: this.wallet.encryptedSeed
+        };   
+        this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
+        this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
+          this.enrollDo(seed);
+      }); 
+      },
+      (error: any) => {
+        this.toastr.error(error.error.error);
+        return;
       }
     );
 
-    const initialState = {
-      pwdHash: this.wallet.pwdHash,
-      encryptedSeed: this.wallet.encryptedSeed
-    };          
-    
-    this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
 
-    this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
-        this.enrollDo(seed);
-    });   
+  
   }
 
   async enrollDo(seed: Buffer) {

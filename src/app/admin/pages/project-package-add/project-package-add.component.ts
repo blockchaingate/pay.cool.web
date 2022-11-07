@@ -8,7 +8,7 @@ import { ProjectService } from 'src/app/services/project.service';
 import { CoinService } from 'src/app/services/coin.service';
 import { KanbanService } from 'src/app/services/kanban.service';
 import { UtilService } from 'src/app/services/util.service';
-
+import {packageTypes} from '../../../config/packageTypes';
 @Component({
   selector: 'app-project-package-add',
   templateUrl: './project-package-add.component.html',
@@ -17,6 +17,7 @@ import { UtilService } from 'src/app/services/util.service';
 export class ProjectPackageAddComponent implements OnInit {
   projects: any;
   project: string;
+  type: number;
   selectedUSDC: boolean;
   selectedUSDT: boolean;
   selectedDUSD: boolean;
@@ -28,6 +29,7 @@ export class ProjectPackageAddComponent implements OnInit {
   descriptionChinese: string;
   wallet: any;
   modalRef: BsModalRef;
+  types: any = packageTypes;
 
   constructor(
     private router: Router,
@@ -92,8 +94,10 @@ export class ProjectPackageAddComponent implements OnInit {
         en: this.description,
         sc: this.descriptionChinese
       },
-      value: this.value
+      value: this.value,
+      type: this.type
     }
+
 
     if(this.images && (this.images.length > 0)) {
       data['image'] = this.images[0];

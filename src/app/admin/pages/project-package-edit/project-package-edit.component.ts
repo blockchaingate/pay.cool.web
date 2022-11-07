@@ -8,6 +8,7 @@ import { ProjectService } from 'src/app/services/project.service';
 import { CoinService } from 'src/app/services/coin.service';
 import { KanbanService } from 'src/app/services/kanban.service';
 import { UtilService } from 'src/app/services/util.service';
+import {packageTypes} from '../../../config/packageTypes';
 
 @Component({
   selector: 'app-project-package-edit',
@@ -28,6 +29,8 @@ export class ProjectPackageEditComponent implements OnInit {
   description: string;
   descriptionChinese: string;
   wallet: any;
+  types: any = packageTypes;
+  type: number;
   modalRef: BsModalRef;
 
   constructor(
@@ -86,6 +89,7 @@ export class ProjectPackageEditComponent implements OnInit {
               if(thepackage.coins.indexOf('USDC') >= 0) {
                 this.selectedUSDC = true;
               }
+              this.type = thepackage.type;
             }
           }
         );
@@ -129,7 +133,8 @@ export class ProjectPackageEditComponent implements OnInit {
         en: this.description,
         sc: this.descriptionChinese
       },
-      value: this.value
+      value: this.value,
+      type: this.type
     }
 
     if(this.images && (this.images.length > 0)) {

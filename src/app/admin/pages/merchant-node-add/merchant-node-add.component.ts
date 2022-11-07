@@ -43,7 +43,6 @@ export class MerchantNodeAddComponent implements OnInit {
     private dataServ: DataService,
     private router: Router, 
     private utilServ: UtilService,
-    private web3Serv: Web3Service,
     private modalService: BsModalService,
     private toastr: ToastrService
   ) { }
