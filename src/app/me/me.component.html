@@ -1,6 +1,12 @@
 <div class="container">
     <ul class="nav nav-tabs">
         <li class="nav-item">
+          <a class="nav-link" aria-current="page" [ngClass]="(tabName=='settings')?'active' : ''" (click)="changeTabName('settings')">Settings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" [ngClass]="(tabName=='packages')?'active' : ''" (click)="changeTabName('packages')">Packages</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" aria-current="page" [ngClass]="(tabName=='payments')?'active' : ''" (click)="changeTabName('payments')">Payments</a>
         </li>
         <li class="nav-item">
@@ -13,6 +19,12 @@
           <a class="nav-link" [ngClass]="(tabName=='lockers')?'active' : ''" (click)="changeTabName('lockers')">Lockers</a>
         </li>
     </ul>
+    <div *ngIf="tabName=='settings'">
+      <app-settings></app-settings>
+    </div>
+    <div *ngIf="tabName=='packages'">
+      <app-packages></app-packages>
+    </div>
     <div *ngIf="tabName=='payments'">
         <app-payments></app-payments>
     </div>

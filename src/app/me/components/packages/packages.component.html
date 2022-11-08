@@ -1,0 +1,22 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Project Package</th>
+        <th scope="col">Type</th>
+        <th scope="col">Coin</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Date created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of buys; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{item.projectPackage ? showName(item.projectPackage.name) : ''}}</td>
+        <td>{{item.type}}</td>
+        <td>{{showCoinName(item.coinType)}}</td>
+        <td>{{showAmount(item.amount)}}</td>
+        <td>{{item.dateCreated}}</td>
+      </tr>
+    </tbody>
+</table>

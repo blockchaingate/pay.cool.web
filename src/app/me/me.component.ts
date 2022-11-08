@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 
 @Component({
-  selector: 'app-info',
-  templateUrl: './info.component.html',
-  styleUrls: ['./info.component.scss']
+  selector: 'app-me',
+  templateUrl: './me.component.html',
+  styleUrls: ['./me.component.scss']
 })
-export class InfoComponent implements OnInit {
+export class MeComponent implements OnInit {
   
   tabName: string;
   constructor(

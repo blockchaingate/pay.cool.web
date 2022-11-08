@@ -46,6 +46,7 @@ import { TimerService } from './services/timer.service';
 import { AirdropService } from './services/airdrop.service';
 import { IddockService } from './services/iddock.service';
 import { DataService } from './services/data.service';
+import { SettingService } from './services/setting.service';
 import { StoreService } from './services/store.service';
 import { RewardService } from './services/reward.service';
 import { LockerService } from './services/locker.service';
@@ -53,6 +54,7 @@ import { ProjectService } from './services/project.service';
 import { ChargeService } from './services/charge.service';
 import { UserReferralService } from './services/userreferral.service';
 import { MerchantService } from './services/merchant.service';
+import { BuyService } from './services/buy.service';
 import { UploadService } from './services/upload.service';
 import { WalletGuardService } from './services/wallet-guard.service';
 import { KanbanSmartContractService } from './services/kanban.smartcontract.service';
@@ -138,8 +140,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     StorageService,
     TimerService,
     OrderService,
+    BuyService,
     ProjectService,
     UploadService,
+    SettingService,
     AirdropService,
     DataService,
     ChargeService,

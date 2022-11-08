@@ -23,8 +23,8 @@ const routes: Routes = [
     loadChildren: () => import('./project/project.module').then(w => w.ProjectModule)
   },
   {
-    path: 'info',
-    loadChildren: () => import('./info/info.module').then(w => w.InfoModule)
+    path: 'me',
+    loadChildren: () => import('./me/me.module').then(w => w.MeModule)
   },
   {
     path: 'admin',
