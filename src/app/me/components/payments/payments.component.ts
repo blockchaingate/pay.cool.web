@@ -9,6 +9,8 @@ import { CoinService } from 'src/app/services/coin.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { KanbanService } from 'src/app/services/kanban.service';
 import { ToastrService } from 'ngx-toastr';
+import { TxRewardsComponent } from '../tx-rewards/tx-rewards.component';
+import { PayRewardService } from 'src/app/services/payreward.service';
 
 @Component({
   selector: 'app-payments',
@@ -27,6 +29,7 @@ export class PaymentsComponent implements OnInit {
     private web3Serv: Web3Service,
     private toastr: ToastrService,
     private dataServ: DataService,
+    private payRewardServ: PayRewardService,
     private kanbanServ: KanbanService,
     private chargeServ: ChargeService
     ) { }
@@ -50,6 +53,19 @@ export class PaymentsComponent implements OnInit {
       }
     ); 
 
+  }
+
+  showRwards(txid) {
+    this.payRewardServ.getAllRewardsByTxid(txid).subscribe(
+      (rewards: any) => {
+        console.log('rewards===', rewards);
+        const initialState = {
+          rewards
+        };          
+
+        this.modalService.show(TxRewardsComponent, { initialState, class: 'modal-lg' });
+      }
+    );
   }
 
   showId(id: string) {

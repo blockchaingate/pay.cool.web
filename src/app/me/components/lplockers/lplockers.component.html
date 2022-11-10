@@ -1,0 +1,24 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">ID</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Released Amount</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of lockers; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{item.id}}</td>
+        <td>{{showAmount(item.amount)}}</td>
+        <td>{{showAmount(item.releaseAmount)}}</td>
+        <td>
+          <a (click)="unlock(item)" *ngIf="item.amount != item.releaseAmount">
+            Unlock
+          </a>
+        </td>
+      </tr>
+    </tbody>
+</table>

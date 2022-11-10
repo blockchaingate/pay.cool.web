@@ -7,6 +7,7 @@
         <th scope="col">totalReward</th>
         <th scope="col">dateCreated</th>
         <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -27,6 +28,12 @@
           <div *ngIf="item.refunds && (item.refunds.length > 0) && (item.refunds[0].status == 1)" >
             Refunded
           </div>
+
+        </td>
+        <td>
+          <a (click)="showRwards(item.txid)">
+            Show rewards
+          </a>
         </td>
       </tr>
     </tbody>

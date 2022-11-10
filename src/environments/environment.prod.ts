@@ -148,7 +148,7 @@ addresses: {
         smartConractMerchantInfo: '',
         smartConractFeeCharger: '',
         smartConractAdressExchangeRate: '',
-        smartConractAdressReferral: '',
+        smartConractAdressReferral: '0x1c6acdff5fd3f7e732083f5f6d3950d08f345e9b',
         
         feeDistribution: '0xf3b46ef452099ec2b6f81644b6da75c91c5e116a',
         locker: '0x08283086b2192666128b7a6eaf66df2dfd3f1b6b',

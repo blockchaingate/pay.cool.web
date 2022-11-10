@@ -10,10 +10,20 @@ import { LockersComponent } from './components/lockers/lockers.component';
 import { MerchantPaymentsComponent } from './components/merchant-payments/merchant-payments.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { PackagesComponent } from './components/packages/packages.component';
+import { LplockersComponent } from './components/lplockers/lplockers.component';
+import { TxRewardsComponent } from './components/tx-rewards/tx-rewards.component';
 
 
 @NgModule({
-  declarations: [MeComponent, PaymentsComponent, RewardsComponent, LockersComponent, MerchantPaymentsComponent, SettingsComponent, PackagesComponent],
+  declarations: [
+    MeComponent, 
+    PaymentsComponent, 
+    RewardsComponent, 
+    LockersComponent, 
+    MerchantPaymentsComponent, 
+    SettingsComponent, 
+    PackagesComponent, 
+    LplockersComponent, TxRewardsComponent],
   imports: [
     CommonModule,
     FormsModule,

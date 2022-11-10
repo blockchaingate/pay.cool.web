@@ -7,6 +7,7 @@
         <th scope="col">Coin</th>
         <th scope="col">Amount</th>
         <th scope="col">Date created</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -17,6 +18,11 @@
         <td>{{showCoinName(item.coinType)}}</td>
         <td>{{showAmount(item.amount)}}</td>
         <td>{{item.dateCreated}}</td>
+        <td>
+          <a (click)="showRwards(item.txid)">
+            Show rewards
+          </a>
+        </td>
       </tr>
     </tbody>
 </table>

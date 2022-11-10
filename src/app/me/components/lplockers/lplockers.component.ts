@@ -9,11 +9,12 @@ import { ToastrService } from 'ngx-toastr';
 import { KanbanSmartContractService } from 'src/app/services/kanban.smartcontract.service';
 
 @Component({
-  selector: 'app-lockers',
-  templateUrl: './lockers.component.html',
-  styleUrls: ['./lockers.component.scss']
+  selector: 'app-lplockers',
+  templateUrl: './lplockers.component.html',
+  styleUrls: ['./lplockers.component.scss']
 })
-export class LockersComponent implements OnInit {
+export class LplockersComponent implements OnInit {
+
   locker: any;
   lockers: any;
   wallet: any;
@@ -32,7 +33,7 @@ export class LockersComponent implements OnInit {
     this.dataServ.currentWalletAddress.subscribe(
       (walletAddress: string) => {
         if(walletAddress) {
-          this.lockerServ.getAllLockersByUser(walletAddress, 100, 0).subscribe(
+          this.lockerServ.getAllLpLockersByUser(walletAddress, 100, 0).subscribe(
             (lockers) => {
               this.lockers = lockers;
             }
@@ -50,6 +51,10 @@ export class LockersComponent implements OnInit {
 
   showCoinName(coinType) {
     return this.utilServ.getCoinNameByTypeId(coinType);
+  }
+
+  showAmount(amount) {
+    return this.utilServ.showAmount(amount, 18);
   }
 
   timeConverter(UNIX_timestamp){
@@ -87,19 +92,9 @@ export class LockersComponent implements OnInit {
     const abi = {
       "inputs": [
         {
-          "internalType": "bytes32",
-          "name": "_id",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "address",
-          "name": "_lockerOwner",
-          "type": "address"
-        },
-        {
-          "internalType": "uint16",
-          "name": "_lockPeriod",
-          "type": "uint16"
+          "internalType": "uint256",
+          "name": "_lockerId",
+          "type": "uint256"
         }
       ],
       "name": "releaseLocker",
@@ -111,9 +106,7 @@ export class LockersComponent implements OnInit {
     };
 
     const args = [
-      this.locker.id,
-      this.locker.user,
-      this.locker.lockedDays
+      this.locker.id
     ];
 
     const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, this.locker.address, abi, args);
@@ -124,4 +117,5 @@ export class LockersComponent implements OnInit {
       this.toastr.error('Error while releasing locker');
     }
   }
+
 }
