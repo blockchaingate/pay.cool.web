@@ -8,9 +8,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of rewards">
-        <td>{{item.user}}</td>
+        <td>{{showId(item.user)}}</td>
         <td>{{item.type}}</td>
-        <td>{{item.amount}} {{item.coin}}</td>
+        <td>{{item.rewardAmount}} {{item.rewardCoin}}</td>
       </tr>
     </tbody>
 </table>

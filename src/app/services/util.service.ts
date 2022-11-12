@@ -28,6 +28,10 @@ export class UtilService {
         return 8;
     }
 
+    showId(id) {
+        return id.substring(0, 3) + '...' + id.substring(id.length - 3);
+    }
+    
     showName(name) {
         if(!name) {
           return '';

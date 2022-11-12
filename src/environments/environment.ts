@@ -145,18 +145,18 @@ export const environment = {
         FAB: '1FNEhT8uTmrEMvHGCGohnEFv6Q1z4qRhQu'
     },
     smartContract: {
-        
+        smartConractProjectUserRelation: '0xc8379312d5e9188bb8e8b40ede24da9141575925',
         smartConractMerchantInfo: '0xcf6b25bc02b8d9a59f84a2ed8dedb6e1c495737b',
-        smartConractFeeCharger: '0x84abbbc0ccfb542787da81de570583e8e127cd2f',
         smartContractMerchantNode: '0xc2f52d79994ed8f0b68e73edf28f3f562da75a06',
+        smartConractAdressReferral: '0xa76af08ba89012e617cd33641f70cb6c2ec957e6',
+        /*
+        smartConractFeeCharger: '0x84abbbc0ccfb542787da81de570583e8e127cd2f',
         smartContractRewardDistribution: '0x6ef9ad58f8ac314b42e97078a1967d1375adb32d',
         smartConractAdressExchangeRate: '0x44b9c6409fbb133f4f0ebbb07b4fb61c0d20181b',
-        smartConractAdressReferral: '0xa76af08ba89012e617cd33641f70cb6c2ec957e6',
-        smartConractProjectUserRelation: '0xc8379312d5e9188bb8e8b40ede24da9141575925',
         smartContractLocker: '0x266a9a762edd46a7f183cd81e0bf5057d630f03c',
         smartContractZap: '0xefd18bf4b9f14fc182e24302bb41a80a68e8ecf2',
         smartContractPackage: '0xb19c9516de58b9f636c5e1e9ccabd4375fde6a61',
-        
+        */
         feeDistribution: '0x81dd9357bf85bdb272e9ee1ec0ec2baa8bdffd06',
         locker: '0xab64a2a910a6dda85620a109cd012bb4a7b20b6f',
         exchangeRate: '0xb9622a9e96ea64bcb0bafc609f810994250f0db4',

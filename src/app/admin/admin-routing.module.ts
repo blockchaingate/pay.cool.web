@@ -4,9 +4,7 @@ import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { StoresComponent } from './pages/stores/stores.component';
 import { StoreApproveComponent } from './pages/store-approve/store-approve.component';
-import { ExchangeRateComponent } from './pages/exchange-rate/exchange-rate.component';
 import { FeeDistributionComponent } from './pages/fee-distribution/fee-distribution.component';
-import { ExchangeRateAddComponent } from './pages/exchange-rate-add/exchange-rate-add.component';
 import { FeeDistributionUpdateRewardCoinsComponent } from './pages/fee-distribution-update-reward-coins/fee-distribution-update-reward-coins.component';
 import { FeeDistributionUpdateRewardPercentagesComponent } from './pages/fee-distribution-update-reward-percentages/fee-distribution-update-reward-percentages.component';
 import { FeeDistributionUpdatePaymentFeeRateComponent } from './pages/fee-distribution-update-payment-fee-rate/fee-distribution-update-payment-fee-rate.component';
@@ -101,13 +99,7 @@ const routes: Routes = [
         path: 'fiat-customer', component: FiatCustomerComponent
       },      
       {
-        path: 'exchange-rate', component: ExchangeRateComponent
-      },
-      {
         path: 'all-reward-details', component: AllRewardDetailsComponent
-      },
-      {
-        path: 'exchange-rate/:coinName/edit', component: ExchangeRateAddComponent
       },
       {
         path: 'fee-distribution', component: FeeDistributionComponent

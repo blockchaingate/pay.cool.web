@@ -145,11 +145,12 @@ addresses: {
     },
 
     smartContract: {
-        smartConractMerchantInfo: '',
-        smartConractFeeCharger: '',
-        smartConractAdressExchangeRate: '',
+
+        smartConractProjectUserRelation: '0x3a2de98050a41d09ffbf62796d627d8d47c4a884',
+        smartConractMerchantInfo: '0xcc6560a65909c2320b13b8797fc4f44b78230707',
+        smartContractMerchantNode: '0x9add9cfa6fa78b5ddc2d79b6ae8fd993f26ea1b5',
         smartConractAdressReferral: '0x1c6acdff5fd3f7e732083f5f6d3950d08f345e9b',
-        
+
         feeDistribution: '0xf3b46ef452099ec2b6f81644b6da75c91c5e116a',
         locker: '0x08283086b2192666128b7a6eaf66df2dfd3f1b6b',
         exchangeRate: '0xc790135e17490400a46bebff9efcc77dac39bdcf',
