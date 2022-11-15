@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { StoresComponent } from './pages/stores/stores.component';
 import { StoreApproveComponent } from './pages/store-approve/store-approve.component';
 import { FeeDistributionComponent } from './pages/fee-distribution/fee-distribution.component';
 import { FeeDistributionUpdateRewardCoinsComponent } from './pages/fee-distribution-update-reward-coins/fee-distribution-update-reward-coins.component';
@@ -31,6 +30,7 @@ import { ProjectEditComponent } from './pages/project-edit/project-edit.componen
 import { ProjectPackagesComponent } from './pages/project-packages/project-packages.component';
 import { ProjectPackageAddComponent } from './pages/project-package-add/project-package-add.component';
 import { ProjectPackageEditComponent } from './pages/project-package-edit/project-package-edit.component';
+import { UserReferralEditComponent } from './pages/user-referral-edit/user-referral-edit.component';
 
 import { 
   WalletGuardService as WalletGuard 
@@ -80,6 +80,9 @@ const routes: Routes = [
       {
         path: 'users', component: UserReferralsComponent
       },  
+      {
+        path: 'user-edit/:id', component: UserReferralEditComponent
+      }, 
       {
         path: 'vips', component: VipsComponent
       },  

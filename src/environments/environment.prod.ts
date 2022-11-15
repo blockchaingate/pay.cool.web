@@ -139,6 +139,7 @@ export const environment = {
     hpp_key: 'hpRS5R56OATG'
   },  
 addresses: {
+    Referral_ROOT: '13XarB3tKd54WDTrhegxdTMpf8QKTU2t2g',
     ecombarOfficial: {
         ETH: '0x0dF198C80893c1373a11AdE9ad6454181aE18E73',
         FAB: '1FNEhT8uTmrEMvHGCGohnEFv6Q1z4qRhQu'
@@ -147,7 +148,7 @@ addresses: {
     smartContract: {
 
         smartConractProjectUserRelation: '0x3a2de98050a41d09ffbf62796d627d8d47c4a884',
-        smartConractMerchantInfo: '0xcc6560a65909c2320b13b8797fc4f44b78230707',
+        smartConractMerchantInfo: '',
         smartContractMerchantNode: '0x9add9cfa6fa78b5ddc2d79b6ae8fd993f26ea1b5',
         smartConractAdressReferral: '0x1c6acdff5fd3f7e732083f5f6d3950d08f345e9b',
 

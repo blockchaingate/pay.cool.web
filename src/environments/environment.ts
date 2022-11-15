@@ -146,7 +146,7 @@ export const environment = {
     },
     smartContract: {
         smartConractProjectUserRelation: '0xc8379312d5e9188bb8e8b40ede24da9141575925',
-        smartConractMerchantInfo: '0xcf6b25bc02b8d9a59f84a2ed8dedb6e1c495737b',
+        smartConractMerchantInfo: '0xab9f22b6bb7a134cb0058bc4582d5ce043269700',
         smartContractMerchantNode: '0xc2f52d79994ed8f0b68e73edf28f3f562da75a06',
         smartConractAdressReferral: '0xa76af08ba89012e617cd33641f70cb6c2ec957e6',
         /*

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserReferralService } from 'src/app/services/userreferral.service';
 import { environment } from 'src/environments/environment';
 
@@ -10,7 +11,9 @@ import { environment } from 'src/environments/environment';
 export class UserReferralsComponent implements OnInit {
   users: any;
 
-  constructor(private userreferralServ: UserReferralService) { }
+  constructor(
+    private router: Router,
+    private userreferralServ: UserReferralService) { }
 
   ngOnInit(): void {
     this.userreferralServ.getTree(environment.addresses.Referral_ROOT).subscribe(
@@ -32,8 +35,8 @@ export class UserReferralsComponent implements OnInit {
     return status;
   }
 
-  changeStatus(item_id) {
-
+  edit(userAddress: string) {
+    this.router.navigate(['/admin/user-edit/' + userAddress]);
   }
 
   

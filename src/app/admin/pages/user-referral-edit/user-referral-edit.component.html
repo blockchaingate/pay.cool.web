@@ -1,0 +1,14 @@
+<div class="container">
+    <div>change for address: {{id}}</div>
+    <div class="row">
+        <div class="col col-md-6">
+            <div>
+                <label for="email"><b>{{'New referral' | translate}}</b></label>
+                <input type="text" placeholder="Enter new referral address" [(ngModel)]="newReferral" name="newReferral">    
+            </div>
+            <div>
+                <button class="btn signinbtn" (click)="modifyReferral()">{{('Modify Referral') | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

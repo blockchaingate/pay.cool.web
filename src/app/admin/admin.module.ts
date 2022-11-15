@@ -38,6 +38,7 @@ import { ProjectEditComponent } from './pages/project-edit/project-edit.componen
 import { ProjectPackagesComponent } from './pages/project-packages/project-packages.component';
 import { ProjectPackageAddComponent } from './pages/project-package-add/project-package-add.component';
 import { ProjectPackageEditComponent } from './pages/project-package-edit/project-package-edit.component';
+import { UserReferralEditComponent } from './pages/user-referral-edit/user-referral-edit.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { ProjectPackageEditComponent } from './pages/project-package-edit/projec
     ProjectEditComponent,
     ProjectPackagesComponent,
     ProjectPackageAddComponent,
-    ProjectPackageEditComponent
+    ProjectPackageEditComponent,
+    UserReferralEditComponent
   ],
   imports: [
     AdminRoutingModule,
