@@ -139,6 +139,8 @@ export const environment = {
     hpp_key: 'hpRS5R56OATG'
   },  
 addresses: {
+    Referral_ROOT: '0x1bb8fc3312c2c7c8394ccadd68cffcfcee23fa44',
+
     ecombarOfficial: {
         ETH: '0x0dF198C80893c1373a11AdE9ad6454181aE18E73',
         FAB: '1FNEhT8uTmrEMvHGCGohnEFv6Q1z4qRhQu'
