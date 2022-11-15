@@ -39,7 +39,6 @@ export class NewMerchantComponent implements OnInit {
   businessContents: string;
   rebateRate: number;
   coin: string;
-  rewardCoin: string;
   taxRate: number;
   id: string;
   walletAddress: string;
@@ -141,7 +140,6 @@ export class NewMerchantComponent implements OnInit {
 
           this.rebateRate = store.giveAwayRate;
           this.coin = store.coin;
-          this.rewardCoin = store.rewardCoin;
           this.taxRate = store.taxRate;
           this.lockedDays = store.lockedDays;
           this.referral = store.refAddress;
@@ -156,10 +154,7 @@ export class NewMerchantComponent implements OnInit {
       this.toastr.info('no merchant logo');
       return;
     }
-    if(!this.rewardCoin) {
-      this.toastr.info('no reward coin');
-      return;
-    }
+
     const initialState = {
       pwdHash: this.wallet.pwdHash,
       encryptedSeed: this.wallet.encryptedSeed
@@ -212,7 +207,6 @@ export class NewMerchantComponent implements OnInit {
       },
       rebateRate: this.rebateRate,
       coin: this.coin,
-      rewardCoin: this.rewardCoin,
       address,
       taxRate: this.taxRate,
       lockedDays: this.lockedDays,

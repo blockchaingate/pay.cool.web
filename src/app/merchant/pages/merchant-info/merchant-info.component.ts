@@ -39,7 +39,6 @@ export class MerchantInfoComponent implements OnInit {
   businessContents: string;
   rebateRate: number;
   coin: string;
-  rewardCoin: string;
   taxRate: number;
   id: string;
   walletAddress: string;
@@ -89,7 +88,6 @@ export class MerchantInfoComponent implements OnInit {
               this.businessContentsChinese = merchant.businessContents.sc;
               this.rebateRate = merchant.rebateRate;
               this.coin = merchant.coin;
-              this.rewardCoin = merchant.rewardCoin;
               this.taxRate = merchant.taxRate;
               this.lockedDays = merchant.lockedDays;
               this.hideOnStore = merchant.hideOnStore;
@@ -159,7 +157,6 @@ export class MerchantInfoComponent implements OnInit {
       },
       rebateRate: this.rebateRate,
       coin: this.coin,
-      rewardCoin: this.rewardCoin,
       taxRate: this.taxRate,
       lockedDays: this.lockedDays,
       hideOnStore: this.hideOnStore
