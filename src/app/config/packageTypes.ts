@@ -1,21 +1,21 @@
 export var packageTypes = [
     {
         name: {
-          en:'taocan',
+          en:'Package',
           sc: '套餐'
         },
         value: 0 
       },
       {
         name: {
-          en:'yuefen',
+          en:'Fee(M)',
           sc: '月费'
         },
         value: 1 
       },
       {
         name: {
-          en:'taocan',
+          en:'Fee(Y)',
           sc: '年费'
         },
         value: 2 
