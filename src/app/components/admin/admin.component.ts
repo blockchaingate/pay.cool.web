@@ -7,7 +7,6 @@ import { LocalStorage } from '@ngx-pwa/local-storage';
 import { Web3Service } from '../../services/web3.service';
 import { UtilService } from '../../services/util.service';
 import { environment } from '../../../environments/environment';
-import { StarService } from '../../services/star.service';
 import { UserReferralService } from 'src/app/services/userreferral.service';
 
 @Component({
@@ -16,26 +15,40 @@ import { UserReferralService } from 'src/app/services/userreferral.service';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  walletAddr: string;
-  rootWalletAddr: string;
+  status: number;
+  statuses: any = [
+    {
+      text: 'basic',
+      value: 0
+    },
+    {
+      text: 'junior',
+      value: 1
+    },
+    {
+      text: 'senior',
+      value: 2
+    },
+    {
+      text: 'executive',
+      value: 3
+    },
+  ];
+
   referal: string;
-  from: string;
-  children: any;
-  noFollower: boolean;
-  to: string;
+  user: string;
+  users: string;
   txid: string;
-  followers: any;
   isContractOwner: boolean;
   smartContractAddr: string;
   walletAdd: string;
   modalRef: BsModalRef;
-  coins: any;
   wallet: any;
   constructor(
     private toastr: ToastrService,
     private localSt: LocalStorage,
     private web3Serv: Web3Service,
-    private starServ: StarService,
+    private userReferralServ: UserReferralService,
     public utilServ: UtilService,
     private userreferralServ: UserReferralService,
     private kanbanSmartContractServ:KanbanSmartContractService,
@@ -49,14 +62,14 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.smartContractAddr = environment.addresses.smartContract.SEVENSTAR_ENROLLMENT;
+    this.smartContractAddr = environment.addresses.smartContract.smartConractAdressReferral;
     this.localSt.getItem('ecomwallets').subscribe((wallets: any) => {
       if (!wallets || (wallets.length == 0)) {
         return;
       }
       this.wallet = wallets.items[wallets.currentIndex];
       this.walletAdd = this.wallet.addresses.filter(c => c.name === 'FAB')[0].address;
-      this.starServ.isContractOwner(this.walletAdd).subscribe(
+      this.userReferralServ.isContractOwner(this.walletAdd).subscribe(
         (res: any) => {
           console.log('res==', res);
           this.isContractOwner = res.isContractOwner;
@@ -64,12 +77,6 @@ export class AdminComponent implements OnInit {
       );      
     });
 
-    this.rootWalletAddr = environment.production ? '0x9d95ee21e4f1b05bbfd0094daf4ce110deb00931' : '0x0000000000000000000000000000000000000001';
-    this.userreferralServ.getTree(this.rootWalletAddr).subscribe(
-      (res: any) => {
-        this.children = res;
-      }
-    );
   }
 
   async execSmartContract(seed, abi, args) {
@@ -81,9 +88,7 @@ export class AdminComponent implements OnInit {
     if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
       this.txid = ret._body.transactionHash;
       this.referal = '';
-      this.walletAddr = '';
-      this.from = '';
-      this.to = '';
+      this.user = '';
       this.toastr.success('Transaction was made, txid is: ' + this.txid);
     } else {
       this.toastr.error('Transaction failed');
@@ -91,8 +96,7 @@ export class AdminComponent implements OnInit {
 
   }
   
-  join() {
-
+  doWithAbiArgs(abi, args) {
     const initialState = {
       pwdHash: this.wallet.pwdHash,
       encryptedSeed: this.wallet.encryptedSeed
@@ -102,194 +106,201 @@ export class AdminComponent implements OnInit {
 
     this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
       //console.log('seed===', seed);
-      const abi = {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_walletAddr",
-            "type": "address"
-          },
-          {
-            "name": "_referral",
-            "type": "address"
-          }
-        ],
-        "name": "join",
-        "outputs": [
-          
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      };
-      const args =
-        [
-          this.tranformAddress(this.walletAddr), 
-          this.tranformAddress(this.referal)
-        ];
+
       this.execSmartContract(seed, abi, args);
     }); 
   }
-
-  deleteLink() {
-
-    const initialState = {
-      pwdHash: this.wallet.pwdHash,
-      encryptedSeed: this.wallet.encryptedSeed
-    };   
-
-    this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
-
-    this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
-      //console.log('seed===', seed);
-      const abi = {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_walletAddr",
-            "type": "address"
-          }
-        ],
-        "name": "deleteLink",
-        "outputs": [
-          
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      };
-      const args = [
-          this.tranformAddress(this.walletAddr)
-        ];
-      this.execSmartContract(seed, abi, args);
-    }); 
-  }
-
-  joinSubtree() {
-
-    const initialState = {
-      pwdHash: this.wallet.pwdHash,
-      encryptedSeed: this.wallet.encryptedSeed
-    };   
-
-    this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
-
-    this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
-      //console.log('seed===', seed);
-      const abi = {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_walletAddr",
-            "type": "address"
-          },
-          {
-            "name": "_referral",
-            "type": "address"
-          }
-        ],
-        "name": "joinSubtree",
-        "outputs": [
-          
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      };
-      const args = 
-        [
-          this.tranformAddress(this.walletAddr), 
-          this.tranformAddress(this.referal)
-        ];
-      this.execSmartContract(seed, abi, args);
-    }); 
-  }
-
-  modifyReferRecord() {
-    const initialState = {
-      pwdHash: this.wallet.pwdHash,
-      encryptedSeed: this.wallet.encryptedSeed
-    };  
-
-    this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
-
-    this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
-      //console.log('seed===', seed);
-      const abi = {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_walletAddr",
-            "type": "address"
-          },
-          {
-            "name": "_referral",
-            "type": "address"
-          },
-          {
-            "name": "_coinType",
-            "type": "uint32"
-          }
-        ],
-        "name": "transferToJoin",
-        "outputs": [
-          
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      }
-      const args = 
-        [
-          this.tranformAddress(this.from), 
-          this.tranformAddress(this.to)
-        ];
-      this.execSmartContract(seed, abi, args);
-    }); 
-  }
-
-  getFollowers() {
-    this.followers = [];
-    this.noFollower = false;
+  createAccountByAdmin() {
+    if(!this.status) {
+      this.toastr.info('Status not selected');
+      return;
+    }
     const abi = {
-      "constant": true,
       "inputs": [
         {
-          "name": "_walletAddr",
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_referral",
+          "type": "address"
+        },
+        {
+          "internalType": "uint16",
+          "name": "_status",
+          "type": "uint16"
+        }
+      ],
+      "name": "createAccountByAdmin",
+      "outputs": [
+        
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    };
+
+    const args =
+      [
+        this.tranformAddress(this.user), 
+        this.tranformAddress(this.referal),
+        this.status
+    ];
+    console.log('args for createAccountByAdmin====', args);
+    this.doWithAbiArgs(abi, args);
+  }
+
+
+
+  modifyReferRecord() {
+    const abi = {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_newReferral",
           "type": "address"
         }
       ],
-      "name": "getMyFollower",
+      "name": "modifyReferral",
       "outputs": [
-        {
-          "name": "",
-          "type": "address[]"
-        }
+        
       ],
-      "payable": false,
-      "stateMutability": "view",
+      "stateMutability": "nonpayable",
       "type": "function"
     };
     const args = 
       [
-        this.tranformAddress(this.rootWalletAddr)
-      ]; 
-    const to = environment.addresses.smartContract.SEVENSTAR_ENROLLMENT; 
-    this.kanbanSmartContractServ.call(to, abi, args).subscribe(
-      (ret: any) => {
-        console.log('ret==', ret);
-        const data = ret.data;
-        const decoded = this.web3Serv.decodeParameter('address[]', data);
-        console.log('decoded==', decoded);
-        if(!decoded || decoded.length == 0) {
-          this.noFollower = true;
-          return;
-        }
-        this.followers = decoded.map(
-          item => this.utilServ.exgToFabAddress(item)
-        );
+        this.tranformAddress(this.user), 
+        this.tranformAddress(this.referal)
+    ];
+    this.doWithAbiArgs(abi, args);
+  }
 
-      }
-    );
+  modifyReferralAndStatus() {
+    const abi = {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_newReferral",
+          "type": "address"
+        },
+        {
+          "internalType": "uint16",
+          "name": "_newStatus",
+          "type": "uint16"
+        }
+      ],
+      "name": "modifyReferralAndStatus",
+      "outputs": [
+        
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    };
+    const args = 
+      [
+        this.tranformAddress(this.user), 
+        this.tranformAddress(this.referal),
+        this.status
+    ];
+    this.doWithAbiArgs(abi, args);
+  }
+
+  modifyStatus() {
+    const abi = {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        },
+        {
+          "internalType": "uint16",
+          "name": "_newStatus",
+          "type": "uint16"
+        }
+      ],
+      "name": "modifyStatus",
+      "outputs": [
+        
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    };
+    const args = 
+      [
+        this.tranformAddress(this.user), 
+        this.status
+    ];
+    this.doWithAbiArgs(abi, args);
+  }
+
+  createMultipleAccounts() {
+    const abi = {
+      "inputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "_users",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "address",
+          "name": "_referral",
+          "type": "address"
+        }
+      ],
+      "name": "createMultipleAccounts",
+      "outputs": [
+        
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    };
+    const users = this.users.split(',').map(item => this.utilServ.fabToExgAddress(item));
+    const args = [
+      users,
+      this.referal
+    ]
+    this.doWithAbiArgs(abi, args);
+  }
+
+  modifyReferralForUsers() {
+    const abi = {
+      "inputs": [
+        {
+          "internalType": "address[]",
+          "name": "_users",
+          "type": "address[]"
+        },
+        {
+          "internalType": "address",
+          "name": "_newReferral",
+          "type": "address"
+        }
+      ],
+      "name": "modifyReferralForUsers",
+      "outputs": [
+        
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    };
+    const users = this.users.split(',').map(item => this.utilServ.fabToExgAddress(item));
+    const args = [
+      users,
+      this.status
+    ]
+    this.doWithAbiArgs(abi, args);
   }
 }

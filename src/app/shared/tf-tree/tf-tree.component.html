@@ -3,9 +3,8 @@
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
       <!-- use a disabled button to provide padding for tree leaf -->
       <button mat-icon-button disabled></button>
-      {{node.id}} (
+      {{node.user}} (
           {{node.downlines}}
-          <span *ngIf="node.keyNode">,{{'Vip' | translate}}</span>
        )
     </mat-tree-node>
     <!-- This is the tree node template for expandable nodes -->
@@ -16,9 +15,8 @@
           {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
         </mat-icon>
       </button>
-      {{node.id}} (
+      {{node.user}} (
           {{node.downlines}}
-          <span *ngIf="node.keyNode">,{{'Vip' | translate}}</span>
        )
     </mat-tree-node>
   </mat-tree>

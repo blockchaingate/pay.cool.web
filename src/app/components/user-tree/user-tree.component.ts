@@ -93,7 +93,7 @@ export class UserTreeComponent implements OnInit {
         if(res && res.isValid) {
           this.myReferralUrl = window.location.href + '?ref=' + this.walletAddress;
 
-          this.userreferralServ.getTree(this.walletAddress).toPromise().then(
+          this.userreferralServ.getTree(this.walletAddress).subscribe(
             (res: any) => {
               this.children = res;
               document.getElementById("myWalletId").focus();

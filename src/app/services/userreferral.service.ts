@@ -17,4 +17,9 @@ export class UserReferralService {
     const url = environment.endpoints.api + 'userreferral/isValid/' + address;
     return this.http.get(url);
    }   
+
+   isContractOwner(address: string) {
+      const url = environment.endpoints.api + 'userreferral/isContractOwner/' + address;
+      return this.http.get(url);
+   }
 }

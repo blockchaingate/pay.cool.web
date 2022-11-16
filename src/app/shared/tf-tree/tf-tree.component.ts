@@ -7,7 +7,7 @@ import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
  * Each node has a name and an optional list of children.
  */
  interface FoodNode {
-  id: string;
+  user: string;
   children?: FoodNode[];
   smartContractAdd: string;
 }
@@ -45,7 +45,7 @@ const TREE_DATA: FoodNode[] = [
 /** Flat node with expandable and level information */
 interface ExampleFlatNode {
   expandable: boolean;
-  id: string;
+  user: string;
   downlines: number;
   keyNode: boolean;
   level: number;
@@ -69,7 +69,7 @@ export class TfTreeComponent implements OnInit {
   private _transformer = (node: FoodNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
-      id: node.id,
+      user: node.user,
       downlines: !!node.children && node.children.length > 0 ? node.children.length : 0,
       keyNode: node.smartContractAdd ? true : false,
       level: level,
