@@ -7,13 +7,13 @@
     <ul class="responsive-table">
       <li class="table-header">
         <div class="col col-4">{{'User' | translate}}</div>
-        <div class="col col-4">{{'Project id' | translate}}</div>
+        <div class="col col-4">{{'Project' | translate}}</div>
         <div class="col col-4">{{'Status' | translate}}</div>
       </li>
       <li class="table-row" *ngFor="let item of projectusers">
         <div class="col col-4" data-label="User">{{item.user}}</div>
-        <div class="col col-4" data-label="Project id">{{item.projectId}}</div>
-        <div class="col col-4" data-label="Status">{{item.status}}</div>
+        <div class="col col-4" data-label="Project">{{showProjectName(item.projectId)}}</div>
+        <div class="col col-4" data-label="Status">{{showStatus(item.status)}}</div>
       </li>
     </ul>
 </div>

@@ -22,4 +22,9 @@ export class UserReferralService {
       const url = environment.endpoints.api + 'userreferral/isContractOwner/' + address;
       return this.http.get(url);
    }
+
+   get(address: string) {
+      const url = environment.endpoints.api + 'userreferral/user/' + address;
+      return this.http.get(url);
+   }
 }

@@ -153,6 +153,48 @@
             </div>
         </div>     
     </div>
+
+    <div class="row p-2">
+        <div class="col col-6">
+            <div class="card p-3">
+                <div>getReferral</div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">{{"user"|translate}}</label>
+                    <input type="text" class="form-control" id="user" [(ngModel)]="user" aria-describedby="user" placeholder="{{'user'| translate}}">
+                </div>
+
+                <div class="text-center">
+                    <button class="btn add-wallet btnitem black handcursor" (click)="getReferral()">
+                        {{"getReferral"| translate }}
+                    </button>                    
+                </div>  
+                <div class="text-center pt-2">
+                    {{userreferal}}
+                </div>
+            </div>
+        </div>    
+        
+        <div class="col col-6">
+            <div class="card p-3">
+                <div>getChildren</div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">{{"user"|translate}}</label>
+                    <input type="text" class="form-control" id="user" [(ngModel)]="user" aria-describedby="user" placeholder="{{'user'| translate}}">
+                </div>
+
+                <div class="text-center">
+                    <button class="btn add-wallet btnitem black handcursor" (click)="getChildren()">
+                        {{"getChildren"| translate }}
+                    </button>                    
+                </div>  
+                <div class="text-center pt-2">
+                    <div *ngFor="let item of children">
+                        {{item}}
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
 </div>
 
 <div class="container text-center" *ngIf="!isContractOwner">

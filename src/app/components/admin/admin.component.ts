@@ -8,7 +8,7 @@ import { Web3Service } from '../../services/web3.service';
 import { UtilService } from '../../services/util.service';
 import { environment } from '../../../environments/environment';
 import { UserReferralService } from 'src/app/services/userreferral.service';
-
+import { statuses } from '../../config/statuses';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -16,28 +16,7 @@ import { UserReferralService } from 'src/app/services/userreferral.service';
 })
 export class AdminComponent implements OnInit {
   status: number;
-  statuses: any = [
-    {
-      text: 'basic',
-      value: 0
-    },
-    {
-      text: 'junior',
-      value: 1
-    },
-    {
-      text: 'intermediate',
-      value: 2
-    },
-    {
-      text: 'senior',
-      value: 3
-    },
-    {
-      text: 'executive',
-      value: 4
-    },
-  ];
+  statuses: any = statuses;
 
   referal: string;
   user: string;
@@ -46,6 +25,8 @@ export class AdminComponent implements OnInit {
   isContractOwner: boolean;
   smartContractAddr: string;
   walletAdd: string;
+  userreferal: string;
+  children: any;
   modalRef: BsModalRef;
   wallet: any;
 
@@ -55,7 +36,6 @@ export class AdminComponent implements OnInit {
     private web3Serv: Web3Service,
     private userReferralServ: UserReferralService,
     public utilServ: UtilService,
-    private userreferralServ: UserReferralService,
     private kanbanSmartContractServ:KanbanSmartContractService,
     private modalService: BsModalService) { }
 
@@ -306,5 +286,23 @@ export class AdminComponent implements OnInit {
       this.tranformAddress(this.referal)
     ]
     this.doWithAbiArgs(abi, args);
+  }
+
+  getReferral() {
+    this.userReferralServ.get(this.user).subscribe(
+      (user: any) => {
+        this.userreferal = user.referral;
+      }
+    );
+  }
+
+  getChildren() {
+    this.userReferralServ.getTree(this.user).subscribe(
+      (users: any) => {
+        if(users && users.length > 0) {
+          this.children = users.map(item => item.user);
+        }
+      }
+    );
   }
 }

@@ -7,7 +7,6 @@ import { KanbanSmartContractService } from 'src/app/services/kanban.smartcontrac
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { UtilService } from 'src/app/services/util.service';
-import { Web3Service } from 'src/app/services/web3.service';
 
 @Component({
   selector: 'app-merchant-node-add',

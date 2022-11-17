@@ -7,7 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 import { KanbanSmartContractService } from 'src/app/services/kanban.smartcontract.service';
 import { DataService } from 'src/app/services/data.service';
 import { UtilService } from 'src/app/services/util.service';
-
+import { statuses } from '../../../config/statuses';
+import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
   selector: 'app-project-user-add',
@@ -15,8 +16,9 @@ import { UtilService } from 'src/app/services/util.service';
   styleUrls: ['./project-user-add.component.scss']
 })
 export class ProjectUserAddComponent implements OnInit {
-
+  statuses = statuses;
   projectId: string;
+  projects: any;
   user: string;
   status: number;
 
@@ -28,7 +30,8 @@ export class ProjectUserAddComponent implements OnInit {
     private router: Router,
     private dataServ: DataService,
     private toastr: ToastrService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private projectServ: ProjectService
   ) { }
 
   ngOnInit(): void {
@@ -37,8 +40,16 @@ export class ProjectUserAddComponent implements OnInit {
         this.wallet = wallet;
       }
     ); 
+
+    this.projectServ.getAllProjects(100,0).subscribe(
+      projects => this.projects = projects
+    );
   }
 
+  showName(name) {
+    return this.utilServ.showName(name);
+  }
+  
   confirm() {
     const initialState = {
       pwdHash: this.wallet.pwdHash,

@@ -3,10 +3,6 @@ miRQX5qtA9UfAr8BctxiaUYrnnxA9HnkUE     myruZw34BRTP89kNGYjsGJobg2CsnbhuEa
 myruZw34BRTP89kNGYjsGJobg2CsnbhuEa     mn31AY98bfabXe7ff6L3MYC3qbuYFzifHD
 mn31AY98bfabXe7ff6L3MYC3qbuYFzifHD     miRQX5qtA9UfAr8BctxiaUYrnnxA9HnkUE
 
-miRQX5qtA9UfAr8BctxiaUYrnnxA9HnkUE
-myruZw34BRTP89kNGYjsGJobg2CsnbhuEa
-mn31AY98bfabXe7ff6L3MYC3qbuYFzifHD
-
 
 txid:
 0xde032de2fc1d59ccfebebab675d6d91cd111ed471290802cc29a4f05a77ac3af
