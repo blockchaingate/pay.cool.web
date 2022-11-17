@@ -141,12 +141,9 @@
                 </div>
     
                 <div class="form-group">
-                    <label for="exampleInputEmail1">{{"Status"|translate}} *</label>
-                    <select [(ngModel)]="status" name="status" class="form-select form-select-sm mb-3 small coinselect" aria-label=".form-select-lg example">
-                        <option value="">{{'Select status' | translate}}:</option>
-                        <option *ngFor="let item of statuses" value="{{item.value}}">{{item.text}}</option>
-                    </select>
-                </div>  
+                    <label for="exampleInputEmail1">{{"Referal"|translate}} *</label>
+                    <input type="text" class="form-control" id="referal" [(ngModel)]="referal" aria-describedby="referal" placeholder="{{'referal'| translate}}">
+                </div>    
  
                 <div class="text-center">
                     <button class="btn add-wallet btnitem black handcursor" (click)="modifyReferralForUsers()">

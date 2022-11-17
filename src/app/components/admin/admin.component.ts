@@ -267,10 +267,10 @@ export class AdminComponent implements OnInit {
       "stateMutability": "nonpayable",
       "type": "function"
     };
-    const users = this.users.split(',').map(item => this.utilServ.fabToExgAddress(item));
+    const users = this.users.split(',').map(item => this.utilServ.fabToExgAddress(item.trim()));
     const args = [
       users,
-      this.referal
+      this.tranformAddress(this.referal)
     ]
     this.doWithAbiArgs(abi, args);
   }
@@ -296,10 +296,10 @@ export class AdminComponent implements OnInit {
       "stateMutability": "nonpayable",
       "type": "function"
     };
-    const users = this.users.split(',').map(item => this.utilServ.fabToExgAddress(item));
+    const users = this.users.split(',').map(item => this.utilServ.fabToExgAddress(item.trim()));
     const args = [
       users,
-      this.status
+      this.tranformAddress(this.referal)
     ]
     this.doWithAbiArgs(abi, args);
   }
