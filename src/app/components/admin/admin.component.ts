@@ -26,12 +26,16 @@ export class AdminComponent implements OnInit {
       value: 1
     },
     {
-      text: 'senior',
+      text: 'intermediate',
       value: 2
     },
     {
-      text: 'executive',
+      text: 'senior',
       value: 3
+    },
+    {
+      text: 'executive',
+      value: 4
     },
   ];
 
@@ -44,6 +48,7 @@ export class AdminComponent implements OnInit {
   walletAdd: string;
   modalRef: BsModalRef;
   wallet: any;
+
   constructor(
     private toastr: ToastrService,
     private localSt: LocalStorage,
@@ -110,6 +115,7 @@ export class AdminComponent implements OnInit {
       this.execSmartContract(seed, abi, args);
     }); 
   }
+
   createAccountByAdmin() {
     if(!this.status) {
       this.toastr.info('Status not selected');
@@ -150,8 +156,6 @@ export class AdminComponent implements OnInit {
     console.log('args for createAccountByAdmin====', args);
     this.doWithAbiArgs(abi, args);
   }
-
-
 
   modifyReferRecord() {
     const abi = {
