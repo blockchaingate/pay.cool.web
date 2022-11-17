@@ -62,6 +62,7 @@ export class PaycoolComponent implements OnInit{
             this.data = params['data'];
             this.id = params['i'];
             this.templateId = params['t'];
+            console.log('ttttid=', this.templateId);
             if(this.data) {
               this.args = this.web3Serv.decodeData(['bytes32', 'uint32', 'uint256','uint256', 'address[]', 'address[]'], this.data.substring(10));
             }
@@ -111,10 +112,7 @@ export class PaycoolComponent implements OnInit{
 
 
     submit() {
-      if(!this.order) {
-        this.toastr.error('Reward info not found');
-        return;
-      }
+
         const initialState = {
             pwdHash: this.wallet.pwdHash,
             encryptedSeed: this.wallet.encryptedSeed
@@ -129,6 +127,7 @@ export class PaycoolComponent implements OnInit{
     }
 
     async submitDo(seed: Buffer) {
+      console.log('submitDo start');
       let abi;
       let args;
       let to;
@@ -208,8 +207,8 @@ export class PaycoolComponent implements OnInit{
           this.id = ret1._id;
           this.starServ.getPaycoolRewardInfo(this.id, this.walletAddress, this.payType).subscribe(
             (ret: any) => {
-              console.log('ret from here=', ret);
               this.order = ret;
+
               this.submitDo(seed);
             }
           );
