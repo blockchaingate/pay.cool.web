@@ -1,9 +1,8 @@
 <div style="border:1px solid #ccc">
     <div class="container">
-      <h1>{{'Add project user' | translate}}</h1>
+      <h1>{{'Add or update project user' | translate}}</h1>
       <hr>
 
-        <label for="email"><b>{{'Project id' | translate}}</b></label>
         <div class="form-group">
             <label for="exampleInputEmail1">{{"Project"|translate}} *</label>
             <select [(ngModel)]="projectId" name="project" class="form-select form-select-sm mb-3 small coinselect" aria-label=".form-select-lg example">
@@ -15,7 +14,6 @@
         <label for="email"><b>{{'User' | translate}}</b></label>
         <input type="text" placeholder="Enter user" [(ngModel)]="user" name="user" required>
 
-        <label for="email"><b>{{'Status' | translate}}</b></label>
         <div class="form-group">
             <label for="exampleInputEmail1">{{"Status"|translate}} *</label>
             <select [(ngModel)]="status" name="status" class="form-select form-select-sm mb-3 small coinselect" aria-label=".form-select-lg example">
