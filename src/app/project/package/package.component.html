@@ -9,6 +9,7 @@
             <div>{{showName(package.description)}}</div>
             <div>
                 <select [(ngModel)]="coin" name="coin">
+                    <option value="">{{'Select coin' | translate}}:</option>
                     <option *ngFor="let item of package.coins" value="{{item}}">{{item}}</option>
                 </select>                
             </div>

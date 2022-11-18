@@ -27,4 +27,11 @@ export class UserReferralService {
       const url = environment.endpoints.api + 'userreferral/user/' + address;
       return this.http.get(url);
    }
+
+   getAllUsers(pageSize: number, pageNum: number) {
+      return this.http.get(environment.endpoints.api + 'userreferral/' + pageSize + '/' + pageNum);
+   }   
+   getAllUsersTotalCount() {
+      return this.http.get(environment.endpoints.api + 'userreferral/totalCount');
+   } 
 }

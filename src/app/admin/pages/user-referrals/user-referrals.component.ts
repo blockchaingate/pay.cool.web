@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserReferralService } from 'src/app/services/userreferral.service';
-import { environment } from 'src/environments/environment';
+import { statuses } from '../../../config/statuses';
 
 @Component({
   selector: 'app-user-referrals',
@@ -10,29 +10,53 @@ import { environment } from 'src/environments/environment';
 })
 export class UserReferralsComponent implements OnInit {
   users: any;
-
+  pageSize = 10;
+  pageNum = 0;
+  statuses = statuses;
+  totalCount: number;
+  totalPageNum: number = 0; 
   constructor(
     private router: Router,
     private userreferralServ: UserReferralService) { }
 
   ngOnInit(): void {
-    this.userreferralServ.getTree(environment.addresses.Referral_ROOT).subscribe(
-      (items) => {
-        this.users = items;
+
+    this.userreferralServ.get
+    this.userreferralServ.getAllUsers(this.pageSize, this.pageNum).subscribe(
+      (ret: any) => {
+        this.users = ret;
+      }
+    );
+    this.userreferralServ.getAllUsersTotalCount().subscribe(
+      (ret: any) => {
+        this.totalCount = ret.totalCount;
+        this.totalPageNum = this.totalCount / this.pageSize;
       }
     );
   }
+
+  gotoPage(pageNum: number) {
+    if(pageNum < 0 || (pageNum > this.totalPageNum)) {
+      return;
+    }
+    this.pageNum = pageNum;
+    this.userreferralServ.getAllUsers(this.pageSize, this.pageNum).subscribe(
+      (ret: any) => {
+        this.users = ret;
+      }
+    );
+  } 
 
   showId(id: string) {
     return id.substring(0,5) + '...' + id.substring(id.length - 5);
   }
 
-  showStatus(item: any) {
-    let status = item.status;
-    if(item.newStatus && (item.newStatus > item.status)) {
-      status = item.newStatus;
+  showStatus(status: any) {
+    const statuses = this.statuses.filter(item => item.value == status);
+    if(statuses && statuses.length > 0) {
+      return statuses[0].text;
     }
-    return status;
+    return '';
   }
 
   edit(userAddress: string) {

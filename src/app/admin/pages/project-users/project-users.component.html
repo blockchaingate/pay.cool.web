@@ -1,4 +1,22 @@
 <div class="container">
+    <nav class="d-flex justify-content-center">
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" (click)="gotoPage(pageNum - 1)">Previous</a></li>
+        <li class="page-item" *ngIf="totalPageNum >= 0">
+          <a class="page-link" (click)="gotoPage(0)">1</a>
+        </li>
+        <li class="page-item" *ngIf="totalPageNum >= 1">
+          <a class="page-link" (click)="gotoPage(1)">2</a>
+        </li>
+        <li class="page-item" *ngIf="totalPageNum >= 2">
+          <a class="page-link" (click)="gotoPage(2)">3</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" (click)="gotoPage(pageNum + 1)">Next</a>
+        </li>
+      </ul>
+    </nav>
     <div>
         <a (click)="add()">
           <img src="/assets/svg/add.svg">
@@ -16,4 +34,24 @@
         <div class="col col-4" data-label="Status">{{showStatus(item.newStatus)}}</div>
       </li>
     </ul>
+
+    <nav class="d-flex justify-content-center">
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" (click)="gotoPage(pageNum - 1)">Previous</a></li>
+        <li class="page-item" *ngIf="totalPageNum >= 0">
+          <a class="page-link" (click)="gotoPage(0)">1</a>
+        </li>
+        <li class="page-item" *ngIf="totalPageNum >= 1">
+          <a class="page-link" (click)="gotoPage(1)">2</a>
+        </li>
+        <li class="page-item" *ngIf="totalPageNum >= 2">
+          <a class="page-link" (click)="gotoPage(2)">3</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" (click)="gotoPage(pageNum + 1)">Next</a>
+        </li>
+      </ul>
+    </nav>
 </div>
+

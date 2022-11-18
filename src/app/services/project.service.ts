@@ -17,7 +17,10 @@ export class ProjectService {
     }  
     getAllProjectUsers(pageSize: number, pageNum: number) {
         return this.http.getRaw(environment.endpoints.api + 'projectuser/' + pageSize + '/' + pageNum);
-    }      
+    }   
+    getAllProjectUsersTotalCount() {
+        return this.http.getRaw(environment.endpoints.api + 'projectuser/totalCount');
+    }    
     createProject(data: any) {
         return this.http.postRaw(environment.endpoints.api + 'project', data);
     }  

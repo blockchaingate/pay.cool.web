@@ -40,7 +40,10 @@ export class PackageComponent implements OnInit {
         this.projectServ.getProjectPackage(id).subscribe(
           (thepackage:any) => {
             this.package = thepackage;
-            this.coin = 'DUSD';
+            if(thepackage.coins && thepackage.coins.length > 0) {
+              this.coin = thepackage.coins[0];
+              console.log('this.coin==', this.coin);
+            }
           }
         );
       });

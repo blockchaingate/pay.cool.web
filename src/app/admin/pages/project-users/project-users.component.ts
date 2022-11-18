@@ -13,6 +13,10 @@ export class ProjectUsersComponent implements OnInit {
   projects: any;
   statuses = statuses;
   projectusers: any;
+  pageSize = 10;
+  pageNum = 0;
+  totalCount: number;
+  totalPageNum: number = 0; 
   constructor(
     private projectServ: ProjectService,
     private utilServ: UtilService,
@@ -23,13 +27,31 @@ export class ProjectUsersComponent implements OnInit {
     this.projectServ.getAllProjects(100,0).subscribe(
       projects => this.projects = projects
     );
-    this.projectServ.getAllProjectUsers(100, 0).subscribe(
+    this.projectServ.getAllProjectUsers(this.pageSize, this.pageNum).subscribe(
       (ret: any) => {
         this.projectusers = ret;
       }
     );
+    this.projectServ.getAllProjectUsersTotalCount().subscribe(
+      (ret: any) => {
+        this.totalCount = ret.totalCount;
+        this.totalPageNum = this.totalCount / this.pageSize;
+      }
+    );
   }
 
+  gotoPage(pageNum: number) {
+    if(pageNum < 0 || (pageNum > this.totalPageNum)) {
+      return;
+    }
+    this.pageNum = pageNum;
+    this.projectServ.getAllProjectUsers(this.pageSize, this.pageNum).subscribe(
+      (ret: any) => {
+        this.projectusers = ret;
+      }
+    );
+  } 
+  
   showProjectName(projectId) {
     if(this.projects && this.projects.length > 0) {
       const projects = this.projects.filter(item => item.id == projectId);

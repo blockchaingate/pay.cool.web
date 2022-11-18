@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { ProjectComponent } from './project.component';
 import { ProjectRoutingModule } from './project-routing.module';
 import { PackagesComponent } from './packages/packages.component';
@@ -10,7 +11,8 @@ import { PackageComponent } from './package/package.component';
   declarations: [ProjectComponent, PackagesComponent, PackageComponent],
   imports: [
     CommonModule,
-    ProjectRoutingModule
+    ProjectRoutingModule,
+    TranslateModule.forChild()
   ]
 })
 export class ProjectModule { }
