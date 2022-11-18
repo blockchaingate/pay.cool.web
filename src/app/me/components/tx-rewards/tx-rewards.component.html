@@ -10,7 +10,15 @@
       <tr *ngFor="let item of rewards">
         <td>{{showId(item.user)}}</td>
         <td>{{item.type}}</td>
-        <td>{{item.rewardAmount}} {{item.rewardCoin}}</td>
+        <td>
+          <div>
+            {{item.amount}} {{item.coin}}
+          </div>          
+          <div>
+            {{item.rewardAmount}} {{item.rewardCoin}}
+          </div>
+          
+        </td>
       </tr>
     </tbody>
 </table>

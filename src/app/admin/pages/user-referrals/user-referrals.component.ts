@@ -21,7 +21,7 @@ export class UserReferralsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.userreferralServ.get
+    //this.userreferralServ.get
     this.userreferralServ.getAllUsers(this.pageSize, this.pageNum).subscribe(
       (ret: any) => {
         this.users = ret;
@@ -46,10 +46,6 @@ export class UserReferralsComponent implements OnInit {
       }
     );
   } 
-
-  showId(id: string) {
-    return id.substring(0,5) + '...' + id.substring(id.length - 5);
-  }
 
   showStatus(status: any) {
     const statuses = this.statuses.filter(item => item.value == status);

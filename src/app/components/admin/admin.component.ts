@@ -297,7 +297,7 @@ export class AdminComponent implements OnInit {
   }
 
   getChildren() {
-    this.userReferralServ.getTree(this.user).subscribe(
+    this.userReferralServ.getChildren(this.user, 100, 0).subscribe(
       (users: any) => {
         if(users && users.length > 0) {
           this.children = users.map(item => item.user);

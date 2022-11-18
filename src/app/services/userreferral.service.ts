@@ -6,13 +6,18 @@ import { Web3Service } from './web3.service';
 @Injectable()
 export class UserReferralService {
    constructor(
-      private web3Serv: Web3Service,
       private http: HttpClient) { }
 
-   getTree(address: string) {
-    const url = environment.endpoints.api + 'userreferral/user/' + address + '/100/0';
+   getChildren(address: string, pageSize: number, pageNum: number) {
+    const url = environment.endpoints.api + 'userreferral/user/' + address + '/' + pageSize + '/' + pageNum;
     return this.http.get(url);
    }
+
+   getChildrenTotalCount(address: string) {
+      const url = environment.endpoints.api + 'userreferral/user/' + address + '/totalCount';
+      return this.http.get(url);
+   }
+
    checkAddress(address: string) {
     const url = environment.endpoints.api + 'userreferral/isValid/' + address;
     return this.http.get(url);

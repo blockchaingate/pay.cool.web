@@ -36,8 +36,87 @@
         </div>
     </div>
 
+    <!--
     <div *ngIf="children">
         <app-tf-tree [children]="children" [walletAddress]="walletAddress"></app-tf-tree>
     </div>
+    -->
+</div>
 
+
+<div class="container">
+    <div class="d-flex justify-content-center align-items-center flex-column">
+        <div>
+            User: 
+            <a class="link" (click)="changeParentAddress(user)">
+                {{user}}
+            </a>
+        </div>
+        <div>
+            Referral: 
+            <a class="link" (click)="changeParentAddress(referral)">
+                {{referral}}
+            </a>
+        </div>
+        <div>
+            total children's count: {{totalCount}}
+        </div>
+    </div>
+      <nav class="d-flex justify-content-center">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" (click)="gotoPage(pageNum - 1)">Previous</a></li>
+            <li class="page-item" *ngIf="totalPageNum >= 0">
+              <a class="page-link" (click)="gotoPage(0)">1</a>
+            </li>
+            <li class="page-item" *ngIf="totalPageNum >= 1">
+              <a class="page-link" (click)="gotoPage(1)">2</a>
+            </li>
+            <li class="page-item" *ngIf="totalPageNum >= 2">
+              <a class="page-link" (click)="gotoPage(2)">3</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" (click)="gotoPage(pageNum + 1)">Next</a>
+            </li>
+          </ul>
+      </nav>
+      <ul class="responsive-table">
+          <li class="table-header">
+              <div class="col col-4">{{'User' | translate}}</div>
+              <div class="col col-4">{{'Ref address' | translate}}</div>
+              <div class="col col-2">{{'Status' | translate}}</div>
+          </li>
+          <li class="table-row" *ngFor="let item of users">
+              <div class="col col-4" data-label="User">
+                <a class="link" (click)="changeParentAddress(item.user)">
+                    {{item.user}}
+                </a>
+              </div>
+              <div class="col col-4" data-label="RefAdd">
+                <a class="link" (click)="changeParentAddress(item.referral)">
+                    {{item.referral}}
+                </a>
+              </div>
+              <div class="col col-2" data-label="Status">{{showStatus(item.newStatus)}}</div>
+
+          </li>
+      </ul>
+      <nav class="d-flex justify-content-center">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" (click)="gotoPage(pageNum - 1)">Previous</a></li>
+            <li class="page-item" *ngIf="totalPageNum >= 0">
+              <a class="page-link" (click)="gotoPage(0)">1</a>
+            </li>
+            <li class="page-item" *ngIf="totalPageNum >= 1">
+              <a class="page-link" (click)="gotoPage(1)">2</a>
+            </li>
+            <li class="page-item" *ngIf="totalPageNum >= 2">
+              <a class="page-link" (click)="gotoPage(2)">3</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" (click)="gotoPage(pageNum + 1)">Next</a>
+            </li>
+          </ul>
+      </nav>    
 </div>
