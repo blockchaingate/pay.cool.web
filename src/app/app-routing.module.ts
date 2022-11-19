@@ -50,9 +50,6 @@ const routes: Routes = [
     path: 'my-assets',
     loadChildren: () => import('./components/my-assets/my-asset.module').then(a => a.MyAssetModule)
   },
-  { path: 'admin', 
-    loadChildren: () => import('./components/my-assets/my-asset.module').then(a => a.MyAssetModule)
-  },
   { path: 'docs', 
   loadChildren: () => import('./docs/docs.module').then(a => a.DocsModule)
   },

@@ -289,6 +289,7 @@ export class AdminComponent implements OnInit {
   }
 
   getReferral() {
+    this.userreferal = '';
     this.userReferralServ.get(this.user).subscribe(
       (user: any) => {
         this.userreferal = user.referral;
@@ -297,6 +298,7 @@ export class AdminComponent implements OnInit {
   }
 
   getChildren() {
+    this.children = null;
     this.userReferralServ.getChildren(this.user, 100, 0).subscribe(
       (users: any) => {
         if(users && users.length > 0) {
