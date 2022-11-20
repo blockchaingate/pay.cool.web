@@ -42,6 +42,12 @@ export class ProjectService {
     }
 
     getParams(projectPackageId: string, walletAddress: string, paidCoin: string) {
+
         return this.http.getRaw(environment.endpoints.api + 'projectpackage/' + projectPackageId + '/params/' + walletAddress + '/' + paidCoin);
+    }
+
+    getParamsFor(projectPackageId: string, user: string, paidCoin: string) {
+        
+        return this.http.getRaw(environment.endpoints.api + 'projectpackage/' + projectPackageId + '/paramsFor/' + user + '/' + paidCoin);
     }
 }

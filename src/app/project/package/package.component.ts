@@ -19,6 +19,7 @@ export class PackageComponent implements OnInit {
   coin: string;
   order: any;
   wallet: any;
+  user: string;
   id: string;
   walletAddress: string;
 
@@ -72,9 +73,15 @@ export class PackageComponent implements OnInit {
       return;
     }
     
-       
+    let getParam;
+    console.log('this.user===', this.user);
+    if(this.user) {
+      getParam = this.projectServ.getParamsFor(this.id, this.user, this.coin);
+    } else {
+      getParam = this.projectServ.getParams(this.id, this.walletAddress, this.coin)
+    }
     
-    this.projectServ.getParams(this.id, this.walletAddress, this.coin).subscribe(
+    getParam.subscribe(
       (order: any) => {
         this.order = order;
 
