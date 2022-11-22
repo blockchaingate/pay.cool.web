@@ -1,8 +1,10 @@
 <div class="container">
     <div class="row" *ngIf="!wallets">
-        <div>
+        <div class="col-md-2"></div>
+        <div class="col-md-8 noWalletCon">
             <app-no-wallet></app-no-wallet>
         </div>
+        <div class="col-md-2"></div>
     </div>
 
     <div class="row toparea" *ngIf="wallets">
