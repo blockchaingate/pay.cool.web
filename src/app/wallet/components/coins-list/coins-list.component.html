@@ -8,21 +8,21 @@
     </li>
     <li class="table-row" *ngFor="let coin of coins">
 
-        <div class="col col-2 text-dark" data-label="Coin">
+        <div class="col col-2 " data-label="Coin">
             {{showCoinName(coin.coin)}}</div>
         <div class="col col-3" data-label="Balance">
-            <div *ngIf="coin.balance && (coin.balance >= 0)" class="text-dark">
+            <div *ngIf="coin.balance && (coin.balance >= 0)" class="">
                 {{coin.balance}}
             </div>
         </div>
 
         <div class="col col-3" data-label="Locked Balance">
-            <div class="text-dark" *ngIf="coin.lockBalance && (coin.lockBalance > 0)">
+            <div class="" *ngIf="coin.lockBalance && (coin.lockBalance > 0)">
                 {{coin.lockBalance}}
             </div>
         </div>
 
-        <div class="col col-2 text-dark" data-label="Value(USD)">
+        <div class="col col-2 " data-label="Value(USD)">
             <div *ngIf="getTotalBalance(coin) > 0">
                 {{getTotalValue(coin)}}
             </div>

@@ -714,7 +714,7 @@
  /*----------------------- Theme Banner Two ----------------*/
  
  .theme-banner-two .main-text-wrapper {
-     padding: 305px 0 245px;
+     /* padding: 305px 0 245px; */
  }
  
  .theme-banner-two .partner-slider .item img {
@@ -1242,7 +1242,8 @@
  
  .apps-overview .inner-wrapper .button-group li {
      display: inline-block;
-     margin-right: 15px;
+     margin-right: 0;
+     
  }
  
  .apps-overview .inner-wrapper .button-group li a {
