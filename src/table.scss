@@ -18,15 +18,22 @@ h2 {
     .table-header {
         // background-color: #1ed5f1;
         // color: #333;
-        background-color: #003463;
+        background-color: #221f5c;
         font-size: 14px;
         text-transform: uppercase;
         letter-spacing: 0.03em;
     }
     .table-row {
-        background-color: #edeff0;
+        background-color: #0a0327;
         box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+        transition: all 0.2s ease-in-out;
     }
+
+    .table-row:hover {
+        background-color: #170757;
+        scale: 1.02;
+    }
+
     .col-1 {
         flex-basis: 10%;
     }
@@ -54,7 +61,7 @@ h2 {
             display: flex;
             padding: 10px 0;
             &:before {
-                color: #6c7a89;
+                color: #ddd;
                 padding-right: 10px;
                 content: attr(data-label);
                 flex-basis: 50%;

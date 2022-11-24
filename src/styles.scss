@@ -346,11 +346,12 @@ a.explorer-link {
 .gradient-back-area {
     color: white;
     // background-image: linear-gradient(to right, #fbc879, #eb7f75, #a26aa7, #695aad, #3e51b0);
-    background-color: #1ed5f1;
+    // background-color: #1ed5f1;
+    background: linear-gradient(45deg, #331ef1 0%, #9d1ef1 100%);
 }
 
 .gradient-back-area:hover {
-    background-color: #aae8f1;
+    background: linear-gradient(45deg, #9d1ef1 0%, #331ef1 100%);
 }
 
 .btn-gradient {
