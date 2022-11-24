@@ -140,7 +140,7 @@ export class UserTreeComponent implements OnInit {
       return;
     }
     this.pageNum = pageNum;
-    this.userreferralServ.getChildren(this.user,this.pageSize, this.pageNum).subscribe(
+    this.userreferralServ.getChildren(this.user, this.pageSize, this.pageNum).subscribe(
       (ret: any) => {
         this.users = ret;
       }

@@ -89,7 +89,7 @@
           <li class="table-row" *ngFor="let item of users">
               <div class="col col-4" data-label="User">
                 <a class="link" (click)="changeParentAddress(item.user)">
-                    {{item.user}}
+                    {{item.user}}({{item.childrenCount}})
                 </a>
               </div>
               <div class="col col-4" data-label="RefAdd">
