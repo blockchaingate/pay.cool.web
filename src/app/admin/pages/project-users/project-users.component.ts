@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
 import { UtilService } from 'src/app/services/util.service';
 import { statuses } from '../../../config/statuses';
+import { metaforceProjectId } from '../../../config/projectId';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-project-users',
@@ -13,6 +15,7 @@ export class ProjectUsersComponent implements OnInit {
   projects: any;
   statuses = statuses;
   projectusers: any;
+  user: string;
   pageSize = 10;
   pageNum = 0;
   totalCount: number;
@@ -20,6 +23,7 @@ export class ProjectUsersComponent implements OnInit {
   constructor(
     private projectServ: ProjectService,
     private utilServ: UtilService,
+    private toastr: ToastrService,
     private router: Router
   ) { }
 
@@ -35,6 +39,20 @@ export class ProjectUsersComponent implements OnInit {
     this.projectServ.getAllProjectUsersTotalCount().subscribe(
       (ret: any) => {
         this.totalCount = ret.totalCount;
+        this.totalPageNum = this.totalCount / this.pageSize;
+      }
+    );
+  }
+
+  search() {
+    this.projectServ.getProjectUsers(this.user).subscribe(
+      (users: any) => {
+        if(!users) {
+          this.toastr.info('User not found');
+          return;
+        }
+        this.projectusers = users;
+        this.totalCount = users.length;
         this.totalPageNum = this.totalCount / this.pageSize;
       }
     );

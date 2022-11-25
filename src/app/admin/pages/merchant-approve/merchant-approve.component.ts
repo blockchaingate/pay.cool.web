@@ -79,6 +79,7 @@ export class MerchantApproveComponent implements OnInit {
     });
   }
 
+  /*
   enableCredit() {
     const initialState = {
       pwdHash: this.wallet.pwdHash,
@@ -130,7 +131,7 @@ export class MerchantApproveComponent implements OnInit {
       this.spinner.hide();
     }
     }
-
+*/
 async approveDo(seed: Buffer) {
   try {
     const args = [

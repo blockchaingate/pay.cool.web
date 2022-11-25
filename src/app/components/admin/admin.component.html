@@ -195,6 +195,27 @@
             </div>
         </div>  
     </div>
+
+    <div class="row p-2">
+        <div class="col col-6">
+            <div class="card p-3">
+                <div>getStatus of Metaforce</div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">{{"user"|translate}}</label>
+                    <input type="text" class="form-control" id="user" [(ngModel)]="user" aria-describedby="user" placeholder="{{'user'| translate}}">
+                </div>
+
+                <div class="text-center">
+                    <button class="btn add-wallet btnitem black handcursor" (click)="getStatusOfMetaforce()">
+                        {{"getStatus of metaforce"| translate }}
+                    </button>                    
+                </div>  
+                <div class="text-center pt-2">
+                    {{statusOfMetaforce}}
+                </div>
+            </div>
+        </div>    
+    </div>    
 </div>
 
 <div class="container text-center" *ngIf="!isContractOwner">

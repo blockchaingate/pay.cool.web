@@ -1,4 +1,11 @@
 <div class="container">
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" [(ngModel)]="user" placeholder="user" aria-label="user" aria-describedby="basic-addon2">
+    <div class="input-group-append" (click)="search()">
+      <span class="input-group-text" id="basic-addon2">Search</span>
+    </div>
+  </div>
+
     <div class="d-flex justify-content-center">
       total: {{totalCount}}
     </div>

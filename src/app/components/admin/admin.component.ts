@@ -9,12 +9,15 @@ import { UtilService } from '../../services/util.service';
 import { environment } from '../../../environments/environment';
 import { UserReferralService } from 'src/app/services/userreferral.service';
 import { statuses } from '../../config/statuses';
+import { ProjectService } from 'src/app/services/project.service';
+import { metaforceProjectId } from '../../config/projectId';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
+  statusOfMetaforce: number;
   status: number;
   statuses: any = statuses;
 
@@ -35,6 +38,7 @@ export class AdminComponent implements OnInit {
     private localSt: LocalStorage,
     private web3Serv: Web3Service,
     private userReferralServ: UserReferralService,
+    private projectServ: ProjectService,
     public utilServ: UtilService,
     private kanbanSmartContractServ:KanbanSmartContractService,
     private modalService: BsModalService) { }
@@ -304,6 +308,22 @@ export class AdminComponent implements OnInit {
         if(users && users.length > 0) {
           this.children = users.map(item => item.user);
         }
+      }
+    );
+  }
+
+  getStatusOfMetaforce() {
+    this.projectServ.getProjectUser(metaforceProjectId, this.user).subscribe(
+      (user: any) => {
+        if(!user) {
+          this.statusOfMetaforce = -1;
+          return;
+        }
+        let status = user.newStatus;
+        if(user.status > status) {
+          status = user.status;
+        }
+        this.statusOfMetaforce = status;
       }
     );
   }
