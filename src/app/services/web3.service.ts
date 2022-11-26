@@ -588,7 +588,8 @@ export class Web3Service {
       }
 
       getTransactionHash(txhex: string) {
-        const hash = ethUtil.keccak(txhex).toString('hex');
+        const buff = Buffer.from(txhex);
+        const hash = ethUtil.keccak(buff).toString('hex');
         return '0x' + hash;
       }    
 }
