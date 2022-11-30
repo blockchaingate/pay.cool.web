@@ -145,10 +145,10 @@ export const environment = {
         FAB: '1FNEhT8uTmrEMvHGCGohnEFv6Q1z4qRhQu'
     },
     smartContract: {
-        smartConractProjectUserRelation: '0xc8379312d5e9188bb8e8b40ede24da9141575925',
+        smartConractProjectUserRelation: '0x0185f15ccd4e7dfec68cdc671fb07ec5a22036be',
         smartConractMerchantInfo: '0xab9f22b6bb7a134cb0058bc4582d5ce043269700',
         smartContractMerchantNode: '0xc2f52d79994ed8f0b68e73edf28f3f562da75a06',
-        smartConractAdressReferral: '0xa76af08ba89012e617cd33641f70cb6c2ec957e6',
+        smartConractAdressReferral: '0x686bba93b02abf2efdcfec1b42a2c93e6e7bb6a6',
         /*
         smartConractFeeCharger: '0x84abbbc0ccfb542787da81de570583e8e127cd2f',
         smartContractRewardDistribution: '0x6ef9ad58f8ac314b42e97078a1967d1375adb32d',

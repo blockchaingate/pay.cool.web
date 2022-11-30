@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
 import { UtilService } from 'src/app/services/util.service';
 import { statuses } from '../../../config/statuses';
-import { metaforceProjectId } from '../../../config/projectId';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

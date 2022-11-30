@@ -113,7 +113,7 @@ export class ProjectAddComponent implements OnInit {
             this.toastr.error('Error while adding project');
           }
         } else {
-
+          this.toastr.error('Failed to create project');
         }
       }
     );

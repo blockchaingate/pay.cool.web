@@ -1,18 +1,22 @@
 export var statuses = [
+  {
+    text: 'Not a partner',
+    value: 0
+  },
     {
-        text: 'basic',
-        value: 0
-      },
-      {
-        text: 'junior',
+        text: 'Basic partner',
         value: 1
       },
       {
-        text: 'senior',
+        text: 'Junior partner',
         value: 2
       },
       {
-        text: 'executive',
+        text: 'Sophomore partner',
         value: 3
+      },
+      {
+        text: 'Executive partner',
+        value: 4
       },
 ];

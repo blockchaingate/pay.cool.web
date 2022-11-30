@@ -147,10 +147,10 @@ addresses: {
 
     smartContract: {
 
-        smartConractProjectUserRelation: '0x3a2de98050a41d09ffbf62796d627d8d47c4a884',
+        smartConractProjectUserRelation: '0xb16cb516bc0de12e89c7ce6a495012cd00ac2ebf',
         smartConractMerchantInfo: '0xfb19be78052afe787616a867f6436d5a54591175',
         smartContractMerchantNode: '0x9add9cfa6fa78b5ddc2d79b6ae8fd993f26ea1b5',
-        smartConractAdressReferral: '0x1c6acdff5fd3f7e732083f5f6d3950d08f345e9b',
+        smartConractAdressReferral: '0xcd9c20e8e1252d5cd5eacd825e1be2dbda808000',
 
         feeDistribution: '0xf3b46ef452099ec2b6f81644b6da75c91c5e116a',
         locker: '0x08283086b2192666128b7a6eaf66df2dfd3f1b6b',
