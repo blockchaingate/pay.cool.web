@@ -79,7 +79,11 @@ export class ProjectUsersComponent implements OnInit {
     return '';
   }
 
-  showStatus(status) {
+  showStatus(item) {
+    let status = item.status;
+    if(item.newStatus && item.newStatus > item.status) {
+      status = item.newStatus;
+    }
     const statuses = this.statuses.filter(item => item.value == status);
     if(statuses && statuses.length > 0) {
       return statuses[0].text;
