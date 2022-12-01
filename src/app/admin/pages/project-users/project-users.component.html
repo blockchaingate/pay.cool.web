@@ -34,14 +34,16 @@
       </div>
     <ul class="responsive-table">
       <li class="table-header">
+        <div class="col col-2">{{'Project' | translate}}</div>
         <div class="col col-4">{{'User' | translate}}</div>
-        <div class="col col-4">{{'Project' | translate}}</div>
-        <div class="col col-4">{{'Status' | translate}}</div>
+        <div class="col col-4">{{'Referral' | translate}}</div>
+        <div class="col col-2">{{'Status' | translate}}</div>
       </li>
       <li class="table-row" *ngFor="let item of projectusers">
+        <div class="col col-2" data-label="Project">{{showProjectName(item.projectId)}}</div>
         <div class="col col-4" data-label="User">{{item.user}}</div>
-        <div class="col col-4" data-label="Project">{{showProjectName(item.projectId)}}</div>
-        <div class="col col-4" data-label="Status">{{showStatus(item.newStatus)}}</div>
+        <div class="col col-4" data-label="Referral">{{item.referral}}</div>
+        <div class="col col-2" data-label="Status">{{showStatus(item)}}</div>
       </li>
     </ul>
 
