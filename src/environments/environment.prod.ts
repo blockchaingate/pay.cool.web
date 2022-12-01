@@ -147,7 +147,7 @@ addresses: {
 
     smartContract: {
 
-        smartConractProjectUserRelation: '0xb16cb516bc0de12e89c7ce6a495012cd00ac2ebf',
+        smartConractProjectUserRelation: '0xae7657cc5923398bfd810660f8009d05ff98f5c4',
         smartConractMerchantInfo: '0xfb19be78052afe787616a867f6436d5a54591175',
         smartContractMerchantNode: '0x9add9cfa6fa78b5ddc2d79b6ae8fd993f26ea1b5',
         smartConractAdressReferral: '0xcd9c20e8e1252d5cd5eacd825e1be2dbda808000',
