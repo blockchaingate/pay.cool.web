@@ -1,23 +1,23 @@
 <div class="container">
-  <div class="d-flex justify-content-center">
-    total: {{totalCount}}
-  </div>
+    <div class="d-flex justify-content-center">
+        total: {{totalCount}}
+    </div>
     <nav class="d-flex justify-content-center">
         <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" (click)="gotoPage(pageNum - 1)">Previous</a></li>
-          <li class="page-item" *ngIf="totalPageNum >= 0">
-            <a class="page-link" (click)="gotoPage(0)">1</a>
-          </li>
-          <li class="page-item" *ngIf="totalPageNum >= 1">
-            <a class="page-link" (click)="gotoPage(1)">2</a>
-          </li>
-          <li class="page-item" *ngIf="totalPageNum >= 2">
-            <a class="page-link" (click)="gotoPage(2)">3</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" (click)="gotoPage(pageNum + 1)">Next</a>
-          </li>
+            <li class="page-item">
+                <a class="page-link hand-cursor" (click)="gotoPage(pageNum - 1)">Previous</a></li>
+            <li class="page-item" *ngIf="totalPageNum >= 0">
+                <a class="page-link hand-cursor" (click)="gotoPage(0)">1</a>
+            </li>
+            <li class="page-item" *ngIf="totalPageNum >= 1">
+                <a class="page-link hand-cursor" (click)="gotoPage(1)">2</a>
+            </li>
+            <li class="page-item" *ngIf="totalPageNum >= 2">
+                <a class="page-link hand-cursor" (click)="gotoPage(2)">3</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link hand-cursor" (click)="gotoPage(pageNum + 1)">Next</a>
+            </li>
         </ul>
     </nav>
     <ul class="responsive-table">
@@ -44,20 +44,20 @@
     </ul>
     <nav class="d-flex justify-content-center">
         <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" (click)="gotoPage(pageNum - 1)">Previous</a></li>
-          <li class="page-item" *ngIf="totalPageNum >= 0">
-            <a class="page-link" (click)="gotoPage(0)">1</a>
-          </li>
-          <li class="page-item" *ngIf="totalPageNum >= 1">
-            <a class="page-link" (click)="gotoPage(1)">2</a>
-          </li>
-          <li class="page-item" *ngIf="totalPageNum >= 2">
-            <a class="page-link" (click)="gotoPage(2)">3</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" (click)="gotoPage(pageNum + 1)">Next</a>
-          </li>
+            <li class="page-item">
+                <a class="page-link hand-cursor" (click)="gotoPage(pageNum - 1)">Previous</a></li>
+            <li class="page-item" *ngIf="totalPageNum >= 0">
+                <a class="page-link hand-cursor" (click)="gotoPage(0)">1</a>
+            </li>
+            <li class="page-item" *ngIf="totalPageNum >= 1">
+                <a class="page-link hand-cursor" (click)="gotoPage(1)">2</a>
+            </li>
+            <li class="page-item" *ngIf="totalPageNum >= 2">
+                <a class="page-link hand-cursor" (click)="gotoPage(2)">3</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link hand-cursor" (click)="gotoPage(pageNum + 1)">Next</a>
+            </li>
         </ul>
-    </nav>    
+    </nav>
 </div>
