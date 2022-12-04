@@ -8,15 +8,15 @@ export var statuses = [
         value: 1
       },
       {
-        text: 'Beginner partner',
+        text: 'Junior partner',
         value: 2
       },
       {
-        text: 'Intermediate partner',
+        text: 'Senior partner',
         value: 3
       },
       {
-        text: 'Advanced partner',
+        text: 'Executive partner',
         value: 4
       },
 ];
