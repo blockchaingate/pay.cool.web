@@ -4,7 +4,7 @@
     "scripts": {
         "ng": "ng",
         "postinstall": "node patch-webpack.js",
-        "start": "ng serve --openssl-legacy-provider --port 4401",
+        "start": "ng serve --port 4401",
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",
