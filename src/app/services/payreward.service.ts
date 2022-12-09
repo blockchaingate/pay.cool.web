@@ -9,5 +9,11 @@ export class PayRewardService {
         getAllRewardsByTxid(txid: string) {
             return this.http.getRaw(environment.endpoints.api + 'payreward/txid/' + txid);
         }   
-        
+        getMisses(pageSize: number, pageNum: number) {
+            return this.http.getRaw(environment.endpoints.api + 'payrewarddiff/miss/' + pageSize + '/' + pageNum);
+        }
+
+        getExcesses(pageSize: number, pageNum: number) {
+            return this.http.getRaw(environment.endpoints.api + 'payrewarddiff/excess/' + pageSize + '/' + pageNum);
+        }
 }

@@ -15,6 +15,10 @@ import { RefComponent } from './components/ref/ref.component';
 
 const routes: Routes = [
   {
+    path: 'reissue',
+    loadChildren: () => import('./reissue/reissue.module').then(w => w.ReissueModule)
+  },
+  {
     path: 'wallet',
     loadChildren: () => import('./wallet/wallet.module').then(w => w.WalletModule)
   },

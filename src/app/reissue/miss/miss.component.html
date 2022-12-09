@@ -1,0 +1,20 @@
+
+<div class="container text-white">
+
+    <div>
+        <div>Total Reward: {{totalReward}} DUSD</div>
+        <div>Total LP: {{totalLp}} DUSD</div>
+    </div>
+    <ul class="responsive-table">
+        <li class="table-header">
+            <div class="col col-3">{{'User' | translate}}</div>
+            <div class="col col-2">{{'Category' | translate}}</div>
+            <div class="col col-2">{{'Value' | translate}}</div>
+        </li>
+        <li class="table-row" *ngFor="let item of misses">
+            <div class="col col-3" data-label="User">{{item.user}}</div>
+            <div class="col col-2" data-label="Category">{{item.category}}</div>
+            <div class="col col-2" data-label="Amount">{{item.amount}}DUSD</div>
+        </li>
+    </ul>
+</div>
