@@ -14,12 +14,17 @@ export class IpoComponent implements OnInit {
 
   totalDUSD: number;
   totalLp: number;
-  users: any;
+  ipos: any;
   constructor(
     private toastr: ToastrService,
     private payrewardServ: PayRewardService) { }
 
   ngOnInit(): void {
+    this.payrewardServ.getIpos(1000, 0).subscribe(
+      (ret) => {
+        this.ipos = ret;
+      }
+    );
   }
 
   submit() {

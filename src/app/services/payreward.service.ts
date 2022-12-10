@@ -33,6 +33,10 @@ export class PayRewardService {
         createIpos(ipos) {
             return this.http.postRaw(environment.endpoints.api + 'ipo/bulk', ipos);
         }
+
+        getIpos(pageSize, pageNum) {
+            return this.http.getRaw(environment.endpoints.api + 'ipo/' + pageSize + '/' + pageNum);
+        }
 }
 
 //https://fabtest.info/api/userpay/params/amount/2000/mweZqx4QFEPDHHryp4K257zRss2VY4zc9D/DUSD
