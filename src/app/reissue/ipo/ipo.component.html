@@ -1,1 +1,42 @@
-<p>ipo works!</p>
+
+<div class="container text-white">
+
+    <div class="d-flex justify-content-around">
+        <input type="file" class="upload" #file style="display:none" (change)="changeListenerEvent($event)">
+        <button class="btn button btn-outline btn-basic-outline btn-fixed-width" (click)="file.click()">{{'Import CSV' | translate}}</button>
+    </div>
+
+    
+    <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">User</label>
+          <input type="text" class="form-control" [(ngModel)]="user" name="user" aria-describedby="userHelp" placeholder="Enter user address">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Amount(DUSD)</label>
+          <input type="number" class="form-control" [(ngModel)]="amount" name="amount" placeholder="amount">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Liquidity</label>
+            <input type="number" class="form-control" [(ngModel)]="liquidity" name="liquidity" placeholder="Liquidity">
+          </div>
+        <button type="submit" class="btn btn-primary" (click)="submit()">Submit</button>
+    </form>    
+
+    <div>
+        <div>Total DUSD: {{totalDUSD}} DUSD</div>
+        <div>Total LP: {{totalLp}} DUSD</div>
+    </div>
+    <ul class="responsive-table">
+        <li class="table-header">
+            <div class="col col-3">{{'User' | translate}}</div>
+            <div class="col col-2">{{'DUSD' | translate}}</div>
+            <div class="col col-2">{{'LP' | translate}}</div>
+        </li>
+        <li class="table-row" *ngFor="let item of users">
+            <div class="col col-3" data-label="User">{{item.user}}</div>
+            <div class="col col-2" data-label="Category">{{item.dusd}}</div>
+            <div class="col col-2" data-label="Amount">{{item.lp}}</div>
+        </li>
+    </ul>
+</div>
