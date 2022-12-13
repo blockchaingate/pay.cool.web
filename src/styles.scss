@@ -33,6 +33,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #edeff0;
+    color: #ccc;
 }
 
 a {
@@ -497,4 +498,12 @@ a.explorer-link {
 
 .auto-wrap {
     word-wrap:break-word;word-break:break-all;
+}
+
+.html-top-content{
+    background-color: #0e0f26;
+}
+
+h3{
+    color: #fff;
 }

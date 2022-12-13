@@ -1,4 +1,4 @@
-<div class="container my-3">
+<div class="my-3 storeContainer">
     <div class="row">
         <div class="col col-md-2">
             <div *ngIf="merchant.image" >
@@ -10,28 +10,28 @@
                 <div>
                     {{showName(merchant.name)}}
                 </div>
-                <div *ngIf="merchant.status == 2">
+                <div *ngIf="merchant.status == 2" class="certified">
                     <i class="fa fa-check text-success" aria-hidden="true"></i>
                 </div>
 
             </h6>
-            <div class="text-muted auto-wrap">
+            <div class="text-2 auto-wrap">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 {{merchant.owner}}
             </div>
-            <div class="text-muted auto-wrap" *ngIf="merchant.phone">
+            <div class="text-2 auto-wrap" *ngIf="merchant.phone">
                 <i class="fa fa-phone"></i>
                 {{merchant.phone}}
             </div>
-            <div class="text-muted auto-wrap" *ngIf="merchant.email">
+            <div class="text-2 auto-wrap" *ngIf="merchant.email">
                 <i class="fa fa-envelope"></i>
                 {{merchant.email}}
             </div>      
-            <div class="text-muted auto-wrap" *ngIf="merchant.businessAddress">
+            <div class="text-2 auto-wrap" *ngIf="merchant.businessAddress">
                 <i class="fa fa-location-arrow"></i>
                 {{showName(merchant.businessAddress)}}
             </div>
-            <div class="auto-wrap" *ngIf="merchant.businessContents">
+            <div class="text-3 auto-wrap" *ngIf="merchant.businessContents">
                 {{showName(merchant.businessContents)}}
             </div>
         </div>

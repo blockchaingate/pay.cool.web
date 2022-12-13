@@ -1,0 +1,13 @@
+.store{
+    background-color: #230e45;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    min-height: 135px;
+}
+
+//hover
+.store:hover{
+    background-color: #2d1258;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+}
