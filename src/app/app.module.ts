@@ -69,6 +69,7 @@ import { ScComponent } from './components/manual/sc/sc.component';
 import { TransferOwnershipComponent } from './components/transfer-ownership/transfer-ownership.component';
 import { SupportComponent } from './components/support/support.component';
 import { RefComponent } from './components/ref/ref.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -92,7 +93,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ScComponent,
     SupportComponent,
     TransferOwnershipComponent,
-    RefComponent
+    RefComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,

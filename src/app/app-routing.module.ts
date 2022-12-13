@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { UserTreeComponent } from './components/user-tree/user-tree.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { PaymentSuccessComponent } from './components/payment/success.component';
 import { PaymentFailComponent } from './components/payment/fail.component';
 import { MembershipComponent } from './components/membership/membership.component';
@@ -61,6 +62,7 @@ const routes: Routes = [
   { path: 'version', component: VersionComponent },
   { path: 'ipolist', component: IpolistComponent },
   { path: 'membership', component: MembershipComponent },
+  { path: 'user/:id', component: UserDetailComponent },
   { path: 'user-tree', component: UserTreeComponent },
   { path: 'transfer-ownership/:sig', component: TransferOwnershipComponent },
   { path: 'ref/:refcode', component: RefComponent },
