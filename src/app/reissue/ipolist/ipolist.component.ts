@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import BigNumber from 'bignumber.js';
 import { PayRewardService } from 'src/app/services/payreward.service';
+import { statuses } from '../../config/statuses';
 
 @Component({
   selector: 'app-ipolist',
@@ -8,6 +9,7 @@ import { PayRewardService } from 'src/app/services/payreward.service';
   styleUrls: ['./ipolist.component.scss', '../../../table.scss']
 })
 export class IpolistComponent implements OnInit {
+  statuses = statuses;
   totalAmount: number;
   totalLp: number;
   ipos: any;
@@ -26,6 +28,14 @@ export class IpolistComponent implements OnInit {
         }
       }
     );
+  }
+
+  showStatusText(status) {
+    const statuses = this.statuses.filter(item => item.value == status);
+    if(statuses && statuses.length > 0) {
+      return statuses[0].text;
+    }
+    return '';
   }
 
 }

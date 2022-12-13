@@ -79,17 +79,22 @@ export class ProjectUsersComponent implements OnInit {
     return '';
   }
 
-  showStatus(item) {
-    let status = item.status;
-    if(item.newStatus && item.newStatus > item.status) {
-      status = item.newStatus;
-    }
+  showStatusText(status) {
     const statuses = this.statuses.filter(item => item.value == status);
     if(statuses && statuses.length > 0) {
       return statuses[0].text;
     }
     return '';
   }
+  
+  showStatus(item) {
+    let status = item.status;
+    if(item.newStatus && item.newStatus > item.status) {
+      status = item.newStatus;
+    }
+    return this.showStatusText(status);
+  }
+
   add() {
     this.router.navigate(['/admin/project-user/add']);
   }
