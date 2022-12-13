@@ -1,4 +1,4 @@
-<div class="color-white">
+<div class="color-white" *ngIf="user">
 
     <ul class="nav nav-tabs">
         <li class="nav-item">
@@ -7,10 +7,40 @@
         <li class="nav-item">
           <a class="nav-link" [ngClass]="tabName=='metaforce' ? 'active' : ''" (click)="changeTab('metaforce')">Metaforce</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="tabName=='buys' ? 'active' : ''" (click)="changeTab('buys')">Packages</a>
+        </li>
     </ul>
     
-      <div>
-        <div class="container memberArea userTreeContent" *ngIf="user">
+    <div *ngIf="tabName=='buys'">
+      <ul class="responsive-table">
+        <li class="table-header">
+          <div class="col col-3">{{'Project Package' | translate}}</div>
+          <div class="col col-4">{{'Amount' | translate}}</div>
+          <div class="col col-3">{{'Date created' | translate}}</div>
+          <div class="col col-2"></div>
+        </li>
+        <li class="table-row" *ngFor="let item of buys">
+          <div class="col col-3" data-label="Project Package">
+            {{item.projectPackage ? showName(item.projectPackage.name) : ''}}
+          </div>
+          <div class="col col-4" data-label="Project Package">
+            {{showAmount(item.amount)}} {{showCoinName(item.coinType)}}
+          </div>
+          <div class="col col-3" data-label="Project Package">
+            {{item.dateCreated}}
+          </div>
+          <div class="col col-2">
+            <a (click)="showRwards(item.txid)">
+              Show rewards
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+    
+    <div *ngIf="tabName=='paycool' || tabName=='metaforce'">
+        <div class="container memberArea userTreeContent">
           <div class="row">
             <div class="col-md-12">
               <div class="d-flex justify-content-center align-items-center flex-column my-3">
@@ -26,6 +56,11 @@
                     {{referral}}
                   </a>
                 </div>
+
+                <div *ngIf="status">
+                    {{'Status' | translate}}: {{showStatus(status)}}
+                </div>
+
                 <div *ngIf="pv">
                   personal volume: {{pv}}
                 </div>
@@ -98,5 +133,5 @@
             </div>
           </div>
         </div>
-      </div>   
+    </div>   
 </div>
