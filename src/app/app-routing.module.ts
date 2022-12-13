@@ -12,6 +12,7 @@ import { VersionComponent } from './components/version/version.component';
 import { TransferOwnershipComponent } from './components/transfer-ownership/transfer-ownership.component';
 import { SupportComponent } from './components/support/support.component'
 import { RefComponent } from './components/ref/ref.component';
+import { IpolistComponent } from './reissue/ipolist/ipolist.component';
 
 const routes: Routes = [
   {
@@ -58,6 +59,7 @@ const routes: Routes = [
   loadChildren: () => import('./docs/docs.module').then(a => a.DocsModule)
   },
   { path: 'version', component: VersionComponent },
+  { path: 'ipolist', component: IpolistComponent },
   { path: 'membership', component: MembershipComponent },
   { path: 'user-tree', component: UserTreeComponent },
   { path: 'transfer-ownership/:sig', component: TransferOwnershipComponent },

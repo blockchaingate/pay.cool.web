@@ -1,19 +1,19 @@
-<ul class="responsive-table">
+<ul class="responsive-table text-white">
     <li class="table-header">
         <div class="col col-3">{{'CoinT' | translate}}</div>
         <div class="col col-4">{{'Balance' | translate}}</div>
         <div class="col col-4">{{'Locked Balance' | translate}}</div>
     </li>
     <li class="table-row" *ngFor="let asset of assets">
-        <div class="col col-3 text-dark" data-label="Coin">{{showCoinName(asset.coinType)}}</div>
-        <div class="col col-4 text-dark" data-label="Balance">
+        <div class="col col-3" data-label="Coin">{{showCoinName(asset.coinType)}}</div>
+        <div class="col col-4" data-label="Balance">
             <div *ngIf="asset.unlockedAmount && (asset.unlockedAmount >= 0)">
                 {{showAmount(asset.unlockedAmount)}}
             </div>
         </div>
 
         <div class="col col-4" data-label="Locked Balance">
-            <div class="text-dark" *ngIf="asset.lockedAmount && (asset.lockedAmount > 0)">
+            <div *ngIf="asset.lockedAmount && (asset.lockedAmount > 0)">
                 {{showAmount(asset.lockedAmount)}}
             </div>
         </div>

@@ -7,9 +7,10 @@ import { ReissueComponent } from './reissue.component';
 import { IpoComponent } from './ipo/ipo.component';
 import { MissComponent } from './miss/miss.component';
 import { ExcessComponent } from './excess/excess.component';
+import { IpolistComponent } from './ipolist/ipolist.component';
 
 @NgModule({
-  declarations: [ReissueComponent, IpoComponent, MissComponent, ExcessComponent],
+  declarations: [ReissueComponent, IpoComponent, MissComponent, ExcessComponent, IpolistComponent],
   imports: [
     CommonModule,
     FormsModule,

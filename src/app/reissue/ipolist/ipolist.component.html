@@ -1,0 +1,18 @@
+<div class="text-white">
+    <div>
+        <div>Total Amount: {{totalAmount}}</div>
+        <div>Total LP: {{totalLp}}</div>
+    </div>
+    <ul class="responsive-table">
+        <li class="table-header">
+            <div class="col col-3">{{'User' | translate}}</div>
+            <div class="col col-2">{{'Amount' | translate}}</div>
+            <div class="col col-2">{{'Liquidity' | translate}}</div>
+        </li>
+        <li class="table-row" *ngFor="let item of ipos">
+            <div class="col col-3" data-label="User">{{item.user}}</div>
+            <div class="col col-2" data-label="Amount">{{item.amount}}</div>
+            <div class="col col-2" data-label="Liquidity">{{item.liquidity}}</div>
+        </li>
+    </ul>
+</div>

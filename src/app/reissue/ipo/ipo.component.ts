@@ -5,26 +5,21 @@ import { PayRewardService } from 'src/app/services/payreward.service';
 @Component({
   selector: 'app-ipo',
   templateUrl: './ipo.component.html',
-  styleUrls: ['./ipo.component.scss', '../../../table.scss']
+  styleUrls: ['./ipo.component.scss']
 })
 export class IpoComponent implements OnInit {
   user: string;
   liquidity: number;
   amount: number;
 
-  totalDUSD: number;
-  totalLp: number;
-  ipos: any;
+
+  
   constructor(
     private toastr: ToastrService,
     private payrewardServ: PayRewardService) { }
 
   ngOnInit(): void {
-    this.payrewardServ.getIpos(1000, 0).subscribe(
-      (ret) => {
-        this.ipos = ret;
-      }
-    );
+
   }
 
   
