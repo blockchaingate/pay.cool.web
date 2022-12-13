@@ -27,14 +27,16 @@ export class IpoComponent implements OnInit {
     );
   }
 
+  
   submit() {
     this.payrewardServ.createIpo(this.user, this.amount, this.liquidity).subscribe(
       (ret: any) => {
         console.log('ret===', ret);
+        this.toastr.success('data was created');
       }
     );
   }
-
+  
 
   changeListenerEvent(event: any) {
     const files = event.target.files;
@@ -87,5 +89,14 @@ export class IpoComponent implements OnInit {
           );
         }
       }
+    }
+
+    recalculateRewards() {
+      this.payrewardServ.recalculateIpoRewards().subscribe(
+        (ret: any) => {
+          console.log('ret===', ret);
+          this.toastr.success('recalculated');
+        }
+      );
     }
 }

@@ -35,15 +35,65 @@
     <ul class="responsive-table">
         <li class="table-header">
             <div class="col col-2">{{'Project' | translate}}</div>
-            <div class="col col-4">{{'User' | translate}}</div>
-            <div class="col col-4">{{'Referral' | translate}}</div>
-            <div class="col col-2">{{'Status' | translate}}</div>
+            <div class="col col-4">
+                <div>
+                    {{'User' | translate}}
+                </div>
+                <div>
+                    {{'Referral' | translate}}
+                </div>
+            </div>
+            <div class="col col-2">
+                <div>
+                    {{'Pv' | translate}}
+                </div>
+                <div>
+                    {{'Gv' | translate}}
+                </div>
+            </div>
+            <div class="col col-4">
+                <div>
+                    {{'InternalStatus' | translate}}
+                </div>
+                <div>
+                    {{'StatusesInChildren' | translate}}
+                </div>
+                <div>
+                    {{'Status' | translate}}
+                </div>
+            </div>
         </li>
         <li class="table-row" *ngFor="let item of projectusers">
             <div class="col col-2" data-label="Project">{{showProjectName(item.projectId)}}</div>
-            <div class="col col-4" data-label="User">{{item.user}}</div>
-            <div class="col col-4" data-label="Referral">{{item.referral}}</div>
-            <div class="col col-2" data-label="Status">{{showStatus(item)}}</div>
+            <div class="col col-4" data-label="User">
+                <div>
+                    {{item.user}}
+                </div>
+                <div>
+                    {{item.referral}}
+                </div>
+            </div>
+            <div class="col col-2" data-label="Pv">
+                <div>
+                    {{item.pv}}
+                </div>
+                <div>
+                    {{item.gv}}
+                </div>
+            </div>
+            <div class="col col-4" data-label="statusesInChildren">
+                <div>
+                    {{item.internalStatus}}
+                </div>
+                <div *ngIf="item.statusesInChildren">
+                    <div *ngFor="let itemChild of item.statusesInChildren">
+                        {{itemChild.user}}:{{itemChild.status}}
+                    </div>
+                </div>
+                <div>
+                    {{showStatus(item)}}
+                </div>
+            </div>
         </li>
     </ul>
 

@@ -34,6 +34,10 @@ export class PayRewardService {
             return this.http.postRaw(environment.endpoints.api + 'ipo/bulk', ipos);
         }
 
+        recalculateIpoRewards() {
+            return this.http.getRaw(environment.endpoints.api + 'ipo/recalculateRewards');
+        }
+
         getIpos(pageSize, pageNum) {
             return this.http.getRaw(environment.endpoints.api + 'ipo/' + pageSize + '/' + pageNum);
         }
