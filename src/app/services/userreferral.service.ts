@@ -13,6 +13,16 @@ export class UserReferralService {
     return this.http.get(url);
    }
 
+   getProjectUserChildren(projectId, address: string, pageSize: number, pageNum: number) {
+      const url = environment.endpoints.api + 'projectuser/project/' + projectId + '/user/' + address + '/' + pageSize + '/' + pageNum;
+      return this.http.get(url);
+   }
+
+   getProjectUserChildrenTotalCount(projectId: number, address: string) {
+      const url = environment.endpoints.api + 'projectuser/project/' + projectId + '/user/' + address + '/totalCount';
+      return this.http.get(url);
+   }
+
    getChildrenTotalCount(address: string) {
       const url = environment.endpoints.api + 'userreferral/user/' + address + '/totalCount';
       return this.http.get(url);
@@ -30,6 +40,11 @@ export class UserReferralService {
 
    get(address: string) {
       const url = environment.endpoints.api + 'userreferral/user/' + address;
+      return this.http.get(url);
+   }
+
+   getProjectUser(projectId, address: string) {
+      const url = environment.endpoints.api + 'projectuser/' + projectId + '/user/' + address;
       return this.http.get(url);
    }
 

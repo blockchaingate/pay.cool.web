@@ -9,7 +9,7 @@ import { UtilService } from 'src/app/services/util.service';
 import { KanbanSmartContractService } from 'src/app/services/kanban.smartcontract.service';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
-import { statuses } from '../../config/statuses';
+
 
 @Component({
   selector: 'app-user-tree',
@@ -25,17 +25,9 @@ export class UserTreeComponent implements OnInit {
   walletAddress: string;
   user: string;
   referral: string;
-  pageSize: number = 10;
-  pageNum: number = 0;
-  children: any;
+
   errMsg: string;
   modalRef: any;
-
-
-  users: any;
-  statuses = statuses;
-  totalCount: number;
-  totalPageNum: number = 0; 
 
   constructor(
     private modalService: BsModalService,
@@ -45,10 +37,12 @@ export class UserTreeComponent implements OnInit {
     private route: ActivatedRoute, 
     private localSt: LocalStorage, private userreferralServ: UserReferralService) { }
 
+
   ngOnInit() {
     this.route.paramMap.subscribe(
       (params: ParamMap) => {
         const refCode = params['ref'];
+        const id = params['id'];
         if (refCode) {
           if(refCode == environment.addresses.Referral_ROOT) {
             return;
@@ -103,31 +97,8 @@ export class UserTreeComponent implements OnInit {
         console.log('res in checkAddress=', res);
         if(res && res.isValid) {
           this.myReferralUrl = window.location.href + '?ref=' + this.walletAddress;
+          
 
-          /*
-          this.userreferralServ.getChildren(this.walletAddress, this.pageSize, this.pageNum).subscribe(
-            (res: any) => {
-              this.children = res;
-              document.getElementById("myWalletId").focus();
-            }
-          );
-          */
-          this.userreferralServ.getChildren(this.user, this.pageSize, this.pageNum).subscribe(
-            (ret: any) => {
-              this.users = ret;
-            }
-          );
-          this.userreferralServ.get(this.user).subscribe(
-            (ret: any) => {
-              this.referral = ret.referral;
-            }
-          );
-          this.userreferralServ.getChildrenTotalCount(this.user).subscribe(
-            (ret: any) => {
-              this.totalCount = ret.totalCount;
-              this.totalPageNum = this.totalCount / this.pageSize;
-            }
-          );
 
         }
       }
@@ -135,41 +106,6 @@ export class UserTreeComponent implements OnInit {
     
   }
 
-  gotoPage(pageNum: number) {
-    if(pageNum < 0 || (pageNum > this.totalPageNum)) {
-      return;
-    }
-    this.pageNum = pageNum;
-    this.userreferralServ.getChildren(this.user, this.pageSize, this.pageNum).subscribe(
-      (ret: any) => {
-        this.users = ret;
-      }
-    );
-  } 
-
-  changeParentAddress(parentAddress: string) {
-    this.user = parentAddress;
-    this.userreferralServ.get(this.user).subscribe(
-      (ret: any) => {
-        this.referral = ret.referral;
-      }
-    );
-    this.userreferralServ.getChildrenTotalCount(this.user).subscribe(
-      (ret: any) => {
-        this.totalCount = ret.totalCount;
-        this.totalPageNum = this.totalCount / this.pageSize;
-      }
-    );
-    this.gotoPage(0);
-  }
-
-  showStatus(status: any) {
-    const statuses = this.statuses.filter(item => item.value == status);
-    if(statuses && statuses.length > 0) {
-      return statuses[0].text;
-    }
-    return '';
-  }
 
   joinForFree() {
     if(this.refCode) {
