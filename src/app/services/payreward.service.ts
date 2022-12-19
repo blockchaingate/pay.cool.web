@@ -6,6 +6,16 @@ import { environment } from 'src/environments/environment';
 export class PayRewardService {
     constructor(
         private http: HttpService) { }
+
+        getAllIcoRewardsById(icoid) {
+            return this.http.getRaw(environment.endpoints.api + 'payreward/ipo/' + icoid + '/100/0');
+        }
+
+        getIcoRewardsByUser(user: string) {
+            const url = environment.endpoints.api + 'payreward/ipos/user/' + user + '/10/0';
+            return this.http.getRaw(url);
+        }
+
         getAllRewardsByTxid(txid: string) {
             return this.http.getRaw(environment.endpoints.api + 'payreward/txid/' + txid);
         }   
