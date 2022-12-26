@@ -5,7 +5,8 @@
     </div>
     <ul class="responsive-table">
         <li class="table-header">
-            <div class="col col-4">
+            <div class="col col-3">{{'ID' | translate}}</div>
+            <div class="col col-3">
                 <div>
                     {{'User' | translate}}
                 </div>
@@ -15,10 +16,13 @@
             </div>
             <div class="col col-2">{{'Amount' | translate}}</div>
             <div class="col col-2">{{'Status' | translate}}</div>
-            <div class="col col-3">{{'Liquidity' | translate}}</div>
+            <div class="col col-2">{{'Liquidity' | translate}}</div>
         </li>
         <li class="table-row" *ngFor="let item of ipos">
-            <div class="col col-4" data-label="User">
+            <div class="col col-3">
+                {{item._id}}
+            </div>
+            <div class="col col-3" data-label="User">
                 <div>
                     {{item.user}}
                 </div>
@@ -28,7 +32,7 @@
             </div>
             <div class="col col-2" data-label="Amount">{{item.amount}}</div>
             <div class="col col-2">{{showStatusText(item.status)}}</div>
-            <div class="col col-3" data-label="Liquidity">{{item.liquidity}}</div>
+            <div class="col col-2" data-label="Liquidity">{{item.liquidity}}</div>
         </li>
     </ul>
 </div>

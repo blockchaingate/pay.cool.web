@@ -3,7 +3,6 @@ import { statuses } from '../../config/statuses';
 import { metaforceProjectId } from '../../config/projectId';
 import { UserReferralService } from '../../services/userreferral.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { iif } from 'rxjs';
 import { BuyService } from 'src/app/services/buy.service';
 import { UtilService } from 'src/app/services/util.service';
 import { PayRewardService } from 'src/app/services/payreward.service';
@@ -23,6 +22,8 @@ export class UserDetailComponent implements OnInit {
   gv: number;
   users: any;
   buys: any;
+  icos: any;
+  myicoRewards: any;
   referral: string;
   status: number;
   statuses = statuses;
@@ -48,10 +49,14 @@ export class UserDetailComponent implements OnInit {
           if(user) {
             this.user = user;
             this.getBuys();
+            this.getIcos();
+            this.getMyIcoRewards();
             this.changeTab('paycool');
           } else {
             this.changeTab('paycool');
             this.getBuys();
+            this.getIcos();
+            this.getMyIcoRewards();
           }
       }
     )
@@ -59,6 +64,18 @@ export class UserDetailComponent implements OnInit {
 
   }
 
+  showIcoRwards(icoid) {
+    this.payRewardServ.getAllIcoRewardsById(icoid).subscribe(
+      (rewards: any) => {
+        console.log('rewards===', rewards);
+        const initialState = {
+          rewards
+        };          
+
+        this.modalService.show(TxRewardsComponent, { initialState, class: 'modal-lg' });
+      }
+    );
+  }
 
   showRwards(txid) {
     this.payRewardServ.getAllRewardsByTxid(txid).subscribe(
@@ -93,6 +110,22 @@ export class UserDetailComponent implements OnInit {
     );
   }
 
+  getIcos() {
+    this.buyServ.getIcosByUser(this.user).subscribe(
+      res => {
+        this.icos = res;
+      }
+    );
+  }
+
+  getMyIcoRewards() {
+    this.payRewardServ.getIcoRewardsByUser(this.user).subscribe(
+      res => {
+        this.myicoRewards = res;
+      }
+    );
+  }
+  
   showStatus(status: any) {
     const statuses = this.statuses.filter(item => item.value == status);
     if(statuses && statuses.length > 0) {

@@ -10,8 +10,72 @@
         <li class="nav-item">
           <a class="nav-link" [ngClass]="tabName=='buys' ? 'active' : ''" (click)="changeTab('buys')">Packages</a>
         </li>
+
+        <li class="nav-item" *ngIf="icos && (icos.length > 0)">
+          <a class="nav-link" [ngClass]="tabName=='icos' ? 'active' : ''" (click)="changeTab('icos')">Icos</a>
+        </li>
+
+        <li class="nav-item" *ngIf="myicoRewards && (myicoRewards.length > 0)">
+          <a class="nav-link" [ngClass]="tabName=='myicoRewards' ? 'active' : ''" (click)="changeTab('myicoRewards')">My Ico rewards</a>
+        </li>
     </ul>
     
+    <div *ngIf="tabName=='myicoRewards'">
+      <ul class="responsive-table">
+        <li class="table-header">
+          <div class="col col-4">{{'From' | translate}}</div>
+          <div class="col col-2">{{'Coin' | translate}}</div>
+          <div class="col col-2">{{'Amount' | translate}}</div>
+          <div class="col col-2">{{'Reward Coin' | translate}}</div>
+          <div class="col col-2">{{'Reward Amount' | translate}}</div>
+        </li>
+        <li class="table-row" *ngFor="let item of myicoRewards">
+          <div class="col col-4" data-label="From">
+            {{item.from}}
+          </div>
+          <div class="col col-2" data-label="Coin">
+            {{item.coin}}
+          </div>
+          <div class="col col-2" data-label="Amount">
+            {{item.amount}}
+          </div>
+          <div class="col col-2" data-label="Reward Coin">
+            {{item.rewardCoin}}
+          </div>
+          <div class="col col-2" data-label="Reward Amount">
+            {{item.rewardAmount}}
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="tabName=='icos'">
+      <ul class="responsive-table">
+        <li class="table-header">
+          <div class="col col-3">{{'User' | translate}}</div>
+          <div class="col col-4">{{'Amount' | translate}}</div>
+          <div class="col col-3">{{'Liquidity' | translate}}</div>
+          <div class="col col-2"></div>
+        </li>
+        <li class="table-row" *ngFor="let item of icos">
+          <div class="col col-3" data-label="Project Package">
+            {{item.user}}
+          </div>
+          <div class="col col-4" data-label="Amount">
+            {{item.amount}}
+          </div>
+          <div class="col col-3" data-label="Liquidity">
+            {{item.liquidity}}
+          </div>
+          <div class="col col-2">
+            <a (click)="showIcoRwards(item._id)">
+              Show rewards
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
     <div *ngIf="tabName=='buys'">
       <ul class="responsive-table">
         <li class="table-header">
@@ -24,10 +88,10 @@
           <div class="col col-3" data-label="Project Package">
             {{item.projectPackage ? showName(item.projectPackage.name) : ''}}
           </div>
-          <div class="col col-4" data-label="Project Package">
+          <div class="col col-4" data-label="Amount">
             {{showAmount(item.amount)}} {{showCoinName(item.coinType)}}
           </div>
-          <div class="col col-3" data-label="Project Package">
+          <div class="col col-3" data-label="Date created">
             {{item.dateCreated}}
           </div>
           <div class="col col-2">
