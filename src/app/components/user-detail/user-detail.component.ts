@@ -24,8 +24,10 @@ export class UserDetailComponent implements OnInit {
   buys: any;
   icos: any;
   myicoRewards: any;
+  myRewards: any;
   referral: string;
   status: number;
+  dateCreated: any;
   statuses = statuses;
 
   pageSize: number = 10;
@@ -51,12 +53,14 @@ export class UserDetailComponent implements OnInit {
             this.getBuys();
             this.getIcos();
             this.getMyIcoRewards();
+            this.getMyRewards();
             this.changeTab('paycool');
           } else {
             this.changeTab('paycool');
             this.getBuys();
             this.getIcos();
             this.getMyIcoRewards();
+            this.getMyRewards();
           }
       }
     )
@@ -126,6 +130,14 @@ export class UserDetailComponent implements OnInit {
     );
   }
   
+  getMyRewards() {
+    this.payRewardServ.getRewardsByUser(this.user).subscribe(
+      res => {
+        this.myRewards = res;
+      }
+    );
+  }
+
   showStatus(status: any) {
     const statuses = this.statuses.filter(item => item.value == status);
     if(statuses && statuses.length > 0) {
@@ -140,6 +152,7 @@ export class UserDetailComponent implements OnInit {
       (ret: any) => {
         this.referral = ret.referral;
         this.status = ret.status;
+        this.dateCreated = ret.dateCreated;
         if(ret.newStatus && ret.newStatus > this.status) {
           this.status = ret.newStatus;
         }
@@ -191,6 +204,7 @@ export class UserDetailComponent implements OnInit {
         (ret: any) => {
           this.referral = ret.referral;
           this.status = ret.status;
+          this.dateCreated = ret.dateCreated;
           if(ret.newStatus && ret.newStatus > this.status) {
             this.status = ret.newStatus;
           }
@@ -216,6 +230,7 @@ export class UserDetailComponent implements OnInit {
           this.referral = ret.referral;
           this.pv = ret.pv;
           this.gv = ret.gv;
+          this.dateCreated = ret.dateCreated;
 
           this.status = ret.status;
           if(ret.newStatus && ret.newStatus > this.status) {

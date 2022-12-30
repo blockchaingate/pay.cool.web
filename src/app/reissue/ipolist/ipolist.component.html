@@ -32,7 +32,16 @@
             </div>
             <div class="col col-2" data-label="Amount">{{item.amount}}</div>
             <div class="col col-2">{{showStatusText(item.status)}}</div>
-            <div class="col col-2" data-label="Liquidity">{{item.liquidity}}</div>
+            <div class="col col-2" data-label="Liquidity">
+                <div>
+                    {{item.liquidity}}
+                </div>
+                <div *ngIf="isAdmin">
+                    <a href="javascript:void(0)" (click)="delete(item._id)">
+                        Delete
+                    </a>
+                </div>
+            </div>
         </li>
     </ul>
 </div>

@@ -1,4 +1,5 @@
-1Kdbn87QcAghapMnpnyhjsFHgEMHuPNoFk
+https://kanbanprod.fabcoinapi.com/kanban/getTransactionReceipt/0x42dd443ecdaea53029d2ca5a2350e445f7664fb5786f07b4eb66c9a3a104aabd
+
 
 
 {"_id":"6390a521af71b33e3b21ec87","address":"0x0185f15ccd4e7dfec68cdc671fb07ec5a22036be","projectId":"9","__v":0,"dateCreated":"2022-12-07T14:37:21.918Z","newStatus":1,"status":0,"user":"msBALt92abvckwLzjkf6GXps7xebhv4sCz","gv":39500,"internalStatus":1,"pv":500,"referral":"n1eXG5oe6wJ6h43akutyGfphqQsY1UfAUR","statusesInChildren":[{"user":"mweZqx4QFEPDHHryp4K257zRss2VY4zc9D","status":2,"_id":"6398a2e1b1e4046f788a59bc"}]}

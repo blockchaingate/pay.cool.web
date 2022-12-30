@@ -190,6 +190,10 @@ export class HttpService {
         return this.http.get(fullUrl, options);
     }
 
+    deleteRaw (fullUrl: string, options?:any): Observable<any> {
+        return this.http.delete(fullUrl, options);
+    }
+
     putRaw(fullUrl: string, options?:any): Observable<any> {
         return this.http.put(fullUrl, options);
     }

@@ -9,6 +9,7 @@ import { DataService } from 'src/app/services/data.service';
 import { UtilService } from 'src/app/services/util.service';
 import { statuses } from '../../../config/statuses';
 import { ProjectService } from 'src/app/services/project.service';
+import { UserReferralService } from 'src/app/services/userreferral.service';
 
 @Component({
   selector: 'app-project-user-add',
@@ -28,6 +29,7 @@ export class ProjectUserAddComponent implements OnInit {
     private utilServ: UtilService,
     private kanbanSmartContractServ: KanbanSmartContractService,
     private router: Router,
+    private userReferralServ: UserReferralService,
     private dataServ: DataService,
     private toastr: ToastrService,
     private modalService: BsModalService,
@@ -51,19 +53,34 @@ export class ProjectUserAddComponent implements OnInit {
   }
   
   confirm() {
-    const initialState = {
-      pwdHash: this.wallet.pwdHash,
-      encryptedSeed: this.wallet.encryptedSeed
-    };          
-    if(!this.wallet || !this.wallet.pwdHash) {
-      this.router.navigate(['/wallet']);
+    const hexAddress = this.utilServ.fabToExgAddress(this.user);
+    if(!hexAddress) {
+      this.toastr.info('Invalid address');
       return;
     }
-    this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
+    this.userReferralServ.checkAddress(this.user).subscribe(
+      (ret: any) => {
+        if(ret && ret.isValid) {
+          const initialState = {
+            pwdHash: this.wallet.pwdHash,
+            encryptedSeed: this.wallet.encryptedSeed
+          };          
+          if(!this.wallet || !this.wallet.pwdHash) {
+            this.router.navigate(['/wallet']);
+            return;
+          }
+          this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
+      
+          this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
+            this.addProjectDo(seed);
+          });
+        } else {
+          this.toastr.info('Not a valid paycool member');
+          return;
+        }
+      }
+    );
 
-    this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
-      this.addProjectDo(seed);
-    });
   }
 
   async addProjectDo(seed: Buffer) {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import BigNumber from 'bignumber.js';
 import { PayRewardService } from 'src/app/services/payreward.service';
 import { statuses } from '../../config/statuses';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ipolist',
@@ -13,9 +14,15 @@ export class IpolistComponent implements OnInit {
   totalAmount: number;
   totalLp: number;
   ipos: any;
-  constructor(private payrewardServ: PayRewardService) { }
+  isAdmin: boolean;
+  constructor(
+    private payrewardServ: PayRewardService, 
+    private router : Router) { }
 
   ngOnInit(): void {
+    const href = this.router.url;
+    console.log('href==', href);
+    this.isAdmin = (href == '/reissue/ipo');
     this.totalAmount = 0;
     this.totalLp = 0;
     this.payrewardServ.getIpos(1000, 0).subscribe(
@@ -30,6 +37,13 @@ export class IpolistComponent implements OnInit {
     );
   }
 
+  delete(ipoid) {
+    this.payrewardServ.deleteIpo(ipoid).subscribe(
+      (ret) => {
+        this.ipos = this.ipos.filter(item => item._id != ipoid);
+      }
+    );
+  }
   showStatusText(status) {
     const statuses = this.statuses.filter(item => item.value == status);
     if(statuses && statuses.length > 0) {

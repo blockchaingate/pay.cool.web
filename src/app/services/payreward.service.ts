@@ -12,7 +12,12 @@ export class PayRewardService {
         }
 
         getIcoRewardsByUser(user: string) {
-            const url = environment.endpoints.api + 'payreward/ipos/user/' + user + '/10/0';
+            const url = environment.endpoints.api + 'payreward/ipos/user/' + user + '/10000/0';
+            return this.http.getRaw(url);
+        }
+
+        getRewardsByUser(user: string) {
+            const url = environment.endpoints.api + 'payreward/user/' + user + '/10000/0';
             return this.http.getRaw(url);
         }
 
@@ -50,6 +55,10 @@ export class PayRewardService {
 
         getIpos(pageSize, pageNum) {
             return this.http.getRaw(environment.endpoints.api + 'ipo/' + pageSize + '/' + pageNum);
+        }
+
+        deleteIpo(ipoid) {
+            return this.http.deleteRaw(environment.endpoints.api + 'ipo/' + ipoid);
         }
 }
 
