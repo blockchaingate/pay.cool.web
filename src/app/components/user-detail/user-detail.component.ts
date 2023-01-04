@@ -8,6 +8,9 @@ import { UtilService } from 'src/app/services/util.service';
 import { PayRewardService } from 'src/app/services/payreward.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { TxRewardsComponent } from '../../me/components/tx-rewards/tx-rewards.component';
+import { ChargeService } from 'src/app/services/charge.service';
+import { LockerService } from 'src/app/services/locker.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user-detail',
@@ -36,11 +39,17 @@ export class UserDetailComponent implements OnInit {
   totalPageNum: number = 0; 
   children: any;
 
+  myPayments: any;
+  myLPLockers: any;
+  myLockers: any;
+
   constructor(
     private route: ActivatedRoute,
     private buyServ: BuyService,
     private modalService: BsModalService,
     private utilServ: UtilService,
+    private lockerServ: LockerService,
+    private chargeServ: ChargeService,
     private payRewardServ: PayRewardService,
     private userreferralServ: UserReferralService) { }
 
@@ -54,6 +63,9 @@ export class UserDetailComponent implements OnInit {
             this.getIcos();
             this.getMyIcoRewards();
             this.getMyRewards();
+            this.getMyPayments();
+            this.getMyLPLockers();
+            this.getMyLockers();
             this.changeTab('paycool');
           } else {
             this.changeTab('paycool');
@@ -61,11 +73,21 @@ export class UserDetailComponent implements OnInit {
             this.getIcos();
             this.getMyIcoRewards();
             this.getMyRewards();
+            this.getMyPayments();
+            this.getMyLPLockers();
+            this.getMyLockers();
           }
       }
     )
     
 
+  }
+
+  showId(txid: string) {
+    if(!txid) {
+      return txid;
+    }
+    return txid.substring(0, 3) + '...' + txid.substring(txid.length - 3);
   }
 
   showIcoRwards(icoid) {
@@ -81,6 +103,19 @@ export class UserDetailComponent implements OnInit {
     );
   }
 
+  timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+    return time;
+  }
+  
   showRwards(txid) {
     this.payRewardServ.getAllRewardsByTxid(txid).subscribe(
       (rewards: any) => {
@@ -122,6 +157,32 @@ export class UserDetailComponent implements OnInit {
     );
   }
 
+  getMyPayments() {
+    this.chargeServ.getChargesByUser(this.user).subscribe(
+      (payments) => {
+        this.myPayments = payments;
+        console.log('payments===', payments);
+      }
+    );
+  }
+  
+  getMyLPLockers() {
+    this.lockerServ.getAllLpLockersByUser(this.user, 100, 0).subscribe(
+      (lockers) => {
+        this.myLPLockers = lockers;
+        console.log('this.myLPLockers====', this.myLPLockers);
+      }
+    );
+  }
+  
+  getMyLockers() {
+    this.lockerServ.getAllLockersByUser(this.user, 100, 0).subscribe(
+      (lockers) => {
+        this.myLockers = lockers;
+      }
+    );
+  }
+
   getMyIcoRewards() {
     this.payRewardServ.getIcoRewardsByUser(this.user).subscribe(
       res => {
@@ -130,6 +191,10 @@ export class UserDetailComponent implements OnInit {
     );
   }
   
+  showUrl(txid: string) {
+    return 'https://' + (environment.production ? '' : 'test.') + 'exchangily.com/explorer/tx-detail/' + txid;
+  }
+
   getMyRewards() {
     this.payRewardServ.getRewardsByUser(this.user).subscribe(
       res => {
@@ -144,6 +209,10 @@ export class UserDetailComponent implements OnInit {
       return statuses[0].text;
     }
     return '';
+  }
+
+  showFabAddress(exgAddress: string) {
+    return this.utilServ.exgToFabAddress(exgAddress);
   }
 
   changeParentAddress(parentAddress: string) {

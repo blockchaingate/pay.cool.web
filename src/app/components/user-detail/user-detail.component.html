@@ -10,7 +10,15 @@
         <li class="nav-item">
           <a class="nav-link" [ngClass]="tabName=='buys' ? 'active' : ''" (click)="changeTab('buys')">Packages</a>
         </li>
-
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="tabName=='myPayments' ? 'active' : ''" (click)="changeTab('myPayments')">Payments</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="tabName=='myLPLockers' ? 'active' : ''" (click)="changeTab('myLPLockers')">My LP Lockers</a>
+        </li>   
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="tabName=='myLockers' ? 'active' : ''" (click)="changeTab('myLockers')">My Lockers</a>
+        </li>      
         <li class="nav-item">
           <a class="nav-link" [ngClass]="tabName=='myRewards' ? 'active' : ''" (click)="changeTab('myRewards')">My rewards</a>
         </li>
@@ -23,13 +31,89 @@
         </li>
     </ul>
   
+    <div *ngIf="tabName=='myPayments'">
+      <ul class="responsive-table">
+        <li class="table-header">
+          <div class="col col-3">{{'Type' | translate}}</div>
+          <div class="col col-3">{{'totalReward' | translate}}</div>
+          <div class="col col-3">{{'dateCreated' | translate}}</div>
+          <div class="col col-3"></div>
+        </li>
+        <li class="table-row" *ngFor="let item of myPayments">
+
+          <div class="col col-3" data-label="Type">
+            {{item.type}}
+          </div>
+          <div class="col col-3" data-label="Total Reward">
+            {{showAmount(item.totalReward)}}
+          </div>
+          <div class="col col-3" data-label="Date Created">
+            {{item.dateCreated | date}}
+          </div>
+          <div class="col col-3" >          
+            <a (click)="showRwards(item.txid)">
+            Show rewards
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div> 
+
+    <div *ngIf="tabName=='myLPLockers'">
+      fffff
+      <ul class="responsive-table">
+        <li class="table-header">
+          <div class="col col-4">{{'ID' | translate}}</div>
+          <div class="col col-4">{{'Amount' | translate}}</div>
+          <div class="col col-4">{{'Released Amount' | translate}}</div>
+        </li>
+        <li class="table-row" *ngFor="let item of myLPLockers">
+          <div class="col col-4" data-label="ID">
+            {{item.id}}
+          </div>
+          <div class="col col-4" data-label="Amount">
+            {{showAmount(item.amount)}}
+          </div>
+          <div class="col col-4" data-label="Released Amount">
+            {{showAmount(item.releaseAmount)}}
+          </div>
+        </li>
+      </ul>
+    </div> 
+
+    <div *ngIf="tabName=='myLockers'">
+      <ul class="responsive-table">
+        <li class="table-header">
+          <div class="col col-3">{{'ID' | translate}}</div>
+          <div class="col col-3">{{'Coin' | translate}}</div>
+          <div class="col col-3">{{'Amount' | translate}}</div>
+          <div class="col col-3">{{'Release Time' | translate}}</div>
+        </li>
+        <li class="table-row" *ngFor="let item of myLockers">
+          <div class="col col-3" data-label="ID">
+            {{item.id}}
+          </div>
+          <div class="col col-3" data-label="Type">
+            {{showCoinName(item.coinType)}}
+          </div>
+          <div class="col col-3" data-label="Amount">
+            {{item.amount}}
+          </div>
+          <div class="col col-3" data-label="Reward Amount">
+            {{timeConverter(item.releaseTime)}}
+          </div>
+        </li>
+      </ul>
+    </div> 
+
+
     <div *ngIf="tabName=='myRewards'">
       <ul class="responsive-table">
         <li class="table-header">
           <div class="col col-4">{{'From' | translate}}</div>
           <div class="col col-3">{{'Type' | translate}}</div>
-          <div class="col col-3">{{'Amount' | translate}}</div>
-          <div class="col col-2">{{'Reward Amount' | translate}}</div>
+          <div class="col col-3">{{'Amount/Reward Amount' | translate}}</div>
+          <div class="col col-2">{{'Txid' | translate}}</div>
         </li>
         <li class="table-row" *ngFor="let item of myRewards">
           <div class="col col-4" data-label="From">
@@ -38,11 +122,14 @@
           <div class="col col-3" data-label="Type">
             {{item.type}}
           </div>
-          <div class="col col-3" data-label="Amount">
-            {{item.amount}} {{item.coin}}
+          <div class="col col-3" data-label="Amount/Reward Amount">
+            <div>{{item.amount}} {{item.coin}}</div>
+            <div>{{item.rewardAmount}} {{item.rewardCoin}}</div>
           </div>
-          <div class="col col-3" data-label="Reward Amount">
-            {{item.rewardAmount}} {{item.rewardCoin}}
+          <div class="col col-3" data-label="Txid">
+            <a href="{{showUrl(item.txid)}}" target="_blank">
+              {{showId(item.txid)}}
+            </a>
           </div>
         </li>
       </ul>
