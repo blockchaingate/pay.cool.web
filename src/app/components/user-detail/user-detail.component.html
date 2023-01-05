@@ -2,32 +2,32 @@
 
     <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="tabName=='paycool' ? 'active' : ''" aria-current="page" (click)="changeTab('paycool')">Paycool</a>
+          <a class="nav-link hand-cursor" [ngClass]="tabName=='paycool' ? 'active' : ''" aria-current="page" (click)="changeTab('paycool')">Paycool</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="tabName=='metaforce' ? 'active' : ''" (click)="changeTab('metaforce')">Metaforce</a>
+          <a class="nav-link hand-cursor" [ngClass]="tabName=='metaforce' ? 'active' : ''" (click)="changeTab('metaforce')">Metaforce</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="tabName=='buys' ? 'active' : ''" (click)="changeTab('buys')">Packages</a>
+          <a class="nav-link hand-cursor" [ngClass]="tabName=='buys' ? 'active' : ''" (click)="changeTab('buys')">Packages</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="tabName=='myPayments' ? 'active' : ''" (click)="changeTab('myPayments')">Payments</a>
+          <a class="nav-link hand-cursor" [ngClass]="tabName=='myPayments' ? 'active' : ''" (click)="changeTab('myPayments')">Payments</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="tabName=='myLPLockers' ? 'active' : ''" (click)="changeTab('myLPLockers')">My LP Lockers</a>
+          <a class="nav-link hand-cursor" [ngClass]="tabName=='myLPLockers' ? 'active' : ''" (click)="changeTab('myLPLockers')">My LP Lockers</a>
         </li>   
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="tabName=='myLockers' ? 'active' : ''" (click)="changeTab('myLockers')">My Lockers</a>
+          <a class="nav-link hand-cursor" [ngClass]="tabName=='myLockers' ? 'active' : ''" (click)="changeTab('myLockers')">My Lockers</a>
         </li>      
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="tabName=='myRewards' ? 'active' : ''" (click)="changeTab('myRewards')">My rewards</a>
+          <a class="nav-link hand-cursor" [ngClass]="tabName=='myRewards' ? 'active' : ''" (click)="changeTab('myRewards')">My rewards</a>
         </li>
         <li class="nav-item" *ngIf="icos && (icos.length > 0)">
-          <a class="nav-link" [ngClass]="tabName=='icos' ? 'active' : ''" (click)="changeTab('icos')">Icos</a>
+          <a class="nav-link hand-cursor" [ngClass]="tabName=='icos' ? 'active' : ''" (click)="changeTab('icos')">Icos</a>
         </li>
 
         <li class="nav-item" *ngIf="myicoRewards && (myicoRewards.length > 0)">
-          <a class="nav-link" [ngClass]="tabName=='myicoRewards' ? 'active' : ''" (click)="changeTab('myicoRewards')">My Ico rewards</a>
+          <a class="nav-link hand-cursor" [ngClass]="tabName=='myicoRewards' ? 'active' : ''" (click)="changeTab('myicoRewards')">My Ico rewards</a>
         </li>
     </ul>
   
@@ -60,7 +60,6 @@
     </div> 
 
     <div *ngIf="tabName=='myLPLockers'">
-      fffff
       <ul class="responsive-table">
         <li class="table-header">
           <div class="col col-4">{{'ID' | translate}}</div>
@@ -252,19 +251,19 @@
               </div>
               <nav class="d-flex justify-content-center">
                 <ul class="pagination">
-                  <li class="page-item">
+                  <li class="page-item hand-cursor">
                     <a class="page-link" (click)="gotoPage(pageNum - 1)">Previous</a>
                   </li>
-                  <li class="page-item" *ngIf="totalPageNum >= 0">
+                  <li class="page-item hand-cursor" *ngIf="totalPageNum >= 0">
                     <a class="page-link" (click)="gotoPage(0)">1</a>
                   </li>
-                  <li class="page-item" *ngIf="totalPageNum >= 1">
+                  <li class="page-item hand-cursor" *ngIf="totalPageNum >= 1">
                     <a class="page-link" (click)="gotoPage(1)">2</a>
                   </li>
-                  <li class="page-item" *ngIf="totalPageNum >= 2">
+                  <li class="page-item hand-cursor" *ngIf="totalPageNum >= 2">
                     <a class="page-link" (click)="gotoPage(2)">3</a>
                   </li>
-                  <li class="page-item">
+                  <li class="page-item hand-cursor">
                     <a class="page-link" (click)="gotoPage(pageNum + 1)">Next</a>
                   </li>
                 </ul>
@@ -292,19 +291,19 @@
               </ul>
               <nav class="d-flex justify-content-center">
                 <ul class="pagination">
-                  <li class="page-item">
+                  <li class="page-item hand-cursor">
                     <a class="page-link" (click)="gotoPage(pageNum - 1)">Previous</a>
                   </li>
-                  <li class="page-item" *ngIf="totalPageNum >= 0">
+                  <li class="page-item hand-cursor" *ngIf="totalPageNum >= 0">
                     <a class="page-link" (click)="gotoPage(0)">1</a>
                   </li>
-                  <li class="page-item" *ngIf="totalPageNum >= 1">
+                  <li class="page-item hand-cursor" *ngIf="totalPageNum >= 1">
                     <a class="page-link" (click)="gotoPage(1)">2</a>
                   </li>
-                  <li class="page-item" *ngIf="totalPageNum >= 2">
+                  <li class="page-item hand-cursor" *ngIf="totalPageNum >= 2">
                     <a class="page-link" (click)="gotoPage(2)">3</a>
                   </li>
-                  <li class="page-item">
+                  <li class="page-item hand-cursor">
                     <a class="page-link" (click)="gotoPage(pageNum + 1)">Next</a>
                   </li>
                 </ul>
