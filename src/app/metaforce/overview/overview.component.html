@@ -1,0 +1,62 @@
+<div class="container">
+    
+    <div class="row">
+        <div class="col col-md-4">
+            <app-card [title]="'Payments(Package)'" [content]="overview.paymentPackages"></app-card>
+        </div>
+        <div class="col col-md-4">
+            <app-card [title]="'Payments(Annual Fee)'" [content]="overview.paymentAnnualFees"></app-card>
+        </div>
+        <div class="col col-md-4">
+            <app-card [title]="'Payments(Monthly Fee)'" [content]="overview.paymentMonthlyFees"></app-card>
+        </div>
+
+    </div>
+
+    <div class="row my-3">
+        <div class="col col-md-4">
+            <app-card [title]="'Users(Executive)'" [content]="overview.executiveUsers"></app-card>
+        </div>
+        <div class="col col-md-4">
+            <app-card [title]="'Users(Senior)'" [content]="overview.seniorUsers"></app-card>
+        </div>
+        <div class="col col-md-4">
+            <app-card [title]="'Users(Junior)'" [content]="overview.juniorUsers"></app-card>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col col-md-4">
+            <app-card [title]="'Users(Basic)'" [content]="overview.basicUsers"></app-card>
+        </div>
+        <div class="col col-md-4">
+            <app-card [title]="'Marketing Rewards(FET)'" [content]="overview.marketingRewards"></app-card>
+        </div>
+        <div class="col col-md-4">
+            <app-card [title]="'Marketing Rewards(LP)'" [content]="overview.marketingLps"></app-card>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col col-md-4">
+            <app-card [title]="'Gap Rewards(FET)'" [content]="overview.gapRewards"></app-card>
+        </div>
+        <div class="col col-md-4">
+            <app-card [title]="'Gap Rewards(LP)'" [content]="overview.gapLps"></app-card>
+        </div>
+        <div class="col col-md-4">
+            <app-card [title]="'Leadership Rewards(FET)'" [content]="overview.leadershipRewards"></app-card>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col col-md-4">
+            <app-card [title]="'Leadership Rewards(LP)'" [content]="overview.leadershipLps"></app-card>
+        </div>
+        <div class="col col-md-4">
+            <app-card [title]="'Global Rewards(FET)'" [content]="overview.globalRewards"></app-card>
+        </div>
+        <div class="col col-md-4">
+            <app-card [title]="'Global Rewards(LP)'" [content]="overview.globalLps"></app-card>
+        </div>
+    </div>
+</div>

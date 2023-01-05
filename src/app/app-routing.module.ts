@@ -21,6 +21,10 @@ const routes: Routes = [
     loadChildren: () => import('./reissue/reissue.module').then(w => w.ReissueModule)
   },
   {
+    path: 'metaforce',
+    loadChildren: () => import('./metaforce/metaforce.module').then(w => w.MetaforceModule)
+  },
+  {
     path: 'wallet',
     loadChildren: () => import('./wallet/wallet.module').then(w => w.WalletModule)
   },

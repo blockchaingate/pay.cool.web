@@ -9,6 +9,9 @@ export class ProjectService {
     getAllProjects(pageSize: number, pageNum: number) {
         return this.http.getRaw(environment.endpoints.api + 'project/' + pageSize + '/' + pageNum);
     }  
+    getOverview(projectId) {
+        return this.http.getRaw(environment.endpoints.api + 'project/' + projectId + '/overview');
+    }
     getAllProjectPackages(pageSize: number, pageNum: number) {
         return this.http.getRaw(environment.endpoints.api + 'projectpackage/' + pageSize + '/' + pageNum);
     }  

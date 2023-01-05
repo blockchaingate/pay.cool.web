@@ -1,0 +1,55 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">
+            Overview
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="payments-tab" data-toggle="tab" href="#payments" role="tab" aria-controls="payments" aria-selected="false">
+            Payments
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="marketing-rewards-tab" data-toggle="tab" href="#marketing-rewards" role="tab" aria-controls="marketing-rewards" aria-selected="false">
+            Marketing Rewards
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="gap-rewards-tab" data-toggle="tab" href="#gap-rewards" role="tab" aria-controls="gap-rewards" aria-selected="false">
+        Gap Rewards
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" id="leadership-rewards-tab" data-toggle="tab" href="#leadership-rewards" role="tab" aria-controls="leadership-rewards" aria-selected="false">
+            Leadership Rewards
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" id="global-rewards-tab" data-toggle="tab" href="#global-rewards" role="tab" aria-controls="global-rewards" aria-selected="false">
+            Global Rewards
+        </a>
+    </li>
+</ul>
+
+<div class="tab-content mt-3" id="myTabContent">
+    <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+        <app-metaforce-overview></app-metaforce-overview>
+    </div>
+    <div class="tab-pane fade" id="payments" role="tabpanel" aria-labelledby="payments-tab">
+        <app-metaforce-payments></app-metaforce-payments>
+    </div>
+    <div class="tab-pane fade" id="marketing-rewards" role="tabpanel" aria-labelledby="marketing-rewards-tab">
+        <app-metaforce-marketing></app-metaforce-marketing>
+    </div>
+    <div class="tab-pane fade" id="gap-rewards" role="tabpanel" aria-labelledby="gap-rewards-tab">
+        <app-metaforce-gap></app-metaforce-gap>
+    </div>
+    <div class="tab-pane fade" id="leadership-rewards" role="tabpanel" aria-labelledby="leadership-rewards-tab">
+        <app-metaforce-leadership></app-metaforce-leadership>
+    </div>
+    <div class="tab-pane fade" id="global-rewards" role="tabpanel" aria-labelledby="global-rewards-tab">
+        <app-metaforce-global></app-metaforce-global>
+    </div>
+</div>
