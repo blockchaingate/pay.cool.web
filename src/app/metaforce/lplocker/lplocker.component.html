@@ -1,22 +1,19 @@
 <table class="table">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">Type</th>
+        <th scope="col">User</th>
+        <th scope="col">ID</th>
         <th scope="col">Amount</th>
-        <th scope="col">Date created</th>
+        <th scope="col">Released Amount</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of buys">
-        <td>{{showType(item.type)}}</td>
-        <td>{{showAmount(item.amount)}} {{showCoinName(item.coinType)}}</td>
-        <td>{{item.dateCreated | date}}</td>
-        <td>
-          <a (click)="showRwards(item.txid)">
-            Show rewards
-          </a>
-        </td>
+      <tr *ngFor="let item of lplockers">
+        <td>{{showFabAddress(item.user)}}</td>
+        <td>{{item.id}}</td>
+        <td>{{item.amount}}</td>
+        <td>{{item.releaseAmount}}</td>
       </tr>
     </tbody>
 </table>

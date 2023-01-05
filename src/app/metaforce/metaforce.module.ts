@@ -9,6 +9,8 @@ import { GapComponent } from './gap/gap.component';
 import { LeadershipComponent } from './leadership/leadership.component';
 import { GlobalComponent } from './global/global.component';
 import { CardComponent } from './components/card/card.component';
+import { LplockerComponent } from './lplocker/lplocker.component';
+import { PayRewardComponent } from './components/pay-reward/pay-reward.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,7 @@ import { CardComponent } from './components/card/card.component';
     GapComponent, 
     LeadershipComponent, 
     GlobalComponent, 
-    CardComponent
+    CardComponent, LplockerComponent, PayRewardComponent
   ],
   imports: [
     CommonModule,

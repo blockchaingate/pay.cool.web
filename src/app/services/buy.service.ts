@@ -15,4 +15,8 @@ export class BuyService {
         return this.http.get(url);
       }
 
+      getBuys(pageSize: number, pageNum: number) {
+        const url = environment.endpoints.api + 'buy/' + pageSize + '/' + pageNum;
+        return this.http.get(url);
+      }
 }

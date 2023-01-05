@@ -11,6 +11,11 @@ export class PayRewardService {
             return this.http.getRaw(environment.endpoints.api + 'payreward/ipo/' + icoid + '/100/0');
         }
 
+        getAllRewardsByProjectAndType(projectId: number, type: string, pageSize: number, pageNum: number) {
+            const url = environment.endpoints.api + 'payreward/project/' + projectId + '/type/' + type + '/' + pageSize + '/' + pageNum;
+            return this.http.getRaw(url);
+        }
+
         getIcoRewardsByUser(user: string) {
             const url = environment.endpoints.api + 'payreward/ipos/user/' + user + '/10000/0';
             return this.http.getRaw(url);
