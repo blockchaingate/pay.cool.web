@@ -5,4 +5,8 @@
     <h5 class="text-dark">
         {{content}}
     </h5>
+    <p *ngIf="usdValue" class="text-secondary">
+        ${{usdValue}}
+    </p>
+    <p *ngIf="!usdValue"> &nbsp; </p>
 </div>

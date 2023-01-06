@@ -9,6 +9,7 @@ export class CardComponent implements OnInit {
 
   @Input() title: string;
   @Input() content: string;
+  @Input() usdValue: number;
   constructor() { }
 
   ngOnInit(): void {

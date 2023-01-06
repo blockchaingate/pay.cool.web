@@ -44,6 +44,7 @@ import { Web3Service } from './services/web3.service';
 import { StorageService } from './services/storage.service';
 import { TimerService } from './services/timer.service';
 import { AirdropService } from './services/airdrop.service';
+import { CommonService } from './services/common.service';
 import { IddockService } from './services/iddock.service';
 import { DataService } from './services/data.service';
 import { SettingService } from './services/setting.service';
@@ -139,6 +140,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     UtilService,
     WalletService,
     Web3Service,
+    CommonService,
     IddockService,
     StorageService,
     TimerService,
