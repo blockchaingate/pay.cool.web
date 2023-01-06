@@ -9,6 +9,28 @@
             Payments
         </a>
     </li>
+
+    <li class="nav-item">
+        <a class="nav-link" id="executive-users-tab" data-toggle="tab" href="#executive-users" role="tab" aria-controls="executive-users" aria-selected="false">
+            Executive Users
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="senior-users-tab" data-toggle="tab" href="#senior-users" role="tab" aria-controls="senior-users" aria-selected="false">
+            Senior Users
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="junior-users-tab" data-toggle="tab" href="#junior-users" role="tab" aria-controls="junior-users" aria-selected="false">
+            Junior Users
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="basic-users-tab" data-toggle="tab" href="#basic-users" role="tab" aria-controls="basic-users" aria-selected="false">
+            Basic Users
+        </a>
+    </li>
+
     <li class="nav-item">
         <a class="nav-link" id="lplockers-tab" data-toggle="tab" href="#lplockers" role="tab" aria-controls="lplockers" aria-selected="false">
             LP Lockers
@@ -45,6 +67,20 @@
     <div class="tab-pane fade" id="payments" role="tabpanel" aria-labelledby="payments-tab">
         <app-metaforce-payments></app-metaforce-payments>
     </div>
+
+    <div class="tab-pane fade" id="executive-users" role="tabpanel" aria-labelledby="executive-users-tab">
+        <app-project-user [status]="4"></app-project-user>
+    </div>
+    <div class="tab-pane fade" id="senior-users" role="tabpanel" aria-labelledby="senior-users-tab">
+        <app-project-user [status]="3"></app-project-user>
+    </div>
+    <div class="tab-pane fade" id="junior-users" role="tabpanel" aria-labelledby="junior-users-tab">
+        <app-project-user [status]="2"></app-project-user>
+    </div>
+    <div class="tab-pane fade" id="basic-users" role="tabpanel" aria-labelledby="basic-users-tab">
+        <app-project-user [status]="1"></app-project-user>
+    </div>
+
     <div class="tab-pane fade" id="lplockers" role="tabpanel" aria-labelledby="lplockers-tab">
         <app-metaforce-lplockers></app-metaforce-lplockers>
     </div>

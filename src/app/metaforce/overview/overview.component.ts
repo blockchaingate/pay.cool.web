@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from 'src/app/services/project.service';
+import { UtilService } from 'src/app/services/util.service';
 import { metaforceProjectId } from '../../config/projectId';
 
 @Component({
@@ -9,7 +10,9 @@ import { metaforceProjectId } from '../../config/projectId';
 })
 export class OverviewComponent implements OnInit {
   overview: any;
-  constructor(private projectServ: ProjectService) { }
+  constructor(
+    private utilServ: UtilService,
+    private projectServ: ProjectService) { }
 
   ngOnInit(): void {
     this.projectServ.getOverview(metaforceProjectId).subscribe(
@@ -20,4 +23,7 @@ export class OverviewComponent implements OnInit {
     );
   }
 
+  showAmount(amount: any) {
+    return Number(this.utilServ.showAmount(amount, 18));
+  }
 }

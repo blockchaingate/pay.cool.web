@@ -2,18 +2,16 @@
     <thead class="thead-dark">
       <tr>
         <th scope="col">User</th>
-        <th scope="col">ID</th>
-        <th scope="col">Amount</th>
-        <th scope="col">Released Amount</th>
+        <th scope="col">PV</th>
+        <th scope="col">GV</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of lplockers">
-        <td>{{showFabAddress(item.user)}}</td>
-        <td>{{item.id}}</td>
-        <td>{{item.amount}}</td>
-        <td>{{item.releaseAmount}}</td>
+      <tr *ngFor="let item of users">
+        <td>{{item.user}}</td>
+        <td>{{item.pv}}</td>
+        <td>{{item.gv}}</td>
       </tr>
     </tbody>
 </table>

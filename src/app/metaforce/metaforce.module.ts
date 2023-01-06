@@ -11,6 +11,7 @@ import { GlobalComponent } from './global/global.component';
 import { CardComponent } from './components/card/card.component';
 import { LplockerComponent } from './lplocker/lplocker.component';
 import { PayRewardComponent } from './components/pay-reward/pay-reward.component';
+import { ProjectUserComponent } from './components/project-user/project-user.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { PayRewardComponent } from './components/pay-reward/pay-reward.component
     GapComponent, 
     LeadershipComponent, 
     GlobalComponent, 
-    CardComponent, LplockerComponent, PayRewardComponent
+    CardComponent, LplockerComponent, PayRewardComponent, ProjectUserComponent
   ],
   imports: [
     CommonModule,

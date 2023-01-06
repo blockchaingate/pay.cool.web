@@ -9,6 +9,11 @@ export class ProjectService {
     getAllProjects(pageSize: number, pageNum: number) {
         return this.http.getRaw(environment.endpoints.api + 'project/' + pageSize + '/' + pageNum);
     }  
+
+    getAllUsersByProjectAndStatus(projectId:number, status: number, pageSize: number, pageNum: number) {
+        return this.http.getRaw(environment.endpoints.api + 'projectuser/project/' + projectId + '/status/' + status + '/' + pageSize + '/' + pageNum);
+    }
+
     getOverview(projectId) {
         return this.http.getRaw(environment.endpoints.api + 'project/' + projectId + '/overview');
     }
