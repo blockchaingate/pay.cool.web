@@ -116,8 +116,10 @@
     justify-content: center;
 }
 
-
-
 .page-link {
     background-color: transparent!important;
+}
+
+.nav-item :hover {
+    color: orange;
 }
