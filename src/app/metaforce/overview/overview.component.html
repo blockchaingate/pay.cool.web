@@ -15,48 +15,73 @@
 
     <div class="row my-3">
         <div class="col col-md-4">
+            <app-card [title]="'Payments(Global)'" [content]="overview.paymentGlobalRewards" [usdValue]="overview.paymentGlobalRewards"></app-card>
+        </div>
+        <div class="col col-md-4">
+            <app-card [title]="'Payment LPs(Package)'" [content]="showAmount(overview.paymentPackageLPs)" [usdValue]="getLpValue(showAmount(overview.paymentPackageLPs))"></app-card>
+        </div>
+        <div class="col col-md-4">
+            <app-card [title]="'Payment LPs(Annual Fee)'" [content]="showAmount(overview.paymentAnnualFeeLPs)" [usdValue]="getLpValue(showAmount(overview.paymentAnnualFeeLPs))"></app-card>
+        </div>
+
+
+    </div>
+
+    <div class="row my-3">
+        <div class="col col-md-4">
+            <app-card [title]="'Payment LPs(Monthly Fee)'" [content]="showAmount(overview.paymentMonthlyFeeLPs)" [usdValue]="getLpValue(showAmount(overview.paymentMonthlyFeeLPs))"></app-card>
+        </div>
+        <div class="col col-md-4">
+            <app-card [title]="'Payment LPs(Global)'" [content]="showAmount(overview.paymentGlobalRewardLPs)" [usdValue]="getLpValue(showAmount(overview.paymentGlobalRewardLPs))"></app-card>
+        </div>
+        <div class="col col-md-4">
             <app-card [title]="'Users(Executive)'" [content]="overview.executiveUsers"></app-card>
         </div>
+    </div>
+
+    <div class="row my-3">
         <div class="col col-md-4">
             <app-card [title]="'Users(Senior)'" [content]="overview.seniorUsers"></app-card>
         </div>
         <div class="col col-md-4">
             <app-card [title]="'Users(Junior)'" [content]="overview.juniorUsers"></app-card>
         </div>
-    </div>
-
-    <div class="row my-3">
         <div class="col col-md-4">
             <app-card [title]="'Users(Basic)'" [content]="overview.basicUsers"></app-card>
         </div>
+    </div>
+
+    <div class="row my-3">
         <div class="col col-md-4">
             <app-card [title]="'Marketing Rewards(FET)'" [content]="overview.marketingRewards" [usdValue]="getFetValue(overview.marketingRewards)"></app-card>
         </div>
         <div class="col col-md-4">
             <app-card [title]="'Marketing Rewards(LP)'" [content]="showAmount(overview.marketingLps)" [usdValue]="getLpValue(showAmount(overview.marketingLps))"></app-card>
         </div>
-    </div>
-
-    <div class="row my-3">
         <div class="col col-md-4">
             <app-card [title]="'Gap Rewards(FET)'" [content]="overview.gapRewards" [usdValue]="getFetValue(overview.gapRewards)"></app-card>
         </div>
+    </div>
+    <div class="row my-3">
         <div class="col col-md-4">
             <app-card [title]="'Gap Rewards(LP)'" [content]="showAmount(overview.gapLps)" [usdValue]="getLpValue(showAmount(overview.gapLps))"></app-card>
         </div>
         <div class="col col-md-4">
             <app-card [title]="'Leadership Rewards(FET)'" [content]="overview.leadershipRewards" [usdValue]="getFetValue(overview.leadershipRewards)"></app-card>
         </div>
-    </div>
-    <div class="row my-3">
         <div class="col col-md-4">
             <app-card [title]="'Leadership Rewards(LP)'" [content]="showAmount(overview.leadershipLps)" [usdValue]="getLpValue(showAmount(overview.leadershipLps))"></app-card>
         </div>
+    </div>
+    <div class="row my-3">
         <div class="col col-md-4">
             <app-card [title]="'Global Rewards(FET)'" [content]="overview.globalRewards" [usdValue]="getFetValue(overview.globalRewards)"></app-card>
         </div>
         <div class="col col-md-4">
             <app-card [title]="'Global Rewards(LP)'" [content]="showAmount(overview.globalLps)" [usdValue]="getLpValue(showAmount(overview.globalLps))"></app-card>
+        </div>
+        <div class="col col-md-4">
+            <app-card [title]="'Global Rewards'" [content]="overview.globals" [usdValue]="overview.globals"></app-card>
         </div>
     </div>
 </div>
