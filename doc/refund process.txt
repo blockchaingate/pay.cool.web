@@ -1,0 +1,25 @@
+1. client sign the refund request
+post 
+https://fabtest.info/api/charge/requestRefund/63bc4a72d4ebcaa29aa47f3b
+63bc4a72d4ebcaa29aa47f3b is order id
+
+requestRefundId: random generated, 64bit
+
+r, s, v
+signature of requestRefundId
+please test with wallet:
+report join divorce bleak trade sausage question cannon faith wasp bronze notice
+for the signature of "0x89d7e2530fc14714db77bc40b53c65ec27e4c39544278c90f4355a1e10dd8376"
+
+body:
+
+{"refundAll":true,"items":[],"requestRefundId":"0x89d7e2530fc14714db77bc40b53c65ec27e4c39544278c90f4355a1e10dd8376","r":"0x7c7ba806da1157d8013825d4658a41a3b3041bde1a34001039f5fb898592dd07","s":"0x5635b8aef40844e8fecc3f98aa50e0511090effda8b98ac9124b3836d38029c9","v":"0x1b"}
+
+
+2. merchant approve the refund
+get refundInfo
+https://fabtest.info/api/charge/refundInfo/63bc4a72d4ebcaa29aa47f3b
+
+sign and submit the transactions in params
+
+

@@ -1,0 +1,11 @@
+1. buy fet and lp from biswap with DUSD
+params:
+uint256 fetAmount in DUSD, uint256 lpAmount in DUSD
+
+2. Send fet and lp to users;
+params:
+
+bytes calldata _lockRewardInfo, // [20 bytes address + 1byte type + 32 bytes reward amount in LP, total 53] * N
+bytes calldata _rewardInfo) // [20 bytes address + 1byte type + 32 bytes reward amount in FET, total 53] * N
+
+3. change rewardInfo of buy and buyFor to 53bytes*N
