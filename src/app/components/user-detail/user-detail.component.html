@@ -236,7 +236,8 @@
                 </div>
 
                 <div *ngIf="status">
-                  {{'Date Created' | translate}}: {{dateCreated | date}}
+                  <div>{{'Date Created' | translate}}: {{dateCreated | date}}</div>
+                  <div>{{'Expired At' | translate}}: {{expiredAt | date}}</div>
               </div>
                 
                 <div *ngIf="pv">

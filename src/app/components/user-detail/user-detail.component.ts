@@ -21,6 +21,7 @@ export class UserDetailComponent implements OnInit {
   @Input() user: string;
 
   tabName: string;
+  expiredAt: any;
   pv: number;
   gv: number;
   users: any;
@@ -274,6 +275,7 @@ export class UserDetailComponent implements OnInit {
           this.referral = ret.referral;
           this.status = ret.status;
           this.dateCreated = ret.dateCreated;
+          this.expiredAt = '';
           if(ret.newStatus && ret.newStatus > this.status) {
             this.status = ret.newStatus;
           }
@@ -300,7 +302,7 @@ export class UserDetailComponent implements OnInit {
           this.pv = ret.pv;
           this.gv = ret.gv;
           this.dateCreated = ret.dateCreated;
-
+          this.expiredAt = ret.expiredAt;
           this.status = ret.status;
           if(ret.newStatus && ret.newStatus > this.status) {
             this.status = ret.newStatus;
