@@ -54,6 +54,7 @@ import { LockerService } from './services/locker.service';
 import { ProjectService } from './services/project.service';
 import { ChargeService } from './services/charge.service';
 import { PayRewardService } from './services/payreward.service';
+import { GlobalRewardService } from './services/globalreward.service';
 import { UserReferralService } from './services/userreferral.service';
 import { MerchantService } from './services/merchant.service';
 import { BuyService } from './services/buy.service';
@@ -153,6 +154,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     DataService,
     PayRewardService,
     ChargeService,
+    GlobalRewardService,
     RewardService,
     UserReferralService,
     LockerService,

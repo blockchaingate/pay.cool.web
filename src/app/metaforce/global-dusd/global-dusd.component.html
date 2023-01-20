@@ -2,18 +2,34 @@
     <thead class="thead-dark">
       <tr>
         <th scope="col">User</th>
-        <th scope="col">PV</th>
-        <th scope="col">GV</th>
-        <th scope="col">Expired At</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Rewards</th>
+        <th scope="col">Block number</th>
+        <th scope="col">Date Created</th>
+        <th scope="col">txid</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of users">
-        <td>{{item.user}}</td>
-        <td>{{item.pv}}</td>
-        <td>{{item.gv}}</td>
-        <td>{{item.expiredAt}}</td>
+      <tr *ngFor="let item of rewards">
+        <td>{{item.userId}}</td>
+        <td>{{item.amount}} {{showCoinName(item.tokenId)}}</td>
+        <td>
+          <div *ngIf="item.rewards">
+            <div *ngFor="let item of item.rewards">
+              {{item.amount}} {{item.category}}
+            </div>
+          </div>
+        </td>
+        <td>{{item.blocknumber}}</td>
+        <td>
+          {{item.dateCreated | date}}
+        </td>
+        <td>
+          <a *ngIf="item.txid" href="{{getUrl(item.txid)}}" target="_blank">
+            {{showId(item.txid)}}
+          </a>
+        </td>
       </tr>
     </tbody>
 </table>

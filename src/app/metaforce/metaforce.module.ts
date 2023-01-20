@@ -12,6 +12,7 @@ import { CardComponent } from './components/card/card.component';
 import { LplockerComponent } from './lplocker/lplocker.component';
 import { PayRewardComponent } from './components/pay-reward/pay-reward.component';
 import { ProjectUserComponent } from './components/project-user/project-user.component';
+import { GlobalDusdComponent } from './global-dusd/global-dusd.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { ProjectUserComponent } from './components/project-user/project-user.com
     GapComponent, 
     LeadershipComponent, 
     GlobalComponent, 
-    CardComponent, LplockerComponent, PayRewardComponent, ProjectUserComponent
+    CardComponent, LplockerComponent, PayRewardComponent, ProjectUserComponent, GlobalDusdComponent
   ],
   imports: [
     CommonModule,
