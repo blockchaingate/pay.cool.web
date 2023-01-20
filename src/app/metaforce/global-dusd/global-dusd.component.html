@@ -17,7 +17,7 @@
         <td>
           <div *ngIf="item.rewards">
             <div *ngFor="let item of item.rewards">
-              {{item.amount}} {{item.category}}
+              {{showAmount(item.amount)}} {{item.category}}
             </div>
           </div>
         </td>

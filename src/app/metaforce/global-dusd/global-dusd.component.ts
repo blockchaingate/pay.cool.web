@@ -33,6 +33,10 @@ export class GlobalDusdComponent implements OnInit {
     return this.utilServ.showId(txid);
   }
 
+  showAmount(amount) {
+    return this.utilServ.showAmount(amount, 18);
+  }
+  
   getUrl(txid: string) {
     const url = 'https://' + (environment.production ? '' : 'test.') + 'exchangily.com/explorer/tx-detail/' + txid;
     return url;
