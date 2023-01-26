@@ -12,6 +12,7 @@ import { NgxSpinnerService } from "ngx-bootstrap-spinner";
 import { PasswordModalComponent } from '../../../shared/modals/password-modal/password-modal.component';
 import { MerchantService } from 'src/app/services/merchant.service';
 import { StoreService } from 'src/app/services/store.service';
+import { HtmlEditorService } from '@syncfusion/ej2-angular-richtexteditor';
 const hash = require('object-hash');
 @Component({
   selector: 'app-new-merchant',
@@ -137,10 +138,19 @@ export class NewMerchantComponent implements OnInit {
             } 
           }
           
-
+          // store.giveAwayRate = store.giveAwayRate.replace('%', '');
+          if(!store.giveAwayRate) {
+            this.toastr.error('Invalid rebate rate.');
+          }
+          store.giveAwayRate = store.giveAwayRate.replace(/\D/g,'');
           this.rebateRate = store.giveAwayRate;
+          if(this.rebateRate < 3) {
+            this.toastr.error('Rebate rate must be 3 or greater.');
+          }
           this.coin = store.coin;
+          store.taxRate = store.taxRate.replace(/\D/g,'');
           this.taxRate = store.taxRate;
+          store.lockedDays = store.lockedDays.replace(/\D/g,'');
           this.lockedDays = store.lockedDays;
           this.referral = store.refAddress;
           this.hideOnStore = store.hideOnStore;
@@ -217,7 +227,6 @@ export class NewMerchantComponent implements OnInit {
       lockedDays: this.lockedDays,
       hideOnStore: this.hideOnStore
     };
-
     
     const merchantHex = hash(data);
     data['mhash'] = merchantHex;
@@ -238,7 +247,7 @@ export class NewMerchantComponent implements OnInit {
               console.log('ret for exec smart contract:', ret);
               if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
                 this.toastr.info('Merchant was created successfully');
-        
+                this.clearForm();
               } else {
                 this.toastr.error('Merchant was created failed');
               }
@@ -251,7 +260,27 @@ export class NewMerchantComponent implements OnInit {
       }
     );
 
+  }
 
-
+  clearForm() {
+    this.name = '';
+    this.images = [];
+    this.address = '';
+    this.businessAddress = '';
+    this.contactName = '';
+    this.businessAddressChinese = '';
+    this.businessContentsChinese = '';
+    this.closeTime = '';
+    this.contactNameChinese = '';
+    this.email = '';
+    this.fax = '';
+    this.id = '';
+    this.lockedDays = null;
+    this.nameChinese = '';
+    this.openTime = '';
+    this.phone = '';
+    this.rebateRate = 10;
+    this.referral = '';
+    this.taxRate = 0;
   }
 }
