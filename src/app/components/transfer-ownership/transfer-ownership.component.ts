@@ -51,31 +51,10 @@ export class TransferOwnershipComponent implements OnInit {
     this.txids = [];
     this.starServ.transferLockersOwnership(this.address, this.id).subscribe(
       (ret: any) => {
-        console.log('ret====', ret);
-        if(!ret.ok) {
-          this.toastr.error(ret._body);
+        if(ret && ret._id) {
+          this.toastr.info(' Reward was transfer successfully');
         } else {
-          this.txids = ret._body;
-          let successCount = 0;
-          let errorCount = 0;
-          for(let i = 0; i < this.txids.length; i++) {
-            const item = this.txids[i];
-            if(item.status == '0x1') {
-              successCount ++;
-            } else {
-              errorCount ++;
-            }
-          }
-
-          if(!errorCount) {
-            this.toastr.success(successCount + ' lockers was transfer successfully');
-          } else 
-          if(!successCount) {
-            this.toastr.error('Failed to transfer ' + errorCount + ' lockers');
-          } else {
-            this.toastr.info(successCount + ' lockers was transfer successfully,' + ' failed to transfer ' + errorCount + ' lockers');
-          }
-
+          this.toastr.error('Failed to transfer reward');
         }
       }
     );
