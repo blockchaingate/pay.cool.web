@@ -7,7 +7,7 @@
         </div>
         <div>
             <a class="delete-media py-2" (click)="deleteMedia()">
-        Delete media
+        {{"Delete image"|translate}}
       </a>
         </div>
     </div>
@@ -37,7 +37,7 @@
     </div>
 
     <div class="red" *ngIf="errMsg">
-        {{errMsg}}
+        {{errMsg|translate}}
     </div>
 
 </div>

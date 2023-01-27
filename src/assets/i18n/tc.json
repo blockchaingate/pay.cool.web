@@ -323,5 +323,10 @@
     "pixels": "像素",
     "Max": "最大",
     "Referrer address": "加盟推薦人地址",
+    "Delete image": "刪除圖像",
+    "Merchant id": "商戶代碼",
+    "Image file size exceeds 256K bytes.": "圖像文件不能超過256K字節。",
+    "Image size must be 320 x 200 pixels !": "圖像尺寸必須為 320x200 像素",
+    "Error in uploading.": "文件上傳失敗。",
     "privacycontent": "貝庫(Pay.cool)是一款開源去中心化應用，用戶可以自由地創建錢包並直接使用，無需註冊或登錄，用戶創建錢包時的密碼僅用於在用戶設備中對助記詞或私鑰加密，本軟件不收集任何用戶信息。"
 }
