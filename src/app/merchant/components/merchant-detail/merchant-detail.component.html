@@ -1,7 +1,7 @@
 <div class="my-3 storeContainer">
     <div class="row">
         <div class="col col-md-2">
-            <div *ngIf="merchant.image" >
+            <div *ngIf="merchant.image">
                 <img src="{{merchant.image}}">
             </div>
         </div>
@@ -16,20 +16,16 @@
 
             </h6>
             <div class="text-2 auto-wrap">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                {{merchant.owner}}
+                <i class="fa fa-user" aria-hidden="true"></i> {{merchant.owner}}
             </div>
             <div class="text-2 auto-wrap" *ngIf="merchant.phone">
-                <i class="fa fa-phone"></i>
-                {{merchant.phone}}
+                <i class="fa fa-phone"></i> {{merchant.phone}}
             </div>
             <div class="text-2 auto-wrap" *ngIf="merchant.email">
-                <i class="fa fa-envelope"></i>
-                {{merchant.email}}
-            </div>      
+                <i class="fa fa-envelope"></i> {{merchant.email}}
+            </div>
             <div class="text-2 auto-wrap" *ngIf="merchant.businessAddress">
-                <i class="fa fa-location-arrow"></i>
-                {{showName(merchant.businessAddress)}}
+                <i class="fa fa-location-arrow"></i> {{showName(merchant.businessAddress)}}
             </div>
             <div class="text-3 auto-wrap" *ngIf="merchant.businessContents">
                 {{showName(merchant.businessContents)}}

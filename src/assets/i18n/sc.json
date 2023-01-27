@@ -320,5 +320,8 @@
     "Privacy Policy": "隐私政策",
     "No Data Collection": "不收集用户数据",
     "import from 7star": "导入七星支付商户资料",
+    "pixels": "像素",
+    "Max": "最大",
+    "Referrer address": "加盟推荐人地址",
     "privacycontent": "贝库(Pay.cool)是一款开源去中心化应用，用户可以自由地创建钱包并直接使用，无需注册或登录，用户创建钱包时的密码仅用于在用户设备中对助记词或私钥加密，本软件不收集任何用户信息。"
 }
