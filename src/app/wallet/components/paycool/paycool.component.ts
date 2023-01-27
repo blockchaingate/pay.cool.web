@@ -73,7 +73,7 @@ export class PaycoolComponent implements OnInit{
                 if(walletAddress) {
                   this.walletAddress = walletAddress;
                   if(this.id) {
-                    this.starServ.getPaycoolRewardInfo(this.id, walletAddress, this.payType).subscribe(
+                    this.starServ.getPaycoolRewardInfo(this.id, walletAddress).subscribe(
                       (ret: any) => {
                         console.log('ret from here=', ret);
                         this.order = ret;
@@ -88,7 +88,7 @@ export class PaycoolComponent implements OnInit{
     }
     changePayType(type:string) {
       this.payType = type;
-      this.starServ.getPaycoolRewardInfo(this.id, this.walletAddress, this.payType).subscribe(
+      this.starServ.getPaycoolRewardInfoWithPayType(this.id, this.walletAddress, this.payType).subscribe(
         (ret: any) => {
           console.log('ret from here=', ret);
           this.order = ret;
@@ -205,7 +205,7 @@ export class PaycoolComponent implements OnInit{
         const ret1 = await this.starServ.createOrderFromTemplatePromise(this.templateId);
         if(ret1 && ret1._id) {
           this.id = ret1._id;
-          this.starServ.getPaycoolRewardInfo(this.id, this.walletAddress, this.payType).subscribe(
+          this.starServ.getPaycoolRewardInfoWithPayType(this.id, this.walletAddress, this.payType).subscribe(
             (ret: any) => {
               this.order = ret;
 

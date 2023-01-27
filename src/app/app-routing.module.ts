@@ -68,7 +68,7 @@ const routes: Routes = [
   { path: 'membership', component: MembershipComponent },
   { path: 'user/:id', component: UserDetailComponent },
   { path: 'user-tree', component: UserTreeComponent },
-  { path: 'transfer-ownership/:sig', component: TransferOwnershipComponent },
+  { path: 'transfer-ownership/:id', component: TransferOwnershipComponent },
   { path: 'ref/:refcode', component: RefComponent },
   { path: 'home', component: HomeComponent },
   { path: 'privacy', component: PrivacyComponent },

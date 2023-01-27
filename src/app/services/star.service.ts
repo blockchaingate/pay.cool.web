@@ -147,10 +147,16 @@ export class StarService {
       return this.http.get(url);
    }
 
-   getPaycoolRewardInfo(id: string, address: string, payType: string) {
+   getPaycoolRewardInfoWithPayType(id: string, address: string, payType: string) {
       const url = environment.endpoints.api + 'userpay/order/' + id + '/' + address + '/rewardInfo/' + payType;
       return this.http.get(url);
    }
+
+   getPaycoolRewardInfo(id: string, address: string) {
+      const url = environment.endpoints.api + 'userpay/order/' + id + '/' + address + '/rewardInfo';
+      return this.http.get(url);
+   }
+
    ///order/:id/:address/rewardInfo
 
    async get7StarPayOrderPromise(id: string, address: string): Promise<any> {
@@ -167,13 +173,9 @@ export class StarService {
       return this.http.get(url);      
    }
 
-   transferLockersOwnership(address: string, sig: string) {
-      const url = environment.endpoints.blockchaingate + '7star-locker/transferOwnership';
-      const data = {
-         opsig: sig,
-         address
-      }
-      return this.http.post(url, data);      
+   transferLockersOwnership(address: string, id: string) {
+      const url = environment.endpoints.api + 'payreward/transfer/' + id + '/' + address;
+      return this.http.get(url);      
    }
 
    getAgents(address: string) {

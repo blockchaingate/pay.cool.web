@@ -7,6 +7,10 @@ export class PayRewardService {
     constructor(
         private http: HttpService) { }
 
+        getPayRewardDiff(pageSize, pageNum) {
+            return this.http.getRaw(environment.endpoints.api + 'ipo/payreward-diff/' + pageSize + '/' + pageNum);
+        }
+
         getAllIcoRewardsById(icoid) {
             return this.http.getRaw(environment.endpoints.api + 'payreward/ipo/' + icoid + '/100/0');
         }

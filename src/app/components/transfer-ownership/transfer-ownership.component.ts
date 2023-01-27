@@ -11,7 +11,7 @@ import { StarService } from 'src/app/services/star.service';
 })
 export class TransferOwnershipComponent implements OnInit {
   address: string;
-  sig: string;
+  id: string;
   txids: any;
   constructor(
     private toastr: ToastrService,
@@ -25,7 +25,7 @@ export class TransferOwnershipComponent implements OnInit {
     this.txids = [];
 
     this.route.paramMap.subscribe((params: ParamMap) =>  {
-      this.sig = params.get('sig');  
+      this.id = params.get('id');  
     });
 
     this.dataServ.currentWalletAddress.subscribe(
@@ -38,18 +38,18 @@ export class TransferOwnershipComponent implements OnInit {
   }
 
   createWallet() {
-    localStorage.setItem('sig', this.sig);
+    localStorage.setItem('id', this.id);
     this.router.navigate(['/wallet/create']);
   }
 
   restoreWallet() {
-    localStorage.setItem('sig', this.sig);
+    localStorage.setItem('id', this.id);
     this.router.navigate(['/wallet/import']);
   }
 
   transfer() {
     this.txids = [];
-    this.starServ.transferLockersOwnership(this.address, this.sig).subscribe(
+    this.starServ.transferLockersOwnership(this.address, this.id).subscribe(
       (ret: any) => {
         console.log('ret====', ret);
         if(!ret.ok) {
