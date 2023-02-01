@@ -90,7 +90,7 @@ export class KanbanService {
     }
 
     async sendRawSignedTransactionPromise(txhex: string) {
-        const url = environment.endpoints.blockchaingate + 'kanban/sendRawTransaction' ;
+        const url = environment.endpoints.api + 'kanban/v2/sendRawTransactionPromise' ;
         //const url = this.baseUrl + 'kanban/sendRawTransaction';
         const data = {
             signedTransactionData: txhex,

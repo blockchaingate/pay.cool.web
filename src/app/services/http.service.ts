@@ -40,7 +40,7 @@ export class HttpService {
             headers: httpHeaders
         };
 
-        const url = environment.endpoints.blockchaingate + path;
+        const url = environment.endpoints.api + path;
         return this.http.post(url, data, options);
     }
 

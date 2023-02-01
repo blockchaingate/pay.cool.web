@@ -19,7 +19,10 @@ import { MyCoin } from 'src/app/models/mycoin';
 import { WalletService } from 'src/app/services/wallet.service';
 import { ShowSeedPhraseModal } from '../../modals/show-seed-phrase/show-seed-phrase.modal';
 import { GetFreeFabModal } from '../../modals/get-free-fab/get-free-fab.modal';
+import { AddGasModal } from '../../modals/add-gas/add-gas.modal';
 import { UserReferralService } from 'src/app/services/userreferral.service';
+import { Web3Service } from 'src/app/services/web3.service';
+import * as Btc from 'bitcoinjs-lib';
 
 @Component({
   selector: 'app-wallet-dashboard',
@@ -87,6 +90,7 @@ export class WalletDashboardComponent implements OnInit {
     public utilServ: UtilService,
     private timerServ: TimerService,
     private coinServ: CoinService,
+    private web3Serv: Web3Service,
     private kanbanServ: KanbanService,
     private starSer: StarService,
     private userreferralServ: UserReferralService,
@@ -126,7 +130,50 @@ export class WalletDashboardComponent implements OnInit {
     this.modalRef = this.modalServ.show(ReceiveComponent, {initialState});
   }
 
+  addGas() {
+    const initialState = {
+      address: this.walletAdd
+    }
+    this.modalRef = this.modalServ.show(AddGasModal, {initialState});   
 
+    this.modalRef.content.onClose.subscribe(amount => {
+
+      const initialState = {
+        coins: this.coins,
+        pwdHash: this.wallet.pwdHash,
+        encryptedSeed: this.wallet.encryptedSeed
+      };          
+      
+      this.modalRef = this.modalServ.show(PasswordModalComponent, { initialState });
+
+      this.modalRef.content.onClose.subscribe( (seed: Buffer) => {
+
+        this.kanbanServ.getWalletBalances(this.addresses).subscribe(
+          (res: any) => {
+            console.log('res for getWalletBalances=', res);
+            if (res && res.success) {
+              this.coins = res.data.filter(item => ((item.coin == 'FAB')));
+              console.log('this.coins===', this.coins);
+              if(this.coins && (this.coins.length > 0)) {
+                const fabAmount = this.coins[0].balance;
+                if(fabAmount < amount) {
+                  this.toastr.info('Not enough fab');
+                }
+
+                this.addGasDo(seed, amount);
+              }
+              /*
+              if(!this.checkAmount(seed)) {
+                return;
+              }
+              this.sendCoinDo(seed);
+              */
+            }
+          });        
+        
+      });      
+    });  
+  }
 
   getFreeGas() {
     const initialState = {
@@ -242,6 +289,17 @@ export class WalletDashboardComponent implements OnInit {
         
       });      
     });    
+  }
+
+  async addGasDo(seed: Buffer, amount: number) {
+    const scarAddress = await this.kanbanServ.getScarAddress();
+    const currentCoin = this.coinServ.formMyCoin(this.wallet.addresses, 'FAB');
+    const { txHash, errMsg } = await this.coinServ.depositFab(scarAddress, seed, currentCoin, amount);
+    if (errMsg) {
+      this.toastr.error(errMsg);
+    } else {
+      this.toastr.info(this.translateServ.instant('Add gas transaction was submitted successfully, please check gas balance 40 minutes later.'));
+    }
   }
 
   async sendCoinDo(seed: Buffer) {
