@@ -14,6 +14,8 @@ import { TransactionHistoryComponent } from './transaction-history/transaction-h
 import { TimerService } from 'src/app/services/timer.service';
 import { WalletService } from 'src/app/services/wallet.service';
 import { CoinService } from 'src/app/services/coin.service';
+import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
+
 @NgModule({
     declarations: [
         BindpayComponent,
@@ -29,7 +31,8 @@ import { CoinService } from 'src/app/services/coin.service';
         MatIconModule,
         MatButtonModule,
         ModalModule.forRoot(),
-        BindpayRoutingModule
+        BindpayRoutingModule,
+        NgxScannerQrcodeModule
     ],
     providers: [
         TimerService,
