@@ -688,7 +688,7 @@ export class CoinService {
         return keyPairs;
     }
 
-    async sendTransaction(mycoin: MyCoin, seed: Buffer, toAddress: string, amount: number,
+    async sendTransaction(mycoin: MyCoin, seed: Buffer, toAddress: any, amount: number,
         options: any, doSubmit: boolean) {
 
         let index = 0;
