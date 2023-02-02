@@ -104,6 +104,16 @@ export class KanbanService {
         return resp;
       }
     
+      getTransactionHistory(address: string) {
+        const data = {
+            fabAddress: address,
+            timestamp: 0
+        };
+        const url = environment.endpoints.kanban + 'getTransferHistoryEvents';
+        console.log('url===', url);
+        return this.http.postRaw(url, data);
+    }
+
     getKanbanBalance(address: string) {
         const path = this.baseUrl + 'kanban/getBalance/' + address;
         // console.log('path1=' + path);

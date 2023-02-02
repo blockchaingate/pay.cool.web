@@ -21,8 +21,6 @@ import { ShowSeedPhraseModal } from '../../modals/show-seed-phrase/show-seed-phr
 import { GetFreeFabModal } from '../../modals/get-free-fab/get-free-fab.modal';
 import { AddGasModal } from '../../modals/add-gas/add-gas.modal';
 import { UserReferralService } from 'src/app/services/userreferral.service';
-import { Web3Service } from 'src/app/services/web3.service';
-import * as Btc from 'bitcoinjs-lib';
 
 @Component({
   selector: 'app-wallet-dashboard',
@@ -90,7 +88,6 @@ export class WalletDashboardComponent implements OnInit {
     public utilServ: UtilService,
     private timerServ: TimerService,
     private coinServ: CoinService,
-    private web3Serv: Web3Service,
     private kanbanServ: KanbanService,
     private starSer: StarService,
     private userreferralServ: UserReferralService,
