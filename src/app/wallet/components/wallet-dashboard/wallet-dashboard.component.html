@@ -73,6 +73,10 @@
                 {{"Send$"|translate}}
             </button>
 
+            <button class="btn mx-3 btnrs border" (click)="addGas()">
+                {{"Add Gas"|translate}}
+            </button>
+
             <button class="btn mx-3 btnrs border" *ngIf="gas < 0.00001" (click)="getFreeGas()">
                 {{"Get free gas"|translate}}
             </button>

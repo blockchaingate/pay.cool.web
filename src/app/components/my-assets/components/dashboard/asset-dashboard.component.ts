@@ -472,7 +472,6 @@ export class MyAssetDashboardComponent implements OnInit {
 
     const abiHex = this.web3Serv.getWithdrawFuncABI(this.currentCoinId, amountInLink, addressInWallet);
 
-    console.log('abiHex===', abiHex);
     const coinPoolAddress = await this.kanbanServ.getCoinPoolAddress();
     const nonce = await this.kanbanServ.getTransactionCount(this.utilServ.fabToExgAddress(keyPairsKanban.address));
 
@@ -538,33 +537,6 @@ export class MyAssetDashboardComponent implements OnInit {
     if (errMsg) {
       this.toastr.error(errMsg);
     } else {
-
-      /*
-        const addr = environment.addresses.exchangilyOfficial.FAB;
-
-        const item: TransactionItem = {
-            walletId: this.wallet.id,
-            type: 'Add Gas',
-            coin: currentCoin.name,
-            tokenType: currentCoin.tokenType,
-            amount: amount,
-            txid: txHash,
-            to: addr,
-            time: new Date(),
-            confirmations: '0',
-            blockhash: '',
-            comment: '',
-            status: 'pending'
-        };
-        this.storageService.storeToTransactionHistoryList(item);
-        
-
-        if (this.lan === 'zh') {
-            this.alertServ.openSnackBarSuccess('加燃料交易提交成功，请等40分钟后查看结果', 'Ok');
-        } else {
-            this.alertServ.openSnackBarSuccess('Add gas transaction was submitted successfully, please check gas balance 40 minutes later.', 'Ok');
-        }
-        */
       this.ngxSmartModalService.getModal('passwordModal').close();
       this.toastr.info(this.translateServ.instant('Add gas transaction was submitted successfully, please check gas balance 40 minutes later.'));
     }

@@ -32,6 +32,7 @@ import { SendComponent } from './modals/send/send.component';
 import { LoginSettingModal } from './modals/login-setting/login-setting.modal';
 import { ShowSeedPhraseModal } from './modals/show-seed-phrase/show-seed-phrase.modal';
 import { GetFreeFabModal } from './modals/get-free-fab/get-free-fab.modal';
+import { AddGasModal } from './modals/add-gas/add-gas.modal';
 
 @NgModule({
   imports: [
@@ -72,7 +73,8 @@ import { GetFreeFabModal } from './modals/get-free-fab/get-free-fab.modal';
     PaycoolComponent,
     LoginSettingModal,
     ShowSeedPhraseModal,
-    GetFreeFabModal
+    GetFreeFabModal,
+    AddGasModal
   ],
   entryComponents: [
     ReceiveComponent,
@@ -80,7 +82,8 @@ import { GetFreeFabModal } from './modals/get-free-fab/get-free-fab.modal';
     TransactionDetailComponent,
     LoginSettingModal,
     ShowSeedPhraseModal,
-    GetFreeFabModal
+    GetFreeFabModal,
+    AddGasModal
   ],
   exports: [
   ]

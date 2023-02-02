@@ -25,6 +25,10 @@ const routes: Routes = [
     loadChildren: () => import('./metaforce/metaforce.module').then(w => w.MetaforceModule)
   },
   {
+    path: 'bindpay',
+    loadChildren: () => import('./bindpay/bindpay.module').then(w => w.BindpayModule)
+  },
+  {
     path: 'wallet',
     loadChildren: () => import('./wallet/wallet.module').then(w => w.WalletModule)
   },

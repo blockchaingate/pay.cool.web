@@ -186,12 +186,11 @@ export class PaycoolComponent implements OnInit{
       } else 
       if(this.id){
         const params = this.order.params;
-        console.log('params==', params);
 
         let ret = await this.kanbanSmartContractServ.execSmartContractAbiHex(seed, params[0].to, params[0].data);
-        if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
+        if(ret && ret.success && ret._body && ret._body.status == '0x1') {
           ret = await this.kanbanSmartContractServ.execSmartContractAbiHex(seed, params[1].to, params[1].data);
-          if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
+          if(ret && ret.success && ret._body && ret._body.status == '0x1') {
             this.toastr.success('the transaction was procssed successfully');
           } else {
             this.toastr.error('Failed to chargeFund with fee, txid:' + ret._body.transactionHash);
