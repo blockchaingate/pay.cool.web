@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-bootstrap-spinner';
 import { environment } from 'src/environments/environment';
 import { CoinService } from 'src/app/services/coin.service';
+import { DeleteWalletModalComponent } from 'src/app/components/modals/delete-wallet/delete-wallet.component';
 
 @Component({
   selector: 'app-merchant-approve',
@@ -79,8 +80,9 @@ export class MerchantApproveComponent implements OnInit {
     });
   }
 
-  /*
-  enableCredit() {
+  delete() {
+    console.log('delete merchant for ', );
+
     const initialState = {
       pwdHash: this.wallet.pwdHash,
       encryptedSeed: this.wallet.encryptedSeed
@@ -93,86 +95,81 @@ export class MerchantApproveComponent implements OnInit {
 
     this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
       this.spinner.show();
-      this.enableCreditDo(seed);
-    });    
+      this.deleteDo(seed);
+    });
+
   }
 
-  async enableCreditDo(seed: Buffer) {
+  deleteDo(seed: Buffer) {
+    const data = {
+      id: this.merchant.id
+    };
+
+    const keyPair = this.coinServ.getKeyPairs('FAB', seed, 0, 0, 'b');
+    const privateKey = keyPair.privateKeyBuffer.privateKey;
+
+    const sig = this.kanbanServ.signJsonData(privateKey, data);
+    data['sig'] = sig.signature;  
+
+    this.merchantServ.delete(data).subscribe(
+      async (res: any) => {
+        this.spinner.hide();
+        if(res && res.deletedCount) {
+          this.toastr.success('merchant was deleted successfully');
+        } else {
+          this.toastr.error('Error while deleting merchant');
+        }
+      },
+      (error: any) => {
+        console.log('error=', error);
+        this.toastr.error(error.error.error);
+        this.spinner.hide();
+      }
+    );
+
+  }
+
+  async approveDo(seed: Buffer) {
     try {
       const args = [
-        this.merchant.id
+        this.merchant.id,
+        this.nodeId
       ];
+      
       const abi = {
         "inputs": [
           {
             "internalType": "bytes32",
             "name": "_id",
             "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_merchantNodeId",
+            "type": "uint256"
           }
         ],
-        "name": "enableCredit",
+        "name": "approveMerchant",
         "outputs": [
           
         ],
         "stateMutability": "nonpayable",
         "type": "function"
       };
-  
+
       const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.smartConractMerchantInfo, abi, args);
-  
+
       if(ret2 && ret2.ok && ret2._body && ret2._body.status == '0x1') {
-        this.toastr.success('the merchant was enabled credit.');
+        this.toastr.success('the merchant was approved.');
         this.router.navigate(['/admin/merchants']);
+        this.spinner.hide();
       } else {
-        this.toastr.error('Failed to enable credit merchant.');
+        this.toastr.error('Failed to approve merchant.');
         this.spinner.hide();  
       }
     } catch(e) {
       this.spinner.hide();
     }
-    }
-*/
-async approveDo(seed: Buffer) {
-  try {
-    const args = [
-      this.merchant.id,
-      this.nodeId
-    ];
-    
-    const abi = {
-      "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "_id",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_merchantNodeId",
-          "type": "uint256"
-        }
-      ],
-      "name": "approveMerchant",
-      "outputs": [
-        
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    };
-
-    const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.smartConractMerchantInfo, abi, args);
-
-    if(ret2 && ret2.ok && ret2._body && ret2._body.status == '0x1') {
-      this.toastr.success('the merchant was approved.');
-      this.router.navigate(['/admin/merchants']);
-      this.spinner.hide();
-    } else {
-      this.toastr.error('Failed to approve merchant.');
-      this.spinner.hide();  
-    }
-  } catch(e) {
-    this.spinner.hide();
-  }
   }
 
   showName(name) {

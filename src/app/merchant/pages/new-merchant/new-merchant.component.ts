@@ -245,7 +245,7 @@ export class NewMerchantComponent implements OnInit {
           this.kanbanSmartContractServ.execSmartContract(seed, address, abi, args).then(
             (ret: any) => {
               console.log('ret for exec smart contract:', ret);
-              if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
+              if(ret && ret.success && ret._body && ret._body.status == '0x1') {
                 this.toastr.info('Merchant was created successfully');
                 this.clearForm();
               } else {

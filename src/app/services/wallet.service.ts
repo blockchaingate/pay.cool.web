@@ -39,7 +39,6 @@ export class WalletService {
 
           this.merchantServ.getMerchantsByAddress(walletAddress).subscribe(
             (ret: any) => {
-                console.log('rettt=', ret);
               if(ret && ret.length > 0) {
                 const store = ret[0];
                 this.dataServ.changeMyStore(store);
