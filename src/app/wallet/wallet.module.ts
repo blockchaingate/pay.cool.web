@@ -25,7 +25,7 @@ import { TransactionHistoryComponent } from './components/transaction-history/tr
 import { TranslateService } from '@ngx-translate/core';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { WalletRoutingModule } from './wallet-routing.module';
-import { NgxBootstrapSwitchModule } from 'ngx-bootstrap-switch';
+import { NgxBootstrapSwitchModule } from '../ngx-bootstrap-switch';
 import { TransactionDetailComponent } from './modals/transaction-detail/transaction-detail.component';
 import { ReceiveComponent } from './modals/receive/receive.component';
 import { SendComponent } from './modals/send/send.component';
