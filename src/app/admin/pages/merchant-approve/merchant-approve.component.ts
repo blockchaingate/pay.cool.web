@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-bootstrap-spinner';
 import { environment } from 'src/environments/environment';
 import { CoinService } from 'src/app/services/coin.service';
-import { DeleteWalletModalComponent } from 'src/app/components/modals/delete-wallet/delete-wallet.component';
+import { ModifyReferralModalComponent } from './modify-referral.modal';
 
 @Component({
   selector: 'app-merchant-approve',
@@ -80,6 +80,30 @@ export class MerchantApproveComponent implements OnInit {
     });
   }
 
+  modifyReferral() {
+    this.modalRef = this.modalService.show(ModifyReferralModalComponent, { });
+    this.modalRef.content.onClose.subscribe( (newReferral: string) => {
+      const initialState = {
+        pwdHash: this.wallet.pwdHash,
+        encryptedSeed: this.wallet.encryptedSeed
+      };          
+      if(!this.wallet || !this.wallet.pwdHash) {
+        this.router.navigate(['/wallet']);
+        return;
+      }
+      this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
+  
+      this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
+        this.spinner.show();
+        this.modifyReferralDo(seed, newReferral);
+      });
+    });
+  }
+
+  modifyReferralDo(seed: Buffer, newReferral: string) {
+
+  }
+  
   delete() {
     console.log('delete merchant for ', );
 

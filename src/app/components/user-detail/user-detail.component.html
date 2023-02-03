@@ -116,7 +116,8 @@
         </li>
         <li class="table-row" *ngFor="let item of myRewards">
           <div class="col col-4" data-label="From">
-            {{item.from}}
+            <div>{{item.from}}</div>
+            <div>{{item.fromAmount}}</div>
           </div>
           <div class="col col-3" data-label="Type">
             {{item.type}}
