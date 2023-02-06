@@ -53,6 +53,7 @@ export class MerchantApproveComponent implements OnInit {
       this.merchantServ.getMerchant(id).subscribe(
         async (ret: any) => {
           this.merchant = ret;
+          console.log('this.merchant====', this.merchant);
         }
       );
     }
@@ -100,8 +101,48 @@ export class MerchantApproveComponent implements OnInit {
     });
   }
 
-  modifyReferralDo(seed: Buffer, newReferral: string) {
+  async modifyReferralDo(seed: Buffer, newReferral: string) {
+    try {
+      const args = [
+        this.utilServ.fabToExgAddress(this.merchant.owner),
+        this.utilServ.fabToExgAddress(newReferral)
+      ];
+      
+      console.log('args===', args);
+      const abi = {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_user",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "_newReferral",
+            "type": "address"
+          }
+        ],
+        "name": "modifyReferral",
+        "outputs": [
+          
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      };
 
+      const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.smartConractMerchantInfo, abi, args);
+
+      if(ret2 && ret2.success && ret2._body && ret2._body.status == '0x1') {
+        this.toastr.success('the merchant\'s referral was modified.');
+        this.router.navigate(['/admin/merchants']);
+        this.spinner.hide();
+      } else {
+        this.toastr.error('Failed to modify merchant.');
+        this.spinner.hide();  
+      }
+    } catch(e) {
+      this.spinner.hide();
+    }
   }
   
   delete() {
@@ -183,7 +224,7 @@ export class MerchantApproveComponent implements OnInit {
 
       const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.smartConractMerchantInfo, abi, args);
 
-      if(ret2 && ret2.ok && ret2._body && ret2._body.status == '0x1') {
+      if(ret2 && ret2.success && ret2._body && ret2._body.status == '0x1') {
         this.toastr.success('the merchant was approved.');
         this.router.navigate(['/admin/merchants']);
         this.spinner.hide();

@@ -409,11 +409,14 @@ export class WalletDashboardComponent implements OnInit {
     this.addresses = addresses;
     const walletAddressItem = addresses.filter(item => item.name == 'FAB')[0];
     this.walletAddress = walletAddressItem.address;
+
+    /*
     this.starSer.getOrderByAddressCampaignId(this.walletAddress, 1).subscribe(
       (res: any) => {
         this.orderId = res._id;
       }
     );
+    */
     this.walletAdd = this.walletAddress;
     this.kanbanAddress = this.utilServ.fabToExgAddress(this.walletAddress);
     this.refreshGas();

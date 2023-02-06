@@ -300,6 +300,8 @@ export class MyAssetDashboardComponent implements OnInit {
     this.walletAdd = '1Avx8u3ERKmXpVfW4ZPzqfGZQ7nEHVoptB';
     */
     // alert(this.walletAdd)
+
+    /*
     this.starSer.getOrderByAddressCampaignId(this.walletAdd, campaignId).toPromise().then(
       ret => {
         this.campaignsParticipation[campaignId] = true;
@@ -313,6 +315,7 @@ export class MyAssetDashboardComponent implements OnInit {
         this.campaignsParticipation[campaignId] = false; 
       }
     )
+    */
   }
 
   selectCurrency(currency: string) {
@@ -824,11 +827,13 @@ export class MyAssetDashboardComponent implements OnInit {
     const addresses = this.wallet.addresses;
     const walletAddressItem = addresses.filter(item => item.name == 'FAB')[0];
     this.walletAddress = walletAddressItem.address;
+    /*
     this.starSer.getOrderByAddressCampaignId(this.walletAddress, campaignId).subscribe(
       (res: any) => {
         this.orderId = res._id;
       }
     );
+    */
     this.walletAdd = this.walletAddress;
     this.kanbanAddress = this.utilServ.fabToExgAddress(this.walletAddress);
     this.refreshGas();

@@ -1,11 +1,43 @@
-{"totalAmount":1,"totalTax":0.13,"totalShipping":0,"currency":"USDT","merchantId":"0x2563a743986de3d433effbd81aa5c86123fb0ec19c7150358dde260e16ba3708","items":[{"title":"fawfewa","taxRate":13,"lockedDays":366,"rebateRate":13,"price":1,"quantity":1,"_id":"63d3f001d632f546280f1c07"}],"paymentStatus":0,"_id":"63d3f001d632f546280f1c06","__v":0}
-
-
-
-
-
-
-
+1G4kAcpaxC35jHWnJr1UpfmLKHcnsJmJoP
+(5000)
+0x5...9ab
+gap	FET 26.62960258755647
+1G4kAcpaxC35jHWnJr1UpfmLKHcnsJmJoP
+(5000)
+0x5...9ab
+gap	FETDUSD-LP 5737762076257326000
+1G4kAcpaxC35jHWnJr1UpfmLKHcnsJmJoP
+(5000)
+0x5...9ab
+marketing	FET 39.94440388133471
+1G4kAcpaxC35jHWnJr1UpfmLKHcnsJmJoP
+(5000)
+0x5...9ab
+marketing	FETDUSD-LP 8606643114385989000
+1G4kAcpaxC35jHWnJr1UpfmLKHcnsJmJoP
+(5000)
+0x5...9ab
+gap	FET 0.2330090226411191
+1G4kAcpaxC35jHWnJr1UpfmLKHcnsJmJoP
+(5000)
+0x5...9ab
+marketing	FET 0.4660180452822382
+1G4kAcpaxC35jHWnJr1UpfmLKHcnsJmJoP
+(5000)
+0x5...9ab
+gap	FET 0.13314801293778236
+1G4kAcpaxC35jHWnJr1UpfmLKHcnsJmJoP
+(5000)
+0x5...9ab
+marketing	FET 0.2330090226411191
+1G4kAcpaxC35jHWnJr1UpfmLKHcnsJmJoP
+(5000)
+0x5...9ab
+gap	FET 0.2662960258755647
+1G4kAcpaxC35jHWnJr1UpfmLKHcnsJmJoP
+(5000)
+0x5...9ab
+marketing	FET 0.4660180452822382
 
 
 

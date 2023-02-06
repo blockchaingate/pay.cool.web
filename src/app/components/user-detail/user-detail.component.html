@@ -190,16 +190,18 @@
     <div *ngIf="tabName=='buys'">
       <ul class="responsive-table">
         <li class="table-header">
-          <div class="col col-3">{{'Project Package' | translate}}</div>
-          <div class="col col-4">{{'Amount' | translate}}</div>
+          <div class="col col-5">{{'Project Package' | translate}}</div>
+          <div class="col col-2">{{'Amount' | translate}}</div>
           <div class="col col-3">{{'Date created' | translate}}</div>
           <div class="col col-2"></div>
         </li>
         <li class="table-row" *ngFor="let item of buys">
-          <div class="col col-3" data-label="Project Package">
-            {{item.projectPackage ? showName(item.projectPackage.name) : ''}}
+          <div class="col col-5" data-label="Project Package">
+            <div>{{item.txid}}</div>
+            <div>{{item.projectPackage ? showName(item.projectPackage.name) : ''}}</div>
+            
           </div>
-          <div class="col col-4" data-label="Amount">
+          <div class="col col-2" data-label="Amount">
             {{showAmount(item.amount)}} {{showCoinName(item.coinType)}}
           </div>
           <div class="col col-3" data-label="Date created">

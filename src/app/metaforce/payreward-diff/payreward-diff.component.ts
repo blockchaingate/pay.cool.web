@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PayRewardService } from 'src/app/services/payreward.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { PayrewardDiffDetailComponent } from '../payreward-diff-detail/payreward-diff-detail.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-payreward-diff',
@@ -15,14 +16,25 @@ export class PayrewardDiffComponent implements OnInit {
 
   constructor(
     private modalService: BsModalService,
+    private route: ActivatedRoute,
     private payrewardServ: PayRewardService) { }
 
   ngOnInit(): void {
-    this.payrewardServ.getPayRewardDiff(this.pageSize, this.pageNum).subscribe(
-      ret => {
-        this.payrewardDiffs = ret;
-      }
-    );
+    const id = this.route.snapshot.paramMap.get('id');
+    if(id) {
+      this.payrewardServ.getPayRewardDiffByUserId(id).subscribe(
+        ret => {
+          this.payrewardDiffs = ret;
+        }
+      );
+    } else {
+      this.payrewardServ.getPayRewardDiff(this.pageSize, this.pageNum).subscribe(
+        ret => {
+          this.payrewardDiffs = ret;
+        }
+      );
+    }
+
   }
 
   changePageNum(pageNum: number) {
