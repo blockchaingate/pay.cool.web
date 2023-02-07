@@ -22,6 +22,10 @@ export class MerchantService {
     return this.http.postRaw(environment.endpoints.api + 'merchantreferral/delete', data);
   }
 
+  modifyReferral(data) {
+    return this.http.postRaw(environment.endpoints.api + 'merchantreferral/modifyReferral', data);
+  }
+
   update(id, data) {
     return this.http.putRaw(environment.endpoints.api + 'merchantreferral/' + id, data);
   }

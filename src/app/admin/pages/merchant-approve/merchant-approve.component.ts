@@ -104,17 +104,16 @@ export class MerchantApproveComponent implements OnInit {
   async modifyReferralDo(seed: Buffer, newReferral: string) {
     try {
       const args = [
-        this.utilServ.fabToExgAddress(this.merchant.owner),
+        this.merchant.id,
         this.utilServ.fabToExgAddress(newReferral)
       ];
       
-      console.log('args===', args);
       const abi = {
         "inputs": [
           {
-            "internalType": "address",
-            "name": "_user",
-            "type": "address"
+            "internalType": "bytes32",
+            "name": "_id",
+            "type": "bytes32"
           },
           {
             "internalType": "address",
@@ -122,7 +121,7 @@ export class MerchantApproveComponent implements OnInit {
             "type": "address"
           }
         ],
-        "name": "modifyReferral",
+        "name": "updateMerchantReferral",
         "outputs": [
           
         ],
@@ -133,9 +132,8 @@ export class MerchantApproveComponent implements OnInit {
       const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.smartConractMerchantInfo, abi, args);
 
       if(ret2 && ret2.success && ret2._body && ret2._body.status == '0x1') {
-        this.toastr.success('the merchant\'s referral was modified.');
-        this.router.navigate(['/admin/merchants']);
-        this.spinner.hide();
+        this.modifyReferralInDbDo(seed, newReferral);
+
       } else {
         this.toastr.error('Failed to modify merchant.');
         this.spinner.hide();  
@@ -144,7 +142,38 @@ export class MerchantApproveComponent implements OnInit {
       this.spinner.hide();
     }
   }
-  
+
+  modifyReferralInDbDo(seed, newReferral) {
+    const data = {
+      id: this.merchant.id,
+      referral: newReferral
+    };
+
+    const keyPair = this.coinServ.getKeyPairs('FAB', seed, 0, 0, 'b');
+    const privateKey = keyPair.privateKeyBuffer.privateKey;
+
+    const sig = this.kanbanServ.signJsonData(privateKey, data);
+    data['sig'] = sig.signature;  
+
+    this.merchantServ.modifyReferral(data).subscribe(
+      async (res: any) => {
+        this.spinner.hide();
+        if(res && res.modifiedCount) {
+          this.toastr.success('the merchant\'s referral was modified.');
+          this.router.navigate(['/admin/merchants']);
+          this.spinner.hide();
+        } else {
+          this.toastr.error('Error while deleting merchant');
+        }
+      },
+      (error: any) => {
+        console.log('error=', error);
+        this.toastr.error(error.error.error);
+        this.spinner.hide();
+      }
+    );
+  }
+
   delete() {
     console.log('delete merchant for ', );
 
