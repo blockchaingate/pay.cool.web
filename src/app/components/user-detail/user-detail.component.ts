@@ -42,6 +42,7 @@ export class UserDetailComponent implements OnInit {
 
   myPayments: any;
   myLPLockers: any;
+  myCPLockers: any;
   myLockers: any;
 
   constructor(
@@ -66,6 +67,7 @@ export class UserDetailComponent implements OnInit {
             this.getMyRewards();
             this.getMyPayments();
             this.getMyLPLockers();
+            this.getMyCPLockers();
             this.getMyLockers();
             this.changeTab('paycool');
           } else {
@@ -76,6 +78,7 @@ export class UserDetailComponent implements OnInit {
             this.getMyRewards();
             this.getMyPayments();
             this.getMyLPLockers();
+            this.getMyCPLockers();
             this.getMyLockers();
           }
       }
@@ -176,6 +179,15 @@ export class UserDetailComponent implements OnInit {
     );
   }
   
+  getMyCPLockers() {
+    this.lockerServ.getAllCpLockersByUser(this.user, 100, 0).subscribe(
+      (lockers) => {
+        this.myCPLockers = lockers;
+        console.log('this.myCPLockers====', this.myCPLockers);
+      }
+    );
+  }
+
   getMyLockers() {
     this.lockerServ.getAllLockersByUser(this.user, 100, 0).subscribe(
       (lockers) => {

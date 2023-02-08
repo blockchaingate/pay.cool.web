@@ -74,7 +74,6 @@ export class PackageComponent implements OnInit {
     }
     
     let getParam;
-    console.log('this.user===', this.user);
     if(this.user) {
       getParam = this.projectServ.getParamsFor(this.id, this.user, this.coin);
     } else {
@@ -113,9 +112,9 @@ export class PackageComponent implements OnInit {
     console.log('params==', params);
 
     let ret = await this.kanbanSmartContractServ.execSmartContractAbiHex(seed, params[0].to, params[0].data);
-    if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
+    if(ret && ret.success && ret._body && ret._body.status == '0x1') {
       ret = await this.kanbanSmartContractServ.execSmartContractAbiHex(seed, params[1].to, params[1].data);
-      if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
+      if(ret && ret.success && ret._body && ret._body.status == '0x1') {
         this.toastr.success('Your payment was made successfully');
       } else {
         this.toastr.error('Failed to make payment, txid:' + ret._body.transactionHash);

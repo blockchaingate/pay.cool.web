@@ -17,6 +17,9 @@
           <a class="nav-link hand-cursor" [ngClass]="tabName=='myLPLockers' ? 'active' : ''" (click)="changeTab('myLPLockers')">My LP Lockers</a>
         </li>   
         <li class="nav-item">
+          <a class="nav-link hand-cursor" [ngClass]="tabName=='myCPLockers' ? 'active' : ''" (click)="changeTab('myCPLockers')">My CP Lockers</a>
+        </li>   
+        <li class="nav-item">
           <a class="nav-link hand-cursor" [ngClass]="tabName=='myLockers' ? 'active' : ''" (click)="changeTab('myLockers')">My Lockers</a>
         </li>      
         <li class="nav-item">
@@ -74,6 +77,27 @@
             {{showAmount(item.amount)}}
           </div>
           <div class="col col-4" data-label="Released Amount">
+            {{showAmount(item.releaseAmount)}}
+          </div>
+        </li>
+      </ul>
+    </div> 
+
+    <div *ngIf="tabName=='myCPLockers'">
+      <ul class="responsive-table">
+        <li class="table-header">
+          <div class="col col-6">{{'ID' | translate}}</div>
+          <div class="col col-3">{{'Amount' | translate}}</div>
+          <div class="col col-3">{{'Released Amount' | translate}}</div>
+        </li>
+        <li class="table-row" *ngFor="let item of myCPLockers">
+          <div class="col col-6" data-label="ID">
+            {{item.id}}
+          </div>
+          <div class="col col-3" data-label="Amount">
+            {{showAmount(item.amount)}}
+          </div>
+          <div class="col col-3" data-label="Released Amount">
             {{showAmount(item.releaseAmount)}}
           </div>
         </li>

@@ -14,6 +14,10 @@ export class LockerService {
             return this.http.getRaw(environment.endpoints.api + 'lplocker/user/' + user + '/' + pageSize + '/' + pageNum);
         }   
 
+        getAllCpLockersByUser(user: string, pageSize: number, pageNum: number) {
+            return this.http.getRaw(environment.endpoints.api + 'cplocker/user/' + user + '/' + pageSize + '/' + pageNum);
+        }   
+
         getAllLpLockers(pageSize: number, pageNum: number) {
             return this.http.getRaw(environment.endpoints.api + 'lplocker/' + pageSize + '/' + pageNum);
         }  
