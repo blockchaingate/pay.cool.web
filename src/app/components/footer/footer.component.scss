@@ -16,7 +16,7 @@
 }
 
 .footer-list{
-    text-align: center;
+    text-align: left;
 }
 
 .footerLinks{
@@ -40,4 +40,11 @@
     width: 30px;
     height: 30px;
     display: inline-block;
+}
+
+.socialRow{
+    div{
+        display: inline-block;
+        margin-right: 15px;
+    }
 }
