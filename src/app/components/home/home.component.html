@@ -1,39 +1,45 @@
 <div class="container-fluid">
     <!--    <div class="container"> -->
     <div class="row theme-banner-two">
-        <div class="col-md-12 banner-img">
+        <!-- <div class="col-md-12 banner-img">
             <div class="titletxt txt1" data-aos="fade-left">PAY</div>
             <img src="assets/images/img/paycool12.png" alt="banner" class="img-fluid" data-aos="fade-center">
             <div class="titletxt txt2" data-aos="fade-right">COOL</div>
-        </div>
-        <div class="col-md-12">
-            <div class="main-text-wrapper center" data-aos="fade-right">
+        </div> -->
+        <div class="col-md-6">
+            <div class="main-text-wrapper " data-aos="fade-right">
                 <div class="lefttxt">
                     <div>
                         <!-- <h1><span class="titletxt">PAY<span style="color:red">.</span>COOL {{"paycoll"|translate}}</span></h1> -->
-                        <!-- <h1><span >{{"Paytoearn" | translate}} !</span></h1> -->
+                        <h1><span>{{"homeTitle" | translate}}</span></h1>
                     </div>
                     <div style="margin-top: 2em;">
                         <h6>
                             <span style="color: white;">
-                                {{"Topdesc1"|translate}}
-                                <br><br>
-                                {{"Topdesc2"|translate}}
-                                <br><br>
-                                {{"Topdesc3"|translate}}
-                                <br><br>
-                                {{"Topdesc4"|translate}}
+                                {{"homeIntro"|translate}}
                             </span>
                         </h6>
                     </div>
+                    <ul class="button-group joinBtn">
+                        <li>
+                            <a [routerLink]="['/user-tree']" routerLinkActive="router-link-active">{{"Get The APP" |
+                                translate}}</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="main-text-wrapper center" data-aos="fade-right">
+                <div class="">
+                    <div>
+                        <img src="/assets/images/img/app.png" alt="banner" class="img-fluid">
+                    </div>
+
 
                 </div>
-                <ul class="button-group joinBtn">
-                    <li>
-                        <a [routerLink]="['/user-tree']" routerLinkActive="router-link-active">{{"Join Now" |
-                            translate}}</a>
-                    </li>
-                </ul>
+
             </div>
         </div>
 
@@ -56,111 +62,6 @@
             <a href="#"><img src="/assets/images/logos/kanban.png" alt=""></a>
         </div>
     </div>
-    <!--   </div> -->
-
-    <div class="row Title1 sword">
-        <div class="container">
-            <div class="text-center" lang="en">
-                {{"Opportunities" | translate}}
-            </div>
-        </div>
-    </div>
-    <!---
-    <div class="row video-section">
-        <div class="container">
-            <div class="row Title2">
-                {{"WHY PAY.COOL" | translate}} ?
-            </div>
-            <div class="iframe-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/IaWzLkokdv0"
-                    title="Why You Should Use Pay.cool ?" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
--->
-    <div class="container">
-        <div class="row about-box">
-            <div class=" col-md-6">
-                <img src="/assets/images/img/CryptoCard.png" alt="" class="getstarted " data-aos="fade-right">
-            </div>
-            <div class="imageDiv2 col-md-6">
-                <div class="divInner">
-                    <!-- <div class="leading">{{"GET STARTED" | translate}}</div> -->
-                    <div class="theme-title">
-                        <!-- <div class="upper-heading">{{"Why PAY.COOL"|translate}} ?</div> -->
-                        <h3>{{"Join for free" | translate}}
-                        </h3>
-                    </div>
-                    <p class="text">{{"Opportunities-content" | translate}}</p>
-                    <ul class="button-group btnSub">
-                        <li>
-                            <a [routerLink]="['/user-tree']" routerLinkActive="router-link-active">{{"Join Now" |
-                                translate}}</a>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row about-box">
-            <div class="imageDiv2 col-md-6">
-                <div class="divInner">
-                    <!-- <div class="leading">GET STARTED</div> -->
-                    <div class="theme-title">
-                        <!-- <div class="upper-heading">{{"Why PAY.COOL"|translate}} ?</div> -->
-                        <h3>{{"Title1"|translate}}
-                            <span>{{"Title1-2"|translate}}</span> {{"Title1-3"|translate}}
-                        </h3>
-                    </div>
-                    <p class="text">{{"Desc15"| translate}}</p>
-                    <ul class="button-group ">
-                        <li>
-                            <a [routerLink]="['/user-tree']" routerLinkActive="router-link-active">{{"Join Now" |
-                                translate}}</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div>
-                    <img src="/assets/images/img/Wallet.png" alt="Decentralized application" width="800px"
-                        data-aos="fade-left" class="decImg2">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row moredetail">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <img class="decImg2" src="/assets/images/img/startupgrowth.png" alt="Decentralized application" data-aos="fade-left">
-                </div>
-                <div class="imageDiv2 col-md-6">
-                    <div class="divInner">
-                        <h2 class="title">{{"Title3"|translate}}</h2>
-                        <p>{{"Desc31"|translate}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="imageDiv2 col-md-6">
-                    <div class="divInner">
-                        <h2 class="title">{{"Title4"|translate}}</h2>
-                        <p>{{"Desc32"|translate}}</p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <img src="/assets/images/img/team.png" alt="Team-work" width="800px" data-aos="fade-left">
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="row our-features-three">
         <div class="container">
@@ -170,56 +71,289 @@
                 <!--   <img src="/assets/images/banner-phone-app2.jpg" alt="" class="app-img"> -->
             </div>
         </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 parentBlock ">
+                    <div class="singleBlock">
+                        <div class="feature-box center centerImg" data-aos="fade-up">
+                            <div class="icon">
+                                <img src="/assets/images/img/icon-01.png" alt="">
+                            </div>
+                            <div class="content">
+                                <h4>{{"Title7" | translate}}</h4>
+                                <div class="descBlock">{{"Desc22"| translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 parentBlock">
+                    <div class="singleBlock">
+                        <div class="feature-box center centerImg" data-aos="fade-up">
+                            <div class="icon">
+                                <img src="/assets/images/img/icon-02.png" alt="">
+                            </div>
+                            <div class="content">
+                                <h4>{{"Title8" | translate}}</h4>
+                                <div class="descBlock">{{"Desc23"| translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 parentBlock">
+                    <div class="singleBlock">
+                        <div class="feature-box center centerImg" data-aos="fade-up">
+                            <div class="icon">
+                                <img src="/assets/images/img/icon-03.png" alt="">
+                            </div>
+                            <div class="content">
+                                <h4>{{"Title9" | translate}}</h4>
+                                <div class="descBlock">{{"Desc24"| translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 parentBlock">
+                    <div class="singleBlock">
+                        <div class="feature-box center centerImg" data-aos="fade-up">
+                            <div class="icon">
+                                <img src="/assets/images/img/icon-04.png" alt="">
+                            </div>
+                            <div class="content">
+                                <h4>{{"Title10" | translate}}</h4>
+                                <div class="descBlock">{{"Desc25"| translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 parentBlock">
+                    <div class="singleBlock">
+                        <div class="feature-box center centerImg" data-aos="fade-up">
+                            <div class="icon">
+                                <img src="/assets/images/img/icon-05.png" alt="">
+                            </div>
+                            <div class="content">
+                                <h4>{{"Title11" | translate}}</h4>
+                                <div class="descBlock">{{"Desc26"|
+                                    translate}}<span>1sbUJMRMfFMTHopGkPgLfXahi4c1k61Cv</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 parentBlock">
+                    <div class="singleBlock">
+                        <div class="feature-box center centerImg" data-aos="fade-up">
+                            <div class="icon">
+                                <img src="/assets/images/img/icon-06.png" alt="">
+                            </div>
+                            <div class="content">
+                                <h4>{{"Title12" | translate}}</h4>
+                                <div class="descBlock">{{"Desc27"| translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <br><br><br>
+
+    <div class="row our-features-three why-use">
+        <div class="container">
+            <div class="theme-title2 text-center" data-aos="fade-up">
+                <h2 class="blueTitle">{{"Title13" | translate}}</h2>
+                <p class="text">{{"Desc21"| translate}}</p>
+                <!--   <img src="/assets/images/banner-phone-app2.jpg" alt="" class="app-img"> -->
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="why-box why-box-bg1">
+                        <div class="feature-box center centerImg" data-aos="fade-up">
+                            <div class="content">
+                                <h4>{{"Title14" | translate}}</h4>
+                                <div class="descBlock">{{"Title15"| translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="why-box why-box-bg2">
+                        <div class="feature-box center centerImg" data-aos="fade-up">
+                            <div class="content">
+                                <h4>{{"Title16" | translate}}</h4>
+                                <div class="descBlock">{{"Title17"| translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="why-box why-box-bg3">
+                        <div class="feature-box center centerImg" data-aos="fade-up">
+                            <div class="content">
+                                <h4>{{"Title18" | translate}}</h4>
+                                <div class="descBlock">{{"Title19"| translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row our-features-three about-box">
+        <div class="container">
+            <div class="theme-title2 text-center" data-aos="fade-up">
+                <h2 class="blueTitle">{{"Title24" | translate}}</h2>
+                <p class="text">{{"Desc34"| translate}}</p>
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="icon">
+                        <img src="/assets/images/img/icon2-01.png" alt="">
+                    </div>
+                    <div class="cool-box cool-box-bg4">
+                        <div class="feature-box center centerImg" data-aos="fade-up">
+                            <div class="content">
+                                <h4>{{"Step 1" | translate}}</h4>
+                                <div class="descBlock">{{"Step 1 Desc"| translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="icon">
+                        <img src="/assets/images/img/icon2-02.png" alt="">
+                    </div>
+                    <div class="cool-box cool-box-bg5">
+                        <div class="feature-box center centerImg" data-aos="fade-up">
+                            <div class="content">
+                                <h4>{{"Step 2" | translate}}</h4>
+                                <div class="descBlock">{{"Step 2 Desc"| translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="icon">
+                        <img src="/assets/images/img/icon2-03.png" alt="">
+                    </div>
+                    <div class="cool-box cool-box-bg6">
+                        <div class="feature-box center centerImg" data-aos="fade-up">
+                            <div class="content">
+                                <h4>{{"Step 3" | translate}}</h4>
+                                <div class="descBlock">{{"Step 3 Desc"| translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="icon">
+                        <img src="/assets/images/img/icon2-04.png" alt="">
+                    </div>
+                    <div class="cool-box cool-box-bg7">
+                        <div class="feature-box center centerImg" data-aos="fade-up">
+                            <div class="content">
+                                <h4>{{"Step 4" | translate}}</h4>
+                                <div class="descBlock">{{"Step 4 Desc"| translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row our-features-three appDecs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <!-- image -->
+                    <div class="image">
+                        <img src="/assets/images/img/phone.png" alt="" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-6">
+                    <div class="theme-title2 text-center" data-aos="fade-up">
+                        <h2 class="blueTitle">{{"Title25" | translate}}</h2>
+                        <div class="row appRow">
+                            <img src="/assets/images/img/check.png" alt="">
+                            <div class="descBlock">{{"Title26"| translate}}</div>
+                        </div>
+                        <div class="row appRow">
+                            <img src="/assets/images/img/check.png" alt="">
+                            <div class="descBlock">{{"Title27"| translate}}</div>
+                        </div>
+                        <div class="row appRow">
+                            <img src="/assets/images/img/check.png" alt="">
+                            <div class="descBlock">{{"Title28"| translate}}</div>
+                        </div>
+                        <div class="row appRow">
+                            <img src="/assets/images/img/check.png" alt="">
+                            <div class="descBlock">{{"Title29"| translate}}</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="row color-two apps-overview">
         <div class="container mt-8 text-center">
-            <div class=" py-2">
-                <h2 class="white">{{"mobile1"|translate}}</h2>
-            </div>
-            <div class="">
-                <h3 class="white py-2">{{"mobile2"|translate}}</h3>
-            </div>
-            <div class="">
-                <h3 class="white py-2">{{"mobile3"|translate}}</h3>
-            </div>
-            <div class="">
-                <h4 class="white py-2">{{"mobile4"|translate}}</h4>
-            </div>
             <div class="row inner-wrapper">
-                <div class="col-md-3"></div>
-                <div class="appleapp center mx-4 col-md-3">
-                    <div class="py-3 mx-8">
-                        <img class="qrImg" src="assets/images/paycool_apple.png" alt="Pay.cool iOS link">
+                <div class="col-md-6">
+                    <div class=" py-2">
+                        <h2 class="white">{{"Title30"|translate}}</h2>
+                        <div class="">{{"Title31"| translate}}</div>
                     </div>
-                    <div class="py-3">
-                        <ul class="button-group linkBtn">
-                            <li>
-                                <a href="https://apps.apple.com/us/app/pay-cool/id1636549193">
-                                    <i class="flaticon-apple"></i> Apple Store
-                                </a>
-                            </li>
-                        </ul>
+                    <div class="row">
+                        <div class="appleapp  col-md-5">
+                            <div class="py-3 mx-8">
+                                <img class="qrImg" src="assets/images/paycool_apple.png" alt="Pay.cool iOS link">
+                            </div>
+                            <div class="py-3">
+                                <ul class="button-group linkBtn">
+                                    <li>
+                                        <a href="https://apps.apple.com/us/app/pay-cool/id1636549193">
+                                            <i class="flaticon-apple"></i> Apple Store
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+        
+                        <div class="androidapp center col-md-5">
+        
+                            <div class="py-3 mx-8">
+                                <img class="qrImg" src="assets/images/paycool_android.png" alt="Pay.cool Android link">
+                            </div>
+                            <div class="py-3">
+                                <ul class="button-group linkBtn">
+                                    <li>
+                                        <a href="https://play.google.com/store/apps/details?id=cool.pay.paycool&hl=en_CA&gl=US">
+                                            <img src="/assets/imagesBg/icon/playstore.png" width="80" alt=""> Google Play
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="androidapp center mx-4 col-md-3">
-                    
-                    <div class="py-3 mx-8">
-                        <img class="qrImg" src="assets/images/paycool_android.png" alt="Pay.cool Android link">
-                    </div>
-                    <div class="py-3">
-                        <ul class="button-group linkBtn">
-                            <li>
-                                <a href="https://play.google.com/store/apps/details?id=cool.pay.paycool&hl=en_CA&gl=US">
-                                    <img src="/assets/imagesBg/icon/playstore.png" width="80" alt=""> Google Play
-                                </a>
-                            </li>
-                        </ul>
+                <div class="col-md-1"></div>
+                <div class="col-md-5">
+                    <div class="image phone2Img">
+                        <img src="/assets/images/img/phone2.png" alt="" class="img-fluid">
                     </div>
                 </div>
-                <div class="col-md-3"></div>        
             </div>
         </div>
     </div>

@@ -2,11 +2,6 @@
     background: #0f0e1c;
 }
 
-.about-box {
-    padding: 1em 0 0;
-    display: flex;
-}
-
 .divInner {
     //vertical align middle
     top: 50%;
@@ -29,7 +24,7 @@
 // }
 
 .img-fluid {
-    width: 50vw;
+    width: 100%;
     height: auto;
     max-width: 700px;
     margin: 0 auto;
@@ -37,9 +32,35 @@
 }
 
 .qrImg {
-    max-width: 200px;
+    // max-width: 200px;
+    width: 120px;
+    height: 120px;
     margin: 0 auto;
-    border-radius: 20px;
+    border-radius: 0;
+}
+
+.centerImg img {
+    margin: 0 auto;
+}
+
+.parentBlock {
+    margin-bottom: 30px;
+}
+
+.singleBlock {
+    margin-bottom: 30px;
+    height: 100%;
+    //drop shadow
+    padding: 20px 30px;
+    box-shadow: 0 0 20px #00000033, 0 0 60px #00000033, 0 0 70px #00000033;
+}
+
+.descBlock {
+    color: #333333;
+
+    span {
+        font-size: 12px;
+    }
 }
 
 .titletxt {
@@ -148,6 +169,37 @@
     }
 }
 
+.why-box {
+    color: #fff;
+    border-radius: 100%;
+    width: 100%;
+    padding: 30% 10px;
+    height: 100%;
+
+    h4 {
+        font-size: 60px;
+        font-weight: 200;
+        margin-bottom: 20px;
+        color: #ffffff;
+    }
+
+    .descBlock {
+        color: #ffffff;
+    }
+}
+
+.why-box-bg1 {
+    background: #150874;
+}
+
+.why-box-bg2 {
+    background: #392cf0;
+}
+
+.why-box-bg3 {
+    background: #f2543f;
+}
+
 .txt1 {
     position: absolute;
     left: 23vw;
@@ -201,7 +253,7 @@
 }
 
 h1 {
-    font-size: 50px;
+    font-size: 68px;
     font-family: "Sora", "Microsoft YaHei", "微軟正黑體", "蘋果儷中黑", Helvetica, Arial, sans-serif;
     span {
         // color: #ddf5ff;
@@ -209,10 +261,12 @@ h1 {
 }
 
 h6 {
-    font-size: 14px;
+    font-size: 18px;
+    font-weight: 200;
 }
 
 .joinBtn {
+    padding-top: 50px;
     padding-bottom: 50px;
 }
 
@@ -296,8 +350,8 @@ div:lang(sc) {
 }
 
 .blueTitle {
-    color: #416ff6;
-    font-weight: bold;
+    color: #0a0073;
+    // font-weight: bold;
 }
 
 .btnSub {
@@ -305,13 +359,19 @@ div:lang(sc) {
 }
 
 .theme-banner-two {
-    background-image: url("/assets/images/img/bg.jpg");
+    // background-image: url("/assets/images/img/bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    // width: 100%;
-    // background-color: #0f0e1c;
+    // margin : 100px 0 200px;
     margin-top: -120px;
-    //  height: 738px;
+    min-height: 90vh;
+
+    .col-md-6 {
+        //center align content
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
     p {
         font-size: 16px;
@@ -336,21 +396,21 @@ div:lang(sc) {
 
 .button-group li a {
     // background-color: #1ed5f1;
-    color: #fff;
-    border-radius: 50px;
+    color: #000;
+    font-size: 20px;
+    border-radius: 5px;
     border: none;
     min-width: 150px;
     font-weight: 800;
     text-align: center;
     //gradian background
-    background: linear-gradient(45deg, #331ef1 0%, #9d1ef1 100%);
+    background: #1ed5f1;
     //smooth transition
     transition: all 0.3s ease-in-out 1s;
 }
 
 .button-group li a:hover {
-    background: linear-gradient(45deg, #9d1ef1 0%, #331ef1 100%);
-    box-shadow: 0 0 10px #ffffff88, 0 0 40px #ffffff88, 0 0 70px #ffffff88;
+    background: #1ed5f188;
 }
 
 .partner-slider {
@@ -374,7 +434,7 @@ div:lang(sc) {
 }
 
 .theme-title .text {
-    color: #eee;
+    color: #333;
 }
 
 .mockup {
@@ -410,10 +470,20 @@ div:lang(sc) {
 }
 
 .our-features-three {
-    background: #14172a;
+    background: #ffffff;
     padding: 150px 0 20px;
     .app-img {
         margin: 0 auto;
+    }
+}
+
+.why-use {
+    background: #e9eef3;
+    padding-bottom: 150px;
+
+    .theme-title2 {
+        padding-bottom: 80px;
+        color: #0f0e1c;
     }
 }
 
@@ -732,11 +802,99 @@ h3 {
 }
 
 .linkBtn li {
-    padding: 0 20px;
+    // margin: 0 20px;
 }
 
 .linkBtn li a {
     margin: 0 auto;
     text-align: center;
-    color: #fff;
+    color: #333;
+    background-color: #eee;
+
+    i:before {
+        color: #333;
+    }
+}
+
+.about-box {
+    background: #0f0e1c;
+    padding-bottom: 150px;
+    display: flex;
+
+    .icon {
+        padding-top: 50px;
+        padding-bottom: 30px;
+        img {
+            text-align: center;
+            margin: 0 auto;
+        }
+    }
+
+    .cool-box {
+        color: #fff;
+    }
+
+    h2 {
+        color: #fff;
+        font-size: 60px;
+    }
+
+    h4 {
+        font-size: 20px;
+        color: #fff;
+    }
+
+    .text {
+        color: #fff;
+    }
+
+    .descBlock {
+        color: #fff;
+    }
+}
+
+.apps-overview{
+
+    h2{
+        font-size: 50px;
+    }
+}
+
+.appDecs{
+    padding-bottom: 150px;
+
+
+    .blueTitle{
+        padding-bottom: 30px;
+    }
+    .appRow{
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+        margin: 0 auto;
+        max-width: 1000px;
+        padding: 10px 20px;
+        text-align: left;
+
+        img{
+            margin-right: 5px;
+        }
+    }
+
+    .descBlock{
+        max-width: 90%;
+    }
+
+    .phone2Img{
+        //vertical align middle;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        max-width: 1000px;
+        padding: 10px 20px;
+    }
+    
 }
