@@ -29,6 +29,7 @@ export class LplockersComponent implements OnInit {
     private lockerServ: LockerService
   ) { }
 
+
   ngOnInit(): void {
     this.dataServ.currentWalletAddress.subscribe(
       (walletAddress: string) => {
@@ -72,7 +73,6 @@ export class LplockersComponent implements OnInit {
 
   unlock(item) {
     this.locker = item;
-    console.log('this.locker===', this.locker);
     const initialState = {
       pwdHash: this.wallet.pwdHash,
       encryptedSeed: this.wallet.encryptedSeed
@@ -111,7 +111,7 @@ export class LplockersComponent implements OnInit {
 
     const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, this.locker.address, abi, args);
 
-    if(ret2 && ret2.ok && ret2._body && ret2._body.status == '0x1') {
+    if(ret2 && ret2.success && ret2._body && ret2._body.status == '0x1') {
       this.toastr.success('locker was release successfully');
     } else {
       this.toastr.error('Error while releasing locker');

@@ -65,19 +65,30 @@
     <div *ngIf="tabName=='myLPLockers'">
       <ul class="responsive-table">
         <li class="table-header">
-          <div class="col col-4">{{'ID' | translate}}</div>
-          <div class="col col-4">{{'Amount' | translate}}</div>
-          <div class="col col-4">{{'Released Amount' | translate}}</div>
+          <div class="col col-3">{{'ID' | translate}}</div>
+          <div class="col col-3">{{'Amount' | translate}}</div>
+          <div class="col col-3">{{'Released Amount' | translate}}</div>
+          <div class="col col-3">{{'Created At' | translate}}</div>
         </li>
         <li class="table-row" *ngFor="let item of myLPLockers">
-          <div class="col col-4" data-label="ID">
+          <div class="col col-3" data-label="ID">
             {{item.id}}
           </div>
-          <div class="col col-4" data-label="Amount">
+          <div class="col col-3" data-label="Amount">
             {{showAmount(item.amount)}}
           </div>
-          <div class="col col-4" data-label="Released Amount">
+          <div class="col col-3" data-label="Released Amount">
             {{showAmount(item.releaseAmount)}}
+          </div>
+          <div class="col col-3" data-label="ID">
+            <div>
+              {{(item.timestamp * 1000) | date}}
+            </div>
+            <div>
+              <button type="button" class="btn btn-primary" (click)="unlock(item)" *ngIf="item.amount != item.releaseAmount">
+                Unlocked
+              </button>
+            </div>
           </div>
         </li>
       </ul>
