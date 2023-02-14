@@ -1,0 +1,21 @@
+<p class="text-center">Send locked FETDUSD-LP</p>
+<p class="text-center"> Your balance: {{balance}} </p>
+<div class="row d-flex justify-content-center">
+    <div class="form">
+        <div class="mt-3">
+            <label for="address">{{'Receive FAB address' | translate}}<small>({{'Receive address in wallet' | translate}})</small></label>
+    
+            <input type="text" [(ngModel)]="receiverAddress" id="receiverAddress" name="receiverAddress" placeholder="{{'Receiver\'s address' | translate}}">
+        </div>
+    
+        <div class="mt-3">
+            <label for="amount">{{'Amount' | translate}}</label>
+            <input type="text" [(ngModel)]="amount" id="amount" name="amount" placeholder="{{'Transfer amount' | translate}} e.g. 176750000000000000000">    
+        </div>
+    
+        <div class="mt-3">
+            <button class="button px-3 mx-3" (click)="confirmTransfer()">{{'Send' | translate}}</button>
+        </div>
+    </div>
+</div>
+

@@ -157,6 +157,25 @@ export class KanbanService {
         return addr;
     }
 
+    getfetdusdLpBalance(address) {
+        //router.get("/balance/:address/:coinName", CommonController.getBalance);
+        const url = environment.endpoints.api + 'common/balance/' + address + '/FETDUSD-LP';
+        return this.http.getRaw(url);
+    }
+
+    getLpLockerAddress() {
+        const smartContractLpLocker = environment.production ? '0x3c7c48317dd104ed377b2fbb66f3de96a6ff6828' : '0x87e01c3d40e1077a84a688565c7fb9a4cb9889bf';
+        return smartContractLpLocker;
+    }
+    
+    createPayRewardWithTxid(txid) {
+        const url = environment.endpoints.api + 'payreward/createWithTxid';
+        const body = {
+            txid
+        };
+        return this.http.postRaw(url, body);
+    }
+
     async getRecordAddress() {
         const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
         let path = 'ecombar/getIddockAddress'; 

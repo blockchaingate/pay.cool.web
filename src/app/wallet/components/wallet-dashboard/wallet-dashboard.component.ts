@@ -393,7 +393,7 @@ export class WalletDashboardComponent implements OnInit {
     this.wallets.currentIndex = this.wallets.items.indexOf(this.wallet);
 
     this.localSt.setItem('ecomwallets', this.wallets).subscribe(() => {
-      this.walletServ.refreshWallets(this.wallets);
+      this.walletServ.refreshWallets(this.wallets); 
       this.loadWallet();
     });
   }
