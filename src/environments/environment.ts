@@ -20,6 +20,7 @@ export const environment = {
     test: 'https://test.blockchaingate.com/v2/',
     prod: 'https://blockchaingate.com/v2/',
     kanban: 'https://kanbantest.fabcoinapi.com/',
+    emailApi: "https://api.blockchaingate.com/v2/subscribes",
     api: 'https://fabtest.info/api/',
     // blockchaingate: 'https://api.blockchaingate.com/v2/',
     //blockchaingate: 'http://localhost:3002/v2/',
