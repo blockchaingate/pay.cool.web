@@ -6,7 +6,7 @@
 <footer class="theme-footer dark-style">
     <div class="container">
         <div class="inner-wrapper">
-            <div class="top-footer-data-wrapper">
+            <div class="top-footer-data-wrapper  ">
                 <div class="row">
                     <div class="col-lg-12 col-sm-12 footer-logo">
                         <div class="logo">
@@ -52,7 +52,7 @@
                                 <div>- JOIN US</div>
                             </div>
                         </div>
-                        <div>markeitng@exchangily.com </div>
+                        <div>marketing@exchangily.com </div>
 
                     </div>
                 </div>
@@ -60,15 +60,41 @@
             </div>
             <!-- /.top-footer-data-wrapper -->
 
-            <div class="bottom-footer clearfix">
-
-                <p class="copyright">
-                    {{year}} Exchangily LLC All Rights Reserved.
-                </p>
-
-            </div>
             <!-- /.bottom-footer -->
         </div>
     </div>
     <!-- /.container -->
+    <div class="container-fluid bg-light">
+        <div class="container">
+            <!-- subscribe box -->
+            <div class="row pt-5">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 center">
+                    <h3>Subscribe to Pay.Cool Newsletter</h3>
+                    <form (ngSubmit)="onSubmit()" #emailForm="ngForm" class="in-row">
+                        <div class="form-group max-space">
+                            <input type="email" class="form-control" id="emailInput" name="email" [(ngModel)]="email"
+                                required placeholder="Sign up with email address">
+                            <div *ngIf="emailForm.submitted && !emailValid" class="text-danger">
+                                Please enter a valid email address.
+                            </div>
+                            <div *ngIf="emailForm.submitted && emailValid" class="text-success ">
+                                Successfully Subscribed! Thanks! </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary rounded-btn ">Get Started</button>
+                    </form>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+        </div>
+
+        <div class="bottom-footer clearfix">
+
+            <p class="copyright">
+                {{year}} Exchangily LLC All Rights Reserved.
+            </p>
+
+        </div>
+    </div>
 </footer>

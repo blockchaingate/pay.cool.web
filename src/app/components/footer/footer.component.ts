@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
+import { SubscribeService } from 'src/app/services/subscribe.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,36 +8,48 @@ import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-year = 2020;
+  year = 2020;
+
+  email: string;
+  emailValid = true;
+  emailSubmitted = false;
 
   constructor(
-    private _renderer2: Renderer2,
-    @Inject(DOCUMENT) private _document: Document,
-  ) { }
+    private subService: SubscribeService) { }
 
   ngOnInit() {
     const dt = new Date();
     this.year = dt.getFullYear();
   }
 
-  ngAfterViewInit(): void {
-    const script = this._renderer2.createElement('script');
-    script.type = `text/javascript`;
-    script.text = `
-    anime({
-      targets: 'footer .logo path',
-      strokeDashoffset: [anime.setDashoffset, 0],
-      easing: 'easeInOutSine',
-      duration: 1500,
-      delay: function(st1, i, l) { return i * 250 },
-      endDelay: function(st1, i, l) { return (l-i) * 250 },
-      direction: 'alternate',
-      loop: true,
-    });
-    `;
+  onSubmit() {
+    console.log("Email submitted: " + this.email);
 
+    if (!this.isEmailValid(this.email)) {
+      console.log("Invalid email");
+      this.emailValid = false;
+    } else {
+      console.log("Valid email");
+      this.emailValid = true;
+      this.subService.addEmail(this.email).subscribe(
+        (response) => {
+          console.log(response);
+          //print status message
+          console.log("status:" + response["status"]);
+          if (response["status"] === 200) {
+            
+            this.emailSubmitted = true;
+          }else{
+            this.emailSubmitted = false;
+          }
+        }
+      );
+    }
+  }
 
-    this._renderer2.appendChild(this._document.body, script);
+  isEmailValid(email: string) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/; // email validation pattern
+    return emailPattern.test(email); // returns true if email is valid, false otherwise
   }
 
 }

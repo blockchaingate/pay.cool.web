@@ -12,6 +12,7 @@ export const environment = {
     prod: 'https://api.blockchaingate.com/v2/',
     blockchaingate: 'https://api.blockchaingate.com/v2/',
     website: 'http://ecombar.com/',
+    emailApi: "https://api.blockchaingate.com/v2/subscribes",
     api: 'https://api.pay.cool/api/',
     kanban: 'https://kanbanprod.fabcoinapi.com/',
     BTC: {
