@@ -72,6 +72,7 @@ import { TransferOwnershipComponent } from './components/transfer-ownership/tran
 import { SupportComponent } from './components/support/support.component';
 import { RefComponent } from './components/ref/ref.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
+import { GetrewardsComponent } from './components/getrewards/getrewards.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -96,7 +97,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SupportComponent,
     TransferOwnershipComponent,
     RefComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    GetrewardsComponent
   ],
   imports: [
     BrowserModule,

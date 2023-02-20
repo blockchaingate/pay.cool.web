@@ -14,6 +14,7 @@ import { TransferOwnershipComponent } from './components/transfer-ownership/tran
 import { SupportComponent } from './components/support/support.component'
 import { RefComponent } from './components/ref/ref.component';
 import { IpolistComponent } from './reissue/ipolist/ipolist.component';
+import { GetrewardsComponent } from './components/getrewards/getrewards.component';
 
 const routes: Routes = [
   {
@@ -67,6 +68,7 @@ const routes: Routes = [
   { path: 'docs', 
   loadChildren: () => import('./docs/docs.module').then(a => a.DocsModule)
   },
+  { path: 'getrewards', component: GetrewardsComponent },
   { path: 'version', component: VersionComponent },
   { path: 'ipolist', component: IpolistComponent },
   { path: 'membership', component: MembershipComponent },

@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" [(ngModel)]="walletAddress" placeholder="Wallet address">
+        <div class="input-group-append">
+          <button type="button" class="btn btn-secondary" (click)="search()">Search</button>
+        </div>
+    </div>
+
+    <div *ngIf="totalGets" class="my-3">Total GET:{{totalGets}}</div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Block number</th>
+          <th scope="col">Total Lps</th>
+          <th scope="col">My Lp</th>
+          <th scope="col">Type</th>
+          <th scope="col">My GETs</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of rewards">
+          <td>{{item.getSummary.blocknumber}}</td>
+          <td>{{showAmount(item.getSummary.lpAmount)}}</td>
+          <td>{{showAmount(item.lpAmount)}}</td>
+          <td>{{getType(item.type)}}</td>
+          <td>{{item.getAmount}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" (click)="goto(pageNum - 1)">Previous</a></li>
+        <li class="page-item"><a class="page-link" (click)="goto(0)">1</a></li>
+        <li class="page-item"><a class="page-link" (click)="goto(1)">2</a></li>
+        <li class="page-item"><a class="page-link" (click)="goto(2)">3</a></li>
+        <li class="page-item"><a class="page-link" (click)="goto(pageNum + 1)">Next</a></li>
+      </ul>
+    </nav>
+</div>

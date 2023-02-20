@@ -20,7 +20,7 @@
           <a class="nav-link hand-cursor" [ngClass]="tabName=='myCPLockers' ? 'active' : ''" (click)="changeTab('myCPLockers')">My CP Lockers</a>
         </li>   
         <li class="nav-item">
-          <a class="nav-link hand-cursor" [ngClass]="tabName=='myLockers' ? 'active' : ''" (click)="changeTab('myLockers')">My Lockers</a>
+          <a class="nav-link hand-cursor" [ngClass]="tabName=='myLockers' ? 'active' : ''" (click)="changeTab('myLockers')">My Paycool Lockers</a>
         </li>      
         <li class="nav-item">
           <a class="nav-link hand-cursor" [ngClass]="tabName=='myRewards' ? 'active' : ''" (click)="changeTab('myRewards')">My rewards</a>
@@ -85,7 +85,7 @@
               {{(item.timestamp * 1000) | date}}
             </div>
             <div>
-              <button type="button" class="btn btn-primary" (click)="unlock(item)" *ngIf="item.amount != item.releaseAmount">
+              <button *ngIf="item.unlockable" type="button" class="btn btn-primary" (click)="unlock(item)">
                 Unlock
               </button>
             </div>
@@ -125,16 +125,16 @@
         </li>
         <li class="table-row" *ngFor="let item of myLockers">
           <div class="col col-3" data-label="ID">
-            {{item.id}}
+            {{showId(item.id)}}
           </div>
           <div class="col col-3" data-label="Type">
             {{showCoinName(item.coinType)}}
           </div>
           <div class="col col-3" data-label="Amount">
-            {{item.amount}}
+            {{showAmount(item.amount)}}
           </div>
           <div class="col col-3" data-label="Reward Amount">
-            {{timeConverter(item.releaseTime)}}
+            {{item.releaseTime * 1000 | date}}
           </div>
         </li>
       </ul>
