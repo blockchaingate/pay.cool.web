@@ -8,7 +8,8 @@
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",
-        "e2e": "ng e2e"
+        "e2e": "ng e2e",
+        "start:ssl": "export NODE_OPTIONS=--openssl-legacy-provider && ng serve --port 4401"
     },
     "private": true,
     "dependencies": {
