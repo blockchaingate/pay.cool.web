@@ -19,6 +19,7 @@ export class GetrewardsComponent implements OnInit {
   }
 
   search() {
+    this.pageNum = 0;
     this.rewardServ.getTotalGetRewards(this.walletAddress).subscribe(
       (ret: any) => {
         this.totalGets = ret.totalGets;
