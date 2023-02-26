@@ -187,7 +187,7 @@ export class UserDetailComponent implements OnInit {
   }
   
   getMyLPLockers() {
-    this.lockerServ.getAllLpLockersByUser(this.user, 100, 0).subscribe(
+    this.lockerServ.getAllLpLockersByUser(this.user, 100000, 0).subscribe(
       (lockers) => {
         this.myLPLockers = lockers;
         console.log('this.myLPLockers====', this.myLPLockers);
@@ -199,7 +199,6 @@ export class UserDetailComponent implements OnInit {
     this.lockerServ.getAllCpLockersByUser(this.user, 100, 0).subscribe(
       (lockers) => {
         this.myCPLockers = lockers;
-        console.log('this.myCPLockers====', this.myCPLockers);
       }
     );
   }
