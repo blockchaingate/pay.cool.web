@@ -9,6 +9,7 @@ import { MembershipComponent } from './components/membership/membership.componen
 import { PrivacyComponent } from './components/privacy/privacy.component';
 import { AboutComponent } from './components/about/about.component';
 import { JobComponent } from './components/job/job.component';
+import { NewFeaturesComponent } from './components/newFeatures/newFeatures.component';
 import { VersionComponent } from './components/version/version.component';
 import { TransferOwnershipComponent } from './components/transfer-ownership/transfer-ownership.component';
 import { SupportComponent } from './components/support/support.component'
@@ -65,6 +66,10 @@ const routes: Routes = [
     path: 'my-assets',
     loadChildren: () => import('./components/my-assets/my-asset.module').then(a => a.MyAssetModule)
   },
+  {
+    path: 'download',
+    loadChildren: () => import('./download/download.module').then(a => a.DownloadModule)
+  },
   { path: 'docs', 
   loadChildren: () => import('./docs/docs.module').then(a => a.DocsModule)
   },
@@ -81,6 +86,7 @@ const routes: Routes = [
   { path: 'support', component: SupportComponent },
   { path: 'about', component: AboutComponent },
   { path: 'job', component: JobComponent },
+  { path: 'newFeatures', component: NewFeaturesComponent },
   {
     path: 'payment-success', component: PaymentSuccessComponent
   },
