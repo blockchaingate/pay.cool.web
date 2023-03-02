@@ -1,0 +1,12 @@
+.title1{
+    text-align: center;
+    padding: 50px 0;
+}
+
+.latestApk {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+

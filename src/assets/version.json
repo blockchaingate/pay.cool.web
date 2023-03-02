@@ -1,0 +1,39 @@
+[
+    {
+       "version":"latest",
+       "features":[
+          "Changed deposit and withdraw pages to new transaction ui ",
+          "Changed the reward page and fixed redeem button, set redeem messages",
+          "Added version control",
+          "Remit transaction history function"
+       ]
+    },
+    {
+       "version":"test",
+       "features":[
+          "remove liquidity bug fix",
+          "remove liquidity page button has changed"
+       ]
+    },
+    {
+       "version":"1.0.6+35",
+       "features":[
+          "Liquidity history ",
+          "Reward info"
+       ]
+    },
+    {
+       "version":"1.0.4+30+2",
+       "features":[
+          "languages flags replaced with text images"
+       ]
+    },
+    {
+       "version":"1.0.6+34",
+       "features":[
+          "remove liquidity bug fix",
+          "remove liquidity page button has changed"
+       ]
+    }
+    ]
+    

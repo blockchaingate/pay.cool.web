@@ -73,6 +73,7 @@ import { SupportComponent } from './components/support/support.component';
 import { RefComponent } from './components/ref/ref.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { GetrewardsComponent } from './components/getrewards/getrewards.component';
+import { NewFeaturesComponent } from './components/newFeatures/newFeatures.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -98,7 +99,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TransferOwnershipComponent,
     RefComponent,
     UserDetailComponent,
-    GetrewardsComponent
+    GetrewardsComponent,
+    NewFeaturesComponent
   ],
   imports: [
     BrowserModule,
