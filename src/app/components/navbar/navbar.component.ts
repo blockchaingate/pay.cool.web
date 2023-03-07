@@ -11,6 +11,7 @@ import { DeleteWalletModalComponent } from '../modals/delete-wallet/delete-walle
 import { TimerService } from 'src/app/services/timer.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { TransactionItem } from '../../models/transaction-item';
+import { Location } from '@angular/common';
 declare var $: any;
 import { ElementRef, Renderer2 } from '@angular/core';
 
@@ -32,6 +33,8 @@ export class NavbarComponent implements OnInit {
   pendingtransactions: TransactionItem[];
   closetransactions: TransactionItem[];
   public href: string = "";
+  public langFromUrl: string = "";
+  public restUrl: any;
 
   constructor(
     private router: Router,
@@ -43,11 +46,23 @@ export class NavbarComponent implements OnInit {
     public userAuth: UserAuth,
     private _router: Router,
     private modalService: BsModalService,
-    private _localSt: LocalStorage) {
+    private _localSt: LocalStorage,
+    private route: ActivatedRoute,
+    private location: Location
+    ) {
+    this.href = this.location.path();
+    console.log('this.href=', this.href);
+    
+    // this.langFromUrl = this.href.split('/')[1];
+
+    [, this.langFromUrl, ...this.restUrl] = this.href.split('/');
+    // console.log('langFromUrl=', this.langFromUrl);
+    // console.log('this.restUrl=', this.restUrl.join('/'));
+    
   }
 
   ngOnInit() {
-    
+
 
     this.pendingtransactions = [];
     this.closetransactions = [];
@@ -163,7 +178,15 @@ export class NavbarComponent implements OnInit {
   }
 
   setLan() {
-    const storedLan = localStorage.getItem('_lan');
+
+    // if (this.langFromUrl != null && this.langFromUrl != "") {
+    //   // console.log("this.langFromUrl: ", this.langFromUrl);
+
+    // }else{
+    //   // console.log("this.langFromUrl: ", this.langFromUrl);
+    // }
+
+    const storedLan = this.langFromUrl != ""? this.langFromUrl:localStorage.getItem('_lan');
     if (storedLan) {
       if (storedLan === 'en') {
         this.selectedLan = this.languages[0];
@@ -182,11 +205,13 @@ export class NavbarComponent implements OnInit {
       }
     }
     this.tranServ.use(this.selectedLan.value);
+    // this.router.navigateByUrl(`/${this.selectedLan.value}${this.router.url}`);
   }
 
   onSelectLan(lan: Language) {
     this.selectedLan = lan;
     this.tranServ.use(lan.value);
+    this.router.navigateByUrl(`/${this.selectedLan.value}/${this.restUrl.join('/')}`);
 
     localStorage.setItem('_lan', lan.value);
     this._localSt.setItem('_lan', lan.value);

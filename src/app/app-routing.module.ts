@@ -82,7 +82,7 @@ const routes: Routes = [
   { path: 'transfer-ownership/:id', component: TransferOwnershipComponent },
   { path: 'ref/:refcode', component: RefComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'privacy', component: PrivacyComponent },
+  { path: ':lang/privacy', component: PrivacyComponent },
   { path: 'support', component: SupportComponent },
   { path: 'about', component: AboutComponent },
   { path: 'job', component: JobComponent },
@@ -93,7 +93,7 @@ const routes: Routes = [
   {
     path: 'payment-fail', component: PaymentFailComponent
   },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: '/en/home', pathMatch: 'full' },
 ];
 
 @NgModule({
