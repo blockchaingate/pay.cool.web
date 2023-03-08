@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="p-3">
+        <div class="row">
+            <div class="col col-md-4">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">From</label>
+                    <input class="form-control" [(ngModel)]="from" type="date">
+                </div>
+                
+            </div>
+            <div class="col col-md-4">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">To</label>
+                    <input class="form-control" [(ngModel)]="to" type="date">
+                </div>
+            </div>
+            <div class="col col-md-4">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Type</label>
+                    <select class="form-control" [(ngModel)]="type">
+                        <option value="all">All</option>
+                        <option value="personal">Personal</option>
+                        <option value="group">Group</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-md-8">
+                <div class="form-group" *ngIf="type!='all'">
+                    <label for="exampleInputEmail1">Address</label>
+                    <input class="form-control" [(ngModel)]="address" type="text">
+                </div>
+            </div>
+            <div class="col col-md-4">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <button type="button" class="btn btn-primary btn-lg btn-block" (click)="search()">Search</button>
+                </div>
+            </div>
+        </div>   
+        
+        <div *ngIf="total">
+            <div>Total count: {{total.totalCount}}</div>
+            <div>Total amount: {{showAmount(total.totalAmount)}}</div>
+        </div>
+        <table class="table mt-3">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Address</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Created at</th>
+                <th scope="col">txid</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let buy of buys; let i = index">
+                <th scope="row">{{pageSize * pageNum + i + 1}}</th>
+                <td>{{buy.user}}</td>
+                <td>{{showAmount(buy.amount)}}</td>
+                <td>{{buy.dateCreated | date}}</td>
+                <td>
+                    <div>
+                        <a href="javascript:void()" (click)="showRwards(buy.txid)">
+                            {{showId(buy.txid)}}
+                        </a>
+                    </div>
+                    <div>
+                        <a href="javascript:void()" (click)="showTxsInBiswap(buy.txid)">
+                            biswap
+                        </a>
+                        
+                    </div>
+                </td>
+              </tr>
+            </tbody>
+        </table>   
+        
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="javascript:void()" (click)="goto(pageNum - 1)">Previous</a></li>
+              <li class="page-item"><a class="page-link" href="javascript:void()" (click)="goto(0)">1</a></li>
+              <li class="page-item"><a class="page-link" href="javascript:void()" (click)="goto(1)">2</a></li>
+              <li class="page-item"><a class="page-link" href="javascript:void()" (click)="goto(2)">3</a></li>
+              <li class="page-item"><a class="page-link" href="javascript:void()" (click)="goto(pageNum + 1)">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+

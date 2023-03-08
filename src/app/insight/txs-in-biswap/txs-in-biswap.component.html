@@ -1,0 +1,18 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ACTION</th>
+        <th scope="col">TOTAL VALUE</th>
+        <th scope="col">TOKEN1 AMOUNT</th>
+        <th scope="col">TOKEN2 AMOUNT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of txids">
+        <td>{{item.name}}</td>
+        <td>{{item.amountUSD}}</td>
+        <td>{{item.amount0}}</td>
+        <td>{{item.amount1}}</td>
+      </tr>
+    </tbody>
+</table>

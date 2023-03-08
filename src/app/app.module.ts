@@ -58,6 +58,7 @@ import { GlobalRewardService } from './services/globalreward.service';
 import { UserReferralService } from './services/userreferral.service';
 import { MerchantService } from './services/merchant.service';
 import { BuyService } from './services/buy.service';
+import { InsightService } from './services/insight.service';
 import { UploadService } from './services/upload.service';
 import { WalletGuardService } from './services/wallet-guard.service';
 import { KanbanSmartContractService } from './services/kanban.smartcontract.service';
@@ -158,6 +159,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     DataService,
     PayRewardService,
     ChargeService,
+    InsightService,
     GlobalRewardService,
     RewardService,
     UserReferralService,

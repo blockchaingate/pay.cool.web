@@ -23,7 +23,7 @@ const routes: Routes = [
     loadChildren: () => import('./reissue/reissue.module').then(w => w.ReissueModule)
   },
   {
-    path: 'metaforce',
+    path: 'metaforce2',
     loadChildren: () => import('./metaforce/metaforce.module').then(w => w.MetaforceModule)
   },
   {
@@ -69,6 +69,10 @@ const routes: Routes = [
   {
     path: 'download',
     loadChildren: () => import('./download/download.module').then(a => a.DownloadModule)
+  },
+  {
+    path: 'insight',
+    loadChildren: () => import('./insight/insight.module').then(a => a.InsightModule)
   },
   { path: 'docs', 
   loadChildren: () => import('./docs/docs.module').then(a => a.DocsModule)
