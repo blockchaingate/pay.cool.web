@@ -16,4 +16,10 @@ export class TxRewardsComponent implements OnInit {
   showId(id: string) {
     return this.utilServ.showId(id);
   }
+  showRewardAmount(item) {
+    if(!item.typeHex) {
+      return item.rewardAmount;
+    }
+    return Number(this.utilServ.showAmount(item.rewardAmount, 18));
+  }
 }

@@ -25,4 +25,7 @@ export class FetComponent implements OnInit {
     );
   }
 
+  showReward(rewards: number) {
+    return Math.round(rewards);
+  }
 }
