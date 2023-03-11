@@ -1,0 +1,21 @@
+<div class="container" *ngIf="fromSeed">
+    <div class="row">
+        <div class="col col-md-4 col-6">
+            Rewards from Seed
+        </div>
+        <div class="col col-md-8 col-6">
+            {{showReward(fromSeed.rewards)}}
+        </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="fromMetaforce">
+    <div class="row">
+        <div class="col col-md-4 col-6">
+            Rewards from Metaforce
+        </div>
+        <div class="col col-md-8 col-6">
+            {{fromMetaforce.rewards}}
+        </div>
+    </div>
+</div>

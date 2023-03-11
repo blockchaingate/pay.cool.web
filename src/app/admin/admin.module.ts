@@ -39,6 +39,7 @@ import { ProjectPackagesComponent } from './pages/project-packages/project-packa
 import { ProjectPackageAddComponent } from './pages/project-package-add/project-package-add.component';
 import { ProjectPackageEditComponent } from './pages/project-package-edit/project-package-edit.component';
 import { UserReferralEditComponent } from './pages/user-referral-edit/user-referral-edit.component';
+import { ModifyReferralModalComponent } from './pages/merchant-approve/modify-referral.modal';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { UserReferralEditComponent } from './pages/user-referral-edit/user-refer
     ProjectPackagesComponent,
     ProjectPackageAddComponent,
     ProjectPackageEditComponent,
-    UserReferralEditComponent
+    UserReferralEditComponent,
+    ModifyReferralModalComponent
   ],
   imports: [
     AdminRoutingModule,

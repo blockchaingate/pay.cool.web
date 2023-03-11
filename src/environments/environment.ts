@@ -4,7 +4,7 @@
 import * as Btc from 'bitcoinjs-lib';
 export const environment = {
   env: 'dev',
-  version: '1.0.5',
+  version: '1.0.7',
   production: false,
   EPAY_API: 'http://29597375fx.zicp.vip/paymentApi',
   appid: '5f80c3b09577e8dc2f8db596',
@@ -20,6 +20,7 @@ export const environment = {
     test: 'https://test.blockchaingate.com/v2/',
     prod: 'https://blockchaingate.com/v2/',
     kanban: 'https://kanbantest.fabcoinapi.com/',
+    emailApi: "https://api.blockchaingate.com/v2/subscribes",
     api: 'https://fabtest.info/api/',
     // blockchaingate: 'https://api.blockchaingate.com/v2/',
     //blockchaingate: 'http://localhost:3002/v2/',
@@ -120,8 +121,8 @@ export const environment = {
         network: {
             messagePrefix: '\x15TRON Signed Message:\n'
         },
-        feeLimit: 15,
-        feeLimitToken: 15,
+        feeLimit: 40,
+        feeLimitToken: 40,
         fullNode: 'https://api.trongrid.io',
         solidityNode: 'https://api.trongrid.io',
         eventServer: 'https://api.trongrid.io'  

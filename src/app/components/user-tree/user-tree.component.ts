@@ -169,7 +169,7 @@ export class UserTreeComponent implements OnInit {
     const hexAddress = this.utilServ.fabToExgAddress(this.refCode);
     this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.smartConractAdressReferral, abi, [hexAddress]).then(
       (res) => {
-        if(res && res.ok && res._body && res._body.status == '0x1') {
+        if(res && res.success && res._body && res._body.status == '0x1') {
           this.toastr.success('Join as a member successfully');
         } else {
           this.toastr.error('Failed to join as a member');

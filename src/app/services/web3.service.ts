@@ -452,10 +452,15 @@ export class Web3Service {
     const web3 = this.getWeb3Provider();
     var messageHex = web3.utils.isHexStrict(data) ? data : web3.utils.utf8ToHex(data);
     var messageBytes = web3.utils.hexToBytes(messageHex);
+    console.log('messageBytes=', messageBytes);
     var messageBuffer = Buffer.from(messageBytes);
+    console.log('messageBuffer=', messageBuffer);
+    console.log('messageBytes.length===', messageBytes.length);
     var preamble = '\x17Kanban Signed Message:\n' + messageBytes.length;
     var preambleBuffer = Buffer.from(preamble);
+    console.log('preambleBuffer===', preambleBuffer);
     var ethMessage = Buffer.concat([preambleBuffer, messageBuffer]);
+    console.log('ethMessage===', ethMessage);
     var hash = Hash.keccak256s(ethMessage);    
     console.log('hash1=', hash);
     return hash;

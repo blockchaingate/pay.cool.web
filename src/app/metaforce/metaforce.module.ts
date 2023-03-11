@@ -14,6 +14,8 @@ import { PayRewardComponent } from './components/pay-reward/pay-reward.component
 import { ProjectUserComponent } from './components/project-user/project-user.component';
 import { GlobalDusdComponent } from './global-dusd/global-dusd.component';
 import { PayrewardDiffComponent } from './payreward-diff/payreward-diff.component';
+import { PayrewardDiffDetailComponent } from './payreward-diff-detail/payreward-diff-detail.component';
+import { PendingsComponent } from './pendings/pendings.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,10 @@ import { PayrewardDiffComponent } from './payreward-diff/payreward-diff.componen
     GapComponent, 
     LeadershipComponent, 
     GlobalComponent, 
-    CardComponent, LplockerComponent, PayRewardComponent, ProjectUserComponent, GlobalDusdComponent, PayrewardDiffComponent
+    PendingsComponent,
+    CardComponent, LplockerComponent, 
+    PayRewardComponent, ProjectUserComponent, 
+    GlobalDusdComponent, PayrewardDiffComponent, PayrewardDiffDetailComponent
   ],
   imports: [
     CommonModule,

@@ -19,7 +19,6 @@ export class AppComponent implements OnInit{
   ngOnInit() {
     this.localSt.getItem('ecomwallets').subscribe(
       (wallets: any) => {
-        console.log('wallets===', wallets);
         if(!wallets || !wallets.items || (wallets.items.length == 0)) {
           //this.router.navigate(['/wallet']);
           return false;

@@ -3,6 +3,7 @@ import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 import { UserReferralService } from 'src/app/services/userreferral.service';
+import { Web3Service } from 'src/app/services/web3.service';
 import { StarService } from '../../services/star.service';
 declare var anime: any;
 
@@ -26,13 +27,18 @@ export class HomeComponent implements OnInit {
     private localSt: LocalStorage, 
     private route: ActivatedRoute, 
     private userreferralServ: UserReferralService,
+    private web3Serv: Web3Service,
     private starServ: StarService) {
     this.lan = localStorage.getItem('_lan');
   }
 
   ngOnInit() {
     this.setSize();
-
+    
+    const requestRefundId = '0x89d7e2530fc14714db77bc40b53c65ec27e4c39544278c90f4355a1e10dd8376';
+    const hashForSignature = this.web3Serv.hashKanbanMessage( requestRefundId);
+    console.log('hashForSignature==', hashForSignature);
+    
     this.route.queryParams.subscribe(
       (params: ParamMap) => {
         const refCode = params['ref'];

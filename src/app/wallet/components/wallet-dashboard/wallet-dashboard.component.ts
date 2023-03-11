@@ -19,6 +19,7 @@ import { MyCoin } from 'src/app/models/mycoin';
 import { WalletService } from 'src/app/services/wallet.service';
 import { ShowSeedPhraseModal } from '../../modals/show-seed-phrase/show-seed-phrase.modal';
 import { GetFreeFabModal } from '../../modals/get-free-fab/get-free-fab.modal';
+import { AddGasModal } from '../../modals/add-gas/add-gas.modal';
 import { UserReferralService } from 'src/app/services/userreferral.service';
 
 @Component({
@@ -126,7 +127,50 @@ export class WalletDashboardComponent implements OnInit {
     this.modalRef = this.modalServ.show(ReceiveComponent, {initialState});
   }
 
+  addGas() {
+    const initialState = {
+      address: this.walletAdd
+    }
+    this.modalRef = this.modalServ.show(AddGasModal, {initialState});   
 
+    this.modalRef.content.onClose.subscribe(amount => {
+
+      const initialState = {
+        coins: this.coins,
+        pwdHash: this.wallet.pwdHash,
+        encryptedSeed: this.wallet.encryptedSeed
+      };          
+      
+      this.modalRef = this.modalServ.show(PasswordModalComponent, { initialState });
+
+      this.modalRef.content.onClose.subscribe( (seed: Buffer) => {
+
+        this.kanbanServ.getWalletBalances(this.addresses).subscribe(
+          (res: any) => {
+            console.log('res for getWalletBalances=', res);
+            if (res && res.success) {
+              this.coins = res.data.filter(item => ((item.coin == 'FAB')));
+              console.log('this.coins===', this.coins);
+              if(this.coins && (this.coins.length > 0)) {
+                const fabAmount = this.coins[0].balance;
+                if(fabAmount < amount) {
+                  this.toastr.info('Not enough fab');
+                }
+
+                this.addGasDo(seed, amount);
+              }
+              /*
+              if(!this.checkAmount(seed)) {
+                return;
+              }
+              this.sendCoinDo(seed);
+              */
+            }
+          });        
+        
+      });      
+    });  
+  }
 
   getFreeGas() {
     const initialState = {
@@ -244,6 +288,17 @@ export class WalletDashboardComponent implements OnInit {
     });    
   }
 
+  async addGasDo(seed: Buffer, amount: number) {
+    const scarAddress = await this.kanbanServ.getScarAddress();
+    const currentCoin = this.coinServ.formMyCoin(this.wallet.addresses, 'FAB');
+    const { txHash, errMsg } = await this.coinServ.depositFab(scarAddress, seed, currentCoin, amount);
+    if (errMsg) {
+      this.toastr.error(errMsg);
+    } else {
+      this.toastr.info(this.translateServ.instant('Add gas transaction was submitted successfully, please check gas balance 40 minutes later.'));
+    }
+  }
+
   async sendCoinDo(seed: Buffer) {
     const currentCoin = this.sendCoinParams.currentCoin;
 
@@ -338,7 +393,7 @@ export class WalletDashboardComponent implements OnInit {
     this.wallets.currentIndex = this.wallets.items.indexOf(this.wallet);
 
     this.localSt.setItem('ecomwallets', this.wallets).subscribe(() => {
-      this.walletServ.refreshWallets(this.wallets);
+      this.walletServ.refreshWallets(this.wallets); 
       this.loadWallet();
     });
   }
@@ -354,11 +409,14 @@ export class WalletDashboardComponent implements OnInit {
     this.addresses = addresses;
     const walletAddressItem = addresses.filter(item => item.name == 'FAB')[0];
     this.walletAddress = walletAddressItem.address;
+
+    /*
     this.starSer.getOrderByAddressCampaignId(this.walletAddress, 1).subscribe(
       (res: any) => {
         this.orderId = res._id;
       }
     );
+    */
     this.walletAdd = this.walletAddress;
     this.kanbanAddress = this.utilServ.fabToExgAddress(this.walletAddress);
     this.refreshGas();

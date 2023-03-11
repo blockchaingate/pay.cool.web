@@ -11,6 +11,14 @@ export class PayRewardService {
             return this.http.getRaw(environment.endpoints.api + 'ipo/payreward-diff/' + pageSize + '/' + pageNum);
         }
 
+        getAllPendings() {
+            return this.http.getRaw(environment.endpoints.api + 'ipo/payrewardpendings');
+        }
+
+        getPayRewardDiffByUserId(userId) {
+            return this.http.getRaw(environment.endpoints.api + 'ipo/payreward-diff/user/' + userId);
+        }
+
         getAllIcoRewardsById(icoid) {
             return this.http.getRaw(environment.endpoints.api + 'payreward/ipo/' + icoid + '/100/0');
         }

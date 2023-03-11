@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
-import { environment } from '../../environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AirdropService {
@@ -8,7 +8,7 @@ export class AirdropService {
     
     getQuestionair(address: string, ip: string) {
         const url = 'airdrop/getQuestionair/' + address + '/' + ip;
-        return this.http.get(url);
+        return this.http.getRaw(environment.endpoints.blockchaingate + url);
     }
 
     answerQuestionair(address: string, questionair_id: string, answer: string) {
@@ -18,6 +18,7 @@ export class AirdropService {
             answer: answer
         };
         const url = 'airdrop/answerQuestionair';
-        return this.http.post(url, data);       
+        console.log('urllll=', url);
+        return this.http.postRaw(environment.endpoints.blockchaingate + url, data);       
     }    
 }

@@ -6,11 +6,16 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { BuyService } from 'src/app/services/buy.service';
 import { UtilService } from 'src/app/services/util.service';
 import { PayRewardService } from 'src/app/services/payreward.service';
-import { BsModalService } from 'ngx-bootstrap/modal';
 import { TxRewardsComponent } from '../../me/components/tx-rewards/tx-rewards.component';
 import { ChargeService } from 'src/app/services/charge.service';
 import { LockerService } from 'src/app/services/locker.service';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { KanbanSmartContractService } from 'src/app/services/kanban.smartcontract.service';
+import { DataService } from 'src/app/services/data.service';
+import { Router } from '@angular/router';
+import { PasswordModalComponent } from '../../shared/modals/password-modal/password-modal.component';
 
 @Component({
   selector: 'app-user-detail',
@@ -19,7 +24,8 @@ import { environment } from 'src/environments/environment';
 })
 export class UserDetailComponent implements OnInit {
   @Input() user: string;
-
+  modalRef: BsModalRef;
+  wallet: any;
   tabName: string;
   expiredAt: any;
   pv: number;
@@ -42,19 +48,30 @@ export class UserDetailComponent implements OnInit {
 
   myPayments: any;
   myLPLockers: any;
+  myCPLockers: any;
   myLockers: any;
 
   constructor(
     private route: ActivatedRoute,
     private buyServ: BuyService,
     private modalService: BsModalService,
+    private toastr: ToastrService,
     private utilServ: UtilService,
+    private dataServ: DataService,
+    private router: Router,
     private lockerServ: LockerService,
     private chargeServ: ChargeService,
+    private kanbanSmartContractServ: KanbanSmartContractService,
     private payRewardServ: PayRewardService,
     private userreferralServ: UserReferralService) { }
 
   ngOnInit(): void {
+    this.dataServ.currentWallet.subscribe(
+      (wallet: any) => {
+        this.wallet = wallet;
+      }
+    ); 
+
     this.route.paramMap.subscribe(
       (params: ParamMap) => {
           const user = params.get('id');
@@ -66,6 +83,7 @@ export class UserDetailComponent implements OnInit {
             this.getMyRewards();
             this.getMyPayments();
             this.getMyLPLockers();
+            this.getMyCPLockers();
             this.getMyLockers();
             this.changeTab('paycool');
           } else {
@@ -76,6 +94,7 @@ export class UserDetailComponent implements OnInit {
             this.getMyRewards();
             this.getMyPayments();
             this.getMyLPLockers();
+            this.getMyCPLockers();
             this.getMyLockers();
           }
       }
@@ -168,7 +187,7 @@ export class UserDetailComponent implements OnInit {
   }
   
   getMyLPLockers() {
-    this.lockerServ.getAllLpLockersByUser(this.user, 100, 0).subscribe(
+    this.lockerServ.getAllLpLockersByUser(this.user, 100000, 0).subscribe(
       (lockers) => {
         this.myLPLockers = lockers;
         console.log('this.myLPLockers====', this.myLPLockers);
@@ -176,6 +195,14 @@ export class UserDetailComponent implements OnInit {
     );
   }
   
+  getMyCPLockers() {
+    this.lockerServ.getAllCpLockersByUser(this.user, 100, 0).subscribe(
+      (lockers) => {
+        this.myCPLockers = lockers;
+      }
+    );
+  }
+
   getMyLockers() {
     this.lockerServ.getAllLockersByUser(this.user, 100, 0).subscribe(
       (lockers) => {
@@ -319,4 +346,50 @@ export class UserDetailComponent implements OnInit {
     }
   }
 
+
+  unlock(item) {
+    const initialState = {
+      pwdHash: this.wallet.pwdHash,
+      encryptedSeed: this.wallet.encryptedSeed
+    };          
+    if(!this.wallet || !this.wallet.pwdHash) {
+      this.router.navigate(['/wallet']);
+      return;
+    }
+    this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
+
+    this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
+      this.unlockDo(seed, item);
+    });
+  }
+
+  async unlockDo(seed: Buffer, item) {
+    const abi = {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_lockerId",
+          "type": "uint256"
+        }
+      ],
+      "name": "releaseLocker",
+      "outputs": [
+        
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    };
+
+    const args = [
+      item.id
+    ];
+
+    const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, item.address, abi, args);
+
+    if(ret2 && ret2.success && ret2._body && ret2._body.status == '0x1') {
+      this.toastr.success('locker was release successfully');
+    } else {
+      this.toastr.error('Error while releasing locker');
+    }
+  }
 }

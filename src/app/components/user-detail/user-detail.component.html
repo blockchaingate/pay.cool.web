@@ -17,7 +17,10 @@
           <a class="nav-link hand-cursor" [ngClass]="tabName=='myLPLockers' ? 'active' : ''" (click)="changeTab('myLPLockers')">My LP Lockers</a>
         </li>   
         <li class="nav-item">
-          <a class="nav-link hand-cursor" [ngClass]="tabName=='myLockers' ? 'active' : ''" (click)="changeTab('myLockers')">My Lockers</a>
+          <a class="nav-link hand-cursor" [ngClass]="tabName=='myCPLockers' ? 'active' : ''" (click)="changeTab('myCPLockers')">My CP Lockers</a>
+        </li>   
+        <li class="nav-item">
+          <a class="nav-link hand-cursor" [ngClass]="tabName=='myLockers' ? 'active' : ''" (click)="changeTab('myLockers')">My Paycool Lockers</a>
         </li>      
         <li class="nav-item">
           <a class="nav-link hand-cursor" [ngClass]="tabName=='myRewards' ? 'active' : ''" (click)="changeTab('myRewards')">My rewards</a>
@@ -62,18 +65,50 @@
     <div *ngIf="tabName=='myLPLockers'">
       <ul class="responsive-table">
         <li class="table-header">
-          <div class="col col-4">{{'ID' | translate}}</div>
-          <div class="col col-4">{{'Amount' | translate}}</div>
-          <div class="col col-4">{{'Released Amount' | translate}}</div>
+          <div class="col col-3">{{'ID' | translate}}</div>
+          <div class="col col-3">{{'Amount' | translate}}</div>
+          <div class="col col-3">{{'Released Amount' | translate}}</div>
+          <div class="col col-3">{{'Created At' | translate}}</div>
         </li>
         <li class="table-row" *ngFor="let item of myLPLockers">
-          <div class="col col-4" data-label="ID">
+          <div class="col col-3" data-label="ID">
             {{item.id}}
           </div>
-          <div class="col col-4" data-label="Amount">
+          <div class="col col-3" data-label="Amount">
             {{showAmount(item.amount)}}
           </div>
-          <div class="col col-4" data-label="Released Amount">
+          <div class="col col-3" data-label="Released Amount">
+            {{showAmount(item.releaseAmount)}}
+          </div>
+          <div class="col col-3" data-label="ID">
+            <div>
+              {{(item.timestamp * 1000) | date}}
+            </div>
+            <div>
+              <button *ngIf="item.unlockable" type="button" class="btn btn-primary" (click)="unlock(item)">
+                Unlock
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div> 
+
+    <div *ngIf="tabName=='myCPLockers'">
+      <ul class="responsive-table">
+        <li class="table-header">
+          <div class="col col-6">{{'ID' | translate}}</div>
+          <div class="col col-3">{{'Amount' | translate}}</div>
+          <div class="col col-3">{{'Released Amount' | translate}}</div>
+        </li>
+        <li class="table-row" *ngFor="let item of myCPLockers">
+          <div class="col col-6" data-label="ID">
+            {{item.id}}
+          </div>
+          <div class="col col-3" data-label="Amount">
+            {{showAmount(item.amount)}}
+          </div>
+          <div class="col col-3" data-label="Released Amount">
             {{showAmount(item.releaseAmount)}}
           </div>
         </li>
@@ -90,16 +125,16 @@
         </li>
         <li class="table-row" *ngFor="let item of myLockers">
           <div class="col col-3" data-label="ID">
-            {{item.id}}
+            {{showId(item.id)}}
           </div>
           <div class="col col-3" data-label="Type">
             {{showCoinName(item.coinType)}}
           </div>
           <div class="col col-3" data-label="Amount">
-            {{item.amount}}
+            {{showAmount(item.amount)}}
           </div>
           <div class="col col-3" data-label="Reward Amount">
-            {{timeConverter(item.releaseTime)}}
+            {{item.releaseTime * 1000 | date}}
           </div>
         </li>
       </ul>
@@ -116,7 +151,8 @@
         </li>
         <li class="table-row" *ngFor="let item of myRewards">
           <div class="col col-4" data-label="From">
-            {{item.from}}
+            <div>{{item.from}}</div>
+            <div>{{item.fromAmount}}</div>
           </div>
           <div class="col col-3" data-label="Type">
             {{item.type}}
@@ -189,16 +225,18 @@
     <div *ngIf="tabName=='buys'">
       <ul class="responsive-table">
         <li class="table-header">
-          <div class="col col-3">{{'Project Package' | translate}}</div>
-          <div class="col col-4">{{'Amount' | translate}}</div>
+          <div class="col col-5">{{'Project Package' | translate}}</div>
+          <div class="col col-2">{{'Amount' | translate}}</div>
           <div class="col col-3">{{'Date created' | translate}}</div>
           <div class="col col-2"></div>
         </li>
         <li class="table-row" *ngFor="let item of buys">
-          <div class="col col-3" data-label="Project Package">
-            {{item.projectPackage ? showName(item.projectPackage.name) : ''}}
+          <div class="col col-5" data-label="Project Package">
+            <div>{{item.txid}}</div>
+            <div>{{item.projectPackage ? showName(item.projectPackage.name) : ''}}</div>
+            
           </div>
-          <div class="col col-4" data-label="Amount">
+          <div class="col col-2" data-label="Amount">
             {{showAmount(item.amount)}} {{showCoinName(item.coinType)}}
           </div>
           <div class="col col-3" data-label="Date created">

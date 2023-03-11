@@ -58,6 +58,7 @@ import { GlobalRewardService } from './services/globalreward.service';
 import { UserReferralService } from './services/userreferral.service';
 import { MerchantService } from './services/merchant.service';
 import { BuyService } from './services/buy.service';
+import { InsightService } from './services/insight.service';
 import { UploadService } from './services/upload.service';
 import { WalletGuardService } from './services/wallet-guard.service';
 import { KanbanSmartContractService } from './services/kanban.smartcontract.service';
@@ -72,6 +73,9 @@ import { TransferOwnershipComponent } from './components/transfer-ownership/tran
 import { SupportComponent } from './components/support/support.component';
 import { RefComponent } from './components/ref/ref.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
+import { GetrewardsComponent } from './components/getrewards/getrewards.component';
+import { NewFeaturesComponent } from './components/newFeatures/newFeatures.component';
+import { LanguageService } from './services/language.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -96,7 +100,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     SupportComponent,
     TransferOwnershipComponent,
     RefComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    GetrewardsComponent,
+    NewFeaturesComponent
   ],
   imports: [
     BrowserModule,
@@ -154,6 +160,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     DataService,
     PayRewardService,
     ChargeService,
+    InsightService,
     GlobalRewardService,
     RewardService,
     UserReferralService,
@@ -161,7 +168,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MerchantService,
     WalletGuardService,
     StoreService,
-    KanbanSmartContractService
+    KanbanSmartContractService,
+    LanguageService
   ],
   bootstrap: [AppComponent]
 })

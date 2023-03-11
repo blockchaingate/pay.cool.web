@@ -9,11 +9,13 @@ import { MembershipComponent } from './components/membership/membership.componen
 import { PrivacyComponent } from './components/privacy/privacy.component';
 import { AboutComponent } from './components/about/about.component';
 import { JobComponent } from './components/job/job.component';
+import { NewFeaturesComponent } from './components/newFeatures/newFeatures.component';
 import { VersionComponent } from './components/version/version.component';
 import { TransferOwnershipComponent } from './components/transfer-ownership/transfer-ownership.component';
 import { SupportComponent } from './components/support/support.component'
 import { RefComponent } from './components/ref/ref.component';
 import { IpolistComponent } from './reissue/ipolist/ipolist.component';
+import { GetrewardsComponent } from './components/getrewards/getrewards.component';
 
 const routes: Routes = [
   {
@@ -21,8 +23,12 @@ const routes: Routes = [
     loadChildren: () => import('./reissue/reissue.module').then(w => w.ReissueModule)
   },
   {
-    path: 'metaforce',
+    path: 'metaforce2',
     loadChildren: () => import('./metaforce/metaforce.module').then(w => w.MetaforceModule)
+  },
+  {
+    path: 'bindpay',
+    loadChildren: () => import('./bindpay/bindpay.module').then(w => w.BindpayModule)
   },
   {
     path: 'wallet',
@@ -60,9 +66,18 @@ const routes: Routes = [
     path: 'my-assets',
     loadChildren: () => import('./components/my-assets/my-asset.module').then(a => a.MyAssetModule)
   },
+  {
+    path: 'download',
+    loadChildren: () => import('./download/download.module').then(a => a.DownloadModule)
+  },
+  {
+    path: 'insight',
+    loadChildren: () => import('./insight/insight.module').then(a => a.InsightModule)
+  },
   { path: 'docs', 
   loadChildren: () => import('./docs/docs.module').then(a => a.DocsModule)
   },
+  { path: 'getrewards', component: GetrewardsComponent },
   { path: 'version', component: VersionComponent },
   { path: 'ipolist', component: IpolistComponent },
   { path: 'membership', component: MembershipComponent },
@@ -71,17 +86,18 @@ const routes: Routes = [
   { path: 'transfer-ownership/:id', component: TransferOwnershipComponent },
   { path: 'ref/:refcode', component: RefComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'privacy', component: PrivacyComponent },
+  { path: ':lang/privacy', component: PrivacyComponent },
   { path: 'support', component: SupportComponent },
   { path: 'about', component: AboutComponent },
   { path: 'job', component: JobComponent },
+  { path: 'newFeatures', component: NewFeaturesComponent },
   {
     path: 'payment-success', component: PaymentSuccessComponent
   },
   {
     path: 'payment-fail', component: PaymentFailComponent
   },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: '/en/home', pathMatch: 'full' },
 ];
 
 @NgModule({

@@ -25,13 +25,14 @@ import { TransactionHistoryComponent } from './components/transaction-history/tr
 import { TranslateService } from '@ngx-translate/core';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { WalletRoutingModule } from './wallet-routing.module';
-import { NgxBootstrapSwitchModule } from 'ngx-bootstrap-switch';
+import { NgxBootstrapSwitchModule } from '../ngx-bootstrap-switch';
 import { TransactionDetailComponent } from './modals/transaction-detail/transaction-detail.component';
 import { ReceiveComponent } from './modals/receive/receive.component';
 import { SendComponent } from './modals/send/send.component';
 import { LoginSettingModal } from './modals/login-setting/login-setting.modal';
 import { ShowSeedPhraseModal } from './modals/show-seed-phrase/show-seed-phrase.modal';
 import { GetFreeFabModal } from './modals/get-free-fab/get-free-fab.modal';
+import { AddGasModal } from './modals/add-gas/add-gas.modal';
 
 @NgModule({
   imports: [
@@ -72,7 +73,8 @@ import { GetFreeFabModal } from './modals/get-free-fab/get-free-fab.modal';
     PaycoolComponent,
     LoginSettingModal,
     ShowSeedPhraseModal,
-    GetFreeFabModal
+    GetFreeFabModal,
+    AddGasModal
   ],
   entryComponents: [
     ReceiveComponent,
@@ -80,7 +82,8 @@ import { GetFreeFabModal } from './modals/get-free-fab/get-free-fab.modal';
     TransactionDetailComponent,
     LoginSettingModal,
     ShowSeedPhraseModal,
-    GetFreeFabModal
+    GetFreeFabModal,
+    AddGasModal
   ],
   exports: [
   ]

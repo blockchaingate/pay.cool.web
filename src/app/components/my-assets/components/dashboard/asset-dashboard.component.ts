@@ -300,6 +300,8 @@ export class MyAssetDashboardComponent implements OnInit {
     this.walletAdd = '1Avx8u3ERKmXpVfW4ZPzqfGZQ7nEHVoptB';
     */
     // alert(this.walletAdd)
+
+    /*
     this.starSer.getOrderByAddressCampaignId(this.walletAdd, campaignId).toPromise().then(
       ret => {
         this.campaignsParticipation[campaignId] = true;
@@ -313,6 +315,7 @@ export class MyAssetDashboardComponent implements OnInit {
         this.campaignsParticipation[campaignId] = false; 
       }
     )
+    */
   }
 
   selectCurrency(currency: string) {
@@ -472,7 +475,6 @@ export class MyAssetDashboardComponent implements OnInit {
 
     const abiHex = this.web3Serv.getWithdrawFuncABI(this.currentCoinId, amountInLink, addressInWallet);
 
-    console.log('abiHex===', abiHex);
     const coinPoolAddress = await this.kanbanServ.getCoinPoolAddress();
     const nonce = await this.kanbanServ.getTransactionCount(this.utilServ.fabToExgAddress(keyPairsKanban.address));
 
@@ -538,33 +540,6 @@ export class MyAssetDashboardComponent implements OnInit {
     if (errMsg) {
       this.toastr.error(errMsg);
     } else {
-
-      /*
-        const addr = environment.addresses.exchangilyOfficial.FAB;
-
-        const item: TransactionItem = {
-            walletId: this.wallet.id,
-            type: 'Add Gas',
-            coin: currentCoin.name,
-            tokenType: currentCoin.tokenType,
-            amount: amount,
-            txid: txHash,
-            to: addr,
-            time: new Date(),
-            confirmations: '0',
-            blockhash: '',
-            comment: '',
-            status: 'pending'
-        };
-        this.storageService.storeToTransactionHistoryList(item);
-        
-
-        if (this.lan === 'zh') {
-            this.alertServ.openSnackBarSuccess('加燃料交易提交成功，请等40分钟后查看结果', 'Ok');
-        } else {
-            this.alertServ.openSnackBarSuccess('Add gas transaction was submitted successfully, please check gas balance 40 minutes later.', 'Ok');
-        }
-        */
       this.ngxSmartModalService.getModal('passwordModal').close();
       this.toastr.info(this.translateServ.instant('Add gas transaction was submitted successfully, please check gas balance 40 minutes later.'));
     }
@@ -852,11 +827,13 @@ export class MyAssetDashboardComponent implements OnInit {
     const addresses = this.wallet.addresses;
     const walletAddressItem = addresses.filter(item => item.name == 'FAB')[0];
     this.walletAddress = walletAddressItem.address;
+    /*
     this.starSer.getOrderByAddressCampaignId(this.walletAddress, campaignId).subscribe(
       (res: any) => {
         this.orderId = res._id;
       }
     );
+    */
     this.walletAdd = this.walletAddress;
     this.kanbanAddress = this.utilServ.fabToExgAddress(this.walletAddress);
     this.refreshGas();
