@@ -16,13 +16,15 @@ import { WalletService } from 'src/app/services/wallet.service';
 import { CoinService } from 'src/app/services/coin.service';
 import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
 import { LockedlpComponent } from './lockedlp/lockedlp.component';
+import { QrscannerModalComponent } from '../shared/modals/qr-scanner/qrscanner-modal.component';
 
 @NgModule({
     declarations: [
         BindpayComponent,
         TransactionHistoryComponent,
         ReceiveCoinModal,
-        LockedlpComponent
+        LockedlpComponent,
+        QrscannerModalComponent
     ],
     imports: [
         CommonModule,

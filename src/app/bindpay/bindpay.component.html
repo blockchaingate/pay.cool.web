@@ -15,27 +15,14 @@
             </div>
             <div class="mt-3">
                 <label for="address">{{'Receive address' | translate}}<small>({{'Receive address in eXchangily' | translate}})</small></label>
-            
+
                 <input type="text" [(ngModel)]="receiverAddress" id="receiverAddress" name="receiverAddress" placeholder="{{'Receiver\'s address' | translate}}">
-    <!-- For camera -->
-<ngx-scanner-qrcode #action="scanner"></ngx-scanner-qrcode>
-<!-- data  -->
-<span>{{ action.data.value | json }}</span><!-- value -->
-<span>{{ action.data | async | json }}</span><!-- async -->
-
-<!-- Loading -->
-<p *ngIf="action.isLoading">⌛ Loading...</p>
-
-<!-- start -->
-<button (click)="action.isStart ? action.stop() : action.start()">{{action.isStart ? 'Stop' : 'Start'}}</button>
-
+                <button class="button" (click)="onLoadCamera()"></button>
             </div>
             <div class="mt-3">
                 <label for="amount">{{'Amount' | translate}}</label>
-                <input type="text" [(ngModel)]="amount" id="amount" name="amount" placeholder="{{'Transfer amount' | translate}}">    
+                <input type="text" [(ngModel)]="amount" id="amount" name="amount" placeholder="{{'Transfer amount' | translate}}">
             </div>
-
-
         </div>
         <div *ngIf="transactionHistory" class="w-100">
 

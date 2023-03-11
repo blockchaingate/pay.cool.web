@@ -1,0 +1,73 @@
+<!-- For camera -->
+<!-- devices -->
+<div class="row">
+    <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3 my-1">
+        <select [ngModel]="null" (ngModelChange)="action.playDevice($event)" class="form-select form-select-sm">
+        <option [value]="null" selected>Select device</option>
+        <option *ngFor="let c of action.devices.value; let i = index" [ngValue]="c.deviceId" [selected]="i == action.deviceActive">{{c.label}}</option>
+      </select>
+    </div>
+
+    <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3 my-1">
+        <select [ngModel]="'utf-8'" (ngModelChange)="action.decode = $event" class="form-select form-select-sm">
+        <option value="utf-8" [selected]="action.decode == 'utf-8'">UTF-8</option>
+        <option value="iso-8859-15" [selected]="action.decode == 'iso-8859-15'">ISO-8859-15</option>
+        <option value="windows-1252" [selected]="action.decode == 'windows-1252'">Windows-1252</option>
+        <option value="macintosh" [selected]="action.decode == 'macintosh'">Macintosh</option>
+      </select>
+    </div>
+</div>
+
+<ngx-scanner-qrcode #action="scanner" [config]="config" (event)="onEvent($event)"></ngx-scanner-qrcode>
+<!-- data  -->
+<span>{{ action.data.value | json }}</span>
+<!-- value -->
+<span>{{ action.data | async | json }}</span>
+<!-- async -->
+
+<!-- Loading -->
+<p *ngIf="action.isLoading">⌛ Loading...</p>
+
+
+<!-- start/stop -->
+<button class="btn" [class.btn-info]="!action.isStart" [class.btn-warning]="action.isStart" [disabled]="action.isLoading" (click)="handle(action, action.isStart ? 'stop' : 'start')">
+    <img [src]="action.isStart ? 'https://id1945.github.io/images/svg/camera-off.svg' : 'https://id1945.github.io/images/svg/camera-on.svg'" width="30px"/>
+  </button>
+
+<!-- play/pause -->
+<button class="btn" [class.btn-info]="!action.isStart" [class.btn-warning]="action.isStart" [disabled]="!action.isStart" (click)="handle(action, action.isPause ? 'play' : 'pause')">
+    <img [src]="action.isPause ? 'https://id1945.github.io/images/svg/play.svg': 'https://id1945.github.io/images/svg/pause.svg'" width="30px"/>
+  </button>
+
+<!-- isTorch -->
+<button class="btn" [class.btn-info]="!action.isStart" [class.btn-warning]="action.isStart" [disabled]="!action.isStart" (click)="action.isTorch = !action.isTorch; handle(action, 'torcher')">
+    <img [src]="action.isTorch ? 'https://id1945.github.io/images/svg/flash-off.svg' : 'https://id1945.github.io/images/svg/flash-on.svg'" width="30px"/>
+  </button>
+
+<!-- download -->
+<button class="btn" [class.btn-info]="!action.isStart" [class.btn-warning]="action.isStart" [disabled]="!action.isStart" (click)="onDowload(action)">
+    <img src="https://id1945.github.io/images/svg/capture.svg" width="30px"/>
+  </button>
+
+<br>
+
+<!-- For select files -->
+<input #file type="file" (change)="onSelects(file.files)" [multiple]="'multiple'" [accept]="'.jpg, .png, .gif, .jpeg'" class="btn btn-success my-2" />
+<br>
+<input #file2 type="file" (change)="onSelects2(file2.files)" [multiple]="'multiple'" [accept]="'.jpg, .png, .gif, .jpeg'" class="btn btn-success my-2" />
+<br>
+
+
+<div *ngFor="let item of qrCodeResult">
+    <ngx-scanner-qrcode #actionFile="scanner" [src]="item.url" [config]="config" (event)="onEvent($event)"></ngx-scanner-qrcode>
+    <!-- <p class="data">{{ actionFile.data | async }}</p> -->
+</div>
+
+<div *ngFor="let item of qrCodeResult2">
+    <img [src]="item.url | safe: 'url'" alt="" style="max-width: 100%">
+    <!-- <p class="data">{{ item | json }}</p> -->
+</div>
+
+<ngx-scanner-qrcode #actionFile="scanner" (event)="onEvent($event)" [src]="'https://raw.githubusercontent.com/id1945/ngx-scanner-qrcode/master/supported-barcode-types.png'" [config]="config">
+</ngx-scanner-qrcode>
+<!-- <p class="data">{{ (actionFile.data | async | json) }}</p> -->

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 //import { AlertService } from 'src/app/services/alert.service';
 import { CoinService } from 'src/app/services/coin.service';
@@ -15,7 +15,7 @@ import BigNumber from 'bignumber.js';
 import * as exaddr from '../lib/exaddr';
 import { KanbanSmartContractService } from '../services/kanban.smartcontract.service';
 import { ToastrService } from 'ngx-toastr';
-//import { PinNumberModal } from '../shared/modals/pin-number/pin-number.modal';
+import { QrscannerModalComponent } from '../shared/modals/qr-scanner/qrscanner-modal.component';
 
 @Component({
     selector: 'app-bindpay',
@@ -24,10 +24,11 @@ import { ToastrService } from 'ngx-toastr';
     providers: []
   })
 
-export class BindpayComponent  implements OnInit{
+export class BindpayComponent implements AfterContentInit{
   address: string;
   exAddress: string;
   modalRef: BsModalRef;
+  qrModalRef: BsModalRef;
   pin: string;
   receiverAddress: string;
   transactionHistory: any;
@@ -39,7 +40,7 @@ export class BindpayComponent  implements OnInit{
   wallet: any;
   //@ViewChild('pinModal', { static: true }) pinModal: PinNumberModal;
 
-  constructor(
+   constructor(
       public coinServ: CoinService,
       public utilServ: UtilService,
       private localSt: LocalStorage,
@@ -53,8 +54,7 @@ export class BindpayComponent  implements OnInit{
       private kanbanSmartContractServ: KanbanSmartContractService,
       private walletServ: WalletService) {}
 
-
-  ngOnInit() {
+  ngAfterContentInit() {
     this.localSt.getItem('ecomwallets').subscribe((wallets: any) => {
 
         if (!wallets || (wallets.length == 0)) {
@@ -96,6 +96,10 @@ export class BindpayComponent  implements OnInit{
         );
     }   
     */
+  }
+
+  onLoadCamera() {
+    this.qrModalRef = this.modalServ.show(QrscannerModalComponent, {});
   }
 
   loadWallet() {
