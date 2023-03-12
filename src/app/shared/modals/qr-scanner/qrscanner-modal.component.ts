@@ -14,8 +14,6 @@ import { ScannerQRCodeConfig, ScannerQRCodeSelectedFiles, NgxScannerQrcodeServic
   styleUrls: ['./qrscanner-modal.component.scss']
 })
 export class QrscannerModalComponent implements AfterContentInit {
-    modalRef: BsModalRef;
-
        // https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
        public config: ScannerQRCodeConfig = {
         // fps: 1000,
@@ -56,6 +54,7 @@ export class QrscannerModalComponent implements AfterContentInit {
     public onSelects(files: any): void {
       this.qrcode.loadFiles(files).subscribe((res: ScannerQRCodeSelectedFiles[]) => {
         this.qrCodeResult = res;
+        // alert(JSON.stringify(res))
       });
     }
   
@@ -63,6 +62,7 @@ export class QrscannerModalComponent implements AfterContentInit {
       this.qrcode.loadFilesToScan(files, this.config).subscribe((res: ScannerQRCodeSelectedFiles[]) => {
         console.log(res);
         this.qrCodeResult2 = res;
+        // alert(JSON.stringify(res))
       });
     }
 }

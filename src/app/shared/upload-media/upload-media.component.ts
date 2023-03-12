@@ -1,6 +1,6 @@
 
 import { Component, OnInit, ViewChild, EventEmitter, Input, ElementRef, Output } from '@angular/core';
-import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select';
+// import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select';
 import { imgModule } from '@syncfusion/ej2-angular-richtexteditor';
 import { exit } from 'process';
 import { UploadService, DocType } from '../../services/upload.service';

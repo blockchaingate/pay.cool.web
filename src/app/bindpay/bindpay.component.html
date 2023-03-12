@@ -1,6 +1,9 @@
 <div class="row d-flex justify-content-center">
     <div class="form">
-
+        <div style="width: 100%; text-align: center;">
+            <h2 class="white">{{"Lightning Remit"|translate}}</h2>
+        </div>
+        <br><br>
         <div *ngIf="!transactionHistory" class="main-container">
             <div>
                 <label for="fname">{{'Coin' | translate }}</label>
@@ -14,20 +17,21 @@
                 </select>
             </div>
             <div class="mt-3">
-                <label for="address">{{'Receive address' | translate}}<small>({{'Receive address in eXchangily' | translate}})</small></label>
-
-                <input type="text" [(ngModel)]="receiverAddress" id="receiverAddress" name="receiverAddress" placeholder="{{'Receiver\'s address' | translate}}">
-                <button class="button" (click)="onLoadCamera()"></button>
+                <label for="address">{{'Receiving address' | translate}}</label>
+                <div class="row">
+                    <div class="col-11">
+                        <input type="text" [(ngModel)]="receiverAddress" id="receiverAddress" name="receiverAddress" placeholder="{{'Receiving address' | translate}}">
+                    </div>
+                    <div class="col-1 hand-cursor pt-2 camera" (click)="onLoadCamera()"><span class="material-symbols-outlined">photo_camera</span></div>
+                </div>
             </div>
             <div class="mt-3">
                 <label for="amount">{{'Amount' | translate}}</label>
-                <input type="text" [(ngModel)]="amount" id="amount" name="amount" placeholder="{{'Transfer amount' | translate}}">
+                <input type="text" [(ngModel)]="amount" id="amount" name="amount" placeholder="{{'Send amount' | translate}}">
             </div>
         </div>
         <div *ngIf="transactionHistory" class="w-100">
-
             <app-bindpay-transaction-history [transactionHistories]="transactionHistories"></app-bindpay-transaction-history>
-
         </div>
         <div class="py-3 d-flex justify-content-between">
             <div>
@@ -49,3 +53,4 @@
 
     </div>
 </div>
+<br><br><br><br><br><br>
