@@ -1,0 +1,54 @@
+<div class="cashier">
+    <div class="cashier__menu">
+        <div class="cashier_menu_top">
+            <div class="cashier__menu__logo my-3">
+                <div class="logo">
+                    <a href="" class="logoImg">
+                        <img src="assets/images/img/pay-cool-logo.png" alt="logo"></a>
+                    <a href=""><span class="title">PAY<span class="reddot">.</span>COOL</span></a>
+                </div>
+            </div>
+            <div class="cashier__menu__title mt-3">
+                <div>
+                    <p class="cLink">
+                        <a  [routerLink]="['/cashier/setup']" routerLinkActive="router-link-active"  >
+                            {{"cashierSetup" | translate}}
+                        </a>
+                    </p>
+                    <p class="cLink">
+                        <a  [routerLink]="['/cashier/checkout']" routerLinkActive="router-link-active"  >
+                            {{'cashierCheckout' | translate}}
+                        </a>
+                    </p>
+                    <p class="cLink">
+                        <a  [routerLink]="['/cashier/transaction-history']" routerLinkActive="router-link-active"  >
+                            {{'cashierTransactionHistory' | translate}}
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="cashier_menu_buttons">
+            <button class=" cashier_menu_button">
+                <span>
+                    <a  [routerLink]="['/cashier/guide']" routerLinkActive="router-link-active"  >
+                        {{'cashierUserGuide' | translate}}
+                    </a>
+                </span>
+                <i class="fa fa-share-square"></i>
+            </button>
+            <button class=" cashier_menu_button">
+                <span>
+                    <a  [routerLink]="['/cashier/contact']" routerLinkActive="router-link-active"  >
+                        {{'cashierContactSupport' | translate}}
+                    </a>
+                </span>
+                <i class="fa fa-share-square"></i>
+            </button>
+
+        </div>
+    </div>
+    <div class="cashier__pages">
+        <router-outlet></router-outlet>
+    </div>
+</div>

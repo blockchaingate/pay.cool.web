@@ -15,11 +15,14 @@ export class LanguageService {
         private storageServ: StorageService,
         private tranServ: TranslateService,
         private _localSt: LocalStorage
-    ) { }
+    ) { 
+        // this.selectedLan = this.getLan();
+        this.setLan();
+    }
 
     getLan() {
-        return this.tranServ.currentLang;
-        // return this.selectedLan;
+        // return this.tranServ.currentLang;
+        return this.selectedLan;
     }
 
     setLan() {

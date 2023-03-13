@@ -1,0 +1,43 @@
+<div class="cashier-transaction ">
+    <app-cashier-header [title]="title"></app-cashier-header>
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="mt-5">
+                    {{'totalOrder' | translate}} 10
+                </h3>
+                <table class="table table-bordered border-dark mt-5">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                {{'blockchainTransactionID' | translate}}
+                            </th>
+                            <th scope="col">
+                                {{'consumerWalletAddress' | translate}}
+                            </th>
+                            <th scope="col">
+                                {{'currency' | translate}}
+                            </th>
+                            <th scope="col">
+                                {{'amount' | translate}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="history-form" *ngFor="let item of transactionHistory">
+                            <td scope="row">{{item.id}}</td>
+                            <td>{{item.address}}</td>
+                            <td>{{item.currency}}</td>
+                            <td>{{item.amount}}</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

@@ -1,0 +1,66 @@
+<div class="cashier-setup">
+    <app-cashier-header [title]="title"></app-cashier-header>
+    <div class="container order-form">
+        <form>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>
+                        {{'merchantInformation' | translate}}
+                    </h3>
+                    <div class="form-group">
+                        <label for="merchantReceivingAddress">{{'merchantReceivingAddress' | translate}}</label>
+                        <input type="text" class="form-control" id="merchantReceivingAddress">
+                    </div>
+                    <div class="submit__buttons mt-3">
+                        <button class="btn btn-primary">
+                            <span>{{'saveButton' | translate}}</span>
+                        </button>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="cashierItemName">{{'cashierItemName' | translate}}</label>
+                        <input type="email" class="form-control" id="orderEmail">
+                    </div>
+                    <div>
+                        <label for="cashierItemName">{{'merchantReceivingAddress' | translate}}</label>
+                        <div class="qr-group__qr">
+                            <!-- TODO: replace to real qr -->
+
+                            <img src="assets/images/img/qr-code.png" alt="qr-code">
+                        </div>
+                        <div class="finalMessage">
+                            <span>
+                                <img src="assets/images/img/checked.png" alt="qr-code">
+                            </span>
+                            {{'notificationCa' | translate}}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6 qr">
+                    <div class="tips">
+                        <div class="tips-img">
+                            <!-- TODO: replace to real qr -->
+
+                            <img src="assets/images/img/idea.png" alt="qr-code">
+                        </div>
+                        <div class="tips-txt mt-3">
+                            <!-- dummy text -->
+                            <p>
+                                <strong>
+                                    {{'tipTitle' | translate}} :
+                                </strong>
+                            </p>
+                            <p>
+                                {{'tip-text' | translate}}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+
+</div>
