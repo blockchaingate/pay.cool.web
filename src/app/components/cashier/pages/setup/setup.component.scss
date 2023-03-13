@@ -1,0 +1,70 @@
+.cashier-setup {
+    padding: 20px;
+    h3 {
+        font-size: 20px;
+        font-weight: 400;
+        font-family: sans-serif;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    label {
+        font-size: 14px;
+        font-weight: 400;
+        font-family: sans-serif;
+        color: #333;
+        margin-bottom: 3px;
+    }
+
+    .qr {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .submit__buttons {
+        display: flex;
+        justify-content: end;
+        margin-top: 20px;
+
+        button {
+            min-width: 180px;
+            margin: 0 10px;
+        }
+    }
+
+    .tips {
+        max-width: 70%;
+        margin: 0 auto;
+        border: #ccc 1px solid;
+        padding: 20px 40px;
+        border-radius: 5px;
+        margin-top: 60px;
+        color: #333;
+
+        .tips-img {
+            img {
+                width: 50px;
+                height: 50px;
+            }
+        }
+        
+    }
+
+    .finalMessage{
+        margin-top: 40px;
+        font-size: 14px;
+        font-weight: 400;
+        font-family: sans-serif;
+        color: #333;
+        margin-bottom: 10px;
+        display: flex;
+
+        img{
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+    }
+}

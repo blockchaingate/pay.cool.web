@@ -1,0 +1,81 @@
+<div class="cashier-checkout">
+    <app-cashier-header [title]="title"></app-cashier-header>
+    <div class="container order-form">
+        <form>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>
+                        {{'cashierOrderInformation' | translate}}
+                    </h3>
+                    <div class="form-group">
+                        <label for="cashierOrderOwner">{{'cashierOrderOwner' | translate}}</label>
+                        <input type="text" class="form-control" id="cashierOrderOwner" >
+                    </div>
+                    <!-- radio button group -->
+                    <div class="form-group">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cashierItemName">{{'cashierItemName' | translate}}</label>
+                        <input type="email" class="form-control" id="orderEmail" >
+                    </div>
+                    <div class="form-group">
+                        <label for="cashierItemPrice">{{'cashierItemPrice' | translate}}</label>
+                        <input type="text" class="form-control" id="orderPhone" >
+                    </div>
+                    <div class="form-group">
+                        <label for="cashierItemQuantity">{{'cashierItemQuantity' | translate}}</label>
+                        <input type="text" class="form-control" id="orderAmount">
+                    </div>
+                    <!-- form-group for tax rate, rebate rate,  Rewards Lock Days-->
+                    <div class="form-group pt-5">
+                        <label for="cashierTaxRate">{{'cashierTaxRate' | translate}}</label>
+                        <input type="email" class="form-control" id="cashierTaxRate" >
+                    </div>
+                    <div class="form-group">
+                        <label for="cashierRebateRate">{{'cashierRebateRate' | translate}}</label>
+                        <input type="text" class="form-control" id="cashierRebateRate" >
+                    </div>
+                    <div class="form-group">
+                        <label for="cashierRewardsLockDays">{{'cashierRewardsLockDays' | translate}}</label>
+                        <input type="text" class="form-control" id="cashierRewardsLockDays">
+                    </div>
+                </div>
+                <div class="col-md-6 qr">
+                    <div class="qr-group">
+                        <div class="qr-group__qr">
+                            <!-- TODO: replace to real qr -->
+
+                            <img src="assets/images/img/qr-code.png" alt="qr-code">
+                        </div>
+                        <div class="qr-group__buttons">
+                            <button class="btn btn-primary">
+                                <span>{{'cashierShare' | translate}}</span>
+                            </button>
+                            <button class="btn btn-dark">
+                                <span>{{'cashierCancel' | translate}}</span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-6"> </div>
+                <div class="col-md-6 submit__buttons">
+                    <!-- buttons -->
+                    <button class="btn btn-dark">
+                        <span>{{'cashierClearForm' | translate}}</span>
+                    </button>
+                    <button class="btn btn-primary">
+                        <span>{{'cashierCreate QR Code' | translate}}</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+        
+        
+    </div>
+
+</div>

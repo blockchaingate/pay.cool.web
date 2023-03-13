@@ -1,0 +1,18 @@
+<div class="cashier-header">
+    <div class="title">
+        <h2>{{title | translate}}</h2>
+    </div>
+    <div class="lang-section">
+        <ul class="">
+            <li class=" dropdown">
+                <a class="nav-link dropdown-toggle  btn btn-primary  lanBtn" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">{{selectedLan.viewValue}}</a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown">
+                    <li *ngFor="let lan of languages" (click)="onSelectLan(lan)">
+                        <span class="dropdown-item hand-cursor xsmall">{{lan.viewValue}}</span>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+</div>

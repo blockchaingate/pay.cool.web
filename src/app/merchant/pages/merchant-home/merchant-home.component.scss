@@ -1,0 +1,201 @@
+.blueTxt {
+    color: #367aff;
+}
+
+.ng-light-blue{
+    background-color: #F5F7FA;
+}
+
+.merchant-home {
+    background-color: #fff;
+
+    h2 {
+        font-size: 60px;
+        font-weight: 100;
+    }
+
+    .banner {
+        padding: 120px 0;
+    }
+
+    .descTxt {
+        color: #555;
+    }
+
+    .bannerBtn {
+        a {
+            margin: 10px 10px;
+
+            button {
+                font-weight: 100;
+                min-width: 200px;
+                padding: 20px 0;
+                font-size: 12px;
+            }
+        }
+    }
+
+    .logos {
+        background-color: #f6f7fc;
+
+        .oneLogo {
+            text-align: center;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        img {
+            max-height: 60px;
+            max-width: 130px;
+            text-align: center;
+        }
+    }
+
+    .whyUs {
+        padding: 120px 0;
+
+        .oneWhyUs {
+            padding: 20px;
+            border-radius: 15px;
+            //shadow
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+
+            .icon {
+                background-color: #0a0073;
+                padding: 20px;
+                border-radius: 50%;
+                width: 80px;
+                height: 80px;
+            }
+
+            .desc {
+                h3 {
+                    color: #333;
+                    font-size: 20px;
+                }
+                p {
+                    color: #555;
+                    font-size: 14px;
+                    font-weight: 100;
+                }
+            }
+        }
+    }
+
+    .casher {
+        .casherTxt{
+            display: flex;
+            flex-direction: column;
+            // align-items: center;
+            justify-content: center;
+
+        }
+
+        .casherList {
+            color: #555;
+            display: flex;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        i {
+            font-size: 16px;
+            color: #367aff;
+            border-radius: 100%;
+            padding: 5px;
+            border: 2px solid #367aff;
+            margin-right: 10px;
+        }
+
+        .shareIcon {
+            font-weight: 800;
+            color: #367aff;
+            
+
+            span{
+                font-size: 22px;
+                margin-right: 10px;
+            }
+        }
+
+        .casherDesc {
+            color: #555;
+            font-size: 13px;
+            font-weight: 100;
+        }
+    }
+
+    .how{
+        .iconNum{
+            text-align: center;
+            font-size: 30px;
+            padding: 15px;
+            color: #000;
+            border-radius: 100%;
+            background-color: #fff;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            //shadow
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+            font-family: sans-serif, Arial;
+
+        }
+        .desc{
+            padding: 0 30px;
+            h3{
+                color: #333;
+                font-size: 20px;
+            }
+            p{
+                color: #555;
+                font-size: 14px;
+                font-weight: 100;
+            }
+        }
+    }
+
+    .accept{
+        //background image
+        background: url(/assets/images/img/coins.png) no-repeat center right;
+        background-size: 56%;
+    }
+
+    //max-width: 1150px;
+    @media (max-width: 1150px) {
+        .accept{
+            background-size: 50%;
+        }
+    }
+    
+    //max-width: 767px;
+    @media (max-width: 767px) {
+        .accept{
+            background: none;
+        }
+    }
+
+    .who{
+        i {
+            font-size: 16px;
+            color: #367aff;
+            border-radius: 100%;
+            padding: 5px;
+            border: 2px solid #367aff;
+            margin-right: 10px;
+        }
+
+        .shareIcon {
+            font-weight: 800;
+            color: #367aff;
+            
+
+            span{
+                font-size: 22px;
+                margin-right: 10px;
+            }
+        }
+    }
+}

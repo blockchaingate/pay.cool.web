@@ -1,0 +1,28 @@
+.cashier-transaction{
+    padding: 20px;
+    h3{
+        font-size: 20px;
+        font-weight: 400;
+        font-family: sans-serif;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    label{
+        font-size: 14px;
+        font-weight: 400;
+        font-family: sans-serif;
+        color: #333;
+        margin-bottom: 3px;
+    }
+
+    table{
+        border: #eee 1px solid;
+        border-radius: 5px;
+
+        td{
+            color: #333;
+        }
+    }
+
+}

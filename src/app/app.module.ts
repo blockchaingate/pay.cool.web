@@ -76,6 +76,7 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
 import { GetrewardsComponent } from './components/getrewards/getrewards.component';
 import { NewFeaturesComponent } from './components/newFeatures/newFeatures.component';
 import { LanguageService } from './services/language.service';
+import { CashierModule } from './components/cashier/cashier.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -102,7 +103,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     RefComponent,
     UserDetailComponent,
     GetrewardsComponent,
-    NewFeaturesComponent
+    NewFeaturesComponent,
   ],
   imports: [
     BrowserModule,
@@ -133,6 +134,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         }
       }
     ),
+
+    CashierModule
     // TreeDiagramModule,
     // NgxGraphModule
   ],
