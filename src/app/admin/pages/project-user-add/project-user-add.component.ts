@@ -117,7 +117,7 @@ export class ProjectUserAddComponent implements OnInit {
     ];
 
     const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.smartConractProjectUserRelation, abi, args);
-    if(ret2 && ret2.ok && ret2._body && ret2._body.status == '0x1') {
+    if(ret2 && ret2.success && ret2._body && ret2._body.status == '0x1') {
       this.toastr.success('project user was added successfully');
       this.router.navigate(['/admin/project-users']);
     } else {

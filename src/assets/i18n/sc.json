@@ -21,6 +21,7 @@
     "Account": "账户",
     "Asset": "资产",
     "Assets": "资产",
+    "may_degrade_level": "锁仓期满的合伙人套装点击赎回后，可能导致级别下降。",
     "Merchant": "商家",
     "Team": "团队",
     "Member": "会员",

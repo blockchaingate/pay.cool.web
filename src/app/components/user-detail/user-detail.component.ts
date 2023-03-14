@@ -16,7 +16,7 @@ import { KanbanSmartContractService } from 'src/app/services/kanban.smartcontrac
 import { DataService } from 'src/app/services/data.service';
 import { Router } from '@angular/router';
 import { PasswordModalComponent } from '../../shared/modals/password-modal/password-modal.component';
-
+import { ConfirmUnlocklpComponent } from '../confirm-unlocklp/confirm-unlocklp.component';
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
@@ -190,7 +190,6 @@ export class UserDetailComponent implements OnInit {
     this.lockerServ.getAllLpLockersByUser(this.user, 100000, 0).subscribe(
       (lockers) => {
         this.myLPLockers = lockers;
-        console.log('this.myLPLockers====', this.myLPLockers);
       }
     );
   }
@@ -347,7 +346,7 @@ export class UserDetailComponent implements OnInit {
   }
 
 
-  unlock(item) {
+  confirmUnlock(item) {
     const initialState = {
       pwdHash: this.wallet.pwdHash,
       encryptedSeed: this.wallet.encryptedSeed
@@ -361,6 +360,21 @@ export class UserDetailComponent implements OnInit {
     this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
       this.unlockDo(seed, item);
     });
+  }
+
+  unlock(item: any) {
+    if(item.isPackageLocker || true) {
+      this.modalRef = this.modalService.show(ConfirmUnlocklpComponent, {  });
+
+      this.modalRef.content.onClose.subscribe( (confirmed: boolean) => {
+        if(confirmed) {
+          this.confirmUnlock(item);
+        }
+      });
+    } else {
+      this.confirmUnlock(item);
+    }
+
   }
 
   async unlockDo(seed: Buffer, item) {
