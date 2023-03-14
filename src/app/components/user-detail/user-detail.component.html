@@ -85,7 +85,7 @@
               {{(item.timestamp * 1000) | date}}
             </div>
             <div>
-              <button *ngIf="true || item.unlockable" type="button" class="btn btn-primary" (click)="unlock(item)">
+              <button *ngIf="item.unlockable" type="button" class="btn btn-primary" (click)="unlock(item)">
                 Unlock
               </button>
             </div>
