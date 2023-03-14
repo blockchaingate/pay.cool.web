@@ -363,7 +363,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   unlock(item: any) {
-    if(item.isPackageLocker || true) {
+    if(item.isPackageLocker) {
       this.modalRef = this.modalService.show(ConfirmUnlocklpComponent, {  });
 
       this.modalRef.content.onClose.subscribe( (confirmed: boolean) => {

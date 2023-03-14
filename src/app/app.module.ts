@@ -105,10 +105,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     UserDetailComponent,
     GetrewardsComponent,
     NewFeaturesComponent,
-<<<<<<< HEAD
     ConfirmUnlocklpComponent
-=======
->>>>>>> f5fe2569458da55a111ad17339f1e1fec6e2aac8
   ],
   imports: [
     BrowserModule,
