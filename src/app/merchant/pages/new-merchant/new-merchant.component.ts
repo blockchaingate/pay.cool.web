@@ -250,9 +250,9 @@ export class NewMerchantComponent implements OnInit {
               console.log('ret for exec smart contract:', ret);
               if(ret && ret.success && ret._body && ret._body.status == '0x1') {
                 this.toastr.info('Merchant was created successfully');
-                this.clearForm();
+                //this.clearForm();
 
-                this.router.navigate(['/merchant-submitted']);
+                this.router.navigate(['/merchants/merchant-submitted']);
               } else {
                 this.toastr.error('Merchant was created failed');
               }
