@@ -13,7 +13,8 @@ const routes: Routes = [
       { path: 'setup', component: SetupComponent},
       { path: 'checkout', component: CheckoutComponent },
       { path: 'transaction-history', component: TransactionComponent },
-      { path: '**', redirectTo: 'setup' }]
+      { path: '', redirectTo: 'setup' }
+    ]
   },
 
 ];
