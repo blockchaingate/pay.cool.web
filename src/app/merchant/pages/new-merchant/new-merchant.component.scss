@@ -5,3 +5,86 @@
 .selected {
     background-color: blue;
 }
+
+.new-merchant{
+    background-color: #fff;
+    padding: 50px 0;
+
+    h2{
+        font-size: 20px;
+        font-family: sans-serif;
+        color: #333;
+    }
+
+    label{
+        font-size: 16px;
+        font-weight: 400;
+        font-family: sans-serif;
+        color: #333;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        margin-left: 2px;
+    }
+
+    
+    
+    .leftTop{
+        img{
+            height: 40px;
+            margin-left: -5px;
+        }
+    }
+
+    .new-merchant-form{
+        border: #ddd 2px solid;
+        padding: 30px;
+    }
+
+    .topHint{
+        width: 80%;
+        font-size: 13px;
+        
+        line-height: 13px;
+    }
+
+    .left01,.left03{
+        color: #555;
+    }
+
+    .left02{
+        color: #111;
+    }
+
+    .bottomHint{
+        width: 80%;
+        border: #ccc 1px solid;
+        padding: 20px 40px;
+
+        img{
+            width: 40px;
+            height: 40px;
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        .bottomHint{
+            margin-top: 100px;
+        }
+    }
+
+    .tips-title{
+        font-size: 13px;
+        font-weight: 800;
+        font-family: sans-serif;
+        color: #333;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        margin-left: 2px;
+    }
+
+    .tips{
+        font-size: 13px;
+        color: #555;
+        line-height: 13px;
+    }
+}

@@ -77,10 +77,10 @@ const routes: Routes = [
   { path: 'docs', 
   loadChildren: () => import('./docs/docs.module').then(a => a.DocsModule)
   },
-  {
-    path: 'cashier',
-    loadChildren: () => import('./components/cashier/cashier.module').then(a => a.CashierModule)
-  },
+  // {
+  //   path: 'cashier',
+  //   loadChildren: () => import('./components/cashier/cashier.module').then(a => a.CashierModule)
+  // },
   { path: 'getrewards', component: GetrewardsComponent },
   { path: 'version', component: VersionComponent },
   { path: 'ipolist', component: IpolistComponent },
