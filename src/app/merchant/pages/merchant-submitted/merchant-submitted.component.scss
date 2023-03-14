@@ -1,0 +1,21 @@
+.merchant-submitted{
+    min-height: 80vh;
+    background-color: #fff;
+    
+
+    .content{
+        min-height: 80vh;
+        height: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #444;
+
+        img{
+            width: 70px;
+            height: 70px;
+        }
+    }
+}

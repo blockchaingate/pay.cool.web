@@ -13,6 +13,7 @@ import { PasswordModalComponent } from '../../../shared/modals/password-modal/pa
 import { MerchantService } from 'src/app/services/merchant.service';
 import { StoreService } from 'src/app/services/store.service';
 import { HtmlEditorService } from '@syncfusion/ej2-angular-richtexteditor';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 const hash = require('object-hash');
 @Component({
   selector: 'app-new-merchant',
@@ -60,7 +61,9 @@ export class NewMerchantComponent implements OnInit {
     private kanbanSmartContractServ: KanbanSmartContractService,
     private web3Serv: Web3Service, 
     private dataServ: DataService,
-    private utilServ: UtilService) { }
+    private utilServ: UtilService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.currentTab = 'EN';
@@ -248,6 +251,8 @@ export class NewMerchantComponent implements OnInit {
               if(ret && ret.success && ret._body && ret._body.status == '0x1') {
                 this.toastr.info('Merchant was created successfully');
                 this.clearForm();
+
+                this.router.navigate(['/merchant-submitted']);
               } else {
                 this.toastr.error('Merchant was created failed');
               }
