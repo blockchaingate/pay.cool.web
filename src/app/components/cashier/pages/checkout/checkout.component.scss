@@ -1,0 +1,57 @@
+.cashier-checkout{
+    padding: 20px;
+    h3{
+        font-size: 20px;
+        font-weight: 400;
+        font-family: sans-serif;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    label{
+        font-size: 14px;
+        font-weight: 400;
+        font-family: sans-serif;
+        color: #333;
+        margin-bottom: 3px;
+    }
+
+    .qr{
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        flex-direction: column;
+    }
+    .qr-group{
+        background-color: #ECEFFD;
+        padding: 40px 30px;
+        border-radius: 10px;
+
+        .qr-group__qr{
+            width: 200px;
+            height: 200px;
+        }
+
+        .qr-group__buttons{
+            display: flex;
+            justify-content: space-between;
+
+            button{
+                min-width: 90px;
+            }
+        }
+
+        
+    }
+
+    .submit__buttons{
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+
+        button{
+            min-width: 180px;
+            margin: 0 10px;
+        }
+    }
+}

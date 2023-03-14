@@ -77,6 +77,7 @@ import { GetrewardsComponent } from './components/getrewards/getrewards.componen
 import { NewFeaturesComponent } from './components/newFeatures/newFeatures.component';
 import { LanguageService } from './services/language.service';
 import { ConfirmUnlocklpComponent } from './components/confirm-unlocklp/confirm-unlocklp.component';
+import { CashierModule } from './components/cashier/cashier.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -104,7 +105,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     UserDetailComponent,
     GetrewardsComponent,
     NewFeaturesComponent,
+<<<<<<< HEAD
     ConfirmUnlocklpComponent
+=======
+>>>>>>> f5fe2569458da55a111ad17339f1e1fec6e2aac8
   ],
   imports: [
     BrowserModule,
@@ -135,6 +139,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         }
       }
     ),
+
+    CashierModule
     // TreeDiagramModule,
     // NgxGraphModule
   ],

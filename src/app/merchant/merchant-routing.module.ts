@@ -9,11 +9,15 @@ import { NewMerchantComponent } from './pages/new-merchant/new-merchant.componen
 import { MerchantsComponent } from './pages/merchants/merchants.component';
 import { MerchantInfoComponent } from './pages/merchant-info/merchant-info.component';
 import { MerchantCreditAddChargerComponent } from './pages/merchant-credit-add-charger/merchant-credit-add-charger.component';
+import { MerchantHomeComponent } from './pages/merchant-home/merchant-home.component';
 
 const routes: Routes = [
   {
     path: '', component: MerchantComponent,
     children: [
+      {
+        path: 'home', component: MerchantHomeComponent
+      },
       {
         path: 'new-merchant', component: NewMerchantComponent
       },   

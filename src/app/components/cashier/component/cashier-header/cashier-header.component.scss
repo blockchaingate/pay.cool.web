@@ -1,0 +1,29 @@
+.cashier-header{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 0px 10px 20px 10px; 
+    margin: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+
+    .title{
+        flex-grow: 1;
+        text-align: center;
+        
+        h2{
+            font-size: 18px;
+        font-weight: 300;
+        }
+    }
+
+    .lang-section{
+        display:  flex;
+        justify-content: center;
+    }
+    
+    .lanBtn{
+        color: #fff;
+        padding: 0 20px;
+        border-radius: 30px;
+    }
+}
