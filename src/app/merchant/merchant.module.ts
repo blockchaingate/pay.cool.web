@@ -24,6 +24,7 @@ import { MerchantInfoComponent } from './pages/merchant-info/merchant-info.compo
 import { MerchantCreditAddChargerComponent } from './pages/merchant-credit-add-charger/merchant-credit-add-charger.component';
 import { MerchantHomeComponent } from './pages/merchant-home/merchant-home.component';
 import { MerchantSubmittedComponent } from './pages/merchant-submitted/merchant-submitted.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { MerchantSubmittedComponent } from './pages/merchant-submitted/merchant-
     MerchantInfoComponent,
     MerchantCreditAddChargerComponent,
     MerchantHomeComponent,
-    MerchantSubmittedComponent
+    MerchantSubmittedComponent,
+    ContactComponent
   ],
   imports: [
     BsDropdownModule.forRoot(),

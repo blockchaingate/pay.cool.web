@@ -11,6 +11,7 @@ import { MerchantInfoComponent } from './pages/merchant-info/merchant-info.compo
 import { MerchantCreditAddChargerComponent } from './pages/merchant-credit-add-charger/merchant-credit-add-charger.component';
 import { MerchantHomeComponent } from './pages/merchant-home/merchant-home.component';
 import { MerchantSubmittedComponent } from './pages/merchant-submitted/merchant-submitted.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,9 @@ const routes: Routes = [
       },    
       {
         path: 'stores', component: StoresComponent
+      },
+      {
+        path: 'contact', component: ContactComponent
       },
       {
         path: 'merchant-credit', component: MerchantCreditComponent
