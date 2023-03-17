@@ -1,0 +1,79 @@
+<div class="merchant-contact">
+    <div class="container">
+        <div class="row m7-5">
+            <div class="col-md-12 center">
+                <h1>
+                    {{ 'headline' | translate }}
+                </h1>
+
+            </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <p class="center pt-3 sub-title">
+                    {{ 'subheadline' | translate }}
+                </p>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- input text field for first name -->
+                <label for="firstname">{{ 'firstname' | translate }}</label>
+                <input type="text" class="form-control" placeholder="{{ 'firstname' | translate }}" for="firstname">
+            </div>
+            <div class="col-md-6">
+                <!-- input text field for last name -->
+                <label for="lastname">{{ 'lastname' | translate }}</label>
+                <input type="text" class="form-control" placeholder="{{ 'lastname' | translate }}" for="lastname">
+            </div>
+            <div class="col-md-6">
+                <!-- email address -->
+                <label for="email">{{ 'email' | translate }}</label>
+                <input type="text" class="form-control" placeholder="{{ 'email' | translate }}" for="email">
+
+            </div>
+            <div class="col-md-6">
+                <!-- phone -->
+                <label for="phone">{{ 'cell' | translate }}</label>
+                <input type="text" class="form-control" placeholder="{{ 'cell' | translate }}" for="phone">
+            </div>
+            <div class="col-md-6">
+                <!-- company -->
+                <label for="company">{{ 'company' | translate }}</label>
+                <input type="text" class="form-control" placeholder="{{ 'company' | translate }}" for="company">
+            </div>
+            <div class="col-md-6">
+                <!-- website -->
+                <label for="website">{{ 'website' | translate }}</label>
+                <input type="text" class="form-control" placeholder="{{ 'website' | translate }}" for="website">
+
+            </div>
+            <div class="col-md-6">
+                <!-- industry dropdown select -->
+                <label for="industry">{{ 'industry' | translate }}</label>
+                <select class="form-control" for="industry">
+                    <option *ngFor="let induct of industries" value="{{induct}}">{{induct}}</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <!-- country dropdown -->
+                <label for="country">{{ 'country' | translate }}</label>
+                <select class="form-control" for="country">
+                    <option *ngFor="let country of countries" value="{{country}}">{{country}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <!-- message -->
+                <label for="message">{{ 'message' | translate }}</label>
+                <textarea class="form-control" rows="5" for="message"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-primary mt-3">{{ 'submit' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>
