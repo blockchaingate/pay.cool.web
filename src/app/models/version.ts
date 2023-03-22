@@ -1,4 +1,6 @@
 export class VersionModel {
-    version!: string;
+    versionName!: string;
+    versionNumber!: string;
+    issueDate!: string;
     features: string[] = [];
 }
