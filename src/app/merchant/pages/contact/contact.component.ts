@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -225,11 +225,37 @@ export class ContactComponent implements OnInit {
     "Other Services (except Public Administration)"
   ];
 
+  myForm: FormGroup;
 
-
-  constructor() { }
+  constructor(
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit(): void {
+    this.myForm = this.formBuilder.group({
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email],],
+      company: ['',],
+      website: ['',],
+      industry: ['',],
+      country: ['',],
+      phone: ['',],
+      message: ['', Validators.required],
+    });
   }
+
+  onSubmit() {
+    console.log(this.myForm.value);
+    // check if form is valid
+    if (this.myForm.valid) {
+      
+    }else{
+      console.log('form is invalid');
+    }
+
+  }
+
+
 
 }

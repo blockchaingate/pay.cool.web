@@ -11,6 +11,10 @@
             <nav class="navbar navbar-expand-lg dark-bg front-nav">
                 <ul class="navbar-nav ">
                     <li class="nav-item">
+                        <a class="nav-link " aria-current="page" routerLink="./user-tree"
+                            routerLinkActive="active">{{"Consumer" | translate}}</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link " aria-current="page" routerLink="./merchants/home"
                             routerLinkActive="active">{{"Merchant" | translate}}</a>
                     </li>
@@ -37,11 +41,12 @@
                         <li class="nav-item">
                             <a class="nav-link " aria-current="page" routerLink="./bindpay"
                                 routerLinkActive="active">{{"Lightning Remit" | translate}}</a>
-                        </li>
+                        </li>|
                         <li class="nav-item">
-                            <a class="nav-link " aria-current="page" routerLink="./user-tree"
-                                routerLinkActive="active">{{"Member" | translate}}</a>
+                            <a class="nav-link " aria-current="page" routerLink="./merchants/contact"
+                                routerLinkActive="active">{{"Help" | translate}}</a>
                         </li>
+
 
                         <!-- <li class="nav-item" *ngIf="hasWallet">
                             <a class="nav-link  hand-cursor" aria-current="page" (click)="openConfirmDialog()">{{"Delete" | translate}}</a>
