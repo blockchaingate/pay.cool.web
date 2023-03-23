@@ -11,7 +11,7 @@ export class SubscribeService {
 
     addEmail(email: string, message: string = "") {
 
-        const url = environment.endpoints.emailApi;
+        const url = environment.endpoints.emailApi + "create";
 
         //test url
         // const url = "http://localhost:3100/user";
