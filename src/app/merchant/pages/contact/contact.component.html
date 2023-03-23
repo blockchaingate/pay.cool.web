@@ -26,7 +26,7 @@
                         formControlName="firstname">
                     <div 
                         *ngIf="myForm.get('firstname').invalid && (myForm.get('firstname').dirty || myForm.get('firstname').touched)">
-                        <div *ngIf="myForm.get('firstname').errors.required">First name is required.</div>
+                        <div *ngIf="myForm.get('firstname').errors.required" class="text-danger">First name is required.</div>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -36,7 +36,7 @@
                         formControlName="lastname">
                     <div 
                         *ngIf="myForm.get('lastname').invalid && (myForm.get('lastname').dirty || myForm.get('lastname').touched)">
-                        <div *ngIf="myForm.get('lastname').errors.required">Last name is required.</div>
+                        <div *ngIf="myForm.get('lastname').errors.required" class="text-danger">Last name is required.</div>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -46,8 +46,8 @@
                         formControlName="email">
                     <div 
                         *ngIf="myForm.get('email').invalid && (myForm.get('email').dirty || myForm.get('email').touched)">
-                        <div *ngIf="myForm.get('email').errors.required">Email is required.</div>
-                        <div *ngIf="myForm.get('email').errors.email">Email is not valid.</div>
+                        <div *ngIf="myForm.get('email').errors.required" class="text-danger">Email is required.</div>
+                        <div *ngIf="myForm.get('email').errors.email" class="text-danger">Email is not valid.</div>
                     </div>
 
                 </div>
@@ -92,13 +92,18 @@
                     <textarea class="form-control" rows="5" formControlName="message"></textarea>
                     <div 
                         *ngIf="myForm.get('message').invalid && (myForm.get('message').dirty || myForm.get('message').touched)">
-                        <div *ngIf="myForm.get('message').errors.required">Message is required.</div>
+                        <div *ngIf="myForm.get('message').errors.required" class="text-danger">Message is required.</div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <button class="btn btn-primary mt-3">{{ 'submit' | translate }}</button>
+                    <div>
+                        <p *ngIf="submitted" class="text-success">{{ 'Success Submitted' | translate }}</p>
+                      
+                    </div>
+                
                 </div>
             </div>
         </div>

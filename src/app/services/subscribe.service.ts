@@ -9,16 +9,25 @@ import { Injectable } from '@angular/core';
 export class SubscribeService {
     constructor(private http: HttpClient) { }
 
-    addEmail(email: string) {
+    addEmail(email: string, message: string = "") {
 
         const url = environment.endpoints.emailApi;
 
         //test url
         // const url = "http://localhost:3100/user";
 
-        const data = {
+        let data = {
             email: email
         };
+
+        if (message != "" && message != null) {
+            data['message'] = message;
+        }
+
+        console.log("data" + data);
+
+
+
 
         return this.http.post(url, data);
     }

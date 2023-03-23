@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { SubscribeService } from 'src/app/services/subscribe.service';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -227,8 +228,11 @@ export class ContactComponent implements OnInit {
 
   myForm: FormGroup;
 
+  submitted = false;
+
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private subService: SubscribeService,
   ) { }
 
   ngOnInit(): void {
@@ -247,14 +251,39 @@ export class ContactComponent implements OnInit {
 
   onSubmit() {
     console.log(this.myForm.value);
+
+    console.log("email: " + this.myForm.value.email);
     // check if form is valid
     if (this.myForm.valid) {
-      
-    }else{
+
+      // send data to server
+      console.log('form is valid');
+
+      this.subService.addEmail(
+        this.myForm.value.email,
+        JSON.stringify(this.myForm.value)
+      ).subscribe(
+        (response) => {
+          console.log(response);
+          //print status message
+          console.log("status:" + response["status"]);
+          if (response["status"] === 200) {
+
+            this.submitted = true;
+          } else {
+            this.submitted = false;
+          }
+        }
+      );
+
+    } else {
       console.log('form is invalid');
     }
 
   }
+
+
+
 
 
 
