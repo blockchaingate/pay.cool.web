@@ -439,5 +439,13 @@
     "blockchainTransactionID": "Blockchain Transaction ID",
     "consumerWalletAddress": "Consumer Wallet Address",
     "currency": "Currency",
-    "amount": "Amount"
+    "amount": "Amount",
+    "recent apk": "Recent APK",
+    "older apk": "Older APK",
+    "downloadApk": "Download",
+    "whatsnew": "What is new",
+    "lastRelease": "Last Release",
+    "candidate": "Candidate",
+    "Consumer": "Consumer"
+
 }

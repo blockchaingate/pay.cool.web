@@ -495,5 +495,12 @@
     "blockchainTransactionID": "區塊鏈交易ID",
     "consumerWalletAddress": "消費者錢包地址",
     "currency": "幣種信息",
-    "amount": "金額"
+    "amount": "金額",
+    "recent apk": "最近的 APK",
+    "older apk": "較舊的 APK",
+    "downloadApk": "下載",
+    "whatsnew": "什麼是新的",
+    "lastRelease": "最後發布",
+    "candidate": "候選人",
+    "Consumer": "消費者"
 }

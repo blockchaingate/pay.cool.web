@@ -6,6 +6,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
+    TranslateModule.forChild(),
     MatDialogModule
   ],
   declarations: [DownloadComponent]

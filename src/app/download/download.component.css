@@ -1,12 +1,65 @@
-.title1{
-    text-align: center;
-    padding: 50px 0;
+.title1 {
+  text-align: start;
+  padding: 50px 50px;
 }
-
-.latestApk {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.title1 h1 {
+  font-size: 50px;
+  color: #fff;
 }
-
-
+.align-right {
+  float: right;
+}
+.mat-card-title-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-right: 20px;
+}
+.example-card {
+  margin-bottom: 40px;
+  max-width: 250px;
+  margin: 0 auto;
+}
+.example-card li{
+  font-size: 15px;
+}
+h2 {
+  text-align: center;
+  font-size: 30px;
+  color: #fff;
+  padding-bottom: 20px;
+}
+@media (min-width: 300px) {
+  .example-card {
+    margin-bottom: 40px;
+    max-width: 400px;
+ }
+}
+@media (min-width: 640px) {
+  .example-card {
+    margin-bottom: 40px;
+    max-width: 400px;
+ }
+}
+@media (min-width: 1024px) {
+  .example-card {
+    margin-bottom: 40px;
+    max-width: 500px;
+ }
+}
+.button {
+  width: 100%;
+  background-color: #c90000;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 20px;
+ /* Safari */
+}
+.button2:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+.buttonOutline{
+  width: 100%;
+}
