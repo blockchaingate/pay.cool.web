@@ -437,7 +437,7 @@
     "email2": "請再次輸入電子郵箱地址",
     "businesshour": "商家營業時間",
     "businessdescrip": "商家業務簡介",
-    "rebate": "*返利百分比（%)",
+    "rebate": "*返利百分比",
     "primarycoin": "*商家幣種選擇",
     "tax": "*稅率（%)",
     "lock": "*鎖定天數",
