@@ -14,6 +14,7 @@ import { MerchantService } from 'src/app/services/merchant.service';
 import { StoreService } from 'src/app/services/store.service';
 import { HtmlEditorService } from '@syncfusion/ej2-angular-richtexteditor';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ImageCropperModule } from 'ngx-image-cropper';
 const hash = require('object-hash');
 @Component({
   selector: 'app-new-merchant',
