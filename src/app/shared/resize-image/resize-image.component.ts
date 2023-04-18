@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output,Input} from '@angular/core';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { UploadService, DocType } from '../../services/upload.service';
 
@@ -12,16 +12,21 @@ export class ResizeImageComponent implements OnInit {
   croppedImage: any = '';
   productId = '45fdssirfssss';
 
+  @Input() images: any;
   errMsg = '';
   successMsg = '';
   url = '';
   displayUpload = false;
   uploadSuccess = false;
+  @Output()
   imagesChange = new EventEmitter<any>();
 
   constructor(private uploadService: UploadService) { }
 
   ngOnInit(): void {
+    if (!this.images) {
+      this.images = [];
+    }
   }
 
   fileChangeEvent(event: any): void {
@@ -39,8 +44,6 @@ export class ResizeImageComponent implements OnInit {
     // show cropper
     console.log("imageLoaded");
     this.displayUpload = true;
-
-
   }
 
   cropperReady() {
@@ -74,8 +77,10 @@ export class ResizeImageComponent implements OnInit {
         this.url = ret.url;
         this.uploadService.uploadFileToSignedUrl(signedUrl, fileType, this.croppedImage).subscribe(
           retn => {
+            this.images.push(this.url);
             // this.uploaded.emit(this.url);
-            this.imagesChange.emit(this.croppedImage);
+            // this.imagesChange.emit(this.croppedImage);
+            this.imagesChange.emit(this.images);
             this.successMsg = 'Uploaded'; 
 
             this.uploadSuccess = true;

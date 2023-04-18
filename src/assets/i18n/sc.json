@@ -505,5 +505,7 @@
     "candidate": "候选人",
     "Consumer": "消费者",
     "Upload Image": "上传图片",
-    "Uploaded": "已上传"
+    "Uploaded": "已上传",
+    "Selection Preview": "预览裁切效果",
+    "Confirm Selection": "确认裁切"
 }

@@ -165,14 +165,16 @@ export class NewMerchantComponent implements OnInit {
 
   createMerchant() {
     const exgAddress = this.utilServ.fabToExgAddress(this.referral);
-    if(!exgAddress || exgAddress.length !== 42) {
-      this.toastr.info('Invalid referral address');
-      return;
-    }
     if(!this.images || this.images.length === 0) {
       this.toastr.info('no merchant logo');
       return;
     }
+    
+    if(!exgAddress || exgAddress.length !== 42) {
+      this.toastr.info('Invalid referral address');
+      return;
+    }
+    
 
     const initialState = {
       pwdHash: this.wallet.pwdHash,

@@ -1,7 +1,8 @@
 <!-- <p>Resize Image</p> -->
-<input type="file" (change)="fileChangeEvent($event)" />
+<input  *ngIf="!uploadSuccess" type="file" (change)="fileChangeEvent($event)" />
 
 <image-cropper 
+    *ngIf="!uploadSuccess"
     [imageChangedEvent]="imageChangedEvent" 
     [maintainAspectRatio]="true" 
     [aspectRatio]="8 / 5" 
@@ -12,6 +13,7 @@
     (loadImageFailed)="loadImageFailed()" 
     resizeToWidth="320"></image-cropper>
 
+<div class="mt-3 mb-1 Preview" *ngIf="croppedImage!=''">{{'Selection Preview' | translate}}</div>
 <img [src]="croppedImage" />
 
 <!-- error message -->
@@ -21,4 +23,6 @@
 <div *ngIf="uploadSuccess" class="text-success">{{'Uploaded' | translate}}</div>
 
 <!-- upoload button -->
-<button class=" btn btn-primary uploadImgBtn" *ngIf="displayUpload" (click)="uploadImage()">{{'Upload Image'| translate}}</button>
+<button class=" btn btn-primary uploadImgBtn" 
+*ngIf="!uploadSuccess && displayUpload" 
+(click)="uploadImage()">{{'Confirm Selection'| translate}}</button>

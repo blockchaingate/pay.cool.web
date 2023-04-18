@@ -448,7 +448,9 @@
     "candidate": "Candidate",
     "Consumer": "Consumer",
     "Upload Image": "Upload Image",
-    "Uploaded": "Uploaded"
+    "Uploaded": "Uploaded",
+    "Selection Preview": "Selection Preview",
+    "Confirm Selection": "Confirm Selection"
 
 
 }
