@@ -52,7 +52,7 @@
                                 <div>- JOIN US</div>
                             </div>
                         </div>
-                        <div>marketing@exchangily.com </div>
+                        <div>marketing@pay.cool </div>
 
                     </div>
                 </div>
@@ -73,8 +73,7 @@
                     <h3>Subscribe to Pay.Cool Newsletter</h3>
                     <form (ngSubmit)="onSubmit()" #emailForm="ngForm" class="in-row">
                         <div class="form-group max-space">
-                            <input type="email" class="form-control" id="emailInput" name="email" [(ngModel)]="email"
-                                required placeholder="Sign up with email address">
+                            <input type="email" class="form-control" id="emailInput" name="email" [(ngModel)]="email" required placeholder="Sign up with email address">
                             <div *ngIf="emailForm.submitted && !emailValid" class="text-danger">
                                 Please enter a valid email address.
                             </div>
