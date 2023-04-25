@@ -17,6 +17,8 @@ import { TransferOwnershipComponent } from './modals/transfer-ownership/transfer
 import { RewardDetailsComponent } from './modals/reward-details/reward-details.component';
 import { SendRewardsSummaryComponent } from './modals/send-rewards-summary/send-rewards-summary.component';
 import { FormsModule } from '@angular/forms';
+import { ResizeImageComponent } from './resize-image/resize-image.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { FormsModule } from '@angular/forms';
     OrderRewardsComponent,
     RewardDetailsComponent,
     SendRewardsSummaryComponent,
-    UploadMediaComponent
+    UploadMediaComponent,
+    ResizeImageComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +42,8 @@ import { FormsModule } from '@angular/forms';
     MatTreeModule,
     MatButtonModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    ImageCropperModule
   ],
   exports: [
     TfTreeComponent,
@@ -52,7 +56,8 @@ import { FormsModule } from '@angular/forms';
     RefundComponent,
     RewardDetailsComponent,
     SendRewardsSummaryComponent,
-    UploadMediaComponent
+    UploadMediaComponent,
+    ResizeImageComponent
   ]
 })
 export class SharedModule { }

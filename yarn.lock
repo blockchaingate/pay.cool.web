@@ -287,10 +287,17 @@
   dependencies:
     tslib "^2.0.0"
 
+<<<<<<< HEAD
 "@angular/platform-browser@~10.2.1":
   version "10.2.5"
   resolved "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-10.2.5.tgz"
   integrity sha512-3JDFRGNxr0IUkjSdGK2Q1BvqnSDpy9YWo0DJP+TEpgW578R84m4X7/wI3jJmFSC2yyouMWrHsot2vcBPAQj89g==
+=======
+"@angular/platform-browser@>=10.0.0", "@angular/platform-browser@>=10.0.0-0", "@angular/platform-browser@>=10.0.0-rc.0", "@angular/platform-browser@>=2.4.0", "@angular/platform-browser@~10.2.1", "@angular/platform-browser@10.2.5", "@angular/platform-browser@4.10.0 - 11.1.1":
+  "integrity" "sha512-3JDFRGNxr0IUkjSdGK2Q1BvqnSDpy9YWo0DJP+TEpgW578R84m4X7/wI3jJmFSC2yyouMWrHsot2vcBPAQj89g=="
+  "resolved" "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-10.2.5.tgz"
+  "version" "10.2.5"
+>>>>>>> ee3fc6e695bad938f7a379ad00cf4f58984daf7a
   dependencies:
     tslib "^2.0.0"
 
@@ -2135,6 +2142,11 @@
   version "0.1.2"
   resolved "https://registry.npmjs.org/@types/source-list-map/-/source-list-map-0.1.2.tgz"
   integrity sha512-K5K+yml8LTo9bWJI/rECfIPrGgxdpeNbj+d53lwN4QjW1MCwlkhUms+gtdzigTeUyBr09+u8BwOIY3MXvHdcsA==
+
+"@types/stripe-v3@^3.1.23":
+  "integrity" "sha512-5poJyz1QFXpi1hE2bAWy7gFMdj5Fgofm94DNCaTK9V2LeWPdhCQIaP/6qUagZwgCcTURXzih1J7f3sjXH1cOsw=="
+  "resolved" "https://registry.npmjs.org/@types/stripe-v3/-/stripe-v3-3.1.28.tgz"
+  "version" "3.1.28"
 
 "@types/webpack-sources@^0.1.5":
   version "0.1.9"
@@ -7823,10 +7835,24 @@ ngx-bootstrap@^6.2.0:
   resolved "https://registry.npmjs.org/ngx-bootstrap/-/ngx-bootstrap-6.2.0.tgz"
   integrity sha512-5WKHo6/ltkenw4UyXZwED8rODCgp2RGbWurzYzZsF/gH1JO5SN7TJ+AL6kXYk6XM42sDA2WhN9Db+ZPNjiyHnA==
 
+<<<<<<< HEAD
 ngx-paypal@^6.2.0:
   version "6.2.0"
   resolved "https://registry.npmjs.org/ngx-paypal/-/ngx-paypal-6.2.0.tgz"
   integrity sha512-gK7WYhJiGW2YkT4SkYxVXNaznOCT2Y+peGlem+ohCQmqwjuzxSBAwKRQgcX/jFT++8tM8Ek1SvLLdpCx05N5iQ==
+=======
+"ngx-image-cropper@~5.0.1":
+  "integrity" "sha512-WGfDJsYizOq3VE82JJkqjSjfvp+o2xrzsOwwm2rVtqNO64SvNJ8/PHP7ctkIjZmEkfjBfFE+eNZR82lLJJ+47w=="
+  "resolved" "https://registry.npmjs.org/ngx-image-cropper/-/ngx-image-cropper-5.0.1.tgz"
+  "version" "5.0.1"
+  dependencies:
+    "tslib" "^2.0.0"
+
+"ngx-paypal@^6.2.0":
+  "integrity" "sha512-gK7WYhJiGW2YkT4SkYxVXNaznOCT2Y+peGlem+ohCQmqwjuzxSBAwKRQgcX/jFT++8tM8Ek1SvLLdpCx05N5iQ=="
+  "resolved" "https://registry.npmjs.org/ngx-paypal/-/ngx-paypal-6.2.0.tgz"
+  "version" "6.2.0"
+>>>>>>> ee3fc6e695bad938f7a379ad00cf4f58984daf7a
   dependencies:
     tslib "^2.0.0"
 
