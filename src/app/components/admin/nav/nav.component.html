@@ -1,68 +1,54 @@
-
 <mat-sidenav-container class="sidenav-container">
 
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-      
+    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
 
-		<mat-nav-list *ngFor="let menuItem of menu">
-			<mat-list-item (click)="clickMenuItem(menuItem)" class="parent">
-				<span class="full-width">
+
+        <mat-nav-list *ngFor="let menuItem of menu">
+            <mat-list-item (click)="clickMenuItem(menuItem)" class="parent">
+                <span class="full-width">
           {{menuItem.name}}
         </span>
-				<mat-icon mat-list-icon> {{menuItem.icon}}</mat-icon>
-				<mat-icon class="menu-button" 
-        [ngClass]="{'rotated' : showSubmenu}" 
-        *ngIf="menuItem.children">expand_more</mat-icon>
-			</mat-list-item>
-			<div class="submenu" 
-      [ngClass]="menuItem.showSubmenu ? 'expanded' : ''" 
-      *ngIf="menuItem.children && menuItem.showSubmenu">
-      
-				<a *ngFor="let item of menuItem.children" mat-list-item [routerLink]="item.link">
-          <mat-icon mat-list-icon>chevron_right</mat-icon>
-          <span>
+                <mat-icon mat-list-icon> {{menuItem.icon}}</mat-icon>
+                <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="menuItem.children">expand_more</mat-icon>
+            </mat-list-item>
+            <div class="submenu" [ngClass]="menuItem.showSubmenu ? 'expanded' : ''" *ngIf="menuItem.children && menuItem.showSubmenu">
+
+                <a *ngFor="let item of menuItem.children" mat-list-item [routerLink]="item.link">
+                    <mat-icon mat-list-icon>chevron_right</mat-icon>
+                    <span>
             {{item.name}}
           </span>
-          
-        </a>
-			</div>
-		</mat-nav-list>
 
-  </mat-sidenav>
-  
-  <mat-sidenav-content>
-    <mat-toolbar color="primary" *ngIf="isHandset$ | async">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        
-        (click)="drawer.toggle()"
-        >
+                </a>
+            </div>
+        </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-toolbar color="primary" *ngIf="isHandset$ | async">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      
-     
-    </mat-toolbar>
-    <!-- Add Content Here -->
-    <app-main-div>
-      <div class="main-content">
-        <router-outlet></router-outlet>
-        <footer>
-          <div>
-            <a href="/">Pay.cool</a> ©2021 All Rights Reserved.
-          </div>
-          <div>
-            Version 2.0.7
-          </div>
-          
-        </footer>
-      </div>
-      
-    </app-main-div>
-    
-  </mat-sidenav-content>
+
+
+        </mat-toolbar>
+        <!-- Add Content Here -->
+        <app-main-div>
+            <div class="main-content">
+                <router-outlet></router-outlet>
+                <footer>
+                    <div>
+                        <a href="/">Pay.cool</a> ©2021 All Rights Reserved. Powered by Aukfa Inc.
+                    </div>
+                    <div>
+                        Version 2.0.7
+                    </div>
+
+                </footer>
+            </div>
+
+        </app-main-div>
+
+    </mat-sidenav-content>
 </mat-sidenav-container>
