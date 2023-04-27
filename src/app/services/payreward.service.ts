@@ -78,5 +78,3 @@ export class PayRewardService {
             return this.http.deleteRaw(environment.endpoints.api + 'ipo/' + ipoid);
         }
 }
-
-//https://fabtest.info/api/userpay/params/amount/2000/mweZqx4QFEPDHHryp4K257zRss2VY4zc9D/DUSD

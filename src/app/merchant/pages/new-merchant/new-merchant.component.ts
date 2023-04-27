@@ -164,6 +164,10 @@ export class NewMerchantComponent implements OnInit {
   }
 
   createMerchant() {
+    if(!this.rebateRate) {
+      this.toastr.info('Rebate rate not set');
+      return;
+    }
     const exgAddress = this.utilServ.fabToExgAddress(this.referral);
     if(!this.images || this.images.length === 0) {
       this.toastr.info('no merchant logo');

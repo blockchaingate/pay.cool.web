@@ -1,6 +1,6 @@
 1. client sign the refund request
 post 
-https://fabtest.info/api/charge/requestRefund/63bc4a72d4ebcaa29aa47f3b
+https://test.fabcoin.org/api/charge/requestRefund/63bc4a72d4ebcaa29aa47f3b
 63bc4a72d4ebcaa29aa47f3b is order id
 
 requestRefundId: random generated, 64bit
@@ -18,7 +18,7 @@ body:
 
 2. merchant approve the refund
 get refundInfo
-https://fabtest.info/api/charge/refundInfo/63bc4a72d4ebcaa29aa47f3b
+https://test.fabcoin.org/api/charge/refundInfo/63bc4a72d4ebcaa29aa47f3b
 
 sign and submit the transactions in params
 

@@ -23,6 +23,8 @@ export class PaycoolComponent implements OnInit{
     wallet: any;
     name: string;
     to: string;
+    amount: number;
+    address: string;
     walletAddress: string;
     templateId: string;
     tab: string;
@@ -62,7 +64,7 @@ export class PaycoolComponent implements OnInit{
             this.data = params['data'];
             this.id = params['i'];
             this.templateId = params['t'];
-            console.log('ttttid=', this.templateId);
+            this.address = params['a'];
             if(this.data) {
               this.args = this.web3Serv.decodeData(['bytes32', 'uint32', 'uint256','uint256', 'address[]', 'address[]'], this.data.substring(10));
             }
@@ -214,6 +216,19 @@ export class PaycoolComponent implements OnInit{
         }
         
         
+      } else
+      if(this.address) {
+        const ret1 = await this.starServ.createOrderFromAddressPromise(this.address, this.amount);
+        if(ret1 && ret1._id) {
+          this.id = ret1._id;
+          this.starServ.getPaycoolRewardInfoWithPayType(this.id, this.walletAddress, this.payType).subscribe(
+            (ret: any) => {
+              this.order = ret;
+
+              this.submitDo(seed);
+            }
+          );
+        }
       }
 
 

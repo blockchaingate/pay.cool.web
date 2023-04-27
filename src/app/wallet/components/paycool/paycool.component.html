@@ -5,7 +5,20 @@
     </div>
 </div>
 <div class="container py-3" *ngIf="tab == 'pay'">
-    <div class="row">
+    <div *ngIf="address">
+        <div class="form-group">
+            <label for="exampleInputAmount">Amount</label>
+            <input type="number" class="form-control" aria-describedby="amountHelp" [(ngModel)]="amount" placeholder="Enter amount">
+        </div>
+
+        <div class="ActionButtonrContainer ">
+            <div class="ActionButton--content" (click)="submit()" style="min-width: 120px;">
+                {{'Submit' | translate}}
+            </div>
+        </div> 
+    </div>
+    
+    <div *ngIf="!address" class="row">
         <div class="col col-8">
             <div *ngIf="name">
                 Name: {{name}}

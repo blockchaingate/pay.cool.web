@@ -6,7 +6,7 @@ credit charger是n2AaWrYEfYQckdqPAaQXCxiXcowsGU6GZe
 fee charger address: 0xb087b17089a46064103da800c69a10684b512513
 1. 创建订单
 post:
-https://fabtest.info/api/userpay/createOrder
+https://test.fabcoin.org/api/userpay/createOrder
 
 body:
 {"items":[{"title":"充值","rebateRate":8,"taxRate":0,"lockedDays":90,"price":10,"quantity":2},{"title":"下注","rebateRate":7,"taxRate":0,"lockedDays":50,"price":5,"quantity":1},{"title":"下注","rebateRate":7,"taxRate":0,"lockedDays":50,"price":8,"quantity":2}],"currency":"USDT","merchantId":"0x42a066862e4177b6d2d573f0acc98ff1626425e71ce2503d14ce5ecad459d5b3","owner":"n24Jz5SA53wjbUSrqT94oFKndGYccQkm6c"}
@@ -55,7 +55,7 @@ response:
 
 2.从response中得到order id: 6350916283b807e42e251105
 
-3.调用https://fabtest.info/api/userpay/order/6350916283b807e42e251105/n2AaWrYEfYQckdqPAaQXCxiXcowsGU6GZe/rewardInfo
+3.调用https://test.fabcoin.org/api/userpay/order/6350916283b807e42e251105/n2AaWrYEfYQckdqPAaQXCxiXcowsGU6GZe/rewardInfo
 得到rewardInfo的所有信息,返回对象order
 
 {

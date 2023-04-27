@@ -232,23 +232,7 @@ export class ApiService {
 
      async postFabTx(txHex: string) {
         
-        /*
-        const url = 'http://fabtest.info:9001/fabapi/' + '/sendrawtransaction/' + txHex;
-        console.log('txHex=' + txHex);
-        console.log('url=' + url);
-        let response = null;
-        if (txHex) {
-            response = await this.http.get(url).toPromise() as FabTransactionResponse;
-        }
-        console.log('response from postFabTx=');
-        console.log(response);
-        let ret = '';
-        if (response && response.txid) {
-            ret = '0x' + response.txid;
-        }
-        console.log('ret from postFabTx=' + ret);
-        return ret;
-        */
+
        const url = environment.endpoints.FAB.exchangily + 'postrawtransaction';
 
        // console.log('url here we go:', url);
