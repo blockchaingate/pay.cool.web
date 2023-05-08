@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { MyCoin } from 'src/app/models/mycoin';
 import { CoinService } from 'src/app/services/coin.service';
@@ -35,7 +36,9 @@ import { UtilService } from 'src/app/services/util.service';
 
     constructor(
       private utilServ: UtilService,
-      private modalRef: BsModalRef, private coinServ: CoinService) {}
+      private toastr: ToastrService,
+      private modalRef: BsModalRef, 
+      private coinServ: CoinService) {}
     
     ngOnInit() {
       this.currentCoin = 'FAB';
@@ -58,10 +61,12 @@ import { UtilService } from 'src/app/services/util.service';
 
 
       if (!to) {
+        this.toastr.error('No address');
         return;
       }
 
       if((to.indexOf('0x') >= 0) && (to.length != 42)) {
+        this.toastr.error('Wrong address');
         return;
       }
 
