@@ -12,9 +12,16 @@
             <label for="owner"><b>{{'Node id' | translate}}:</b></label> 
             <input type="text" placeholder="Enter node id" [(ngModel)]="nodeId" name="nodeId" required>
         </div>
+
         <div *ngIf="merchant.name">
             <label for="name"><b>{{'Name' | translate}}:</b></label> {{showName(merchant.name)}}
         </div>
+
+        <div *ngIf="merchant.image">
+            <label for="image"><b>{{'Image' | translate}}:</b></label> 
+            <img [src]="merchant.image">
+        </div>
+
         <div>
             <label for="owner"><b>{{'Owner' | translate}}:</b></label> {{merchant.owner}}
         </div>
