@@ -14,9 +14,14 @@
                 </div>
                 <!-- 2 btsn -->
                 <div class="bannerBtn">
-                    <a [routerLink]="['/merchants/new-merchant']" routerLinkActive="router-link-active">
+                    <a *ngIf="!merchant" [routerLink]="['/merchants/new-merchant']" routerLinkActive="router-link-active">
                         <button class="btn btn-primary  btn-block">
                             <span>{{ "merHomeBtn1" | translate}}</span>
+                        </button>
+                    </a>
+                    <a *ngIf="merchant" [routerLink]="['/merchants/edit-merchant/' + merchant._id]" routerLinkActive="router-link-active">
+                        <button class="btn btn-primary  btn-block">
+                            <span>{{ "editMerchant" | translate}}</span>
                         </button>
                     </a>
                     <a [routerLink]="['/merchants/contact']" routerLinkActive="router-link-active">
@@ -255,9 +260,14 @@
                 </div>
                 <!-- 2 btsn -->
                 <div class="bannerBtn">
-                    <a [routerLink]="['/merchants/new-merchant']" target="_blank">
+                    <a *ngIf="!merchant" [routerLink]="['/merchants/new-merchant']" target="_blank">
                         <button class="btn btn-primary  btn-block">
                             <span>{{ "merHomeBtn1" | translate}}</span>
+                        </button>
+                    </a>
+                    <a *ngIf="merchant" [routerLink]="['/merchants/edit-merchant/' + merchant._id]" target="_blank">
+                        <button class="btn btn-primary  btn-block">
+                            <span>{{ "editMerchant" | translate}}</span>
                         </button>
                     </a>
                     <a [routerLink]="['/merchants/contact']" routerLinkActive="router-link-active">

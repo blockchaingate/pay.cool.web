@@ -454,13 +454,13 @@ export class Web3Service {
     var messageBytes = web3.utils.hexToBytes(messageHex);
     console.log('messageBytes=', messageBytes);
     var messageBuffer = Buffer.from(messageBytes);
-    console.log('messageBuffer=', messageBuffer);
+    console.log('messageBuffer=', messageBuffer.toString('hex'));
     console.log('messageBytes.length===', messageBytes.length);
     var preamble = '\x17Kanban Signed Message:\n' + messageBytes.length;
     var preambleBuffer = Buffer.from(preamble);
-    console.log('preambleBuffer===', preambleBuffer);
+    console.log('preambleBuffer===', preambleBuffer.toString('hex'));
     var ethMessage = Buffer.concat([preambleBuffer, messageBuffer]);
-    console.log('ethMessage===', ethMessage);
+    console.log('ethMessage===', ethMessage.toString('hex'));
     var hash = Hash.keccak256s(ethMessage);    
     console.log('hash1=', hash);
     return hash;

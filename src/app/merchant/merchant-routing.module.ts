@@ -6,6 +6,7 @@ import { MerchantCreditAddComponent } from './pages/merchant-credit-add/merchant
 import { StoreComponent } from './pages/store/store.component';
 import { StoresComponent } from './pages/stores/stores.component';
 import { NewMerchantComponent } from './pages/new-merchant/new-merchant.component';
+import { EditMerchantComponent } from './pages/edit-merchant/edit-merchant.component';
 import { MerchantsComponent } from './pages/merchants/merchants.component';
 import { MerchantInfoComponent } from './pages/merchant-info/merchant-info.component';
 import { MerchantCreditAddChargerComponent } from './pages/merchant-credit-add-charger/merchant-credit-add-charger.component';
@@ -23,6 +24,9 @@ const routes: Routes = [
       {
         path: 'new-merchant', component: NewMerchantComponent
       },   
+      {
+        path: 'edit-merchant/:id', component: EditMerchantComponent
+      }, 
       {
         path: 'merchant-submitted', component: MerchantSubmittedComponent
       },

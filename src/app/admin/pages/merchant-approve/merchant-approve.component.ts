@@ -53,6 +53,10 @@ export class MerchantApproveComponent implements OnInit {
       this.merchantServ.getMerchant(id).subscribe(
         async (ret: any) => {
           this.merchant = ret;
+          if(ret.merchantNodeId) {
+            this.nodeId = ret.merchantNodeId;
+          }
+          
           console.log('this.merchant====', this.merchant);
         }
       );

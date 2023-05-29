@@ -5,6 +5,7 @@ import { UtilService } from 'src/app/services/util.service';
 import { Web3Service } from 'src/app/services/web3.service';
 import { environment } from 'src/environments/environment';
 import { coins } from '../../../config/coins';
+
 import { ToastrService } from 'ngx-toastr';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ABI } from '../../../utils/abi';
@@ -15,13 +16,15 @@ import { StoreService } from 'src/app/services/store.service';
 import { HtmlEditorService } from '@syncfusion/ej2-angular-richtexteditor';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { CoinService } from 'src/app/services/coin.service';
+import { KanbanService } from 'src/app/services/kanban.service';
 const hash = require('object-hash');
 @Component({
-  selector: 'app-new-merchant',
-  templateUrl: './new-merchant.component.html',
-  styleUrls: ['./new-merchant.component.scss']
+  selector: 'app-edit-merchant',
+  templateUrl: './edit-merchant.component.html',
+  styleUrls: ['./edit-merchant.component.scss']
 })
-export class NewMerchantComponent implements OnInit {
+export class EditMerchantComponent implements OnInit {
   currentTab: string;
   modalRef: any;
   wallet: any;
@@ -36,6 +39,7 @@ export class NewMerchantComponent implements OnInit {
   phone: string;
   fax: string;
   email: string;
+  email2: string;
   website: string;
   openTime: string;
   closeTime: string;
@@ -58,9 +62,9 @@ export class NewMerchantComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private modalService: BsModalService,
     private merchantServ: MerchantService,
-    private storeServ: StoreService,
+    private kanbanServ: KanbanService,
     private kanbanSmartContractServ: KanbanSmartContractService,
-    private web3Serv: Web3Service, 
+    private coinServ: CoinService, 
     private dataServ: DataService,
     private utilServ: UtilService,
     private router: Router
@@ -81,89 +85,42 @@ export class NewMerchantComponent implements OnInit {
 
       }
     );
+
+    this.images = [];
+    this.dataServ.currentMyStore.subscribe(
+      (store: any) => {
+        if(store && store._id) {
+          this.name = store.name.en;
+          if(store.image) {
+            this.images = [store.image];
+          }
+          
+          console.log('this.imagesss=', this.images);
+          this.id = store.id;
+          this.businessAddress = store.businessAddress.en;
+          this.website = store.website;
+          this.contactName = store.contactName.en;
+          this.phone = store.phone;
+          this.email = store.email;
+          this.email2 = this.email;
+          this.openTime = store.openTime;
+          this.businessContents = store.businessContents.en;
+          this.rebateRate = store.rebateRate;
+          this.taxRate = store.taxRate;
+          this.lockedDays = store.lockedDays;
+          this.coin = store.coin;
+          this.referral = store.referral;
+          this.hideOnStore = store.hideOnStore;
+        }
+      }
+    );
   }
 
   changeTab(tabName: string) {
     this.currentTab = tabName;
   }
 
-  import() {
-    if(!this.walletAddress) {
-      this.toastr.error('Please create or import your wallet first');
-      return;
-    }
-    this.storeServ.getStoresByAddress(this.walletAddress).subscribe(
-      (ret: any) => {
-          console.log('rettt for stores=', ret);
-        if(ret && ret.ok) {
-          const store = ret._body[0];
-          console.log('store==', store);
-          if(store.name) {
-            this.name = store.name.en;
-            this.nameChinese = store.name.sc;
-          }
-          this.images = [store.image];
-          this.phone = store.phone;
-          this.fax = store.fax;
-          this.email = store.email;
-          this.website = store.website;
-          this.openTime = store.openTime;
-          this.closeTime = store.closeTime;
-          if(store.merchant) {
-            if(store.merchant.addressLan) {
-              this.businessAddress = store.merchant.addressLan.en;
-              this.businessAddressChinese = store.merchant.addressLan.sc;
-            }
-            if(store.merchant.contactNameLan) {
-              this.contactName = store.merchant.contactNameLan.en;
-              this.contactNameChinese = store.merchant.contactNameLan.sc;
-            }
-            if(store.merchant.businessContentsLan) {
-              this.businessContents = store.merchant.businessContentsLan.en;
-              this.businessContentsChinese = store.merchant.businessContentsLan.sc;
-            }
-           if(store.merchant.phone) {
-              this.phone = store.merchant.phone;
-            } 
-            if(store.merchant.fax) {
-              this.fax = store.merchant.fax;
-            } 
-            if(store.merchant.email) {
-              this.email = store.merchant.email;
-            } 
-            if(store.merchant.website) {
-              this.website = store.merchant.website;
-            } 
-            if(store.merchant.openTime) {
-              this.openTime = store.merchant.openTime;
-            } 
-            if(store.merchant.closeTime) {
-              this.closeTime = store.merchant.closeTime;
-            } 
-          }
-          
-          // store.giveAwayRate = store.giveAwayRate.replace('%', '');
-          if(!store.giveAwayRate) {
-            this.toastr.error('Invalid rebate rate.');
-          }
-          store.giveAwayRate = store.giveAwayRate.replace(/\D/g,'');
-          this.rebateRate = store.giveAwayRate;
-          if(this.rebateRate < 3) {
-            this.toastr.error('Rebate rate must be 3 or greater.');
-          }
-          this.coin = store.coin;
-          store.taxRate = store.taxRate.replace(/\D/g,'');
-          this.taxRate = store.taxRate;
-          store.lockedDays = store.lockedDays.replace(/\D/g,'');
-          this.lockedDays = store.lockedDays;
-          this.referral = store.refAddress;
-          this.hideOnStore = store.hideOnStore;
-        }
-
-      });
-  }
-
-  createMerchant() {
+  updateMerchant() {
     if(!this.rebateRate) {
       this.toastr.info('Rebate rate not set');
       return;
@@ -179,15 +136,7 @@ export class NewMerchantComponent implements OnInit {
       return;
     }
     
-
-    if(!this.coin) {
-      this.toastr.info('Coin not selected');
-      return;
-    }
-
-    if(!this.rebateRate || (this.rebateRate < 3)) {
-      this.rebateRate = 3;
-    }
+    console.log('this.images====', this.images);
     const initialState = {
       pwdHash: this.wallet.pwdHash,
       encryptedSeed: this.wallet.encryptedSeed
@@ -201,80 +150,59 @@ export class NewMerchantComponent implements OnInit {
 
     this.modalRef.content.onClose.subscribe( (seed: Buffer) => {
       this.spinner.show();
-      this.createMerchantDo(seed);
+      this.updateMerchantDo(seed);
     });
   }
 
-  createMerchantDo(seed) {
+  updateMerchantDo(seed) {
     if(this.referral == this.walletAddress) {
       return;
     }
-    const id = this.web3Serv.randomHex(32);
-    const address = environment.addresses.smartContract.smartConractMerchantInfo;
     const data = {
-      id,
       referral: this.referral,
       paymentReceiver: this.walletAddress,
       owner: this.walletAddress,
       name: {
         en:this.name,
-        sc: this.nameChinese
+        //sc: this.nameChinese
       },
       image: this.images[0],
       businessAddress: {
         en: this.businessAddress,
-        sc: this.businessAddressChinese
+        //sc: this.businessAddressChinese
       },
       contactName: {
         en: this.contactName,
-        sc: this.contactNameChinese
+        //sc: this.contactNameChinese
       },
       phone: this.phone,
       email: this.email,
       website: this.website,
       openTime: this.openTime,
-      closeTime: this.closeTime,
+      //closeTime: this.closeTime,
       businessContents: {
         en: this.businessContents,
-        sc: this.businessContentsChinese
+        //sc: this.businessContentsChinese
       },
       rebateRate: this.rebateRate,
       coin: this.coin,
-      address,
       taxRate: this.taxRate,
       lockedDays: this.lockedDays,
       hideOnStore: this.hideOnStore
     };
-    
-    const merchantHex = hash(data);
-    data['mhash'] = merchantHex;
-    
-    const abi = ABI.createMerchant;
-    const args = [
-      id, 
-      '0x' + merchantHex,
-      this.utilServ.fabToExgAddress(this.referral), 
-      this.utilServ.fabToExgAddress(this.walletAddress)
-    ];
-    
-    this.merchantServ.createMerchantReferral(data).subscribe(
+
+    console.log('data to be=', data);
+    const keyPair = this.coinServ.getKeyPairs('FAB', seed, 0, 0, 'b');
+    const privateKey = keyPair.privateKeyBuffer.privateKey;
+    const sig = this.kanbanServ.signJsonData(privateKey, data);
+    data['sig'] = sig.signature;  
+
+    this.merchantServ.update(this.id, data).subscribe(
       (ret: any) => {
         if(ret && ret._id) {
-          this.kanbanSmartContractServ.execSmartContract(seed, address, abi, args).then(
-            (ret: any) => {
-              console.log('ret for exec smart contract:', ret);
-              if(ret && ret.success && ret._body && ret._body.status == '0x1') {
-                this.toastr.info('Merchant was created successfully');
-                //this.clearForm();
-
-                this.router.navigate(['/merchants/merchant-submitted']);
-              } else {
-                this.toastr.error('Merchant was created failed');
-              }
-            }
-          );
+          this.toastr.info('Merchant was updated successfully');
         } else {
-          this.toastr.error('Merchant was created failed');
+          this.toastr.error('Failed to update merchant');
         }
 
       }
