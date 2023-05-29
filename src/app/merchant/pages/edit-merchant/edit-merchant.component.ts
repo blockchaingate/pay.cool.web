@@ -136,7 +136,15 @@ export class EditMerchantComponent implements OnInit {
       return;
     }
     
-    console.log('this.images====', this.images);
+    if(!this.coin) {
+      this.toastr.info('Coin not selected');
+      return;
+    }
+
+    if(!this.rebateRate || (this.rebateRate < 3)) {
+      this.rebateRate = 3;
+    }
+    
     const initialState = {
       pwdHash: this.wallet.pwdHash,
       encryptedSeed: this.wallet.encryptedSeed
