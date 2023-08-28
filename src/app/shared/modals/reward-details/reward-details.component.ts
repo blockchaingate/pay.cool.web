@@ -142,7 +142,6 @@ import BigNumber from 'bignumber.js';
                 (ret: any) => {
                   if(ret && ret.ok) {
                     const body = ret._body;
-                    console.log('body===', body);
                     this.customer = body.from;
                     const to = body.to;
                     const blockNumber = body.blockNumber;

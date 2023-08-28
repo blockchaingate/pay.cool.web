@@ -1104,7 +1104,6 @@ export class MyAssetDashboardComponent implements OnInit {
       const ret = await this.kanbanSmartContractServ.execSmartContractAbiHex(seed, this.to, this.abihex);
       //const txid = ret.transactionHash;
       if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
-        console.log('ret._body===', ret._body);
         const txid = ret._body.transactionHash;
         this.toastr.success('Transaction was made, txid is: ' + txid);
         this.starSer.savePayment(this.walletAdd, txid).subscribe(

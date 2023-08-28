@@ -385,8 +385,11 @@ export class WalletDashboardComponent implements OnInit {
     }
   }
 
+  multisigWallet() {
+    this.router.navigate(['/wallet/multisig']);
+  }
+
   onChange(value) {
-    console.log('value==', value);
 
     this.wallet = this.wallets.items.filter(item => (item.id == value))[0];
 
