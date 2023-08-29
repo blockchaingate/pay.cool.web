@@ -10,6 +10,7 @@ import Common from 'ethereumjs-common';
 import { Signature, EthTransactionObj } from '../interfaces/kanban.interface';
 import * as Account from 'eth-lib/lib/account';
 import * as  Hash from 'eth-lib/lib/hash';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class Web3Service {
@@ -43,6 +44,13 @@ export class Web3Service {
     .encodeABI();   
 
     return abi;
+  }
+
+  formCreateSmartContractRawTx(chain: string, privateKey: Buffer, addressHex: string, data: string) {
+    const observable = new Observable((subscriber) => {
+
+    });
+    return observable;
   }
 
   asciiToHex(str: string) {
