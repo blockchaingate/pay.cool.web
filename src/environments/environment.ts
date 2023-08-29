@@ -44,7 +44,9 @@ export const environment = {
     },
     LTC: {
         exchangily: 'https://ltctest.fabcoinapi.com/',
-    }    
+    },
+    //blockchain: 'https://testapi.fundark.com/api/'    
+    blockchain: 'http://localhost:3000/api/'
   },
   chains: {
     BTC: {
@@ -98,7 +100,7 @@ export const environment = {
         bytesPerInput: 148
     },
     ETH: {
-        chain: 'ropsten',
+        chain: 'goerli',
         hardfork: 'byzantium',
         gasPrice: 90,
         gasPriceMax: 200,

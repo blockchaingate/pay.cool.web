@@ -8,6 +8,8 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ['./fee.component.scss']
 })
 export class FeeComponent implements OnInit {
+
+  @Input() chain: string;
   @Output() gasPriceChange = new EventEmitter();
   @Input() gasPrice: number;
 

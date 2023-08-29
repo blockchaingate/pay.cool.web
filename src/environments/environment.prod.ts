@@ -32,7 +32,8 @@ export const environment = {
     },
     LTC: {
         exchangily: 'https://ltcprod.fabcoinapi.com/',
-    }    
+    },
+    blockchain: 'https://api.pay.cool/api/'     
   },
   chains: {
     BTC: {

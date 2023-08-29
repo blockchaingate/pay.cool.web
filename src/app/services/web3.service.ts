@@ -11,10 +11,13 @@ import { Signature, EthTransactionObj } from '../interfaces/kanban.interface';
 import * as Account from 'eth-lib/lib/account';
 import * as  Hash from 'eth-lib/lib/hash';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Transaction } from '@ethereumjs/tx';
+//import { Common, Chain } from '@ethereumjs/common';
 
 @Injectable({ providedIn: 'root' })
 export class Web3Service {
-  constructor(private utilServ: UtilService) {
+  constructor(private utilServ: UtilService, private http: HttpClient) {
   }
     
   getWeb3Provider() {
@@ -46,12 +49,97 @@ export class Web3Service {
     return abi;
   }
 
-  formCreateSmartContractRawTx(chain: string, privateKey: Buffer, addressHex: string, data: string) {
-    const observable = new Observable((subscriber) => {
+  getNonce(chain: string, addressHex: string) {
+    const url = environment.endpoints.blockchain + chain.toLowerCase() + '/nonce';
+    const data = {
+      native: addressHex
+    }
+    return this.http.post(url, data);
+  }
 
+  submitMultisigCreation(chain: string, name: string, owners: any, confirmations: number, rawtx: string) {
+    const url = environment.endpoints.blockchain + 'multisig';
+    const data = {
+      chain, 
+      name, 
+      owners, 
+      confirmations, 
+      rawtx
+    };
+    return this.http.post(url, data);
+  }
+
+  getCommon(chain: string) {
+
+      const customCommon = Common.forCustomChain(
+        environment.chains.ETH.chain,
+        {
+          name: environment.chains.KANBAN.chain.name,
+          networkId: environment.chains[chain].chain.networkId,
+          chainId: environment.chains[chain].chain.chainId
+        },
+        environment.chains.ETH.hardfork,
+      );
+    return customCommon;
+  }
+
+  formCreateSmartContractRawTx(chain: string, privateKey: Buffer, addressHex: string, data: string, gasPrice: number, gasLimit: number) {
+    const observable = new Observable((subscriber) => {
+      this.getNonce(chain, addressHex).subscribe({
+        next: (ret: any) => {
+          if(!ret.success) {
+            return subscriber.error('Failed to get utxos');
+          }
+          const nonce = ret.data;
+
+          
+
+          const gasPriceHex = '0x' + new BigNumber(gasPrice).shiftedBy(9).toString(16);
+          const txData = {
+            to: '0x',
+            nonce: nonce,
+            data,
+            value: '0x0',
+            gasLimit: gasLimit,
+            gasPrice: gasPriceHex  // in wei
+          };
+  
+          let rawtx = '';
+  
+          let opts;
+          if(chain == 'ETH') {
+           opts = { chain: environment.chains.ETH.chain, hardfork: environment.chains.ETH.hardfork };
+          }
+          if(chain == 'KANBAN') {
+            const common = this.getCommon(chain);
+            opts = {common};
+          }
+          console.log('opts===', opts);
+          const tx = new Eth.Transaction(txData, opts);
+
+          tx.sign(privateKey);
+          const serializedTx = tx.serialize();
+
+          rawtx = '0x' + serializedTx.toString('hex');     
+
+          if(!rawtx) {
+              return subscriber.error('Failed to generate rawtx');
+          }
+          subscriber.next(rawtx);
+
+        },
+        error: (error: any) => {
+            let statusText = 'Internal error';
+            if(error.statusText) {
+                statusText = error.statusText;
+            }
+            return subscriber.error(statusText);
+        }
+      })
     });
     return observable;
   }
+
 
   asciiToHex(str: string) {
     const web3 = new Web3();
