@@ -20,42 +20,36 @@
     </div>
 </div>
 
-<app-owners [(owners)]="owners"></app-owners>
+<app-owners [(ngModel)]="owners"></app-owners>
 
 <div class="my-3">
     <p>
         Minimum number of confirmations
     </p>
     <div class="d-inline-flex align-items-center">
-        <select class="form-control" id="formControlSelect1">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+        <select class="form-control" id="confirmations" [(ngModel)]="confirmations">
+            <option *ngFor="let owner of owners; let i = index">{{i + 1}}</option>
         </select>
         <span class="pl-3 pr-2"> / </span>
-        <span> 3</span>
+        <span>{{this.owners.length}}</span>
     </div>
 </div>
 
-<app-fee></app-fee>
+<app-fee [(gasPrice)]="gasPrice" [(gasLimit)]="gasLimit"></app-fee>
 
 <div>
     <p>Pay with</p>
     <div class="input-group mb-3">
-        <select class="form-control" id="formControlSelect1">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+        <select class="form-control" id="wallet" *ngIf="wallets" (change)="onWalletChange($event.target.value)">
+            <option [value]="i" *ngFor="let item of wallets.items; let i = index" [selected]="i == wallets.currentIndex">
+                {{item.name}} ({{this.address}})
+            </option>
         </select>
     </div>
 </div>
 
 <div class="mt-3">
-    <button type="button" class="btn btn-primary btn-lg btn-block">Confirm</button>
+    <button type="button" class="btn btn-primary btn-lg btn-block" (click)="confirm()">Confirm</button>
 </div>
 
 
