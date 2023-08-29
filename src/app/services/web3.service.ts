@@ -12,7 +12,6 @@ import * as Account from 'eth-lib/lib/account';
 import * as  Hash from 'eth-lib/lib/hash';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Transaction } from '@ethereumjs/tx';
 //import { Common, Chain } from '@ethereumjs/common';
 
 @Injectable({ providedIn: 'root' })
@@ -109,12 +108,10 @@ export class Web3Service {
           let opts;
           if(chain == 'ETH') {
            opts = { chain: environment.chains.ETH.chain, hardfork: environment.chains.ETH.hardfork };
-          }
-          if(chain == 'KANBAN') {
+          } else {
             const common = this.getCommon(chain);
             opts = {common};
           }
-          console.log('opts===', opts);
           const tx = new Eth.Transaction(txData, opts);
 
           tx.sign(privateKey);

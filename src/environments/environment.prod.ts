@@ -95,6 +95,13 @@ export const environment = {
         gasLimit: 21000,
         gasLimitToken: 70000
     },
+    BNB: {
+        chain: {
+            name: 'bnb',
+            networkId: 56,
+            chainId: 56
+        },
+    },
     FAB: {
         network: Btc.networks.bitcoin,
         chain: {
