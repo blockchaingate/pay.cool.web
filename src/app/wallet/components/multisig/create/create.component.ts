@@ -135,14 +135,13 @@ export class CreateComponent implements OnInit {
     }
     
     const keyPair = this.coinServ.getKeyPairs(chain, seed, 0, 0, 'b');
-    console.log('keyPair===', keyPair);
+
     let privateKey: any = keyPair.privateKeyBuffer;
 
     if(privateKey.privateKey) {
       privateKey = privateKey.privateKey;
     }
     
-    console.log('privateKey===', privateKey);
     let address = keyPair.address;
     if(address.indexOf('0x') < 0) {
       address = this.utilServ.fabToExgAddress(address);
