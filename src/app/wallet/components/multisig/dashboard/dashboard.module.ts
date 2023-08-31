@@ -11,6 +11,8 @@ import { MenuComponent } from './left/menu/menu.component';
 import { HomeComponent } from './home/home.component';
 import { AssetsComponent } from './assets/assets.component';
 import { TransactionsComponent } from './transactions/transactions.component';
+import { OverviewComponent } from './home/overview/overview.component';
+import { QueueComponent } from './home/queue/queue.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { TransactionsComponent } from './transactions/transactions.component';
     MenuComponent,
     HomeComponent,
     AssetsComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    OverviewComponent,
+    QueueComponent
   ],
   imports: [
     CommonModule,

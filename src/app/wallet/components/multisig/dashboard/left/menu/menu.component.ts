@@ -14,7 +14,6 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
     const url = this.router.url;
     this.url = url;
-    console.log('url====', url);
     this.router.events.subscribe(value => {
       this.url = this.router.url.toString();
     });
