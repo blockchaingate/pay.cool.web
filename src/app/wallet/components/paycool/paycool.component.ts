@@ -9,7 +9,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Web3Service } from '../../../services/web3.service';
 import { StarService } from '../../../services/star.service';
 import { UtilService } from '../../../services/util.service';
-import { NgxSpinnerService } from 'ngx-bootstrap-spinner';
 import { CoinService } from 'src/app/services/coin.service';
 
 @Component({
@@ -40,12 +39,9 @@ export class PaycoolComponent implements OnInit{
         private kanbanSmartContractServ: KanbanSmartContractService,
         private dataServ: DataService,
         private route: ActivatedRoute,
-        private coinServ: CoinService,
-        private spinner: NgxSpinnerService,
         private toastr: ToastrService,
         private starServ: StarService,
         private web3Serv: Web3Service,
-        private utilServ: UtilService,
         public kanbanServ: KanbanService,
         private modalService: BsModalService,) {}
     ngOnInit() {
@@ -123,7 +119,6 @@ export class PaycoolComponent implements OnInit{
         this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
       
         this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
-            this.spinner.show();
             this.submitDo(seed);
         });        
     }

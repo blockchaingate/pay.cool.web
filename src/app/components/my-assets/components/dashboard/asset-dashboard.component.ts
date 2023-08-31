@@ -7,7 +7,7 @@ import { CoinService } from '../../../../services/coin.service';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
-import BigNumber from 'bignumber.js/bignumber';
+import BigNumber from 'bignumber.js';
 import { Signature } from '../../../../interfaces/kanban.interface';
 import { Web3Service } from '../../../../services/web3.service';
 import { UserReferralService } from '../../../../services/userreferral.service';
@@ -20,7 +20,6 @@ import { Campaign } from '../../../../models/campaign';
 import { StarOrder } from '../../../../models/order';
 import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 import { KanbanSmartContractService } from 'src/app/services/kanban.smartcontract.service';
-import { Console } from 'node:console';
 import { StarService } from 'src/app/services/star.service';
 
 @Component({

@@ -10,7 +10,6 @@ import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { Web3Service } from '../../../services/web3.service';
 import { UtilService } from '../../../services/util.service';
-import { NgxSpinnerService } from 'ngx-bootstrap-spinner';
 
 @Component({
   selector: 'app-fee-distribution-update-payment-fee-rate',
@@ -31,7 +30,6 @@ export class FeeDistributionUpdatePaymentFeeRateComponent implements OnInit {
     private coinServ: CoinService,
     private utilServ: UtilService,
     private kanbanServ: KanbanService,
-    private spinner: NgxSpinnerService,
     private kanbanSmartContractServ: KanbanSmartContractService,
     private modalService: BsModalService,
     private toastr: ToastrService,
@@ -103,7 +101,6 @@ export class FeeDistributionUpdatePaymentFeeRateComponent implements OnInit {
     this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
 
     this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
-      this.spinner.show();
       this.updateDo(seed);
     });
   }
@@ -129,7 +126,6 @@ export class FeeDistributionUpdatePaymentFeeRateComponent implements OnInit {
     const args = [this.paymentFeeRate];
     console.log('args for updateTokensAndPercents==', args);
     const ret = await this.kanbanSmartContractServ.execSmartContract(seed, this.to, abi, args);
-    this.spinner.hide();
     if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
       this.toastr.success('Payment fee rate was updated successfully');
       this.router.navigate(['/admin/fee-distribution']);

@@ -19,6 +19,9 @@ import { SendRewardsSummaryComponent } from './modals/send-rewards-summary/send-
 import { FormsModule } from '@angular/forms';
 import { ResizeImageComponent } from './resize-image/resize-image.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { QrscannerModalComponent } from './modals/qr-scanner/qrscanner-modal.component';
+import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
+LOAD_WASM().subscribe((res: any) => console.log('LOAD_WASM', res));
 
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     RewardDetailsComponent,
     SendRewardsSummaryComponent,
     UploadMediaComponent,
+    QrscannerModalComponent,
     ResizeImageComponent
   ],
   imports: [
@@ -43,7 +47,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    ImageCropperModule
+    ImageCropperModule,
+    NgxScannerQrcodeModule
   ],
   exports: [
     TfTreeComponent,
@@ -55,6 +60,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     StarRewardsComponent,
     RefundComponent,
     RewardDetailsComponent,
+    QrscannerModalComponent,
     SendRewardsSummaryComponent,
     UploadMediaComponent,
     ResizeImageComponent

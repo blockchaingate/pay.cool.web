@@ -9,7 +9,6 @@ import { StorageService } from '../../../services/storage.service';
 import { UtilService } from '../../../services/util.service';
 import { DataService } from '../../../services/data.service';
 import { StoreService } from '../../../services/store.service';
-import { NgxSpinnerService } from "ngx-bootstrap-spinner";
 import { environment } from '../../../../environments/environment';
 import { ABI as feeChargerABI, Bytecode as feeChargerBytecode, version } from '../../../config/feeCharger2';
 import { PasswordModalComponent } from '../../../shared/modals/password-modal/password-modal.component';
@@ -68,7 +67,6 @@ export class StoreComponent implements OnInit {
   constructor(
     private coinServ: CoinService,
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService,
     private translateServ: TranslateService,
     private modalService: BsModalService,
     private kanbanSmartContractServ: KanbanSmartContractService,
@@ -304,7 +302,6 @@ export class StoreComponent implements OnInit {
       };      
       if(!this.coin) {
         this.toastr.error('Coin not selected', 'Ok');
-        this.spinner.hide();
         return;
       }
       if(this.images && this.images.length > 0) {
@@ -355,7 +352,6 @@ export class StoreComponent implements OnInit {
                       if (res && res.ok) {
                         this.initStore(res._body);
                         this.toastr.success('Store was updated successfully.');
-                        this.spinner.hide();
                       }
                     }
                 );  
@@ -368,7 +364,6 @@ export class StoreComponent implements OnInit {
                       if (res && res.ok) {
                         this.initStore(res._body);
                         this.toastr.success('Store was created.');
-                        this.spinner.hide();
                       }
                     }
                 );  
@@ -376,13 +371,11 @@ export class StoreComponent implements OnInit {
 
               }
               else {
-                  this.spinner.hide();
                   this.toastr.error('Error with creating smart contract.', 'Ok');
               }
             }
           });
       } else {
-        this.spinner.hide();
         this.toastr.error('Error with creating smart contract.', 'Ok');
       }
 
@@ -428,7 +421,6 @@ export class StoreComponent implements OnInit {
     this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
 
     this.modalRef.content.onClose.subscribe( (seed: Buffer) => {
-      this.spinner.show();
       this.addStoreDo(seed);
     });
 
@@ -446,7 +438,6 @@ export class StoreComponent implements OnInit {
     this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
 
     this.modalRef.content.onCloseFabPrivateKey.subscribe( (privateKey: any) => {
-      this.spinner.show();
       this.deleteStoreDo(privateKey);
     });
   }
@@ -464,7 +455,6 @@ export class StoreComponent implements OnInit {
           //this.router.navigate(['/merchant/store']);
 
           //this.toastr.success('Store was deleted.');
-          this.spinner.hide();
           //this.smartContractAddress = store.smartContractAddress;
         }
       }

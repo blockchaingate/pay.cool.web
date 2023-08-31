@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { QRCodeModule } from 'angularx-qrcode';
 import { DashboardComponent } from './dashboard.component';
 import { LeftComponent } from './left/left.component';
 import { AccountComponent } from './left/account/account.component';
@@ -31,6 +33,8 @@ import { QueueComponent } from './home/queue/queue.component';
   imports: [
     CommonModule,
     RouterModule,
+    QRCodeModule,
+    ModalModule.forRoot(),
     DashboardRoutingModule
   ]
 })

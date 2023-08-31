@@ -1,5 +1,5 @@
-import { Component, TemplateRef, Input} from '@angular/core';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Component} from '@angular/core';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 @Component({
     selector: 'modal-receive-coin',
     templateUrl: './receive-coin.component.html',

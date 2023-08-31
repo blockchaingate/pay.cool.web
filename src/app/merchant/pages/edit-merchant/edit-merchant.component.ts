@@ -9,7 +9,6 @@ import { coins } from '../../../config/coins';
 import { ToastrService } from 'ngx-toastr';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ABI } from '../../../utils/abi';
-import { NgxSpinnerService } from "ngx-bootstrap-spinner";
 import { PasswordModalComponent } from '../../../shared/modals/password-modal/password-modal.component';
 import { MerchantService } from 'src/app/services/merchant.service';
 import { StoreService } from 'src/app/services/store.service';
@@ -59,7 +58,6 @@ export class EditMerchantComponent implements OnInit {
   
   constructor(
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService,
     private modalService: BsModalService,
     private merchantServ: MerchantService,
     private kanbanServ: KanbanService,
@@ -157,7 +155,6 @@ export class EditMerchantComponent implements OnInit {
     this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
 
     this.modalRef.content.onClose.subscribe( (seed: Buffer) => {
-      this.spinner.show();
       this.updateMerchantDo(seed);
     });
   }

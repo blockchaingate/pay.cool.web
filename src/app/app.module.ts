@@ -8,7 +8,6 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { QRCodeModule } from 'angularx-qrcode';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -60,6 +59,7 @@ import { MerchantService } from './services/merchant.service';
 import { BuyService } from './services/buy.service';
 import { InsightService } from './services/insight.service';
 import { UploadService } from './services/upload.service';
+import { SafeService } from './services/safe.service';
 import { WalletGuardService } from './services/wallet-guard.service';
 import { KanbanSmartContractService } from './services/kanban.smartcontract.service';
 import { MembershipComponent } from './components/membership/membership.component';
@@ -118,7 +118,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     AdminModule,
     MatStepperModule,
     FontAwesomeModule,
-    FlexLayoutModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatCheckboxModule,
@@ -162,6 +161,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     UploadService,
     SettingService,
     AirdropService,
+    SafeService,
     DataService,
     PayRewardService,
     ChargeService,

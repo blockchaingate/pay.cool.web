@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { UtilService } from './util.service';
 import { ApiService } from './api.service';
 import { Web3Service } from './web3.service';
-import BigNumber from 'bignumber.js/bignumber';
+import BigNumber from 'bignumber.js';
 import { MyCoin } from '../models/mycoin';
 import * as bchaddr from 'bchaddrjs';
 import * as Btc from 'bitcoinjs-lib';

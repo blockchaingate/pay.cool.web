@@ -10,6 +10,8 @@ import { ImportComponent } from './import/import.component';
 import { NetworkSelectComponent } from './network-select/network-select.component';
 import { OwnersComponent } from './owners/owners.component';
 import { FeeComponent } from './fee/fee.component';
+import { CreateGoComponent } from './create-go/create-go.component';
+import { CreateConfirmComponent } from './create-confirm/create-confirm.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { FeeComponent } from './fee/fee.component';
     ImportComponent,
     NetworkSelectComponent,
     OwnersComponent,
-    FeeComponent
+    FeeComponent,
+    CreateGoComponent,
+    CreateConfirmComponent
   ],
   
   imports: [

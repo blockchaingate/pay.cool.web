@@ -7,6 +7,8 @@ import { PasswordModalComponent } from '../../../../shared/modals/password-modal
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { CoinService } from 'src/app/services/coin.service';
 import { UtilService } from 'src/app/services/util.service';
+import { SafeService } from 'src/app/services/safe.service';
+//import { getReadOnlyFallbackHandlerContract } from 'src/app/services/contracts/safeContracts';
 
 @Component({
   selector: 'app-create',
@@ -14,9 +16,13 @@ import { UtilService } from 'src/app/services/util.service';
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit {
+  step: number = 3;
   modalRef: BsModalRef;
+  contractAddress: string;
   name: string = 'test';
+  
   address: string;
+  txid: string;
 
   private _chain: string;
   public get chain() {
@@ -60,7 +66,8 @@ export class CreateComponent implements OnInit {
     private web3Serv: Web3Service,
     private coinServ: CoinService,
     private utilServ: UtilService,
-    private modalServ: BsModalService
+    private modalServ: BsModalService,
+    private safeServ: SafeService
   ) { }
 
   ngOnInit(): void {
@@ -95,6 +102,19 @@ export class CreateComponent implements OnInit {
     this.address = address;
   }
 
+  stepUpdated(event) {
+    if(event == 1) {
+      this.confirm();
+    } else {
+      this.step += event;
+    }
+    
+    
+  }
+
+  create() {
+    this.step = 2;
+  }
   confirm() {
     
     const addresses = this.owners.filter(item => item.address).map(item => item.address);
@@ -149,8 +169,26 @@ export class CreateComponent implements OnInit {
     this.web3Serv.formCreateSmartContractRawTx(this.chain, privateKey, address, data, this.gasPrice, this.gasLimit).subscribe(
       (rawtx: string) => {
         this.web3Serv.submitMultisigCreation(this.chain, this.name, this.owners, this.confirmations, rawtx).subscribe(
-          (txid: string) => {
+          async (txid: string) => {
             console.log('txid===', txid);
+            this.txid = txid;
+
+            const saltNonce = Date.now();
+            const chainId = '5';
+            //const readOnlyFallbackHandlerContract = getReadOnlyFallbackHandlerContract(chainId);
+            const props = {
+              safeAccountConfig: {
+                threshold: this.confirmations,
+                owners: this.owners.map((owner) => owner.address),
+                fallbackHandler: null
+              },
+              safeDeploymentConfig: {
+                saltNonce: saltNonce.toString(),
+              },
+            }
+            const address = await this.safeServ.predictSafeAddress(this.chain, props);
+            this.contractAddress = address;
+            this.step = 3;
           }
         );
       }

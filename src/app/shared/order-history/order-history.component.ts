@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { UtilService } from '../../services/util.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { NgxSpinnerService } from "ngx-bootstrap-spinner";
+
 import { PasswordModalComponent } from '../modals/password-modal/password-modal.component';
 import { OrderRewardsComponent } from './rewards/rewards.component';
 import { RequestRefundComponent } from '../modals/request-refund/request-refund.component';
@@ -40,7 +40,6 @@ export class OrderHistoryComponent implements OnInit {
         private kanbanServ: KanbanService,
         private web3Serv: Web3Service,
         private kanbanSmartContractServ: KanbanSmartContractService,
-        private spinner: NgxSpinnerService,
         private toastr: ToastrService,
         private modalService: BsModalService,
         private utilServ: UtilService) {
@@ -263,7 +262,6 @@ export class OrderHistoryComponent implements OnInit {
         this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
     
         this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
-          this.spinner.show();
           if(this.op == 'requestRefund') {
             this.requestRefundDo(seed);
           }else 
@@ -488,7 +486,7 @@ export class OrderHistoryComponent implements OnInit {
               console.log('abi====', abi);
               console.log('args====', args);
               const ret = await this.kanbanSmartContractServ.execSmartContract(seed, this.order.address, abi, args);
-              this.spinner.hide();
+
               if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
                 this.order.status = 2;
                 this.toastr.success('Refund was made successfully');
@@ -497,7 +495,6 @@ export class OrderHistoryComponent implements OnInit {
                 
               }
             } else {
-              this.spinner.hide();
               this.toastr.error('Failed to get request refund information');
             }
           }
@@ -703,7 +700,7 @@ export class OrderHistoryComponent implements OnInit {
                 ];
               }
               const ret = await this.kanbanSmartContractServ.execSmartContract(seed, this.order.address, abi, args);
-              this.spinner.hide();
+
               if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
                 this.order.status = 2;
                 this.toastr.success('Refund was made successfully');
@@ -712,7 +709,7 @@ export class OrderHistoryComponent implements OnInit {
                 
               }
             } else {
-              this.spinner.hide();
+
               this.toastr.error('Failed to get request refund information');
             }
           }
@@ -742,7 +739,6 @@ export class OrderHistoryComponent implements OnInit {
         data['sig'] = sig.signature;   
         this.orderServ.requestRefund(this.realOrder._id, data).subscribe(
           (ret: any) => {
-            this.spinner.hide();
             if(ret && ret.ok && ret._body && ret._body._id) {
               this.toastr.success('Request refund was made successfully');
             } else {
@@ -780,7 +776,6 @@ export class OrderHistoryComponent implements OnInit {
         ];
         
         const ret = await this.kanbanSmartContractServ.execSmartContract(seed, this.order.address, abi, args);
-        this.spinner.hide();
 
         if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
           this.order.status = 2;
@@ -818,7 +813,6 @@ export class OrderHistoryComponent implements OnInit {
         data['sig'] = sig.signature;   
         this.orderServ.cancelrequestRefundV2(data).subscribe(
           (ret: any) => {
-            this.spinner.hide();
             if(ret && ret.ok && ret._body && ret._body._id) {
               this.toastr.success('Request refund was canceled successfully');
             } else {
@@ -854,7 +848,7 @@ export class OrderHistoryComponent implements OnInit {
           this.order.id
         ];
         const ret = await this.kanbanSmartContractServ.execSmartContract(seed, this.order.address, abi, args);
-        this.spinner.hide();
+
         if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
           this.order.status = 1;
           this.toastr.success('Request refund was cancelled successfully');
@@ -889,7 +883,7 @@ export class OrderHistoryComponent implements OnInit {
           this.order.id
         ];
         const ret = await this.kanbanSmartContractServ.execSmartContract(seed, this.order.address, abi, args);
-        this.spinner.hide();
+
         if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
           this.order.status = 0;
           this.toastr.success('Refund was processed successfully');

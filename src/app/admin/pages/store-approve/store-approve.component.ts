@@ -9,7 +9,6 @@ import { StoreService } from '../../../services/store.service';
 import { PasswordModalComponent } from '../../../shared/modals/password-modal/password-modal.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import { NgxSpinnerService } from 'ngx-bootstrap-spinner';
 import { environment } from 'src/environments/environment';
 import { CoinService } from 'src/app/services/coin.service';
 
@@ -32,7 +31,6 @@ export class StoreApproveComponent implements OnInit {
     private utilServ: UtilService,
     private dataServ: DataService,
     private coinServ: CoinService,
-    private spinner: NgxSpinnerService,
     private modalService: BsModalService,
     private toastr: ToastrService,
     private kanbanSmartContractServ: KanbanSmartContractService,
@@ -108,7 +106,6 @@ export class StoreApproveComponent implements OnInit {
     this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
 
     this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
-      this.spinner.show();
       this.approveDo(seed);
     });
   }
@@ -186,7 +183,6 @@ async approveDo(seed: Buffer) {
   
           this.storeServ.updateAdmin(this.store._id, data).subscribe(
             (ret: any) => {
-              this.spinner.hide();
               if(ret && ret.ok) {
                 this.toastr.success('the store was approved.');
                 this.router.navigate(['/admin/stores']);
@@ -197,13 +193,11 @@ async approveDo(seed: Buffer) {
           );
         } else {
           this.toastr.error('Failed to registerFeeCharger.');
-          this.spinner.hide();  
         }
 
 
       } else {
         this.toastr.error('Failed to registerFeeCharger.');
-        this.spinner.hide();
       }
 
 
@@ -212,7 +206,6 @@ async approveDo(seed: Buffer) {
       this.toastr.error('Failed to registerMerchant.');
     }
   } catch(e) {
-    this.spinner.hide();
   }
   }
 }

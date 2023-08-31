@@ -9,7 +9,6 @@ import { MerchantService } from '../../../services/merchant.service';
 import { PasswordModalComponent } from '../../../shared/modals/password-modal/password-modal.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import { NgxSpinnerService } from 'ngx-bootstrap-spinner';
 import { environment } from 'src/environments/environment';
 import { CoinService } from 'src/app/services/coin.service';
 import { ModifyReferralModalComponent } from './modify-referral.modal';
@@ -34,7 +33,6 @@ export class MerchantApproveComponent implements OnInit {
     private utilServ: UtilService,
     private dataServ: DataService,
     private coinServ: CoinService,
-    private spinner: NgxSpinnerService,
     private modalService: BsModalService,
     private toastr: ToastrService,
     private kanbanSmartContractServ: KanbanSmartContractService,
@@ -80,7 +78,6 @@ export class MerchantApproveComponent implements OnInit {
     this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
 
     this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
-      this.spinner.show();
       this.approveDo(seed);
     });
   }
@@ -99,7 +96,6 @@ export class MerchantApproveComponent implements OnInit {
       this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
   
       this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
-        this.spinner.show();
         this.modifyReferralDo(seed, newReferral);
       });
     });
@@ -140,10 +136,8 @@ export class MerchantApproveComponent implements OnInit {
 
       } else {
         this.toastr.error('Failed to modify merchant.');
-        this.spinner.hide();  
       }
     } catch(e) {
-      this.spinner.hide();
     }
   }
 
@@ -161,11 +155,9 @@ export class MerchantApproveComponent implements OnInit {
 
     this.merchantServ.modifyReferral(data).subscribe(
       async (res: any) => {
-        this.spinner.hide();
         if(res && res.modifiedCount) {
           this.toastr.success('the merchant\'s referral was modified.');
           this.router.navigate(['/admin/merchants']);
-          this.spinner.hide();
         } else {
           this.toastr.error('Error while deleting merchant');
         }
@@ -173,7 +165,6 @@ export class MerchantApproveComponent implements OnInit {
       (error: any) => {
         console.log('error=', error);
         this.toastr.error(error.error.error);
-        this.spinner.hide();
       }
     );
   }
@@ -192,7 +183,6 @@ export class MerchantApproveComponent implements OnInit {
     this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
 
     this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
-      this.spinner.show();
       this.deleteDo(seed);
     });
 
@@ -211,7 +201,6 @@ export class MerchantApproveComponent implements OnInit {
 
     this.merchantServ.delete(data).subscribe(
       async (res: any) => {
-        this.spinner.hide();
         if(res && res.deletedCount) {
           this.toastr.success('merchant was deleted successfully');
         } else {
@@ -221,7 +210,6 @@ export class MerchantApproveComponent implements OnInit {
       (error: any) => {
         console.log('error=', error);
         this.toastr.error(error.error.error);
-        this.spinner.hide();
       }
     );
 
@@ -260,13 +248,10 @@ export class MerchantApproveComponent implements OnInit {
       if(ret2 && ret2.success && ret2._body && ret2._body.status == '0x1') {
         this.toastr.success('the merchant was approved.');
         this.router.navigate(['/admin/merchants']);
-        this.spinner.hide();
       } else {
-        this.toastr.error('Failed to approve merchant.');
-        this.spinner.hide();  
+        this.toastr.error('Failed to approve merchant.');  
       }
     } catch(e) {
-      this.spinner.hide();
     }
   }
 

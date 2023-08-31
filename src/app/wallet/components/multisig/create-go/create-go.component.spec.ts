@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MerchantCreditComponent } from './merchant-credit.component';
+import { CreateGoComponent } from './create-go.component';
 
-describe('MerchantCreditComponent', () => {
-  let component: MerchantCreditComponent;
-  let fixture: ComponentFixture<MerchantCreditComponent>;
+describe('CreateGoComponent', () => {
+  let component: CreateGoComponent;
+  let fixture: ComponentFixture<CreateGoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MerchantCreditComponent ]
+      declarations: [ CreateGoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MerchantCreditComponent);
+    fixture = TestBed.createComponent(CreateGoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

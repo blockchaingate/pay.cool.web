@@ -1,15 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MerchantComponent } from './merchant.component';
-import { MerchantCreditComponent } from './pages/merchant-credit/merchant-credit.component';
-import { MerchantCreditAddComponent } from './pages/merchant-credit-add/merchant-credit-add.component';
 import { StoreComponent } from './pages/store/store.component';
 import { StoresComponent } from './pages/stores/stores.component';
 import { NewMerchantComponent } from './pages/new-merchant/new-merchant.component';
 import { EditMerchantComponent } from './pages/edit-merchant/edit-merchant.component';
 import { MerchantsComponent } from './pages/merchants/merchants.component';
 import { MerchantInfoComponent } from './pages/merchant-info/merchant-info.component';
-import { MerchantCreditAddChargerComponent } from './pages/merchant-credit-add-charger/merchant-credit-add-charger.component';
 import { MerchantHomeComponent } from './pages/merchant-home/merchant-home.component';
 import { MerchantSubmittedComponent } from './pages/merchant-submitted/merchant-submitted.component';
 import { ContactComponent } from './pages/contact/contact.component';
@@ -47,16 +44,7 @@ const routes: Routes = [
       },
       {
         path: 'contact', component: ContactComponent
-      },
-      {
-        path: 'merchant-credit', component: MerchantCreditComponent
-      },
-      {
-        path: 'merchant-credit/add', component: MerchantCreditAddComponent
-      },
-      {
-        path: 'merchant-credit/add-charger', component: MerchantCreditAddChargerComponent
-      },
+      }
     ]
   }
 ];

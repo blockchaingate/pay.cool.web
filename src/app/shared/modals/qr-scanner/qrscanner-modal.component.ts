@@ -20,7 +20,7 @@ export class QrscannerModalComponent implements AfterContentInit {
         vibrate: 400,
         // isBeep: true,
         // decode: 'macintosh',
-        deviceActive: 1,
+        //deviceActive: 1,
         constraints: { 
           audio: false,
           video: {

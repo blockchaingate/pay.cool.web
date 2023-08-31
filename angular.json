@@ -29,7 +29,12 @@
                         "assets": [
                             "src/favicon.ico",
                             "src/assets",
-                            "src/privacy-policy.html"
+                            "src/privacy-policy.html",
+                            {
+                                "glob": "**/*",
+                                "input": "node_modules/ngx-scanner-qrcode/wasm/",
+                                "output": "./assets/wasm/"
+                            }
                         ],
                         "styles": [
                             "src/styles.scss",
