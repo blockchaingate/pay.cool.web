@@ -1,1 +1,31 @@
-<p>receive works!</p>
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Receive assets</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="alert alert-primary" role="alert">
+        Kanban network — only send Kanban assets to this Account.
+    </div> 
+    <div class="text-dark">
+        This is the address of your Account. Deposit funds by scanning the QR code or copying the address below. Only send KANBAN and tokens to this address.
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <qrcode [qrdata]="address" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+    </div>
+
+    <div class="d-flex">
+        <!--
+        <div class="position-relative my-3">
+            <img class="icon" src="/assets/images/icon.png">
+            <span class="confirmations badge badge-secondary">2/3</span>
+        </div>
+        -->
+        <div class="mx-3">
+            <div>ken multisig</div>
+            <div>{{address}}</div>
+        </div>
+    </div>
+</div>
