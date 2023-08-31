@@ -10,7 +10,8 @@ const routes: Routes = [
         path: '', component: MultisigComponent,
     },
     {
-        path: 'dashboard', component: DashboardComponent,
+        path: 'dashboard',
+        loadChildren: () => import('./dashboard/dashboard.module').then(w => w.DashboardModule)
     },
     {
         path: 'create', component: CreateComponent,
