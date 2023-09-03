@@ -54,7 +54,7 @@
     ></app-create-confirm>
 </div>
 <div *ngIf="step == 3">
-    <app-create-go [txid]="txid" [contractAddress]="contractAddress"></app-create-go>
+    <app-create-go *ngIf="txid" [txid]="txid" [contractAddress]="contractAddress"></app-create-go>
 </div>
 
 

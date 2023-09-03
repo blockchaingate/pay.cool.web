@@ -16,7 +16,7 @@ import { SafeService } from 'src/app/services/safe.service';
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit {
-  step: number = 3;
+  step: number = 1;
   modalRef: BsModalRef;
   contractAddress: string;
   name: string = 'test';
@@ -70,8 +70,36 @@ export class CreateComponent implements OnInit {
     private safeServ: SafeService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.chain = 'KANBAN';
+
+
+
+
+
+    /*
+    const saltNonce = Date.now();
+    const chainId = '5';
+    //const readOnlyFallbackHandlerContract = getReadOnlyFallbackHandlerContract(chainId);
+    const props = {
+      safeAccountConfig: {
+        threshold: this.confirmations,
+        owners: this.owners.map((owner) => owner.address),
+        fallbackHandler: null
+      },
+      safeDeploymentConfig: {
+        saltNonce: saltNonce.toString(),
+      },
+    }
+    const address = await this.safeServ.predictSafeAddress(this.chain, props);
+    console.log('address=', address);
+    */
+
+
+
+
+
+
     this.localSt.getItem('ecomwallets').subscribe((wallets: any) => {
 
       if (!wallets || (wallets.length == 0)) {
@@ -122,14 +150,15 @@ export class CreateComponent implements OnInit {
       this.toastrServ.error('Invalid confirmations');
       return;
     }
+    /*
     const args = [
       addresses,
       this.confirmations
     ];
 
-    console.log('args===', args);
     const data = this.web3Serv.formCreateSmartContractABI(ABI, Bytecode.trim(), args);
-
+    */
+    const data = this.web3Serv.formCreateSafeContractABI(this.chain, addresses, this.confirmations);
     const initialState = {
       pwdHash: this.wallet.pwdHash,
       encryptedSeed: this.wallet.encryptedSeed
@@ -169,26 +198,12 @@ export class CreateComponent implements OnInit {
     this.web3Serv.formCreateSmartContractRawTx(this.chain, privateKey, address, data, this.gasPrice, this.gasLimit).subscribe(
       (rawtx: string) => {
         this.web3Serv.submitMultisigCreation(this.chain, this.name, this.owners, this.confirmations, rawtx).subscribe(
-          async (txid: string) => {
-            console.log('txid===', txid);
-            this.txid = txid;
-
-            const saltNonce = Date.now();
-            const chainId = '5';
-            //const readOnlyFallbackHandlerContract = getReadOnlyFallbackHandlerContract(chainId);
-            const props = {
-              safeAccountConfig: {
-                threshold: this.confirmations,
-                owners: this.owners.map((owner) => owner.address),
-                fallbackHandler: null
-              },
-              safeDeploymentConfig: {
-                saltNonce: saltNonce.toString(),
-              },
+          (res: any) => {
+            if(res.success) {
+              const data = res.data;
+              this.txid = data.txid;
+              this.step = 3;
             }
-            const address = await this.safeServ.predictSafeAddress(this.chain, props);
-            this.contractAddress = address;
-            this.step = 3;
           }
         );
       }

@@ -60,6 +60,7 @@ import { BuyService } from './services/buy.service';
 import { InsightService } from './services/insight.service';
 import { UploadService } from './services/upload.service';
 import { SafeService } from './services/safe.service';
+import { MultisigService } from './services/multisig.service';
 import { WalletGuardService } from './services/wallet-guard.service';
 import { KanbanSmartContractService } from './services/kanban.smartcontract.service';
 import { MembershipComponent } from './components/membership/membership.component';
@@ -163,6 +164,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AirdropService,
     SafeService,
     DataService,
+    MultisigService,
     PayRewardService,
     ChargeService,
     InsightService,

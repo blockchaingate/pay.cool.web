@@ -93,7 +93,19 @@ export const environment = {
         gasPrice: 90,
         gasPriceMax: 200,
         gasLimit: 21000,
-        gasLimitToken: 70000
+        gasLimitToken: 70000,
+        Safes: {
+            SimulateTxAccessor: '',
+            SafeProxyFactory: '',
+            TokenCallbackHandler: '',
+            CompatibilityFallbackHandler: '',
+            CreateCall: '',
+            MultiSend: '',
+            MultiSendCallOnly: '',
+            SignMessageLib: '',
+            SafeL2: '',
+            Safe: ''
+        }
     },
     BNB: {
         chain: {

@@ -11,34 +11,40 @@
                 <div class="alert alert-info text-center" role="alert">
                     Please do not leave this page.
                 </div>
-                
-                <div>
-                    <div>
-                        Your Account address
-                    </div>
-                    <div>
-                        {{contractAddress}}
-                    </div>
-                </div>
 
                 <div>
                     <div>
-                        Validating transaction
+                        Validating transaction:
                     </div>
                     <div>
                         {{txid}}
                     </div>
                 </div>
 
-                <div>
-                    Indexing
-                </div>
-                <div>
-                    Your Account is ready
+                <div *ngIf="address">
+                    <div>
+                        Your Account address:
+                    </div>
+                    <div>
+                        {{address}}
+                    </div>
+
+                    <div>
+                        Indexing
+                    </div>
+                    <div>
+                        Your Account is ready
+                    </div>
                 </div>
 
-                <div>
-                    <button type="button" class="btn btn-primary">Start using your wallet</button>
+                <div *ngIf="hasError" class="text-danger">
+                    Error while creating the address
+                </div>
+
+ 
+
+                <div *ngIf="address">
+                    <a type="button" class="btn btn-primary" [routerLink]="['//wallet/multisig/dashboard']">Start using your wallet</a>
                 </div>
             </div>
         </div>
