@@ -19,6 +19,7 @@ import { SendRewardsSummaryComponent } from './modals/send-rewards-summary/send-
 import { FormsModule } from '@angular/forms';
 import { ResizeImageComponent } from './resize-image/resize-image.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { OverflowPipe } from '../pipes/overflow.pipe';
 import { QrscannerModalComponent } from './modals/qr-scanner/qrscanner-modal.component';
 import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
 LOAD_WASM().subscribe((res: any) => console.log('LOAD_WASM', res));
@@ -38,7 +39,8 @@ LOAD_WASM().subscribe((res: any) => console.log('LOAD_WASM', res));
     SendRewardsSummaryComponent,
     UploadMediaComponent,
     QrscannerModalComponent,
-    ResizeImageComponent
+    ResizeImageComponent,
+    OverflowPipe
   ],
   imports: [
     CommonModule,
@@ -63,7 +65,8 @@ LOAD_WASM().subscribe((res: any) => console.log('LOAD_WASM', res));
     QrscannerModalComponent,
     SendRewardsSummaryComponent,
     UploadMediaComponent,
-    ResizeImageComponent
+    ResizeImageComponent,
+    OverflowPipe
   ]
 })
 export class SharedModule { }

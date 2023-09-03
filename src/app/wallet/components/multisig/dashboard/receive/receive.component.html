@@ -6,14 +6,14 @@
 </div>
 <div class="modal-body">
     <div class="alert alert-primary" role="alert">
-        Kanban network — only send Kanban assets to this Account.
+        {{multisigwallet.chain}} network — only send Kanban assets to this Account.
     </div> 
     <div class="text-dark">
         This is the address of your Account. Deposit funds by scanning the QR code or copying the address below. Only send KANBAN and tokens to this address.
     </div>
 
     <div class="d-flex justify-content-center">
-        <qrcode [qrdata]="address" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+        <qrcode [qrdata]="multisigwallet.address" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
     </div>
 
     <div class="d-flex">
@@ -24,8 +24,8 @@
         </div>
         -->
         <div class="mx-3">
-            <div>ken multisig</div>
-            <div>{{address}}</div>
+            <div>{{multisigwallet.name}}</div>
+            <div>{{multisigwallet.address}}</div>
         </div>
     </div>
 </div>

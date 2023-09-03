@@ -8,7 +8,7 @@ import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 })
 export class ReceiveComponent implements OnInit {
 
-  address: string = '0x132709492d2e50ea9EeB51e863bC664B10aD2942';
+  multisigwallet: any;
   constructor(public bsModalRef: BsModalRef) {}
 
   ngOnInit(): void {

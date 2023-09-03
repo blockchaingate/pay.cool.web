@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorage } from '@ngx-pwa/local-storage';
-import { ABI, Bytecode } from '../../../../config/multisigWallet';
 import { ToastrService } from 'ngx-toastr';
 import { Web3Service } from 'src/app/services/web3.service';
 import { PasswordModalComponent } from '../../../../shared/modals/password-modal/password-modal.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { CoinService } from 'src/app/services/coin.service';
 import { UtilService } from 'src/app/services/util.service';
-import { SafeService } from 'src/app/services/safe.service';
-//import { getReadOnlyFallbackHandlerContract } from 'src/app/services/contracts/safeContracts';
 
 @Component({
   selector: 'app-create',
@@ -66,34 +63,11 @@ export class CreateComponent implements OnInit {
     private web3Serv: Web3Service,
     private coinServ: CoinService,
     private utilServ: UtilService,
-    private modalServ: BsModalService,
-    private safeServ: SafeService
+    private modalServ: BsModalService
   ) { }
 
   ngOnInit() {
     this.chain = 'KANBAN';
-
-
-
-
-
-    /*
-    const saltNonce = Date.now();
-    const chainId = '5';
-    //const readOnlyFallbackHandlerContract = getReadOnlyFallbackHandlerContract(chainId);
-    const props = {
-      safeAccountConfig: {
-        threshold: this.confirmations,
-        owners: this.owners.map((owner) => owner.address),
-        fallbackHandler: null
-      },
-      safeDeploymentConfig: {
-        saltNonce: saltNonce.toString(),
-      },
-    }
-    const address = await this.safeServ.predictSafeAddress(this.chain, props);
-    console.log('address=', address);
-    */
 
 
 
@@ -200,6 +174,7 @@ export class CreateComponent implements OnInit {
         this.web3Serv.submitMultisigCreation(this.chain, this.name, this.owners, this.confirmations, rawtx).subscribe(
           (res: any) => {
             if(res.success) {
+
               const data = res.data;
               this.txid = data.txid;
               this.step = 3;
