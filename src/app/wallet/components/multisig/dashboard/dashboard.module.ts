@@ -16,6 +16,7 @@ import { AssetsComponent } from './assets/assets.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { OverviewComponent } from './home/overview/overview.component';
 import { QueueComponent } from './home/queue/queue.component';
+import { SendModule } from './send/send.module';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { QueueComponent } from './home/queue/queue.component';
     QRCodeModule,
     SharedModule,
     ModalModule.forRoot(),
+    SendModule,
     DashboardRoutingModule
   ]
 })

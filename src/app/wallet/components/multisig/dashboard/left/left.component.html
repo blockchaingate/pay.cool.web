@@ -1,12 +1,16 @@
-<div class="card p-3" style="width: 18rem;" *ngIf="multisigwallet">
-    <div class="border-bottom">
-        <app-account [multisigwallet]="multisigwallet"></app-account>
-        <app-buttons [multisigwallet]="multisigwallet"></app-buttons>
-        <div class="my-3">
-            <button type="button" class="btn btn-secondary btn-block">New transaction</button>
+<div class="card" style="width: 18rem;" *ngIf="multisigwallet">
+    <div class="bg-primary text-center">{{multisigwallet.chain}}</div>
+    <div class="p-3">
+        <div class="border-bottom">
+            <app-account [multisigwallet]="multisigwallet"></app-account>
+            <app-buttons [multisigwallet]="multisigwallet"></app-buttons>
+            <div class="my-3">
+                <button type="button" class="btn btn-secondary btn-block">New transaction</button>
+            </div>
+        </div>
+        <div>
+            <app-menu></app-menu>
         </div>
     </div>
-    <div>
-        <app-menu></app-menu>
-    </div>
+
 </div>

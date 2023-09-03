@@ -1,18 +1,32 @@
 <div class="mb-3">Assets</div>
 
-<table class="table table-dark">
+<table class="table table-dark" *ngIf="tokens">
     <thead>
       <tr>
         <th scope="col">Asset</th>
         <th scope="col">Balance</th>
+        <!--
         <th scope="col">Value</th>
+        -->
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>ETH</td>
-        <td>0.1</td>
-        <td>2332</td>
+        <td>{{chain}}</td>
+        <td>{{native}}</td>
+        <td><button type="button" class="btn btn-dark" (click)="send(chain)">Send</button></td>
+        <!--
+        <td>0</td>
+        -->
+      </tr>
+      <tr *ngFor="let id of tokens.ids; let i = index">
+        <td>{{id}}</td>
+        <td>{{tokens.balances[i]}}</td>
+        <!--
+        <td>0</td>
+        -->
+        <td><button type="button" class="btn btn-dark" (click)="send(id)">Send</button></td>
       </tr>
     </tbody>
 </table>
