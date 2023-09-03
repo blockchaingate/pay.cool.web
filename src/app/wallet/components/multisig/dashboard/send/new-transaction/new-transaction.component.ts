@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-new-transaction',
@@ -6,5 +6,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./new-transaction.component.scss']
 })
 export class NewTransactionComponent {
+  nonce: number;
+  to: string;
+  amount: number;
 
+  @Output() onSubmit = new EventEmitter<any>();
+  next() {
+    this.onSubmit.emit(
+      {
+        nonce: this.nonce,
+        to: this.to,
+        amount: this.amount
+      }
+    );
+  }
 }

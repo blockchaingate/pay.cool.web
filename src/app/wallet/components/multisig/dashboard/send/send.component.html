@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col col-md-8 col-12">
-        <app-new-transaction></app-new-transaction>
+        <app-new-transaction *ngIf="step == 1" (onSubmit)="next($event)"></app-new-transaction>
+        <app-confirm-transaction *ngIf="step == 2" [nonce]="nonce" [to]="to" [amount]="amount"></app-confirm-transaction>
     </div>
     <div class="col col-md-4 col-12">
         <app-transaction-status></app-transaction-status>
