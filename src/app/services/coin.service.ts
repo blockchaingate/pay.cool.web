@@ -600,10 +600,17 @@ export class CoinService {
         if (!seed) {
             return null;
         }
-        const path = 'm/44\'/' + environment.CoinType[name] + '\'/0\'/' + chain + '/' + index;
+        let networkName = name;
+        if(name == 'KANBAN') {
+            networkName = 'FAB';
+        }
 
-        if (name === 'BTC' || name === 'FAB' || name === 'LTC' || name === 'DOGE' || name === 'BCH') {
-            const root = BIP32.fromSeed(seed, environment.chains[name]['network']);
+        console.log('name===', name);
+        const path = 'm/44\'/' + environment.CoinType[networkName] + '\'/0\'/' + chain + '/' + index;
+        console.log('path=', path);
+        if (name === 'BTC' || name === 'FAB' || name == 'KANBAN' || name === 'LTC' || name === 'DOGE' || name === 'BCH') {
+
+            const root = BIP32.fromSeed(seed, environment.chains[networkName]['network']);
 
             let childNode = root.derivePath(path);
             if(extraPath) {
@@ -616,11 +623,16 @@ export class CoinService {
 
             if (name === 'BCH') {
                 addr = bchaddr.toCashAddress(address);
-            } else {
+            } else 
+            if(name == 'KANBAN') {
+                console.log('address=', address);
+                addr = this.utilServ.fabToExgAddress(address);
+                console.log('addr=', addr);
+            } else
+            {
 
                 addr = address;
             }
-
 
             priKey = childNode.toWIF();
             pubKey = `0x${childNode.publicKey.toString('hex')}`;

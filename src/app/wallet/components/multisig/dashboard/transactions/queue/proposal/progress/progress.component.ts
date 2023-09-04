@@ -3,6 +3,11 @@ import { PasswordModalComponent } from '../../../../../../../../shared/modals/pa
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 import { UtilService } from 'src/app/services/util.service';
+import { SafeService } from 'src/app/services/safe.service';
+import { CoinService } from 'src/app/services/coin.service';
+import { ToastrService } from 'ngx-toastr';
+import { MultisigService } from 'src/app/services/multisig.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-progress',
@@ -16,10 +21,18 @@ export class ProgressComponent implements OnInit{
   wallet: any;
   confirmable: boolean;
   confirmedByMe: boolean;
+  confirmations: number;
+  modalRef: BsModalRef;
+
   constructor(
     private localSt: LocalStorage, 
     private utilServ: UtilService,
-    private modalServ: BsModalService
+    private safeServ: SafeService,
+    private coinServ: CoinService,
+    private toastServ: ToastrService,
+    private multisigServ: MultisigService,
+    private modalServ: BsModalService,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.localSt.getItem('ecomwallets').subscribe((wallets: any) => {
@@ -59,9 +72,8 @@ export class ProgressComponent implements OnInit{
     }
     const owners = this.proposal.multisig.owners;
     const confirmations = this.proposal.multisig.confirmations;
+    this.confirmations = confirmations;
     const signatures = this.proposal.signatures;
-    console.log("owners=", owners);
-    console.log("selfAddress=", selfAddress);
 
     this.confirmable = false;
 
@@ -76,7 +88,6 @@ export class ProgressComponent implements OnInit{
 
     for(let i = 0; i < signatures.length; i++) {
       const address = signatures[i].signer;
-      console.log('address of signer=', address);
       if(address.toLowerCase() == selfAddress.toLowerCase()) {
         this.confirmedByMe = true;
         return;
@@ -84,4 +95,90 @@ export class ProgressComponent implements OnInit{
     }
   }
 
+  confirm() {
+    const initialState = {
+      pwdHash: this.wallet.pwdHash,
+      encryptedSeed: this.wallet.encryptedSeed
+    };          
+      
+    this.modalRef = this.modalServ.show(PasswordModalComponent, { initialState });
+
+    this.modalRef.content.onClose.subscribe( (seed: Buffer) => {
+        this.confirmDo(seed);
+    });
+  }
+
+  execute() {
+    const initialState = {
+      pwdHash: this.wallet.pwdHash,
+      encryptedSeed: this.wallet.encryptedSeed
+    };          
+      
+    this.modalRef = this.modalServ.show(PasswordModalComponent, { initialState });
+
+    this.modalRef.content.onClose.subscribe( (seed: Buffer) => {
+        this.executeDo(seed);
+    });
+  }
+
+  executeDo(seed: Buffer) {
+    const chain = this.proposal.multisig.chain;
+
+    const keyPair = this.coinServ.getKeyPairs(chain, seed, 0, 0, 'b');
+
+    let privateKey: any = keyPair.privateKeyBuffer;
+
+    if(privateKey.privateKey) {
+      privateKey = privateKey.privateKey;
+    }
+    
+    this.safeServ.executeTransaction(chain, privateKey, keyPair.address, this.proposal).subscribe(
+      {
+        next: (ret: any) => {
+          console.log('ret of execute===', ret);
+        },
+        error: (error: any) => {
+          this.toastServ.error(error);
+        }
+      }
+    );
+  }
+
+  confirmDo(seed: Buffer) {
+
+    const chain = this.proposal.multisig.chain;
+
+    const keyPair = this.coinServ.getKeyPairs(chain, seed, 0, 0, 'b');
+
+    let privateKey: any = keyPair.privateKeyBuffer;
+
+    if(privateKey.privateKey) {
+      privateKey = privateKey.privateKey;
+    }
+
+    const signature = this.safeServ.confirmTransaction(chain, privateKey, this.proposal);
+
+    const body = {
+      _id: this.proposal._id,
+      signer: keyPair.address,
+      data: signature
+    }
+
+    this.multisigServ.confirmProposal(body).subscribe(
+      {next: (ret: any) => {
+        if(ret.success) {
+          const data = ret.data;
+          console.log('data==', data);
+          this.toastServ.success('Transaction was confirmed successfully.');
+          this.router.navigate(['/wallet/multisig/dashboard/assets']);
+        } else {
+          this.toastServ.error('Fail to confirm the proposal');
+        }
+      },
+      error: (error) => {
+        this.toastServ.error('Error while confirming the proposal', error);
+      }
+    });
+
+  }
 }

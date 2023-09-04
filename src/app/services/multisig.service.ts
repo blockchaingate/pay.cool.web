@@ -30,6 +30,11 @@ export class MultisigService {
         return this.http.post(url, data);
     }
 
+    confirmProposal(data: any) {
+        const url = this.baseUrl + 'multisigproposal/confirm';
+        return this.http.post(url, data);
+    }
+
     getTransactionQueues(address: string, pageSize: number, pageNum: number) {
         const url = this.baseUrl + 'multisigproposal/queue/' + address + '/' + pageSize + '/' + pageNum;
         return this.http.get(url);

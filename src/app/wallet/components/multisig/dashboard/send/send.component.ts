@@ -6,7 +6,7 @@ import { LocalStorage } from '@ngx-pwa/local-storage';
 import { SafeService } from 'src/app/services/safe.service';
 import { CoinService } from 'src/app/services/coin.service';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { UtilService } from 'src/app/services/util.service';
 
 @Component({
@@ -20,6 +20,7 @@ export class SendComponent implements OnInit{
   amount: number;
   sendable: boolean;
   step: number = 1;
+  tokenId: string;
   modalRef: BsModalRef;
 
   wallet: any;
@@ -33,11 +34,17 @@ export class SendComponent implements OnInit{
     private utilServ: UtilService,
     private coinServ: CoinService,
     private router: Router,
+    private route: ActivatedRoute,
     private toastServ: ToastrService,
     private modalServ: BsModalService) {}
 
   ngOnInit(): void {
 
+    this.route.paramMap.subscribe(
+      (params: ParamMap) => {
+        this.tokenId = params.get('id');
+      }
+    );
     this.localSt.getItem('multisigwallets').subscribe({next: (wallets: any) => {
       const multisigwallet = wallets.items[wallets.currentIndex];
       this.multisigwallet = multisigwallet;
@@ -89,6 +96,7 @@ export class SendComponent implements OnInit{
 
     const keyPair = this.coinServ.getKeyPairs(chain, seed, 0, 0, 'b');
 
+    console.log('keyPair for kanban=', keyPair);
     let privateKey: any = keyPair.privateKeyBuffer;
 
     if(privateKey.privateKey) {
@@ -110,8 +118,8 @@ export class SendComponent implements OnInit{
               type: 'Send',
               to: this.to,
               amount: this.amount,
-              tokenId: '',
-              tokenName: 'ETH'
+              tokenId: this.tokenId,
+              tokenName: this.tokenId
             },
             transaction,
             transactionHash,

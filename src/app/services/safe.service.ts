@@ -11,7 +11,70 @@ import { Web3Service } from './web3.service';
 @Injectable()
 export class SafeService {
 
-    constructor(private http: HttpClient, private web3Serv: Web3Service) {}
+    constructor(
+        private http: HttpClient, 
+        private web3Serv: Web3Service) {}
+
+    executeTransaction(chain: string, privateKey: Buffer, addressHex: string, proposal: any) {
+        const observable = new Observable((observer) => {
+            const abi = {
+                "inputs":[
+                    {"internalType":"address","name":"to","type":"address"},
+                    {"internalType":"uint256","name":"value","type":"uint256"},
+                    {"internalType":"bytes","name":"data","type":"bytes"},
+                    {"internalType":"enum Enum.Operation","name":"operation","type":"uint8"},
+                    {"internalType":"uint256","name":"safeTxGas","type":"uint256"},
+                    {"internalType":"uint256","name":"baseGas","type":"uint256"},
+                    {"internalType":"uint256","name":"gasPrice","type":"uint256"},
+                    {"internalType":"address","name":"gasToken","type":"address"},
+                    {"internalType":"address payable","name":"refundReceiver","type":"address"},
+                    {"internalType":"bytes","name":"signatures","type":"bytes"}
+                ],"name":"execTransaction","outputs":[{"internalType":"bool","name":"success","type":"bool"}],"stateMutability":"payable","type":"function"};
+            const transaction = proposal.transaction;
+
+            let signatures = '0x';
+            for(let i = 0; i < proposal.signatures.length; i++) {
+                const signature = proposal.signatures[i];
+                signatures += signature.data.substring(2);
+            }
+            const args = [
+                transaction.to, 
+                transaction.value, 
+                transaction.data, 
+                transaction.operation,
+                transaction.safeTxGas,
+                transaction.baseGas,
+                transaction.gasPrice,
+                transaction.gasToken,
+                transaction.refundReceiver,
+                signatures
+            ];
+
+            const abihex = this.web3Serv.getGeneralFunctionABI(abi, args);
+
+            /*
+            const txParams = {
+                nonce: nonce,
+                gasPrice: gasPriceFinal,
+                gasLimit: gasLimit,
+                to: toAddress,
+                value: '0x' + amountNum.toString(16)
+            };
+
+            // console.log('txParams=', txParams);
+            txHex = await this.web3Serv.signTxWithPrivateKey(txParams, keyPair);
+            */
+
+        });
+        return observable;
+    }
+    confirmTransaction(chain: string, privateKey: Buffer, proposal: any) {
+        const transactionHash = proposal.transactionHash;
+        const signature = this.web3Serv.signMessageWithPrivateKeyBuffer(transactionHash, privateKey);
+        const signatureHex = signature.signature;
+        return signatureHex;
+    }
+
     signTransaction(chain: string, privateKey: Buffer, nonce: number, to: string, tokenId: string, decimals: number, amount: number) {
         
         const observable = new Observable((observer) => {

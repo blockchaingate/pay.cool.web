@@ -165,8 +165,8 @@ export const environment = {
             MultiSend: '0xedfbc7b1cc7a4d056da718b3451f616b3938acca',
             MultiSendCallOnly: '0x0b792260e544636fdc75ce8c55e2e11a38283013',
             SignMessageLib: '0xf052f9e650ffec988a740f78f1802ae72314a39a',
-            SafeL2: '0xa50517ebf2590cf18ac939e642cf92228e671673',
-            Safe: '0x2f7dc4d0809ca5ba7dedb64c729af9e4c2e4bbed'
+            SafeL2: '0x83681373c0ea8160580fb7d8a6e4ca23396a2d3b',
+            Safe: '0xa8525bb37a3ea2ba6c61d00f05dc136fb9edc998'
         }
     }
   },
