@@ -7,6 +7,7 @@ import { SafeService } from 'src/app/services/safe.service';
 import { CoinService } from 'src/app/services/coin.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-send',
@@ -17,16 +18,19 @@ export class SendComponent implements OnInit{
   nonce: number;
   to: string;
   amount: number;
-
+  sendable: boolean;
   step: number = 1;
   modalRef: BsModalRef;
 
   wallet: any;
   multisigwallet: any;
+  ethAddress: string;
+  kanbanAddress: string;
   constructor(
     private multisigServ: MultisigService, 
     private safeServ: SafeService,
     private localSt: LocalStorage, 
+    private utilServ: UtilService,
     private coinServ: CoinService,
     private router: Router,
     private toastServ: ToastrService,
@@ -45,9 +49,14 @@ export class SendComponent implements OnInit{
         return;
       }
       this.wallet = wallets.items[wallets.currentIndex];
-
+      //this.loadWallet();
     });
+    
   }
+
+
+
+
   next(event: any) {
     this.nonce = event.nonce;
     this.to = event.to;

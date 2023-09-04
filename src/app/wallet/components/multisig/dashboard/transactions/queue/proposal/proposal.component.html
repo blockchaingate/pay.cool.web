@@ -3,7 +3,7 @@
         <span>{{proposal.transaction.nonce}}</span>
         <span>{{proposal.request.type}}</span>
         <span>{{proposal.request.amount}} {{proposal.request.tokenName}}</span>
-        <span>{{proposal.signatures.length}} out of {{proposal.multisig.owners.length}}</span>
+        <span>{{proposal.signatures.length}} out of {{proposal.multisig.confirmations}}</span>
         <span>
             <a href="javascript:void(0)"  (click)="isCollapsed = !isCollapsed">
             Awaiting confirmations <i class="fa fa-angle-down" aria-hidden="true"></i>

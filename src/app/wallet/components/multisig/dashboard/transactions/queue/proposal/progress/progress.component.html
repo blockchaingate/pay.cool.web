@@ -1,1 +1,6 @@
-<button type="button" class="btn btn-success">Confirm</button>
+<button type="button" class="btn btn-success" *ngIf="!confirmedByMe && confirmable">Confirm</button>
+<div *ngIf="confirmedByMe">
+    <span class="badge badge-primary">
+    Confirmed by me
+    </span>
+</div>
