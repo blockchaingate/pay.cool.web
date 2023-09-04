@@ -611,17 +611,22 @@ export class Web3Service {
   }
 
   signMessageWithPrivateKey(message: string, keyPair: any) {
-    console.log('message==', message);
-    console.log('keyPair==', keyPair);
+
     const privateKey = `0x${keyPair.privateKey.toString('hex')}`;
-    console.log('privateKey==', privateKey);
-    //const privateKey = keyPair.privateKey;
     const web3 = this.getWeb3Provider();
 
     const signMess = web3.eth.accounts.sign(message, privateKey);
     return signMess;
   }
     
+  signMessageWithPrivateKeyBuffer(message: string, privateKeyBuffer: Buffer) {
+    const privateKey = `0x${privateKeyBuffer.toString('hex')}`;
+    const web3 = this.getWeb3Provider();
+    const signMess = web3.eth.accounts.sign(message, privateKey);
+    return signMess;
+  }
+
+
     async signTxWithPrivateKey(txParams: any, keyPair: any) {
         /*
         const privateKey = `0x${keyPair.privateKey.toString('hex')}`;

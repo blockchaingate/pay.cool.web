@@ -4,21 +4,22 @@
         <div>Send tokens</div>
         <div class="d-flex align-items-center">
             <span class="mx-2">Nonce: </span>
-            <input type="text" [(ngModel)]="nonce" class="form-control" value="0">
+            <span>{{nonce}}</span>
         </div>
     </div>
 
     <div class="form-group mt-3">
-        <label for="exampleInputEmail1">Recipient address</label>
-        <input type="text" [(ngModel)]="to" class="form-control" placeholder="Enter recipient address">
+        <label for="exampleInputEmail1">Recipient address: </label>
+        <span>{{to}}</span>
     </div>
 
     <div class="form-group mt-3 pb-3 border-bottom">
-        <label for="exampleInputEmail1">Amount</label>
-        <input type="number" [(ngModel)]="amount" class="form-control" placeholder="Enter amount">
+        <label for="exampleInputEmail1">Amount: </label>
+        <span>{{amount}}</span>
     </div>
 
-    <div class="d-flex justify-content-end">
+    <div class="d-flex justify-content-between">
+        <button type="button" class="btn btn-dark" (click)="back()">Back</button>
         <button type="button" class="btn btn-dark" (click)="sign()">Sign</button>
     </div>
 </div>

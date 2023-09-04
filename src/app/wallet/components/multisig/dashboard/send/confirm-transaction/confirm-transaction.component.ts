@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-confirm-transaction',
@@ -6,10 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./confirm-transaction.component.scss']
 })
 export class ConfirmTransactionComponent {
-  nonce: number;
-  to: string;
-  amount: number;
+  @Input() nonce: number;
+  @Input() to: string;
+  @Input() amount: number;
+
+
+  @Output() onAction = new EventEmitter<string>();
   sign() {
-    
+    this.onAction.emit('sign');
+  }
+
+  back() {
+    this.onAction.emit('back');
   }
 }

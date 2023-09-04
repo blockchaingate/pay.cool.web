@@ -44,15 +44,19 @@ export class CreateComponent implements OnInit {
 
   gasPrice: number = 0.05;
   gasLimit: number = 20000000;
-  confirmations: number = 1;
+  confirmations: number = 2;
   owners: any = [
     {
       name: 'owner1',
-      address: '0xa52a63e1Aee791DDd6DC5a753ca93C3C226eE5D2'
+      address: '0xc7d289db6238596b5a5dbe2f1df9d29c930f959c'
     },
     {
       name: 'owner2',
-      address: '0x008a137b0216e3b8b11428304a57a9ffe5f12eaa'
+      address: '0x68bbf2084546ccba3cf2f604736e77b3b2a67160'
+    },
+    {
+      name: 'owner3',
+      address: '0x930B42eC1d03f24B3FF2fA3D10071751ED66235a'
     }
   ];
   wallet: any;

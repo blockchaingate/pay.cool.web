@@ -150,7 +150,6 @@ export class CoinService {
                 // console.log('s=' + s);
                 signature = { r: r, s: s, v: v };
 
-                console.log('signature====', signature);
             }
         return signature;
     }

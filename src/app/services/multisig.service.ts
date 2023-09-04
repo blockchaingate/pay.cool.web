@@ -24,4 +24,9 @@ export class MultisigService {
         };
         return this.http.post(url, body);
     }
+
+    createProposal(data: any) {
+        const url = this.baseUrl + 'multisigproposal';
+        return this.http.post(url, data);
+    }
 }
