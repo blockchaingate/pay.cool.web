@@ -1,0 +1,13 @@
+<div class="d-flex align-items-center justify-content-between border-bottom pb-3">
+    <span>My accounts</span>
+    <div class="d-flex align-items-center">
+        <button type="button" class="btn btn-outline-light mr-2" routerLink="/wallet/multisig">Add</button>
+        <button type="button" class="btn btn-light" (click)="back()">
+            <i class="fa fa-angle-right fa-xl" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
+<div *ngFor="let multisigwallet of multisigwallets; let i = index" class="border p-2 m-2 item" (click)="changeWallet(i)">
+    <app-account-item [multisigwallet]="multisigwallet"></app-account-item>
+</div>
+

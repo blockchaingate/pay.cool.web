@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MultisigService } from 'src/app/services/multisig.service';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 
 @Component({
@@ -10,7 +9,7 @@ import { LocalStorage } from '@ngx-pwa/local-storage';
 export class DashboardComponent implements OnInit {
 
   multisigwallet: any;
-  constructor(private multisigServ: MultisigService, private localSt: LocalStorage) { }
+  constructor(private localSt: LocalStorage) { }
 
   ngOnInit(): void {
     this.localSt.getItem('multisigwallets').subscribe({next: (wallets: any) => {

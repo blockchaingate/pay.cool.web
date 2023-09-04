@@ -77,7 +77,6 @@ export class AssetsComponent implements OnInit {
 
 
     const selfAddress = ((this.chain == 'KANBAN') ? this.kanbanAddress : this.ethAddress);
-    console.log('selfAddress==', selfAddress);
     if(!selfAddress) {
       return false;
     }
@@ -88,12 +87,10 @@ export class AssetsComponent implements OnInit {
 
     for(let i = 0; i < owners.length; i++) {
       const address = owners[i].address;
-      console.log('address of owners=', address);
       if(address.toLowerCase() == selfAddress.toLowerCase()) {
         this.sendable = true;
       }
     }
-    console.log('sendable===', this.sendable);
 
   }
 

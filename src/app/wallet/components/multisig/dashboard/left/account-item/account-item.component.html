@@ -1,0 +1,10 @@
+<div class="d-flex">
+    <div class="position-relative my-3">
+        <img class="icon" src="/assets/images/icon.png">
+        <span class="confirmations badge badge-secondary">{{multisigwallet.confirmations}}/{{multisigwallet.owners.length}}</span>
+    </div>
+    <div class="mx-3">
+        <div>{{multisigwallet.name}}</div>
+        <div>{{((multisigwallet.chain == 'KANBAN') ? (multisigwallet.address | tokb) : multisigwallet.address) | overflow}}</div>
+    </div>
+</div>

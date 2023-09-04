@@ -16,6 +16,8 @@ import { AssetsComponent } from './assets/assets.component';
 import { OverviewComponent } from './home/overview/overview.component';
 import { QueueComponent } from './home/queue/queue.component';
 import { SendModule } from './send/send.module';
+import { SidebarComponent } from './left/sidebar/sidebar.component';
+import { AccountItemComponent } from './left/account-item/account-item.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { SendModule } from './send/send.module';
     HomeComponent,
     AssetsComponent,
     OverviewComponent,
-    QueueComponent
+    QueueComponent,
+    SidebarComponent,
+    AccountItemComponent
   ],
   imports: [
     CommonModule,
