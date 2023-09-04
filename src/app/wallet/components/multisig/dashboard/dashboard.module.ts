@@ -13,7 +13,6 @@ import { ReceiveComponent } from './receive/receive.component';
 import { MenuComponent } from './left/menu/menu.component';
 import { HomeComponent } from './home/home.component';
 import { AssetsComponent } from './assets/assets.component';
-import { TransactionsComponent } from './transactions/transactions.component';
 import { OverviewComponent } from './home/overview/overview.component';
 import { QueueComponent } from './home/queue/queue.component';
 import { SendModule } from './send/send.module';
@@ -28,7 +27,6 @@ import { SendModule } from './send/send.module';
     MenuComponent,
     HomeComponent,
     AssetsComponent,
-    TransactionsComponent,
     OverviewComponent,
     QueueComponent
   ],

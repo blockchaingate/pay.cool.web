@@ -29,4 +29,9 @@ export class MultisigService {
         const url = this.baseUrl + 'multisigproposal';
         return this.http.post(url, data);
     }
+
+    getTransactionQueues(address: string, pageSize: number, pageNum: number) {
+        const url = this.baseUrl + 'multisigproposal/queue/' + address + '/' + pageSize + '/' + pageNum;
+        return this.http.get(url);
+    }
 }

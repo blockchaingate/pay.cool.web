@@ -37,7 +37,6 @@ export class SendComponent implements OnInit{
     this.localSt.getItem('multisigwallets').subscribe({next: (wallets: any) => {
       const multisigwallet = wallets.items[wallets.currentIndex];
       this.multisigwallet = multisigwallet;
-      console.log('multisigwallet==', multisigwallet);
     }});
 
     this.localSt.getItem('ecomwallets').subscribe((wallets: any) => {
@@ -99,7 +98,7 @@ export class SendComponent implements OnInit{
             from: keyPair.address,
             address: this.multisigwallet.address,
             request: {
-              type: 'tokenTransfer',
+              type: 'Send',
               to: this.to,
               amount: this.amount,
               tokenId: '',

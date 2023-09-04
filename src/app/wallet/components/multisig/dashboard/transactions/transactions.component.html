@@ -1,1 +1,12 @@
-<p>transactions works!</p>
+<div *ngIf="multisigwallet">
+    <div class="header">
+        <div [ngClass]="activeTab == 'queue' ? 'active' : ''" (click)="changeTab('queue')">Queue</div>
+        <div [ngClass]="activeTab == 'history' ? 'active' : ''" (click)="changeTab('history')">History</div>
+    </div>
+
+    <div class="mt-3">
+        <app-queue [multisigwallet]="multisigwallet" *ngIf="activeTab == 'queue'"></app-queue>
+        <app-history [multisigwallet]="multisigwallet" *ngIf="activeTab == 'history'"></app-history>
+    </div>
+</div>
+
