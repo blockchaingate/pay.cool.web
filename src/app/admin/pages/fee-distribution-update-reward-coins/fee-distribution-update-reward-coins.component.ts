@@ -89,11 +89,8 @@ export class FeeDistributionUpdateRewardCoinsComponent implements OnInit {
     const abiData = this.web3Serv.getGeneralFunctionABI(abi, args);
     this.kanbanServ.kanbanCall(this.to, abiData).subscribe(
       (ret: any) => {
-        console.log('ret for isOwner===', ret);
         const kanbanAddress = '0x' + ret.data.substring(ret.data.length - 40);
-        console.log('kanbanAddress==', kanbanAddress);
         this.owner = this.utilServ.exgToFabAddress(kanbanAddress);
-        console.log('this.owner = ', this.owner);
       }
     );
   }  
@@ -145,7 +142,6 @@ export class FeeDistributionUpdateRewardCoinsComponent implements OnInit {
       this.percentage2,
       this.percentage3
     ]];
-    console.log('args for updateTokensAndPercents==', args);
     const ret = await this.kanbanSmartContractServ.execSmartContract(seed, this.to, abi, args);
     if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
       this.toastr.success('reward coins was updated successfully');

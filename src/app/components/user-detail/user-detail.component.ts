@@ -181,7 +181,6 @@ export class UserDetailComponent implements OnInit {
     this.chargeServ.getChargesByUser(this.user).subscribe(
       (payments) => {
         this.myPayments = payments;
-        console.log('payments===', payments);
       }
     );
   }

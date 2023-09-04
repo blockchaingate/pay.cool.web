@@ -86,7 +86,6 @@ import { UtilService } from 'src/app/services/util.service';
     }
 
     onFlagChange(event) {
-      console.log('event=', event);
       this.isAdvance = event;
     }
 

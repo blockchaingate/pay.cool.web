@@ -39,7 +39,6 @@ export class AllRewardDetailsComponent implements OnInit {
       (ret: any) => {
         if(ret && ret.ok) {
           this.rewards = ret._body;
-          console.log('this.rewards=', this.rewards);
         }
       }
     );
@@ -128,7 +127,6 @@ export class AllRewardDetailsComponent implements OnInit {
           '0x' + new BigNumber(reward.shouldGet).minus(reward.actualGet).shiftedBy(18).toString(16).split('.')[0]
       ];
 
-      console.log('args===', args);
       const ret = await this.kanbanSmartContractServ.execSmartContract(
           seed, 
           environment.addresses.smartContract.regularLocker2, 

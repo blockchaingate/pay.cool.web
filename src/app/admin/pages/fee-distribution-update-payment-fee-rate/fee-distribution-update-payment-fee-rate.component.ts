@@ -43,7 +43,6 @@ export class FeeDistributionUpdatePaymentFeeRateComponent implements OnInit {
     this.dataServ.currentWalletAddress.subscribe(
       (walletAddress: string) => {
         this.walletAddress = walletAddress;
-        console.log('this.walletAddress=', this.walletAddress);
       }
     ); 
     this.dataServ.currentWallet.subscribe(
@@ -80,11 +79,8 @@ export class FeeDistributionUpdatePaymentFeeRateComponent implements OnInit {
     const abiData = this.web3Serv.getGeneralFunctionABI(abi, args);
     this.kanbanServ.kanbanCall(this.to, abiData).subscribe(
       (ret: any) => {
-        console.log('ret for isOwner===', ret);
         const kanbanAddress = '0x' + ret.data.substring(ret.data.length - 40);
-        console.log('kanbanAddress==', kanbanAddress);
         this.owner = this.utilServ.exgToFabAddress(kanbanAddress);
-        console.log('this.owner = ', this.owner);
       }
     );
   }  
@@ -124,7 +120,6 @@ export class FeeDistributionUpdatePaymentFeeRateComponent implements OnInit {
       "type": "function"
     };
     const args = [this.paymentFeeRate];
-    console.log('args for updateTokensAndPercents==', args);
     const ret = await this.kanbanSmartContractServ.execSmartContract(seed, this.to, abi, args);
     if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
       this.toastr.success('Payment fee rate was updated successfully');
