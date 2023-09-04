@@ -12,6 +12,7 @@ import * as Account from 'eth-lib/lib/account';
 import * as  Hash from 'eth-lib/lib/hash';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { bufferToHex, ecrecover, pubToAddress } from 'ethereumjs-util'
 //import { Common, Chain } from '@ethereumjs/common';
 
 @Injectable({ providedIn: 'root' })
@@ -626,6 +627,82 @@ export class Web3Service {
     return signMess;
   }
 
+  adjustVInSignature(
+    signingMethod: 'eth_sign' | 'eth_signTypedData',
+    signature: string,
+    safeTxHash?: string,
+    signerAddress?: string
+  ): string {
+    const ETHEREUM_V_VALUES = [0, 1, 27, 28]
+    const MIN_VALID_V_VALUE_FOR_SAFE_ECDSA = 27
+    let signatureV = parseInt(signature.slice(-2), 16)
+    if (!ETHEREUM_V_VALUES.includes(signatureV)) {
+      throw new Error('Invalid signature')
+    }
+    if (signingMethod === 'eth_sign') {
+      /*
+        The Safe's expected V value for ECDSA signature is:
+        - 27 or 28
+        - 31 or 32 if the message was signed with a EIP-191 prefix. Should be calculated as ECDSA V value + 4
+        Some wallets do that, some wallets don't, V > 30 is used by contracts to differentiate between
+        prefixed and non-prefixed messages. The only way to know if the message was signed with a
+        prefix is to check if the signer address is the same as the recovered address.
+  
+        More info:
+        https://docs.safe.global/safe-core-protocol/signatures
+      */
+      if (signatureV < MIN_VALID_V_VALUE_FOR_SAFE_ECDSA) {
+        signatureV += MIN_VALID_V_VALUE_FOR_SAFE_ECDSA
+      }
+      const adjustedSignature = signature.slice(0, -2) + signatureV.toString(16)
+      const signatureHasPrefix = this.isTxHashSignedWithPrefix(
+        safeTxHash as string,
+        adjustedSignature,
+        signerAddress as string
+      )
+      if (signatureHasPrefix) {
+        signatureV += 4
+      }
+    }
+    if (signingMethod === 'eth_signTypedData') {
+      // Metamask with ledger returns V=0/1 here too, we need to adjust it to be ethereum's valid value (27 or 28)
+      if (signatureV < MIN_VALID_V_VALUE_FOR_SAFE_ECDSA) {
+        signatureV += MIN_VALID_V_VALUE_FOR_SAFE_ECDSA
+      }
+    }
+    signature = signature.slice(0, -2) + signatureV.toString(16)
+    return signature
+  }
+
+  isTxHashSignedWithPrefix(
+  txHash: string,
+  signature: string,
+  ownerAddress: string
+): boolean {
+  let hasPrefix
+  try {
+    const rsvSig = {
+      r: Buffer.from(signature.slice(2, 66), 'hex'),
+      s: Buffer.from(signature.slice(66, 130), 'hex'),
+      v: parseInt(signature.slice(130, 132), 16)
+    }
+    const recoveredData = ecrecover(
+      Buffer.from(txHash.slice(2), 'hex'),
+      rsvSig.v,
+      rsvSig.r,
+      rsvSig.s
+    )
+    const recoveredAddress = bufferToHex(pubToAddress(recoveredData))
+    hasPrefix = !this.sameString(recoveredAddress, ownerAddress)
+  } catch (e) {
+    hasPrefix = true
+  }
+  return hasPrefix
+}
+
+sameString(str1: string, str2: string): boolean {
+  return str1.toLowerCase() === str2.toLowerCase()
+}
 
     async signTxWithPrivateKey(txParams: any, keyPair: any) {
         /*
@@ -642,11 +719,35 @@ export class Web3Service {
         return signMess.rawTransaction;
         */
         const privKey = keyPair.privateKeyBuffer;
-        console.log('privKey=====', privKey);
-        console.log('txParams=====', txParams);
+
         const EthereumTx = Eth.Transaction;
         const tx = new EthereumTx(txParams, { chain: environment.chains.ETH.chain, hardfork: environment.chains.ETH.hardfork });
         tx.sign(privKey);
+        const serializedTx = tx.serialize();
+        const txhex = '0x' + serializedTx.toString('hex');
+        return txhex;
+      }
+
+      getRawTx(chain, privateKey, txParams) {
+        const EthereumTx = Eth.Transaction;
+        let options;
+        if(chain == 'ETH') {
+          options = { chain: environment.chains.ETH.chain, hardfork: environment.chains.ETH.hardfork }
+        } else {
+          
+          const customCommon = Common.forCustomChain(
+            environment.chains.ETH.chain,
+            {
+              name: environment.chains[chain].chain.name,
+              networkId: environment.chains[chain].chain.networkId,
+              chainId: environment.chains[chain].chain.chainId
+            },
+            environment.chains.ETH.hardfork,
+          );
+          options = { common: customCommon };
+        }
+        const tx = new EthereumTx(txParams, options);
+        tx.sign(privateKey);
         const serializedTx = tx.serialize();
         const txhex = '0x' + serializedTx.toString('hex');
         return txhex;

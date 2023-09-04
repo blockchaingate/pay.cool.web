@@ -93,7 +93,7 @@ export const environment = {
         gasPrice: 90,
         gasPriceMax: 200,
         gasLimit: 21000,
-        gasLimitToken: 70000,
+        gasLimitToken: 150000,
         Safes: {
             SimulateTxAccessor: '',
             SafeProxyFactory: '',
@@ -113,6 +113,8 @@ export const environment = {
             networkId: 56,
             chainId: 56
         },
+        gasPrice: 5,
+        gasLimitToken: 150000
     },
     FAB: {
         network: Btc.networks.bitcoin,

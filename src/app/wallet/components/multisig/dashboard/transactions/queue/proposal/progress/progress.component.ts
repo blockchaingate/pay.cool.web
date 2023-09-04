@@ -48,7 +48,6 @@ export class ProgressComponent implements OnInit{
   }
 
   loadWallet() {
-    console.log('this.wallet=', this.wallet);
     const addresses = this.wallet.addresses;
     for(let i = 0; i < addresses.length;i++) {
       const item = addresses[i];
@@ -123,14 +122,15 @@ export class ProgressComponent implements OnInit{
 
   executeDo(seed: Buffer) {
     const chain = this.proposal.multisig.chain;
-
+    console.log('this.proposal.multisig==', this.proposal.multisig);
     const keyPair = this.coinServ.getKeyPairs(chain, seed, 0, 0, 'b');
-
+    console.log('keypair in executeDo=', keyPair);
     let privateKey: any = keyPair.privateKeyBuffer;
 
     if(privateKey.privateKey) {
       privateKey = privateKey.privateKey;
     }
+    
     
     this.safeServ.executeTransaction(chain, privateKey, keyPair.address, this.proposal).subscribe(
       {
@@ -156,7 +156,7 @@ export class ProgressComponent implements OnInit{
       privateKey = privateKey.privateKey;
     }
 
-    const signature = this.safeServ.confirmTransaction(chain, privateKey, this.proposal);
+    const signature = this.safeServ.confirmTransaction(chain, privateKey, keyPair.address, this.proposal);
 
     const body = {
       _id: this.proposal._id,

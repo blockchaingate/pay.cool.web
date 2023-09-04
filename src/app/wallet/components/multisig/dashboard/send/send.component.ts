@@ -96,15 +96,14 @@ export class SendComponent implements OnInit{
 
     const keyPair = this.coinServ.getKeyPairs(chain, seed, 0, 0, 'b');
 
-    console.log('keyPair for kanban=', keyPair);
     let privateKey: any = keyPair.privateKeyBuffer;
 
     if(privateKey.privateKey) {
       privateKey = privateKey.privateKey;
     }
 
-    
-    this.safeServ.signTransaction(chain, privateKey, this.nonce, this.to, '', 18, this.amount).subscribe(
+    const smartContractAddress = this.multisigwallet.address;
+    this.safeServ.signTransaction(chain, smartContractAddress, privateKey, keyPair.address, this.nonce, this.to, '', 18, this.amount).subscribe(
       {
         next: (retOfSig: any) => {
 
