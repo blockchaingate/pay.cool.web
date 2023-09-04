@@ -13,6 +13,11 @@ export class MultisigService {
         return this.http.get(url);
     }
 
+    getByAddress(address: string) {
+        const url = this.baseUrl + 'multisig/address/' + address;
+        return this.http.get(url);
+    }
+
     getAssets(chain: string, address: string) {
         let balanceEndpoint = 'balance';
         if(chain == 'KANBAN') {
