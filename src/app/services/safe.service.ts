@@ -131,7 +131,10 @@ export class SafeService {
         const transactionHash = proposal.transactionHash;
         let signature = this.web3Serv.signMessageWithPrivateKeyBuffer(transactionHash, privateKey).signature;
 
+        //if(chain != 'BNB') {
         signature = this.web3Serv.adjustVInSignature('eth_sign', signature, transactionHash, from);
+        //}
+        
 
         return signature;
     }
@@ -158,7 +161,9 @@ export class SafeService {
 
                         let signature = this.web3Serv.signMessageWithPrivateKeyBuffer(transactionHash, privateKey).signature;
 
+                        //if(chain != 'BNB') {
                         signature = this.web3Serv.adjustVInSignature('eth_sign', signature, transactionHash, from)
+                        //}
                         console.log('signature in hree=', signature);
                         observer.next({transaction, transactionHash, signature: signature});
                     } else {

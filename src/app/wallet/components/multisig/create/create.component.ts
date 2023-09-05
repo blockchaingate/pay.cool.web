@@ -6,7 +6,7 @@ import { PasswordModalComponent } from '../../../../shared/modals/password-modal
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { CoinService } from 'src/app/services/coin.service';
 import { UtilService } from 'src/app/services/util.service';
-
+import * as exaddr from '../../../../lib/exaddr';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -20,13 +20,12 @@ export class CreateComponent implements OnInit {
   
   address: string;
   txid: string;
-
+  addresses: any;
   private _chain: string;
   public get chain() {
     return this._chain;
   }
   public set chain(value: string) {
-    console.log('value for chain=', value);
     this._chain = value;
     if(value == 'KANBAN') {
       this.gasPrice = 0.05;
@@ -119,24 +118,33 @@ export class CreateComponent implements OnInit {
   }
 
   create() {
-    this.step = 2;
-  }
-  confirm() {
-    
-    const addresses = this.owners.filter(item => item.address).map(item => item.address);
+    let addresses = this.owners.filter(item => item.address).map(item => item.address);
     if(addresses.length < this.confirmations) {
       this.toastrServ.error('Invalid confirmations');
       return;
     }
-    /*
-    const args = [
-      addresses,
-      this.confirmations
-    ];
+    
+    if(this.chain == 'KANBAN') {
+      try {
+        addresses = addresses.map(item => {
+          const fabAddress = exaddr.toLegacyAddress(item);
+          const exgAddress = this.utilServ.fabToExgAddress(fabAddress);
+          return exgAddress;
+        });
+      } catch(e) {
+        console.log('e==', e);
+        return this.toastrServ.error('Invalid addresses');
+      }
 
-    const data = this.web3Serv.formCreateSmartContractABI(ABI, Bytecode.trim(), args);
-    */
-    const data = this.web3Serv.formCreateSafeContractABI(this.chain, addresses, this.confirmations);
+    }
+    this.addresses = addresses;
+    this.step = 2;
+  }
+
+  confirm() {
+    
+
+    const data = this.web3Serv.formCreateSafeContractABI(this.chain, this.addresses, this.confirmations);
     const initialState = {
       pwdHash: this.wallet.pwdHash,
       encryptedSeed: this.wallet.encryptedSeed
@@ -145,14 +153,25 @@ export class CreateComponent implements OnInit {
     this.modalRef = this.modalServ.show(PasswordModalComponent, { initialState });
 
     this.modalRef.content.onClose.subscribe( (seed: Buffer) => {
-        this.createSmartContractDo(seed, data);
+        this.createSmartContractDo(seed, this.addresses, data);
     });
 
   }
 
-  createSmartContractDo(seed: Buffer, data: string) {
+  createSmartContractDo(seed: Buffer, addresses: any, data: string) {
 
     let chain = this.chain;
+
+    const owners = [];
+
+    for(let i = 0; i < this.owners.length; i++) {
+      owners.push(
+        {
+          name: this.owners[i].name,
+          address: addresses[i]
+        }
+      );
+    }
 
     if(chain == 'KANBAN') {
       chain = 'FAB';
@@ -173,9 +192,12 @@ export class CreateComponent implements OnInit {
     if(address.indexOf('0x') < 0) {
       address = this.utilServ.fabToExgAddress(address);
     }
+
+
+
     this.web3Serv.formCreateSmartContractRawTx(this.chain, privateKey, address, data, this.gasPrice, this.gasLimit).subscribe(
       (rawtx: string) => {
-        this.web3Serv.submitMultisigCreation(this.chain, this.name, this.owners, this.confirmations, rawtx).subscribe(
+        this.web3Serv.submitMultisigCreation(this.chain, this.name, owners, this.confirmations, rawtx).subscribe(
           (res: any) => {
             if(res.success) {
 

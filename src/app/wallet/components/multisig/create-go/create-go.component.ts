@@ -9,7 +9,7 @@ import { LocalStorage } from '@ngx-pwa/local-storage';
   styleUrls: ['./create-go.component.scss']
 })
 export class CreateGoComponent implements OnInit {
-
+  @Input() chain: string;
   @Input() txid: string;
   address: string;
   mySubscription: Subscription;
@@ -26,6 +26,7 @@ export class CreateGoComponent implements OnInit {
 
 
   }
+
 
   checkAddress() {
     this.multisigServ.getByTxid(this.txid).subscribe({

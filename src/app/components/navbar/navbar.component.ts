@@ -51,7 +51,6 @@ export class NavbarComponent implements OnInit {
     private location: Location
     ) {
     this.href = this.location.path();
-    console.log('this.href=', this.href);
     
     // this.langFromUrl = this.href.split('/')[1];
 

@@ -222,6 +222,7 @@ export const environment = {
         EXG: '0x867480ba8e577402fa44f43c33875ce74bdc5df6',
         USDT: {
             ETH:'0xa9f4f6f0fa56058ebdb91865eb2f6aec83b94532',
+            BNB: '0x4850754ea867654339f38d4e6df7cd80cfee141f',
             TRX: 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'
         },
         USDC: {

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { MultisigRoutingModule } from './multisig-routing.module';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -31,6 +32,7 @@ import { CreateConfirmComponent } from './create-confirm/create-confirm.componen
     CommonModule,
     FormsModule,
     RouterModule,
+    SharedModule,
     MultisigRoutingModule,
     ModalModule.forRoot(),
     BsDropdownModule.forRoot()

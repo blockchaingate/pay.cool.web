@@ -91,6 +91,7 @@ export class AssetsComponent implements OnInit {
 
     for(let i = 0; i < owners.length; i++) {
       const address = owners[i].address;
+      console.log('address===', address);
       if(address.toLowerCase() == selfAddress.toLowerCase()) {
         this.sendable = true;
       }

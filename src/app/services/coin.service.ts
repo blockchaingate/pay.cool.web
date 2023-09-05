@@ -602,9 +602,9 @@ export class CoinService {
         }
 
 
-        const path = 'm/44\'/' + environment.CoinType[(name == 'KANBAN') ? 'FAB' : name] + '\'/0\'/' + chain + '/' + index;
+        let path = 'm/44\'/' + environment.CoinType[(name == 'KANBAN') ? 'FAB' : name] + '\'/0\'/' + chain + '/' + index;
 
-        if (name === 'BTC' || name === 'FAB' || name == 'KANBAN' || name === 'LTC' || name === 'DOGE' || name === 'BCH') {
+        if (name === 'BTC' || name === 'FAB'  || name == 'KANBAN' || name === 'LTC' || name === 'DOGE' || name === 'BCH') {
 
             const root = BIP32.fromSeed(seed, environment.chains[(name == 'KANBAN') ? 'FAB' : name]['network']);
 
@@ -636,20 +636,6 @@ export class CoinService {
             buffer = wif.decode(priKey);
             priKeyDisp = priKey;
         } else
-
-        if (name === 'ETH') {
-
-            const root = hdkey.default.fromMasterSeed(seed);
-            const childNode = root.derivePath(path);
-
-            const wallet = childNode.getWallet();
-            const address = `0x${wallet.getAddress().toString('hex')}`;
-            addr = address;
-            buffer = wallet.getPrivateKey();
-            priKey = wallet.getPrivateKey();
-            priKeyDisp = buffer.toString('hex');
-
-        } else
         if(name == 'TRX') {
             const root = BIP32.fromSeed(seed);
             const childNode = root.derivePath(path);
@@ -659,6 +645,17 @@ export class CoinService {
             addr = 
             TronWeb.utils.crypto.getBase58CheckAddress(TronWeb.utils.crypto.getAddressFromPriKey(priKey));
       
+        } else {
+            path = 'm/44\'/' + environment.CoinType.ETH + '\'/0\'/' + chain + '/' + index;
+            const root = hdkey.default.fromMasterSeed(seed);
+            const childNode = root.derivePath(path);
+
+            const wallet = childNode.getWallet();
+            const address = `0x${wallet.getAddress().toString('hex')}`;
+            addr = address;
+            buffer = wallet.getPrivateKey();
+            priKey = wallet.getPrivateKey();
+            priKeyDisp = buffer.toString('hex');
         }
         /*
         const keyPairs = {

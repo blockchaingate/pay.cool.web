@@ -13,28 +13,21 @@
                 </div>
 
                 <div>
-                    <div>
+                    <p>
                         Validating transaction:
-                    </div>
-                    <div>
+                    </p>
+                    <p>
                         {{txid}}
-                    </div>
+                    </p>
                 </div>
 
                 <div *ngIf="address">
-                    <div>
-                        Your Account address:
-                    </div>
-                    <div>
-                        {{address}}
-                    </div>
-
-                    <div>
-                        Indexing
-                    </div>
-                    <div>
-                        Your Account is ready
-                    </div>
+                    <p>
+                        Your Wallet address:
+                    </p>
+                    <p>
+                        {{chain == 'KANBAN' ? (address|tokb) : address}}
+                    </p>
                 </div>
 
                 <div *ngIf="hasError" class="text-danger">
@@ -43,7 +36,7 @@
 
  
 
-                <div *ngIf="isReady">
+                <div *ngIf="isReady" class="text-center mt-3">
                     <a type="button" class="btn btn-primary" [routerLink]="['/wallet/multisig/dashboard']">Start using your wallet</a>
                 </div>
             </div>

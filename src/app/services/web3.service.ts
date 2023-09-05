@@ -36,13 +36,13 @@ export class Web3Service {
   };
 
   formCreateSafeContractABI(chain: string, addresses, confirmations: number) {
-    console.log('formCreateSafeContractABI start');
+
     const abi = {"inputs":[{"internalType":"address","name":"_singleton","type":"address"},{"internalType":"bytes","name":"initializer","type":"bytes"},{"internalType":"uint256","name":"saltNonce","type":"uint256"}],"name":"createProxyWithNonce","outputs":[{"internalType":"contract SafeProxy","name":"proxy","type":"address"}],"stateMutability":"nonpayable","type":"function"};
-    console.log('1');
+
     const salt = Date.now();
 
     const setupAbi = {"inputs":[{"internalType":"address[]","name":"_owners","type":"address[]"},{"internalType":"uint256","name":"_threshold","type":"uint256"},{"internalType":"address","name":"to","type":"address"},{"internalType":"bytes","name":"data","type":"bytes"},{"internalType":"address","name":"fallbackHandler","type":"address"},{"internalType":"address","name":"paymentToken","type":"address"},{"internalType":"uint256","name":"payment","type":"uint256"},{"internalType":"address payable","name":"paymentReceiver","type":"address"}],"name":"setup","outputs":[],"stateMutability":"nonpayable","type":"function"};
-    console.log('2');
+
     const setupDataArgs = [
       addresses,
       confirmations,
@@ -54,13 +54,9 @@ export class Web3Service {
       "0x0000000000000000000000000000000000000000"
     ];
 
-    console.log('setupDataArgs===', setupDataArgs);
     const initializer = this.getGeneralFunctionABI(setupAbi, setupDataArgs);
-    console.log('initializer==', initializer);
     const args = [environment.chains[chain].Safes.SafeL2, initializer, salt];
-    console.log('args==', args);
     const data = this.getGeneralFunctionABI(abi, args);
-    console.log('data=', data);
     return data;
   }
 

@@ -15,7 +15,6 @@ export class DashboardComponent implements OnInit {
     this.localSt.getItem('multisigwallets').subscribe({next: (wallets: any) => {
       const multisigwallet = wallets.items[wallets.currentIndex];
       this.multisigwallet = multisigwallet;
-      console.log('multisigwallet==', multisigwallet);
     }});
   }
 
