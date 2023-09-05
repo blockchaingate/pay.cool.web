@@ -8,7 +8,7 @@ import { CoinService } from 'src/app/services/coin.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { UtilService } from 'src/app/services/util.service';
-
+import * as exaddr from '../../../../../lib/exaddr';
 @Component({
   selector: 'app-send',
   templateUrl: './send.component.html',
@@ -17,6 +17,7 @@ import { UtilService } from 'src/app/services/util.service';
 export class SendComponent implements OnInit{
   nonce: number;
   to: string;
+  toHex: string;
   decimals: number;
   amount: number;
   sendable: boolean;
@@ -85,6 +86,19 @@ export class SendComponent implements OnInit{
     this.nonce = event.nonce;
     this.to = event.to;
     this.amount = event.amount;
+
+    this.toHex = this.to;
+    const chain = this.multisigwallet.chain;
+    if(chain == 'KANBAN') {
+      try {
+        this.toHex = exaddr.toLegacyAddress(this.toHex);
+        this.toHex = this.utilServ.fabToExgAddress(this.toHex);
+
+      } catch(e) {
+        return this.toastServ.error('Invalid recipient address');
+      }
+    }
+
     this.step = 2;
   }
 
@@ -93,7 +107,7 @@ export class SendComponent implements OnInit{
       this.step = 1;
       return;
     }
-    console.log('lets sign');
+
 
     const initialState = {
       pwdHash: this.wallet.pwdHash,
@@ -120,7 +134,7 @@ export class SendComponent implements OnInit{
     }
 
     const smartContractAddress = this.multisigwallet.address;
-    this.safeServ.signTransaction(chain, smartContractAddress, privateKey, keyPair.address, this.nonce, this.to, this.tokenId, this.decimals, this.amount).subscribe(
+    this.safeServ.signTransaction(chain, smartContractAddress, privateKey, keyPair.address, this.nonce, this.toHex, this.tokenId, this.decimals, this.amount).subscribe(
       {
         next: (retOfSig: any) => {
 
@@ -132,7 +146,7 @@ export class SendComponent implements OnInit{
             address: this.multisigwallet.address,
             request: {
               type: 'Send',
-              to: this.to,
+              to: this.toHex,
               amount: this.amount,
               tokenId: this.tokenId,
               tokenName: this.utilServ.getTokenName(chain, this.tokenId)
