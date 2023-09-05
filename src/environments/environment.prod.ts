@@ -198,6 +198,7 @@ addresses: {
         },
         USDC: {
             ETH: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
+            BNB: '0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d',
             TRX: 'TEkxiTehnzSmSe2XqrBj4w32RUN966rdz8'
         },
         DUSD: '0x46e0021c17d30a2db972ee5719cdc7e829ed9930',
