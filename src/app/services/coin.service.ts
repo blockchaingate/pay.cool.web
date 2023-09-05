@@ -588,7 +588,7 @@ export class CoinService {
     }
 
     getKeyPairs(name: string, seed: Buffer, chain: number, index: number, type: string, extraPath: string = '') {
-        console.log('name in getKeyPairs===', name);
+
         let addr = '';
         const addrHash = '';
         let priKey;
@@ -602,11 +602,10 @@ export class CoinService {
         }
 
 
-        console.log('name===', name);
         const path = 'm/44\'/' + environment.CoinType[(name == 'KANBAN') ? 'FAB' : name] + '\'/0\'/' + chain + '/' + index;
-        console.log('path=', path);
+
         if (name === 'BTC' || name === 'FAB' || name == 'KANBAN' || name === 'LTC' || name === 'DOGE' || name === 'BCH') {
-            console.log('go inside');
+
             const root = BIP32.fromSeed(seed, environment.chains[(name == 'KANBAN') ? 'FAB' : name]['network']);
 
             let childNode = root.derivePath(path);

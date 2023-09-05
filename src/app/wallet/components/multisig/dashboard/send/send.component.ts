@@ -48,6 +48,21 @@ export class SendComponent implements OnInit{
     this.localSt.getItem('multisigwallets').subscribe({next: (wallets: any) => {
       const multisigwallet = wallets.items[wallets.currentIndex];
       this.multisigwallet = multisigwallet;
+      const address = multisigwallet.address;
+      this.multisigServ.getNonce(address).subscribe(
+        {
+          next: (ret: any) => {
+            if(ret.success) {
+              this.nonce = ret.data;
+            } else {
+              this.toastServ.info('Error while getting nonce');
+            }
+          },
+          error: (error: any) => {
+            this.toastServ.error(error);
+          }
+        }
+      )
     }});
 
     this.localSt.getItem('ecomwallets').subscribe((wallets: any) => {

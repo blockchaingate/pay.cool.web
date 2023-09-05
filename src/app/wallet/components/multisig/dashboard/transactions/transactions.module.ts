@@ -9,6 +9,7 @@ import { TransactionsComponent } from './transactions.component';
 import { ProposalComponent } from './queue/proposal/proposal.component';
 import { DetailsComponent } from './queue/proposal/details/details.component';
 import { ProgressComponent } from './queue/proposal/progress/progress.component';
+import { TransactionComponent } from './history/transaction/transaction.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ProgressComponent } from './queue/proposal/progress/progress.component'
     QueueComponent,
     ProposalComponent,
     DetailsComponent,
-    ProgressComponent
+    ProgressComponent,
+    TransactionComponent
   ],
   imports: [
     CommonModule,

@@ -60,6 +60,14 @@ export class AssetsComponent implements OnInit {
     }});
   }
 
+  getName(id: string) {
+    if(this.chain == 'KANBAN') {
+      if(id != 'KANBAN') {
+        return this.utilServ.getCoinNameByTypeId(Number(id));
+      }
+    }
+    return id;
+  }
   loadWallet() {
 
     const addresses = this.wallet.addresses;

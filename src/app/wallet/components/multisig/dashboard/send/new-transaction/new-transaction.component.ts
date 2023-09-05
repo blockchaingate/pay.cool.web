@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, Input, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-new-transaction',
@@ -6,7 +6,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./new-transaction.component.scss']
 })
 export class NewTransactionComponent {
-  nonce: number;
+  @Input() nonce: number;
   to: string;
   amount: number;
 

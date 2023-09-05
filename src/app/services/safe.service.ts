@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SafeFactory } from '@safe-global/safe-core-sdk';
-import type { PredictSafeProps } from '@safe-global/safe-core-sdk/dist/src/safeFactory'
-import {createEthersAdapter } from '../hooks/coreSDK/safeCoreSDK';
 import { Observable } from 'rxjs';
-var Web3 = require('web3');
-import { ethers } from 'ethers';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Web3Service } from './web3.service';
@@ -199,14 +194,5 @@ export class SafeService {
         return observable;
     }
 
-    async predictSafeAddress (chain: string, props: PredictSafeProps)  {
-
-        const provider = new ethers.providers.Web3Provider(new Web3.providers.HttpProvider('http://localhost:8545'));
-        console.log('provider=', provider);
-        const ethAdapter = createEthersAdapter(provider);
-        const safeFactory = await SafeFactory.create({ ethAdapter })
-        return safeFactory.predictSafeAddress(props)
-
-    }
 
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MultisigService } from 'src/app/services/multisig.service';
 
 @Component({
   selector: 'app-queue',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QueueComponent implements OnInit {
 
-  constructor() { }
+  pageSize: number = 10;
+  pageNum: number = 0;
+  @Input() multisigwallet: any;
+  proposals: any;
+  constructor(private multisigServ: MultisigService) {}
 
   ngOnInit(): void {
+    this.multisigServ.getTransactionQueues(this.multisigwallet.address, this.pageSize, this.pageNum).subscribe(
+      (ret: any) => {
+        console.log('ret there we go=', ret);
+        if(ret.success) {
+
+          this.proposals = ret.data;
+          console.log('this.proposals=', this.proposals);
+        }
+      }
+    );
   }
 
 }

@@ -18,6 +18,16 @@ export class MultisigService {
         return this.http.get(url);
     }
 
+    getNonce(address: string) {
+        const url = this.baseUrl + 'multisig/nonce/' + address;
+        return this.http.get(url);
+    }
+
+    getTransactions(address: string, pageSize: number, pageNum: number) {
+        const url = this.baseUrl + 'multisigtransaction/address/' + address + '/' + pageSize + '/' + pageNum;
+        return this.http.get(url);
+    }
+
     getAssets(chain: string, address: string) {
         let balanceEndpoint = 'balance';
         if(chain == 'KANBAN') {

@@ -25,6 +25,7 @@ import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
 
 import { OverflowPipe } from './pipes/overflow.pipe';
 import { TokbPipe } from './pipes/tokb.pipe';
+import { AmountPipe } from './pipes/amount.pipe';
 LOAD_WASM().subscribe((res: any) => console.log('LOAD_WASM', res));
 
 @NgModule({
@@ -44,7 +45,8 @@ LOAD_WASM().subscribe((res: any) => console.log('LOAD_WASM', res));
     QrscannerModalComponent,
     ResizeImageComponent,
     OverflowPipe,
-    TokbPipe
+    TokbPipe,
+    AmountPipe
   ],
   imports: [
     CommonModule,
@@ -71,7 +73,8 @@ LOAD_WASM().subscribe((res: any) => console.log('LOAD_WASM', res));
     UploadMediaComponent,
     ResizeImageComponent,
     OverflowPipe,
-    TokbPipe
+    TokbPipe,
+    AmountPipe
   ]
 })
 export class SharedModule { }
