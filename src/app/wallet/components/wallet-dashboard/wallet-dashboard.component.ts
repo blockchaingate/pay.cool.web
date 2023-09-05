@@ -53,7 +53,7 @@ export class WalletDashboardComponent implements OnInit {
   currentCoin: string;
   transactionHistories: any;
   merchantTransactionHistories: any;
-
+  multisig: any;
   sendCoinParams: any;
 
   addresses: any;
@@ -117,6 +117,14 @@ export class WalletDashboardComponent implements OnInit {
       this.loadWallet();
 
     });
+
+    this.localSt.getItem('multisigwallets').subscribe(
+      {
+        next: (wallets: any) => {
+          const multisigwallet = wallets.items[wallets.currentIndex];
+          this.multisig = multisigwallet;
+        }
+      });
   }
 
   receive() {
@@ -386,7 +394,8 @@ export class WalletDashboardComponent implements OnInit {
   }
 
   multisigWallet() {
-    this.router.navigate(['/wallet/multisig']);
+    const url = this.multisig ? '/wallet/multisig/dashboard' : '/wallet/multisig';
+    this.router.navigate([url]);
   }
 
   onChange(value) {
