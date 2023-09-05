@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-between align-items-center">
         <span>{{transaction.type}}</span>
         <span>{{transaction.memo}}</span>
-        <span>{{transaction.dateCreated | date}}</span>
+        <span>{{transaction.timestamp ? ((transaction.timestamp * 1000) | date) : ''}}</span>
         <a href="{{link()}}" target="_blank">
             <span *ngIf="transaction.status == '0x1'" class="badge badge-success">
                 Success
