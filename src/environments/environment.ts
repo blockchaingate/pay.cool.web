@@ -4,7 +4,7 @@
 import * as Btc from 'bitcoinjs-lib';
 export const environment = {
   env: 'dev',
-  version: '1.0.8',
+  version: '1.0.9',
   production: false,
   EPAY_API: 'http://29597375fx.zicp.vip/paymentApi',
   appid: '5f80c3b09577e8dc2f8db596',
