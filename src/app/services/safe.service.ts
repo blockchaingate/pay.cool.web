@@ -76,7 +76,7 @@ export class SafeService {
                                 gasPrice: '0x' + gasPriceBig.toString(16),
                                 gas: environment.chains[chain].gasLimitToken ? environment.chains[chain].gasLimitToken : environment.chains[chain].gasLimit
                             };
-
+                            console.log('txParam====', txParam);
                             const rawtx = this.web3Serv.getRawTx(chain, privateKey, txParam);
 
 
