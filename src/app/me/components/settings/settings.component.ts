@@ -77,7 +77,6 @@ export class SettingsComponent implements OnInit {
 
     this.settingServ.createOrUpdate(data).subscribe(
       (res: any) => {
-        console.log('res====', res);
       }
     );
 

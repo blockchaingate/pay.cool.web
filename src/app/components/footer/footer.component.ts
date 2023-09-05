@@ -29,19 +29,14 @@ export class FooterComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("Email submitted: " + this.email);
 
     if (!this.isEmailValid(this.email)) {
-      console.log("Invalid email");
       this.emailValid = false;
     } else {
-      console.log("Valid email");
       this.emailValid = true;
       this.subService.addEmail(this.email).subscribe(
         (response) => {
-          console.log(response);
           //print status message
-          console.log("status:" + response["status"]);
           if (response["status"] === 200) {
 
             this.emailSubmitted = true;

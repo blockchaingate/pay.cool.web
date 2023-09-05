@@ -17,11 +17,9 @@ export class QueueComponent implements OnInit {
   ngOnInit(): void {
     this.multisigServ.getTransactionQueues(this.multisigwallet.address, this.pageSize, this.pageNum).subscribe(
       (ret: any) => {
-        console.log('ret there we go=', ret);
         if(ret.success) {
 
           this.proposals = ret.data;
-          console.log('this.proposals=', this.proposals);
         }
       }
     );

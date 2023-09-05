@@ -44,9 +44,7 @@ import { ToastrService } from 'ngx-toastr';
         ); 
 
         this.lockPeriod = Math.floor((this.releaseTime - Math.floor(new Date().getTime() / 1000)) / 60 / 60 / 24) - 1;
-        console.log('lockPeriod=', this.lockPeriod);
-        console.log('this.releaseTime=', this.releaseTime);
-        console.log('Math.floor(new Date().getTime() / 1000)====', Math.floor(new Date().getTime() / 1000));
+
       }
 
       showReleaseTime(releaseTime: any) {
@@ -139,7 +137,6 @@ import { ToastrService } from 'ngx-toastr';
               '0x' + new BigNumber(reward.amount).shiftedBy(18).toString(16)
           ];
 
-          console.log('args===', args);
           const ret = await this.kanbanSmartContractServ.execSmartContract(
               seed, 
               environment.addresses.smartContract.regularLocker2, 
@@ -152,7 +149,6 @@ import { ToastrService } from 'ngx-toastr';
             return 0;
               //this.toastr.error('Sending rewards failed');
           }
-        //console.log('ret for sendlocker===', ret);
       }
 
       close() {

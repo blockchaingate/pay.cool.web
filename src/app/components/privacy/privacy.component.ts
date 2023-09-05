@@ -21,7 +21,6 @@ export class PrivacyComponent {
     } else {
       this.lan = localStorage.getItem('_lan') || 'en';
     }
-    console.log('Privacy this.lan=', this.lan);
 
   }
 }

@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Web3Service } from './web3.service';
 import BigNumber from 'bignumber.js';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+
 @Injectable()
 export class SafeService {
 
@@ -42,7 +42,6 @@ export class SafeService {
                             let signatures = '0x';
                             
                             signaturesArray = signaturesArray.sort((a, b) => a.signer > b.signer ? 1 : -1);
-                            console.log('signaturesArray after sort=', signaturesArray);
                             for(let i = 0; i < signaturesArray.length; i++) {
                                 const signature = signaturesArray[i];
                                 signatures += signature.data.substring(2);
@@ -60,10 +59,8 @@ export class SafeService {
                                 signatures
                             ];
                 
-                            console.log('args for execTransaction=', args);
                             const abihex = this.web3Serv.getGeneralFunctionABI(abi, args);
                 
-                            console.log('abihex====', abihex);
                             let gasPriceBig = new BigNumber(environment.chains[chain].gasPrice);
                             if(chain !== 'KANBAN') {
                                 gasPriceBig = gasPriceBig.shiftedBy(9)
@@ -76,7 +73,6 @@ export class SafeService {
                                 gasPrice: '0x' + gasPriceBig.toString(16),
                                 gas: environment.chains[chain].gasLimitToken ? environment.chains[chain].gasLimitToken : environment.chains[chain].gasLimit
                             };
-                            console.log('txParam====', txParam);
                             const rawtx = this.web3Serv.getRawTx(chain, privateKey, txParam);
 
 
@@ -111,18 +107,6 @@ export class SafeService {
                 }
             );
 
-            /*
-            const txParams = {
-                nonce: nonce,
-                gasPrice: gasPriceFinal,
-                gasLimit: gasLimit,
-                to: toAddress,
-                value: '0x' + amountNum.toString(16)
-            };
-
-            // console.log('txParams=', txParams);
-            txHex = await this.web3Serv.signTxWithPrivateKey(txParams, keyPair);
-            */
 
         });
         return observable;
@@ -161,10 +145,8 @@ export class SafeService {
 
                         let signature = this.web3Serv.signMessageWithPrivateKeyBuffer(transactionHash, privateKey).signature;
 
-                        //if(chain != 'BNB') {
                         signature = this.web3Serv.adjustVInSignature('eth_sign', signature, transactionHash, from)
-                        //}
-                        console.log('signature in hree=', signature);
+
                         observer.next({transaction, transactionHash, signature: signature});
                     } else {
                         observer.error('cannot get transaction hash');

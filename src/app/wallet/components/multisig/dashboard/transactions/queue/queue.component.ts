@@ -19,7 +19,6 @@ export class QueueComponent implements OnInit{
       (ret: any) => {
         if(ret.success) {
           this.proposals = ret.data;
-          console.log('this.proposals=', this.proposals);
         }
       }
     );

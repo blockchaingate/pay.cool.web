@@ -14,7 +14,6 @@ export class LeftComponent implements OnInit {
   }
 
   onBack() {
-    //console.log('back');
     this.page = 'sidebar';
   }
 

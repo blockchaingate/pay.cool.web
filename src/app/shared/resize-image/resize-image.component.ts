@@ -24,7 +24,6 @@ export class ResizeImageComponent implements OnInit {
   constructor(private uploadService: UploadService) { }
 
   ngOnInit(): void {
-    console.log('thissss.images=', this.images);
     if (!this.images || (this.images.length == 0)) {
       this.images = [];
     } else {
@@ -41,8 +40,7 @@ export class ResizeImageComponent implements OnInit {
   }
   
   fileChangeEvent(event: any): void {
-    // file changed
-    console.log("fileChangeEvent");
+
 
     this.imageChangedEvent = event;
   }
@@ -52,19 +50,16 @@ export class ResizeImageComponent implements OnInit {
   }
 
   imageLoaded() {
-    // show cropper
-    console.log("imageLoaded");
+
     this.displayUpload = true;
   }
 
   cropperReady() {
-    // cropper ready
-    console.log("cropperReady");
+
   }
 
   loadImageFailed() {
-    // show message
-    console.log("loadImageFailed");
+
   }
 
   dataURLtoFile(dataurl, filename) {
@@ -96,7 +91,6 @@ export class ResizeImageComponent implements OnInit {
     
     this.uploadService.applyPresignedUrl(fileName, fileType, DocType.PRODUCT, this.productId).subscribe(
       (ret: any) => {
-        console.log('retttt=', ret);
         const signedUrl = ret.signed_request;
         this.url = ret.url;
         const file = this.dataURLtoFile(this.croppedImage, fileName);
@@ -112,7 +106,6 @@ export class ResizeImageComponent implements OnInit {
             this.uploadSuccess = true;
           },
           err => { 
-            console.log('err=', err);
             this.errMsg = 'Error in uploading.'; });
       },
       error => this.errMsg = 'Error happened during apply presigned url.'

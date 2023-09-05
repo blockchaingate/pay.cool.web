@@ -84,7 +84,6 @@ export class StarService {
          defaultBlock: block
       }
 
-      console.log('data====', data);
       return this.http.post(url, data);
    }
 

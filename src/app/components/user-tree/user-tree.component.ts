@@ -60,7 +60,6 @@ export class UserTreeComponent implements OnInit {
         } else {
           this.localSt.getItem('7star_ref').subscribe(
             (refCode: string) => {
-              console.log('refCode===',refCode);
               if(refCode) {
                 this.refCode = refCode;
                 this.refCodeComeIn = true;
@@ -94,7 +93,6 @@ export class UserTreeComponent implements OnInit {
     this.user = this.walletAddress;
     this.userreferralServ.checkAddress(this.walletAddress).subscribe(
       (res: any) => {
-        console.log('res in checkAddress=', res);
         if(res && res.isValid) {
           this.myReferralUrl = window.location.href + '?ref=' + this.walletAddress;
           
@@ -148,7 +146,6 @@ export class UserTreeComponent implements OnInit {
 
   joinProcessDo(seed) {
     if(!this.refCode) {
-      console.log('no refCode');
       return;
     }
     const abi = {

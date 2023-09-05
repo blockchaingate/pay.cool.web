@@ -34,7 +34,7 @@ export class IddockService {
 
     const recordAddress = await this.kanbanServ.getRecordAddress();
     const nonce = await this.kanbanServ.getTransactionCount(this.utilServ.fabToExgAddress(keyPairsKanban.address));
-    console.log('nonce for getAddTxhex=', nonce);
+
     const txKanbanHex = await this.web3Serv.signAbiHexWithPrivateKey(abiHex, keyPairsKanban, recordAddress, nonce, 0, null);
     return txKanbanHex;
  
@@ -47,7 +47,6 @@ export class IddockService {
     
     const abiHex = this.web3Serv.getUpdateIDABI(id, hash);
 
-    console.log('abiHex===', abiHex);
     const recordAddress = await this.kanbanServ.getRecordAddress();
     const nonce = await this.kanbanServ.getTransactionCount(this.utilServ.fabToExgAddress(keyPairsKanban.address));
     const txKanbanHex = await this.web3Serv.signAbiHexWithPrivateKey(abiHex, keyPairsKanban, recordAddress, nonce, 0, null);
@@ -62,7 +61,6 @@ export class IddockService {
     
     const abiHex = this.web3Serv.getUpdateIDABI(id, hash);
 
-    console.log('abiHex===', abiHex);
     const recordAddress = await this.kanbanServ.getRecordAddress();
     const txKanbanHex = await this.web3Serv.signAbiHexWithPrivateKey(abiHex, keyPairsKanban, recordAddress, nonce, 0, null);
     return txKanbanHex;
@@ -109,7 +107,7 @@ export class IddockService {
       type = 'people';
     }
     const url = 'iddock/getDetail/' + type + '/' + id;
-    console.log('url=', url);
+
     return this.http.get(url, false);
   }
 
@@ -123,7 +121,7 @@ export class IddockService {
 
   async getNonce(type: string, id: string) {
     const url = 'iddock/getNonce/' + type + '/' + id;
-    console.log('url for getNonce=', url);
+
     let ret: any = await this.http.get(url, false).toPromise();
     if(ret && ret.ok) {
       return ret._body;

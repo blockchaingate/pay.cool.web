@@ -21,7 +21,6 @@ export class IpolistComponent implements OnInit {
 
   ngOnInit(): void {
     const href = this.router.url;
-    console.log('href==', href);
     this.isAdmin = (href == '/reissue/ipo');
     this.totalAmount = 0;
     this.totalLp = 0;

@@ -16,7 +16,6 @@ export class WalletGuardService implements CanActivate {
     return this.localSt.getItem('ecomwallets').pipe(
       take(1),
       map((wallets: any) => {
-        console.log('wallets==', wallets);
         if(!wallets || !wallets.items || (wallets.items.length == 0)) {
           this.router.navigate(['/wallet']);
           return false;

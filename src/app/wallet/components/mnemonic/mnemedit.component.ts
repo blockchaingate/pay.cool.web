@@ -38,7 +38,6 @@ export class MnemeditComponent {
                 };
             }
         );
-        console.log('this.mnemonicShuffled=', this.mnemonicShuffled);
     }
 
     shuffle(array) {

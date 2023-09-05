@@ -16,7 +16,7 @@ export class CreateComponent implements OnInit {
   step: number = 1;
   modalRef: BsModalRef;
   contractAddress: string;
-  name: string = 'test';
+  name: string = '';
   
   address: string;
   txid: string;
@@ -128,7 +128,6 @@ export class CreateComponent implements OnInit {
           return exgAddress;
         });
       } catch(e) {
-        console.log('e==', e);
         return this.toastrServ.error('Invalid addresses');
       }
 

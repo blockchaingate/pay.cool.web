@@ -17,8 +17,6 @@ export class NewFeaturesComponent implements OnInit {
   
   ngOnInit(): void {
 
-    console.log("this.data.features");
-    console.log(this.data.features);
     this.featuresList = this.data.features;
   }
 }

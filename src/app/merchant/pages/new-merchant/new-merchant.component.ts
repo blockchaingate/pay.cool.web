@@ -92,10 +92,8 @@ export class NewMerchantComponent implements OnInit {
     }
     this.storeServ.getStoresByAddress(this.walletAddress).subscribe(
       (ret: any) => {
-          console.log('rettt for stores=', ret);
         if(ret && ret.ok) {
           const store = ret._body[0];
-          console.log('store==', store);
           if(store.name) {
             this.name = store.name.en;
             this.nameChinese = store.name.sc;
@@ -259,7 +257,6 @@ export class NewMerchantComponent implements OnInit {
         if(ret && ret._id) {
           this.kanbanSmartContractServ.execSmartContract(seed, address, abi, args).then(
             (ret: any) => {
-              console.log('ret for exec smart contract:', ret);
               if(ret && ret.success && ret._body && ret._body.status == '0x1') {
                 this.toastr.info('Merchant was created successfully');
                 //this.clearForm();

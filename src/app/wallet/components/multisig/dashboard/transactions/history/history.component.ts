@@ -22,7 +22,6 @@ export class HistoryComponent implements OnInit{
         next: (ret: any) => {
           if(ret.success) {
             this.transactions = ret.data;
-            console.log('this.transactions===', this.transactions);
           }
         },
         error: (error: any) => {

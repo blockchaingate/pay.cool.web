@@ -26,7 +26,7 @@ import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
 import { OverflowPipe } from './pipes/overflow.pipe';
 import { TokbPipe } from './pipes/tokb.pipe';
 import { AmountPipe } from './pipes/amount.pipe';
-LOAD_WASM().subscribe((res: any) => console.log('LOAD_WASM', res));
+LOAD_WASM().subscribe((res: any) => {});
 
 @NgModule({
   declarations: [

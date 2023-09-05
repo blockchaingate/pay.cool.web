@@ -54,7 +54,6 @@ export class StoreApproveComponent implements OnInit {
 
             
             this.proxyAddress = environment.addresses.smartContract.sevenStarProxy2;
-            console.log('proxyAddress==', this.proxyAddress);
             const abi = this.web3Serv.getGeneralFunctionABI(
               {
                 "constant": true,
@@ -173,7 +172,7 @@ async approveDo(seed: Buffer) {
           "type": "function"
         };
         const ret4 = await this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.merchantCredit2, abiRegisterMerchant, argsAddContract);
-        console.log('ret4====', ret4);
+
         if(ret4 && ret4.ok && ret4._body && ret4._body.status == '0x1') {
           const data = {status: 1};
           const keyPair = this.coinServ.getKeyPairs('FAB', seed, 0, 0, 'b');

@@ -73,7 +73,6 @@ export class HomeComponent implements OnInit {
 
     // this.y = 1;
     this.total = this.x * this.y;
-    console.log("Total: " + this.total);
   }
 
   runAnime() {

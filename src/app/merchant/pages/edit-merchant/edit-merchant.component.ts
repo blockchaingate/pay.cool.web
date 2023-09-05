@@ -93,7 +93,6 @@ export class EditMerchantComponent implements OnInit {
             this.images = [store.image];
           }
           
-          console.log('this.imagesss=', this.images);
           this.id = store.id;
           this.businessAddress = store.businessAddress.en;
           this.website = store.website;
@@ -196,7 +195,6 @@ export class EditMerchantComponent implements OnInit {
       hideOnStore: this.hideOnStore
     };
 
-    console.log('data to be=', data);
     const keyPair = this.coinServ.getKeyPairs('FAB', seed, 0, 0, 'b');
     const privateKey = keyPair.privateKeyBuffer.privateKey;
     const sig = this.kanbanServ.signJsonData(privateKey, data);

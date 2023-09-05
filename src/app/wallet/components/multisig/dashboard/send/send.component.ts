@@ -197,8 +197,6 @@ export class SendComponent implements OnInit{
           this.multisigServ.createProposal(body).subscribe(
             {next: (ret: any) => {
               if(ret.success) {
-                const data = ret.data;
-                console.log('data==', data);
                 this.toastServ.success('Transaction was added to queue successfully.');
                 this.router.navigate(['/wallet/multisig/dashboard/assets']);
               } else {

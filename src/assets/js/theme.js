@@ -331,38 +331,6 @@
         }
 
 
-        //  // ------------------------------ Language Switcher
-        //  var plang = $('#polyglotLanguageSwitcher');
-        //  if (plang.length) {
-        //       plang.polyglotLanguageSwitcher({
-        //         effect: 'fade',
-        //                 testMode: false,
-        //                 openMode:'hover',
-        //                 onChange: function(evt){
-        //                     console.log("lang: ", evt.selectedItem);
-        //                     // alert("The selected language is: "+evt.selectedItem);
-        //                 }
-        //               //      ,afterLoad: function(evt){
-        //               //          alert("The selected language has been loaded");
-        //               //      },
-        //               //      beforeOpen: function(evt){
-        //               //          alert("before open");
-        //               //      },
-        //               //      afterOpen: function(evt){
-        //               //          alert("after open");
-        //               //      },
-        //               //      beforeClose: function(evt){
-        //               //          alert("before close");
-        //               //      },
-        //               //      afterClose: function(evt){
-        //               //          alert("after close");
-        //               //      }
-        //       });
-        //   };
-
-
-
-
 
 
 

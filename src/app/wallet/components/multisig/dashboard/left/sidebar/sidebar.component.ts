@@ -17,7 +17,6 @@ export class SidebarComponent implements OnInit{
       this.wallets = wallets;
       const multisigwallets = wallets.items;
       this.multisigwallets = multisigwallets;
-      console.log('multisigwallets===', multisigwallets);
     }});
   }
   back() {
@@ -25,7 +24,6 @@ export class SidebarComponent implements OnInit{
   }
 
   changeWallet(index: number) {
-    console.log('wallets===', this.wallets);
     this.wallets.currentIndex = index;
     this.localSt.setItem('multisigwallets', this.wallets).subscribe( () => {
       this.back();

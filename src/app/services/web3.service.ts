@@ -230,7 +230,6 @@ export class Web3Service {
     };  
     const params = ['0x' + sequenceID, hashData];
 
-    console.log('params=', params);
     const abiHex = this.getGeneralFunctionABI(func, params);
     return abiHex;
   }  
@@ -260,7 +259,6 @@ export class Web3Service {
     };  
 
     const params = ['0x' + sequenceID, newOwner];
-    console.log('params for getChangeOwnerABI=', params);
     const abiHex = this.getGeneralFunctionABI(func, params);
     return abiHex;
   }  
@@ -289,7 +287,6 @@ export class Web3Service {
     };  
     const params = [web3.utils.asciiToHex(sequence), hashData];
 
-    console.log('params=', params);
     const abiHex = this.getGeneralFunctionABI(func, params);
     return abiHex;
   }
@@ -310,10 +307,7 @@ export class Web3Service {
         gasLimit = options.gasLimit;
       }
     }
-    // console.log('abiHex after', abiHex);
 
-    console.log('gasPrice=', gasPrice);
-    console.log('gasLimit=', gasLimit);
     const txObject = {
       to: address,
       nonce: nonce,
@@ -346,73 +340,22 @@ export class Web3Service {
     txhex = '0x' + serializedTx.toString('hex');
     return txhex;
 
-    /*
-    const web3 = this.getWeb3Provider();
-
-    const signMess = await web3.eth.accounts.signTransaction(txObject, privateKey) as EthTransactionObj;
-    console.log('signMess in signMessageWithPrivateKey=');
-    console.log(signMess);
-    return signMess.rawTransaction;   
-    */
   }
 
   getWithdrawFuncABI(coinType: number, amount: BigNumber, destAddress: string) {
 
-    // let abiHex = '3a5b6c70';
-
-    /*
-    const web3 = this.getWeb3Provider();
-    const func: any = {
-      'constant': false,
-      'inputs': [
-        {
-          'name': '_coinType',
-          'type': 'uint32'
-        },
-        {
-          'name': '_value',
-          'type': 'uint256'
-        },
-        {
-          'name': '',
-          'type': 'bytes32'
-        }
-      ],
-      'name': 'withdraw',
-      'outputs': [
-        {
-          'name': 'success',
-          'type': 'bool'
-        }
-      ],
-      'payable': false,
-      'stateMutability': 'nonpayable',
-      'type': 'function'
-    };
-    let abiHex = web3.eth.abi.encodeFunctionSignature(func).substring(2);
-
-    */
-
     let abiHex = '3295d51e';
-    // console.log('abiHex there we go:' + abiHex);  
     abiHex += this.utilServ.fixedLengh(coinType.toString(16), 64);
-    // console.log('abiHex1=' + abiHex);
+
 
     const amountHex = amount.toString(16);
-    // console.log('amount=' + amount);
-    // console.log('amountHex=' + amountHex);
     abiHex += this.utilServ.fixedLengh(amountHex, 64);
-    // console.log('abiHex2=' + abiHex);
     abiHex += this.utilServ.fixedLengh(this.utilServ.stripHexPrefix(destAddress), 64);
-    // console.log('abiHex final:' + abiHex);    
     return abiHex;
   }
 
   getDepositFuncABI(coinType: number, txHash: string, amount: BigNumber, addressInKanban: string, signedMessage: Signature) {
 
-    // console.log('params for getDepositFuncABI:');
-    // console.log('coinType=' + coinType + ',txHash=' + txHash + ',amount=' + amount + ',addressInKanban=' + addressInKanban);
-    console.log('signedMessage=', signedMessage);
     const web3 = this.getWeb3Provider();
     const func: any = {
       'constant': false,
@@ -453,14 +396,12 @@ export class Web3Service {
       'stateMutability': 'nonpayable',
       'type': 'function'
     };
-    //let abiHex = this.utilServ.stripHexPrefix(web3.eth.abi.encodeFunctionSignature(func));
-    // console.log('abiHex for addDeposit=', abiHex);
+
     let abiHex = '379eb862';
     abiHex += this.utilServ.stripHexPrefix(signedMessage.v);
     abiHex += this.utilServ.fixedLengh(coinType.toString(16), 62);
     abiHex += this.utilServ.stripHexPrefix(txHash);
     const amountHex = amount.toString(16);
-    console.log('amountHex=', this.utilServ.fixedLengh(amountHex, 64));
     abiHex += this.utilServ.fixedLengh(amountHex, 64);
     abiHex += this.utilServ.fixedLengh(this.utilServ.stripHexPrefix(addressInKanban), 64);
     abiHex += this.utilServ.stripHexPrefix(signedMessage.r);
@@ -701,19 +642,7 @@ sameString(str1: string, str2: string): boolean {
 }
 
     async signTxWithPrivateKey(txParams: any, keyPair: any) {
-        /*
-        const privateKey = `0x${keyPair.privateKey.toString('hex')}`;
-    
-        console.log('in signTxWithPrivateKey');
-        const web3 = this.getWeb3Provider();
-        console.log('in111');
-        console.log(txParams);
-        console.log(privateKey);
-        const signMess = await web3.eth.accounts.signTransaction(txParams, privateKey) as EthTransactionObj;
-        console.log('in222');
-        console.log(signMess);
-        return signMess.rawTransaction;
-        */
+
         const privKey = keyPair.privateKeyBuffer;
 
         const EthereumTx = Eth.Transaction;

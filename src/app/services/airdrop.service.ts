@@ -18,7 +18,7 @@ export class AirdropService {
             answer: answer
         };
         const url = 'airdrop/answerQuestionair';
-        console.log('urllll=', url);
+
         return this.http.postRaw(environment.endpoints.blockchaingate + url, data);       
     }    
 }

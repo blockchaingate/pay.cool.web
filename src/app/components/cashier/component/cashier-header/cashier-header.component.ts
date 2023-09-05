@@ -20,8 +20,7 @@ export class CashierHeaderComponent implements OnInit {
   constructor(
     private lanServ: LanguageService
   ) {
-    //  console.log("CashierHeaderComponent constructor");
-    //  console.log("lanServ.selectedLan: " + lanServ.selectedLan);
+
     
     this.selectedLan = lanServ.selectedLan;
   }

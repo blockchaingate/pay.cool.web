@@ -60,7 +60,6 @@ export class AdminComponent implements OnInit {
       this.walletAdd = this.wallet.addresses.filter(c => c.name === 'FAB')[0].address;
       this.userReferralServ.isContractOwner(this.walletAdd).subscribe(
         (res: any) => {
-          console.log('res==', res);
           this.isContractOwner = res.isContractOwner;
         }
       );      
@@ -71,7 +70,6 @@ export class AdminComponent implements OnInit {
   async execSmartContract(seed, abi, args) {
     const abihex = this.web3Serv.getGeneralFunctionABI(abi, 
       args);
-    console.log('abihex=', abihex);
 
     const ret = await this.kanbanSmartContractServ.execSmartContractAbiHex(seed, this.smartContractAddr, abihex);
     if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
@@ -94,7 +92,6 @@ export class AdminComponent implements OnInit {
     this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
 
     this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
-      //console.log('seed===', seed);
 
       this.execSmartContract(seed, abi, args);
     }); 
@@ -137,7 +134,6 @@ export class AdminComponent implements OnInit {
         this.tranformAddress(this.referal),
         this.status
     ];
-    console.log('args for createAccountByAdmin====', args);
     this.doWithAbiArgs(abi, args);
   }
 

@@ -250,23 +250,16 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.myForm.value);
 
-    console.log("email: " + this.myForm.value.email);
     // check if form is valid
     if (this.myForm.valid) {
 
-      // send data to server
-      console.log('form is valid');
 
       this.subService.addEmail(
         this.myForm.value.email,
         JSON.stringify(this.myForm.value)
       ).subscribe(
         (response) => {
-          console.log(response);
-          //print status message
-          console.log("status:" + response["status"]);
           if (response["status"] === 200) {
 
             this.submitted = true;
@@ -277,7 +270,6 @@ export class ContactComponent implements OnInit {
       );
 
     } else {
-      console.log('form is invalid');
     }
 
   }

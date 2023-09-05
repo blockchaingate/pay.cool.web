@@ -27,7 +27,6 @@ export class StoreService {
 
   getStore(id: string) {
     const url = 'stores/' + id;
-    console.log('urllll for getStore=', url);
     return this.http.get(url, false);
   }
 

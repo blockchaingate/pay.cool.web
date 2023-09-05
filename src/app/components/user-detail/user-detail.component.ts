@@ -113,7 +113,6 @@ export class UserDetailComponent implements OnInit {
   showIcoRwards(icoid) {
     this.payRewardServ.getAllIcoRewardsById(icoid).subscribe(
       (rewards: any) => {
-        console.log('rewards===', rewards);
         const initialState = {
           rewards
         };          
@@ -139,7 +138,6 @@ export class UserDetailComponent implements OnInit {
   showRwards(txid) {
     this.payRewardServ.getAllRewardsByTxid(txid).subscribe(
       (rewards: any) => {
-        console.log('rewards===', rewards);
         const initialState = {
           rewards
         };          

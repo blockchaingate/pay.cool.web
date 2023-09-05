@@ -93,7 +93,7 @@ export class StarRewardsComponent implements OnInit{
 
     redeemable(reward) {
       const timestamp = Math.floor(Date.now() / 1000);
-      //console.log();
+
       if(reward.status == 1 && reward.releaseTime < timestamp) {
         return true;
       }
@@ -115,10 +115,7 @@ export class StarRewardsComponent implements OnInit{
     }
 
     async redeemDo(seed: Buffer) {
-      console.log('this.reward===', this.reward);
       let address = this.reward.address;
-      console.log('address===', address);
-      //address = '0x3a3bc5a481892291720de88c17e1b41ae6a6a3e1';
       let abi;
       let args;
 

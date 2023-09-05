@@ -42,7 +42,6 @@ export class MembershipComponent implements OnInit {
       this.walletAdd = this.wallet.addresses.filter(c => c.name === 'FAB')[0].address;
       this.userreferalServ.checkAddress(this.walletAdd).subscribe(
         (ret: any) => {
-          console.log('ret===', ret);
           this.isValidMember = ret.isValid;
         }
       );
@@ -59,7 +58,7 @@ export class MembershipComponent implements OnInit {
     this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
 
     this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
-      //console.log('seed===', seed);
+
       const abihex = this.web3Serv.getGeneralFunctionABI(
         {
           "constant": false,
@@ -79,7 +78,7 @@ export class MembershipComponent implements OnInit {
         }, [this.utilServ.fabToExgAddress(this.referral)]
       );
       const ret = await this.kanbanSmartContractServ.execSmartContractAbiHex(seed, this.to, abihex);
-      console.log('ret==', ret);
+
     });    
   }
 }

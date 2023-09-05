@@ -73,7 +73,6 @@ export class PaycoolComponent implements OnInit{
                   if(this.id) {
                     this.starServ.getPaycoolRewardInfo(this.id, walletAddress).subscribe(
                       (ret: any) => {
-                        console.log('ret from here=', ret);
                         this.order = ret;
                       }
                     );
@@ -88,7 +87,6 @@ export class PaycoolComponent implements OnInit{
       this.payType = type;
       this.starServ.getPaycoolRewardInfoWithPayType(this.id, this.walletAddress, this.payType).subscribe(
         (ret: any) => {
-          console.log('ret from here=', ret);
           this.order = ret;
         }
       );
@@ -124,7 +122,6 @@ export class PaycoolComponent implements OnInit{
     }
 
     async submitDo(seed: Buffer) {
-      console.log('submitDo start');
       let abi;
       let args;
       let to;

@@ -29,7 +29,6 @@ export class ReceiveCoinModal {
     
     dlDataUrlBin() {
         const y = document.getElementById('address_qr_code').getElementsByTagName('canvas')[0];
-        //console.log('y.src=' + y.src);
         if(y) {
             var link = y.toDataURL("image/png");
             this.link = link;   

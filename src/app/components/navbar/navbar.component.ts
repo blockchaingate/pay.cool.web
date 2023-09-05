@@ -55,8 +55,7 @@ export class NavbarComponent implements OnInit {
     // this.langFromUrl = this.href.split('/')[1];
 
     [, this.langFromUrl, ...this.restUrl] = this.href.split('/');
-    // console.log('langFromUrl=', this.langFromUrl);
-    // console.log('this.restUrl=', this.restUrl.join('/'));
+
     
   }
 
@@ -93,7 +92,6 @@ export class NavbarComponent implements OnInit {
           const subArray = transactionHistory.reverse().slice(0, 5);
           for (let i = 0; i < subArray.length; i++) {
             const item = subArray[i];
-            // console.log('item.status=', item.status);
             if (item.status === 'pending') {
               this.pendingtransactions.push(item);
               this.timerServ.checkTransactionStatus(item, 60);
@@ -118,7 +116,6 @@ export class NavbarComponent implements OnInit {
 
   ngAfterViewInit() {
     this.href = this.router.url;
-    console.log(this.router.url);
 
     $("#dropdown").click(function () {
       $(".dropdown-menu").toggle();
@@ -127,63 +124,16 @@ export class NavbarComponent implements OnInit {
     $(".dropdown-item").click(function () {
       $(".dropdown-menu").toggle();
     });
-    // setTimeout(function () {
-    //   const elements = this.elementRef.nativeElement.querySelectorAll("#polyglotLanguageSwitcher li");
 
-    //   elements.forEach(element => {
-    //     this.renderer.listen(element, "click", event => {
-    //       console.log("Waoo!");
-
-    //     });
-    //   });
-    // }, 1000)
-
-    // // $("h1").css("background-color", "yellow");
-    // // $("h1").click(function(){
-    // //   console.log("what happened?");
-
-    // // });
-    // // setTimeout(function(){
-    // //   $(".langOption").click(function(){
-    // //     console.log("select lang: ", $(this).text());
-    // //   });
-    // // },1000);
-    // var plang = $('#polyglotLanguageSwitcher');
-    // if (plang.length) {
-    //   plang.polyglotLanguageSwitcher({
-    //     effect: 'fade',
-    //     testMode: false,
-    //     // openMode:'hover',
-    //     onChange: function (evt) {
-    //       console.log("lang: ", evt.selectedItem);
-    //       this.tester();
-    //       // if (evt.selectedItem == 'en') {
-    //       //   this.onSelectLan(this.languages[0]);
-    //       // } else if (evt.selectedItem == 'sc') {
-    //       //   this.onSelectLan(this.languages[1]);
-    //       // } else if (evt.selectedItem == 'tc') {
-    //       //   this.onSelectLan(this.languages[2]);
-    //       // }
-
-    //     }
-    //   });
-    // };
   }
 
 
   tester() {
-    console.log("this is a tester!");
 
   }
 
   setLan() {
 
-    // if (this.langFromUrl != null && this.langFromUrl != "") {
-    //   // console.log("this.langFromUrl: ", this.langFromUrl);
-
-    // }else{
-    //   // console.log("this.langFromUrl: ", this.langFromUrl);
-    // }
 
     const storedLan = this.langFromUrl != ""? this.langFromUrl:localStorage.getItem('_lan');
     if (storedLan) {

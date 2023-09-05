@@ -38,7 +38,6 @@ export class MerchantPaymentsComponent implements OnInit {
           this.chargeServ.getChargesByMerchant(walletAddress).subscribe(
             (payments) => {
               this.payments = payments;
-              console.log('paymentsddd=', payments);
             }
           );
         }
@@ -91,7 +90,6 @@ export class MerchantPaymentsComponent implements OnInit {
       return;
     }
     const params = this.payment.params;
-    console.log('params==', params);
 
     let ret = await this.kanbanSmartContractServ.execSmartContractAbiHex(seed, params[0].to, params[0].data);
     if(ret && ret.success && ret._body && ret._body.status == '0x1') {

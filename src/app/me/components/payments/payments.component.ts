@@ -58,7 +58,6 @@ export class PaymentsComponent implements OnInit {
   showRwards(txid) {
     this.payRewardServ.getAllRewardsByTxid(txid).subscribe(
       (rewards: any) => {
-        console.log('rewards===', rewards);
         const initialState = {
           rewards
         };          

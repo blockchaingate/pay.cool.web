@@ -55,7 +55,6 @@ export class MerchantApproveComponent implements OnInit {
             this.nodeId = ret.merchantNodeId;
           }
           
-          console.log('this.merchant====', this.merchant);
         }
       );
     }
@@ -163,14 +162,12 @@ export class MerchantApproveComponent implements OnInit {
         }
       },
       (error: any) => {
-        console.log('error=', error);
         this.toastr.error(error.error.error);
       }
     );
   }
 
   delete() {
-    console.log('delete merchant for ', );
 
     const initialState = {
       pwdHash: this.wallet.pwdHash,
@@ -208,7 +205,6 @@ export class MerchantApproveComponent implements OnInit {
         }
       },
       (error: any) => {
-        console.log('error=', error);
         this.toastr.error(error.error.error);
       }
     );

@@ -162,7 +162,6 @@ export class FeeDistributionUpdateRewardPercentagesComponent implements OnInit {
       this.percentage13,
       this.percentage14
     ], 10000];
-    console.log('args for updateRewardPercent==', args);
     const ret = await this.kanbanSmartContractServ.execSmartContract(seed, this.to, abi, args);
     if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
       this.toastr.success('reward percentages was updated successfully');

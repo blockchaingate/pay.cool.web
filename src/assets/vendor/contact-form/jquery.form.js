@@ -1266,7 +1266,7 @@ function log() {
         return;
     }
     var msg = '[jquery.form] ' + Array.prototype.join.call(arguments,'');
-    if (window.console && window.console.log) {
+    if (window.console) {
         window.console.log(msg);
     }
     else if (window.opera && window.opera.postError) {

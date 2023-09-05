@@ -98,7 +98,6 @@ export class KanbanSmartContractService {
     }
     async getExecSmartContractHex(seed: Buffer, smartContractAddress: string, abi: any, args: any) {
       const kanbanData = this.formExecKanbanSmartContractABI(abi, args);
-      console.log('kanbanData=', kanbanData);
       return await this.getExecSmartContractAbiHex(seed, smartContractAddress, kanbanData);
 
     }
@@ -173,6 +172,5 @@ export class KanbanSmartContractService {
     
         const res = await this.kanbanServ.sendRawSignedTransactionPromise(txhex);
         return res;
-        //console.log('res==', res);
     }    
 }

@@ -115,7 +115,6 @@ export class OrderHistoryComponent implements OnInit {
 
         this.starServ.getOrderVersion(order._id).subscribe(
           (ret: any) => {
-            console.log('retfttttt=', ret);
             if(ret && ret.ok) {
               const version = ret._body.version;
               if(!version) { //version 0
@@ -126,10 +125,8 @@ export class OrderHistoryComponent implements OnInit {
               if(version == 2){ //version 2
 
                 const realOrderId = order.id.substring(2, 26);
-                console.log('realOrderId=', realOrderId);
                 this.orderServ.get(realOrderId).subscribe(
                   (ret: any) => {
-                    console.log('ret in get(realOrderId)=', ret);
                     if(ret && ret.ok) {
                       this.realOrder = ret._body;
                       const initialState = {
@@ -139,7 +136,7 @@ export class OrderHistoryComponent implements OnInit {
                       
                       this.modalRef = this.modalService.show(RequestRefundComponent, { initialState });
                       this.modalRef.content.onClose.subscribe( async (requestRefundData: any) => {
-                        console.log('requestRefundData===', requestRefundData);
+
                         this.op = 'requestRefundV2';
                         this.order = order;
                         this.requestRefundData = requestRefundData;
@@ -187,7 +184,7 @@ export class OrderHistoryComponent implements OnInit {
                       
                       this.modalRef = this.modalService.show(RefundComponent, { initialState });
                       this.modalRef.content.onClose.subscribe( async (refundData: any) => {
-                        console.log('refundData===', refundData);
+
                         this.op = 'refundV2';
                         if(!order.merchantGet) {
                           this.op = 'refundCreditV2';
@@ -248,7 +245,6 @@ export class OrderHistoryComponent implements OnInit {
         const abiData = this.web3Serv.getGeneralFunctionABI(abi, args);
         this.kanbanServ.kanbanCall(smartContractAddress, abiData).subscribe(
           (ret: any) => {
-            console.log('ret for kanbanCall=', ret);
           }
         );
       }
@@ -290,7 +286,6 @@ export class OrderHistoryComponent implements OnInit {
         const realOrderId = this.order.id.substring(2, 26);
         this.orderServ.getRefund(realOrderId).subscribe(
           async (retRefund: any) => {
-            console.log('ret for getRefund ==', retRefund);
             
             if(retRefund && retRefund.ok) {
               const body = retRefund._body;
@@ -483,8 +478,6 @@ export class OrderHistoryComponent implements OnInit {
                 ];
               }
 
-              console.log('abi====', abi);
-              console.log('args====', args);
               const ret = await this.kanbanSmartContractServ.execSmartContract(seed, this.order.address, abi, args);
 
               if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
@@ -507,7 +500,6 @@ export class OrderHistoryComponent implements OnInit {
         const realOrderId = this.order.id.substring(2, 26);
         this.orderServ.getRefund(realOrderId).subscribe(
           async (retRefund: any) => {
-            console.log('ret for getRefund ==', retRefund);
             
             if(retRefund && retRefund.ok) {
               const body = retRefund._body;

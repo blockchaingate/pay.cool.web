@@ -139,7 +139,6 @@ export class AllRewardDetailsComponent implements OnInit {
         return 0;
           //this.toastr.error('Sending rewards failed');
       }
-    //console.log('ret for sendlocker===', ret);
   }
 
 }

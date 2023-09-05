@@ -78,40 +78,7 @@ export class StoreComponent implements OnInit {
     private storeServ: StoreService) {
   }
 
-  /*
-  copyToken() {
-    this.utilServ.copy(this.token);
-  }
-  
-  showToken() {
-    console.log('show me');
-    const initialState = {
-      pwdHash: this.wallet.pwdHash,
-      encryptedSeed: this.wallet.encryptedSeed
-    };          
-    if(!this.wallet || !this.wallet.pwdHash) {
-      this.toastr.info('no wallet');
-      //this.router.navigate(['/wallet']);
-      return;
-    }
-    this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
 
-    this.modalRef.content.onClose.subscribe( (seed: Buffer) => {
-      this.showTokenDo(seed);
-    });
-  }
-
-  showTokenDo(seed: Buffer) {
-    const data = {
-      application: 'Pay.cool'
-    };
-
-    const keyPair = this.coinServ.getKeyPairs('FAB', seed, 0, 0, 'b');
-    const privateKey = keyPair.privateKeyBuffer.privateKey;
-    const sig = this.kanbanServ.signJsonData(privateKey, data);
-    this.token = sig.signature;
-  }
-  */
   initStore(store) {
     
     
@@ -317,7 +284,6 @@ export class StoreComponent implements OnInit {
         '0x1'
       ];
 
-      console.log('args2====', args2);
       const resp2: any = await this.kanbanSmartContractServ.deploySmartContract(seed, feeChargerABI, feeChargerBytecode, args2);
   
       if(resp2 && resp2.ok && resp2._body && resp2._body.status == '0x1') { 
@@ -348,7 +314,6 @@ export class StoreComponent implements OnInit {
                   data['sig'] = sig.signature;  
                   this.storeServ.update(this.id, data).subscribe(
                     (res: any) => {
-                      console.log();
                       if (res && res.ok) {
                         this.initStore(res._body);
                         this.toastr.success('Store was updated successfully.');
@@ -360,7 +325,6 @@ export class StoreComponent implements OnInit {
                   data['sig'] = sig.signature;  
                   this.storeServ.create(data).subscribe(
                     (res: any) => {
-                      console.log();
                       if (res && res.ok) {
                         this.initStore(res._body);
                         this.toastr.success('Store was created.');
@@ -393,13 +357,11 @@ export class StoreComponent implements OnInit {
       return;      
     }
     let refAddressHex = '';
-    console.log('this.refAddress====', this.refAddress);
     try {
       refAddressHex = this.utilServ.fabToExgAddress(this.refAddress);
     } catch(e) {
 
     }
-    console.log('refAddressHex===', refAddressHex);
     if(!refAddressHex || (refAddressHex.length != 42)) {
       this.toastr.error('Your referral address is not in correct format.');
       return;        

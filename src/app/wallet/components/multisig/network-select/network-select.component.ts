@@ -72,7 +72,6 @@ export class NetworkSelectComponent implements ControlValueAccessor, OnInit {
 
   changeChain(chain: string) {
     this.writeValue(chain);
-    console.log('chain in changeChain211=', chain);
   }
 
   showName(chain: string) {
