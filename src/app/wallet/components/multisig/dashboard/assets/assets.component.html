@@ -15,19 +15,19 @@
       <tr>
         <td>{{chain}}</td>
         <td>{{native | amount}}</td>
-        <td><button type="button" class="btn btn-dark" *ngIf="sendable" (click)="send(chain)">Send</button></td>
+        <td><button type="button" class="btn btn-dark" *ngIf="sendable" (click)="send(chain, 18)">Send</button></td>
         <!--
         <td>0</td>
         -->
       </tr>
       <tr *ngFor="let id of tokens.ids; let i = index">
         <td>{{getName(id)}}</td>
-        <td>{{tokens.balances[i] | amount}}</td>
+        <td>{{tokens.balances[i] | amount : ((tokens.decimals && tokens.decimals[i]) ? tokens.decimals[i] : 18)}}</td>
         <!--
         <td>0</td>
         -->
         <td>
-          <button type="button" *ngIf="sendable" class="btn btn-dark" (click)="send(id)">Send</button>
+          <button type="button" *ngIf="sendable" class="btn btn-dark" (click)="send(id, ((tokens.decimals && tokens.decimals[i]) ? tokens.decimals[i] : 18))">Send</button>
         </td>
       </tr>
     </tbody>

@@ -28,6 +28,22 @@ export class UtilService {
         return 8;
     }
 
+    getTokenName(chain: string, id: string) {
+        if(chain == 'KANBAN') {
+            if(id != 'KANBAN') {
+              return this.getCoinNameByTypeId(Number(id));
+            }
+          } else {
+            if(id == environment.addresses.smartContract.USDT[chain]) {
+              return 'USDT';
+            }
+            if(id == environment.addresses.smartContract.USDC[chain]) {
+              return 'USDC';
+            }
+          }
+          return id;
+    }
+
     showId(id) {
         return id.substring(0, 3) + '...' + id.substring(id.length - 3);
     }

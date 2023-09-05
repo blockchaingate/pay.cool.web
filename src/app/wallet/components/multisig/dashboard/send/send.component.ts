@@ -17,6 +17,7 @@ import { UtilService } from 'src/app/services/util.service';
 export class SendComponent implements OnInit{
   nonce: number;
   to: string;
+  decimals: number;
   amount: number;
   sendable: boolean;
   step: number = 1;
@@ -43,6 +44,7 @@ export class SendComponent implements OnInit{
     this.route.paramMap.subscribe(
       (params: ParamMap) => {
         this.tokenId = params.get('id');
+        this.decimals = Number(params.get('decimals'));
       }
     );
     this.localSt.getItem('multisigwallets').subscribe({next: (wallets: any) => {
@@ -118,7 +120,7 @@ export class SendComponent implements OnInit{
     }
 
     const smartContractAddress = this.multisigwallet.address;
-    this.safeServ.signTransaction(chain, smartContractAddress, privateKey, keyPair.address, this.nonce, this.to, this.tokenId, 18, this.amount).subscribe(
+    this.safeServ.signTransaction(chain, smartContractAddress, privateKey, keyPair.address, this.nonce, this.to, this.tokenId, this.decimals, this.amount).subscribe(
       {
         next: (retOfSig: any) => {
 
@@ -133,7 +135,7 @@ export class SendComponent implements OnInit{
               to: this.to,
               amount: this.amount,
               tokenId: this.tokenId,
-              tokenName: this.tokenId
+              tokenName: this.utilServ.getTokenName(chain, this.tokenId)
             },
             transaction,
             transactionHash,

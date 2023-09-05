@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 import { MultisigService } from 'src/app/services/multisig.service';
 import { UtilService } from 'src/app/services/util.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-assets',
@@ -61,12 +62,7 @@ export class AssetsComponent implements OnInit {
   }
 
   getName(id: string) {
-    if(this.chain == 'KANBAN') {
-      if(id != 'KANBAN') {
-        return this.utilServ.getCoinNameByTypeId(Number(id));
-      }
-    }
-    return id;
+    return this.utilServ.getTokenName(this.chain, id);
   }
   loadWallet() {
 
@@ -102,8 +98,8 @@ export class AssetsComponent implements OnInit {
 
   }
 
-  send(id: string) {
-    const url = '/wallet/multisig/dashboard/send/' + id;
+  send(id: string, decimals: number) {
+    const url = '/wallet/multisig/dashboard/send/' + id + '/' + decimals;
     this.router.navigate([url]);
   }
 }

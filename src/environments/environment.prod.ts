@@ -193,7 +193,12 @@ addresses: {
         EXG: '0xa3e26671a38978e8204b8a37f1c2897042783b00',
         USDT: {
             ETH:'0xdac17f958d2ee523a2206206994597c13d831ec7',
+            BNB: '0x55d398326f99059ff775485246999027b3197955',
             TRX:'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'
+        },
+        USDC: {
+            ETH: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
+            TRX: 'TEkxiTehnzSmSe2XqrBj4w32RUN966rdz8'
         },
         DUSD: '0x46e0021c17d30a2db972ee5719cdc7e829ed9930',
         DCAD: '0x39296a9d1c5019fd64c9ef4cd0e657403bf10405',

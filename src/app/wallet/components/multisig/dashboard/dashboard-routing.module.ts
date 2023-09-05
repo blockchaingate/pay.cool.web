@@ -16,7 +16,7 @@ const routes: Routes = [
                 path: 'assets', component: AssetsComponent,
             },
             {
-                path: 'send/:id', component: SendComponent,
+                path: 'send/:id/:decimals', component: SendComponent,
             },
             {
                 path: 'transactions', loadChildren: () => import('./transactions/transactions.module').then(w => w.TransactionsModule)

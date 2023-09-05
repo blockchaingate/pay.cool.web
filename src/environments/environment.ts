@@ -209,7 +209,11 @@ export const environment = {
         FABLOCK: '0xa7d4a4e23bf7dd7a1e03eda9eb7c28a016fd54aa',
         EXG: '0x867480ba8e577402fa44f43c33875ce74bdc5df6',
         USDT: {
-            ETH:'0x1c35eCBc06ae6061d925A2fC2920779a1896282c',
+            ETH:'0xa9f4f6f0fa56058ebdb91865eb2f6aec83b94532',
+            TRX: 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'
+        },
+        USDC: {
+            ETH: '0x1c35eCBc06ae6061d925A2fC2920779a1896282c',
             TRX: 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'
         },
         DUSD: '0x78f6bedc7c3d6500e004c6dca19c8d614cfd91ed',

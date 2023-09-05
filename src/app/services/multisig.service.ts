@@ -37,6 +37,15 @@ export class MultisigService {
         const body = {
             native: address
         };
+        if(chain != 'KANBAN') {
+            body['tokens'] = [];
+            if(environment.addresses.smartContract.USDT[chain]) {
+                body['tokens'].push(environment.addresses.smartContract.USDT[chain]);
+            }
+            if(environment.addresses.smartContract.USDC[chain]) {
+                body['tokens'].push(environment.addresses.smartContract.USDC[chain]);
+            }
+        }
         return this.http.post(url, body);
     }
 
