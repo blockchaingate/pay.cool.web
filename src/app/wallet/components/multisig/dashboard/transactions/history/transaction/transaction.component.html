@@ -3,7 +3,15 @@
         <span>{{transaction.type}}</span>
         <span>{{transaction.memo}}</span>
         <span>{{transaction.dateCreated | date}}</span>
-        <span *ngIf="transaction.status == '0x1'" class="badge badge-success">Success</span>
-        <span *ngIf="transaction.status == '0x0'" class="badge badge-danger">Danger</span>
+        <a href="{{link()}}" target="_blank">
+            <span *ngIf="transaction.status == '0x1'" class="badge badge-success">
+                Success
+            </span>
+            <span *ngIf="transaction.status == '0x0'" class="badge badge-danger">
+                Failed
+            </span>
+        </a>
+
+        
     </div>
 </div>

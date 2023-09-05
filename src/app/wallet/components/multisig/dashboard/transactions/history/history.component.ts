@@ -13,8 +13,10 @@ export class HistoryComponent implements OnInit{
   transactions: any;
   pageSize: number = 10;
   pageNum: number = 0;
+  chain: string;
   constructor(private multisigServ: MultisigService, private toastServ: ToastrService) {}
   ngOnInit(): void {
+    this.chain = this.multisigwallet.chain;
     this.multisigServ.getTransactions(this.multisigwallet.address, this.pageSize, this.pageNum).subscribe(
       {
         next: (ret: any) => {

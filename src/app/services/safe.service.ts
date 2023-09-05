@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Web3Service } from './web3.service';
 import BigNumber from 'bignumber.js';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 @Injectable()
 export class SafeService {
 
@@ -11,7 +12,7 @@ export class SafeService {
         private http: HttpClient, 
         private web3Serv: Web3Service) {}
 
-    executeTransaction(chain: string, privateKey: Buffer, addressHex: string, proposal: any) {
+    executeTransaction(chain: string, privateKey: Buffer, addressHex: string, proposal: any, signaturesArray: any) {
         const observable = new Observable((observer) => {
             const url = environment.endpoints.blockchain + chain.toLowerCase() + '/nonce';
             const body = {
@@ -40,8 +41,6 @@ export class SafeService {
                 
                             let signatures = '0x';
                             
-                            let signaturesArray = proposal.signatures;
-                            console.log('signaturesArray before sort=', signaturesArray);
                             signaturesArray = signaturesArray.sort((a, b) => a.signer > b.signer ? 1 : -1);
                             console.log('signaturesArray after sort=', signaturesArray);
                             for(let i = 0; i < signaturesArray.length; i++) {
@@ -64,6 +63,7 @@ export class SafeService {
                             console.log('args for execTransaction=', args);
                             const abihex = this.web3Serv.getGeneralFunctionABI(abi, args);
                 
+                            console.log('abihex====', abihex);
                             let gasPriceBig = new BigNumber(environment.chains[chain].gasPrice);
                             if(chain !== 'KANBAN') {
                                 gasPriceBig = gasPriceBig.shiftedBy(9)

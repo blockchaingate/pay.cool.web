@@ -22,8 +22,8 @@ export class ProgressComponent implements OnInit{
   confirmable: boolean;
   confirmedByMe: boolean;
   confirmations: number;
+  signatures: any;
   modalRef: BsModalRef;
-
   constructor(
     private localSt: LocalStorage, 
     private utilServ: UtilService,
@@ -35,6 +35,7 @@ export class ProgressComponent implements OnInit{
     private router: Router
   ) {}
   ngOnInit(): void {
+    
     this.localSt.getItem('ecomwallets').subscribe((wallets: any) => {
 
       if (!wallets || (wallets.length == 0)) {
@@ -72,8 +73,9 @@ export class ProgressComponent implements OnInit{
     const owners = this.proposal.multisig.owners;
     const confirmations = this.proposal.multisig.confirmations;
     this.confirmations = confirmations;
-    const signatures = this.proposal.signatures;
 
+    const signatures = this.proposal.signatures;
+    this.signatures = signatures;
     this.confirmable = false;
 
     if (this.proposal.multisig.confirmations > this.proposal.signatures.length) {
@@ -135,7 +137,7 @@ export class ProgressComponent implements OnInit{
     }
     
     
-    this.safeServ.executeTransaction(chain, privateKey, keyPair.address, this.proposal).subscribe(
+    this.safeServ.executeTransaction(chain, privateKey, keyPair.address, this.proposal, this.signatures).subscribe(
       {
         next: (ret: any) => {
           console.log('ret for excute=', ret);
@@ -176,10 +178,19 @@ export class ProgressComponent implements OnInit{
     this.multisigServ.confirmProposal(body).subscribe(
       {next: (ret: any) => {
         if(ret.success) {
-          const data = ret.data;
-          console.log('data==', data);
+          console.log('this.confirmations===', this.confirmations);
+          this.signatures.push({
+            signer: keyPair.address,
+            data: signature
+          });
+          if(this.confirmations <= this.signatures.length) {
+            console.log('gogogo');
+            return this.executeDo(seed);
+          }
           this.toastServ.success('Transaction was confirmed successfully.');
           this.router.navigate(['/wallet/multisig/dashboard/assets']);
+
+
         } else {
           this.toastServ.error('Fail to confirm the proposal');
         }
