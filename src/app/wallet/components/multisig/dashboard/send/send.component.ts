@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { UtilService } from 'src/app/services/util.service';
 import * as exaddr from '../../../../../lib/exaddr';
+import BigNumber from 'bignumber.js';
 @Component({
   selector: 'app-send',
   templateUrl: './send.component.html',
@@ -29,6 +30,7 @@ export class SendComponent implements OnInit{
   multisigwallet: any;
   ethAddress: string;
   kanbanAddress: string;
+  balance: number;
   constructor(
     private multisigServ: MultisigService, 
     private safeServ: SafeService,
@@ -45,28 +47,62 @@ export class SendComponent implements OnInit{
     this.route.paramMap.subscribe(
       (params: ParamMap) => {
         this.tokenId = params.get('id');
-        this.decimals = Number(params.get('decimals'));
+        //this.decimals = Number(params.get('decimals'));
+
+
+
+
+        this.localSt.getItem('multisigwallets').subscribe({next: (wallets: any) => {
+          const multisigwallet = wallets.items[wallets.currentIndex];
+          this.multisigwallet = multisigwallet;
+          const address = multisigwallet.address;
+    
+          this.multisigServ.getAssets(this.multisigwallet.chain, address).subscribe(
+            (ret: any) => {
+              if(ret.success) {
+                const data = ret.data;
+                
+                this.decimals = 18;
+                if(this.tokenId == this.multisigwallet.chain) {
+                  this.balance = new BigNumber(data.native).shiftedBy(-this.decimals).toNumber();
+                } else {
+                  const tokens = data.tokens;
+                  for(let i = 0; i < tokens.ids.length; i++) {
+                    const id = tokens.ids[i];
+                    if(id == this.tokenId) {
+                      if(tokens.decimals && tokens.decimals[i]) {
+                        this.decimals = tokens.decimals[i];
+                      }
+                      this.balance = new BigNumber(tokens.balances[i]).shiftedBy(-this.decimals).toNumber();
+                      break;
+                    }
+                  }
+                }
+              }
+            }
+          );
+    
+          this.multisigServ.getNonce(address).subscribe(
+            {
+              next: (ret: any) => {
+                if(ret.success) {
+                  this.nonce = ret.data;
+                } else {
+                  this.toastServ.info('Error while getting nonce');
+                }
+              },
+              error: (error: any) => {
+                this.toastServ.error(error);
+              }
+            }
+          )
+        }});
+
+
+
       }
     );
-    this.localSt.getItem('multisigwallets').subscribe({next: (wallets: any) => {
-      const multisigwallet = wallets.items[wallets.currentIndex];
-      this.multisigwallet = multisigwallet;
-      const address = multisigwallet.address;
-      this.multisigServ.getNonce(address).subscribe(
-        {
-          next: (ret: any) => {
-            if(ret.success) {
-              this.nonce = ret.data;
-            } else {
-              this.toastServ.info('Error while getting nonce');
-            }
-          },
-          error: (error: any) => {
-            this.toastServ.error(error);
-          }
-        }
-      )
-    }});
+
 
     this.localSt.getItem('ecomwallets').subscribe((wallets: any) => {
 

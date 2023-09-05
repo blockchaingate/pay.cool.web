@@ -47,15 +47,11 @@ export class CreateComponent implements OnInit {
   owners: any = [
     {
       name: 'owner1',
-      address: '0xc7d289db6238596b5a5dbe2f1df9d29c930f959c'
+      address: ''
     },
     {
       name: 'owner2',
-      address: '0x68bbf2084546ccba3cf2f604736e77b3b2a67160'
-    },
-    {
-      name: 'owner3',
-      address: '0x930B42eC1d03f24B3FF2fA3D10071751ED66235a'
+      address: ''
     }
   ];
   wallet: any;

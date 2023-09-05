@@ -1,7 +1,7 @@
 import * as Btc from 'bitcoinjs-lib';
 export const environment = {
   env: 'prod',
-  version: '1.0.7',
+  version: '1.0.8',
   production: true,
   EPAY_API: 'https://api.epay.com/paymentApi',
   appid: '5b6a8688905612106e976a69',
@@ -114,7 +114,34 @@ export const environment = {
             chainId: 56
         },
         gasPrice: 5,
-        gasLimitToken: 150000
+        gasLimitToken: 150000,
+        Safes: {
+            SimulateTxAccessor: '0x3d4BA2E0884aa488718476ca2FB8Efc291A46199',
+            SafeProxyFactory: '0x4e1DCf7AD4e460CfD30791CCC4F9c8a4f820ec67',
+            TokenCallbackHandler: '0xeDCF620325E82e3B9836eaaeFdc4283E99Dd7562',
+            CompatibilityFallbackHandler: '0xfd0732Dc9E303f09fCEf3a7388Ad10A83459Ec99',
+            CreateCall: '0x9b35Af71d77eaf8d7e40252370304687390A1A52',
+            MultiSend: '0x38869bf66a61cF6bDB996A6aE40D5853Fd43B526',
+            MultiSendCallOnly: '0x9641d764fc13c8B624c04430C7356C1C7C8102e2',
+            SignMessageLib: '0xd53cd0aB83D845Ac265BE939c57F53AD838012c9',
+            SafeL2: '0x29fcB43b46531BcA003ddC8FCB67FFE91900C762',
+            Safe: '0x41675C099F32341bf84BFc5382aF534df5C7461a'
+        }
+
+/*
+reusing "SimulateTxAccessor" at 0x3d4BA2E0884aa488718476ca2FB8Efc291A46199
+reusing "SafeProxyFactory" at 0x4e1DCf7AD4e460CfD30791CCC4F9c8a4f820ec67
+reusing "TokenCallbackHandler" at 0xeDCF620325E82e3B9836eaaeFdc4283E99Dd7562
+deploying "CompatibilityFallbackHandler" (tx: 0x586ee5147521c968654e2eb693f7a1bae0312475575dce4095e633c11440d8ba)...: deployed at 0xfd0732Dc9E303f09fCEf3a7388Ad10A83459Ec99 with 1269776 gas
+reusing "CreateCall" at 0x9b35Af71d77eaf8d7e40252370304687390A1A52
+reusing "MultiSend" at 0x38869bf66a61cF6bDB996A6aE40D5853Fd43B526
+reusing "MultiSendCallOnly" at 0x9641d764fc13c8B624c04430C7356C1C7C8102e2
+deploying "SignMessageLib" (tx: 0xe2047cfbb3a7a4ce1ac6d7a5e4e006967f7e589426eb8b129fa0a3dcd975c65a)...: deployed at 0xd53cd0aB83D845Ac265BE939c57F53AD838012c9 with 262353 gas
+deploying "SafeL2" (tx: 0xcc565187d139ea41dfad9257d841c24b57ced73b3b4865e34a7179b5bb8678e8)...: deployed at 0x29fcB43b46531BcA003ddC8FCB67FFE91900C762 with 5331001 gas
+deploying "Safe" (tx: 0x7932c3290676f81678c5bb04f443c763489beabf9a296a08664740f1ae8eed87)...: deployed at 0x41675C099F32341bf84BFc5382aF534df5C7461a with 5148594 gas
+*/
+
+
     },
     FAB: {
         network: Btc.networks.bitcoin,
@@ -145,7 +172,19 @@ export const environment = {
             chainId: 211
         },
         gasPrice: 50000000,
-        gasLimit: 20000000
+        gasLimit: 20000000,
+        Safes: {
+            SimulateTxAccessor: '0x1a5fafd1525fb85223f0decffda3df03992a40b9',
+            SafeProxyFactory: '0x1907a90db1d3a9ec5916b071ffb6990d39e914ce',
+            TokenCallbackHandler: '0x89619afac0f4631ca40c2848301a30c0f95fe6ee',
+            CompatibilityFallbackHandler: '0xead13823efdf2fefb10e36ff6a3f6f34944569b0',
+            CreateCall: '0x4da06f0120ea702aa0cd457aaa1256615bb8a208',
+            MultiSend: '0x554ee38572c69da84fab588b27f67adbbf4cd6ad',
+            MultiSendCallOnly: '0x17efecd54478cb0b970e91957ef6445d768dd2c8',
+            SignMessageLib: '0x5e63d91e8c5fd4e879cc87d52cf5680229d9853a',
+            SafeL2: '0xb05745f3b27cc575633cd7238f3c42d53b1836ce',
+            Safe: '0xb9de13dcbb1466762532f8b985cc508935ca1c2c'
+        }
     }
   },
   CoinType: {
