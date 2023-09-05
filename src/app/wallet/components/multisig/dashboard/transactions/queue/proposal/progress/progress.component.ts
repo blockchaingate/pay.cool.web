@@ -24,6 +24,7 @@ export class ProgressComponent implements OnInit{
   confirmations: number;
   signatures: any;
   modalRef: BsModalRef;
+  hideExecuteButton: boolean;
   constructor(
     private localSt: LocalStorage, 
     private utilServ: UtilService,
@@ -127,9 +128,7 @@ export class ProgressComponent implements OnInit{
 
   executeDo(seed: Buffer) {
     const chain = this.proposal.multisig.chain;
-    console.log('this.proposal.multisig==', this.proposal.multisig);
     const keyPair = this.coinServ.getKeyPairs(chain, seed, 0, 0, 'b');
-    console.log('keypair in executeDo=', keyPair);
     let privateKey: any = keyPair.privateKeyBuffer;
 
     if(privateKey.privateKey) {
@@ -179,6 +178,7 @@ export class ProgressComponent implements OnInit{
       {next: (ret: any) => {
         if(ret.success) {
           console.log('this.confirmations===', this.confirmations);
+          this.hideExecuteButton = true;
           this.signatures.push({
             signer: keyPair.address,
             data: signature
