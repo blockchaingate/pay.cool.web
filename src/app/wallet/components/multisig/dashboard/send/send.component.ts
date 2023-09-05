@@ -118,7 +118,7 @@ export class SendComponent implements OnInit{
     }
 
     const smartContractAddress = this.multisigwallet.address;
-    this.safeServ.signTransaction(chain, smartContractAddress, privateKey, keyPair.address, this.nonce, this.to, '', 18, this.amount).subscribe(
+    this.safeServ.signTransaction(chain, smartContractAddress, privateKey, keyPair.address, this.nonce, this.to, this.tokenId, 18, this.amount).subscribe(
       {
         next: (retOfSig: any) => {
 
@@ -157,12 +157,11 @@ export class SendComponent implements OnInit{
               this.toastServ.error('Error while creating the proposal', error);
             }
           },
-
           );
 
         },
         error: (error) => {
-          console.log('error in signTransaction, ', error);
+          this.toastServ.error(error);
         }
       }
     );

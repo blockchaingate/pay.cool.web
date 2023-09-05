@@ -138,7 +138,8 @@ export class ProgressComponent implements OnInit{
     this.safeServ.executeTransaction(chain, privateKey, keyPair.address, this.proposal).subscribe(
       {
         next: (ret: any) => {
-          if(ret.success) {
+          console.log('ret for excute=', ret);
+          if(ret._id) {
             this.toastServ.success('Transaction was submitted.');
             this.router.navigate(['/wallet/multisig/dashboard/assets']);
           } else {
