@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MultisigService } from 'src/app/services/multisig.service';
 import { interval, Subscription} from 'rxjs';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 
 @Component({
   selector: 'app-create-go',
@@ -15,7 +15,7 @@ export class CreateGoComponent implements OnInit {
   mySubscription: Subscription;
   hasError: boolean;
   isReady: boolean;
-  constructor(private multisigServ: MultisigService, private localSt: LocalStorage) { }
+  constructor(private multisigServ: MultisigService, private storage: StorageMap) { }
 
   ngOnInit(): void {
 
@@ -45,7 +45,7 @@ export class CreateGoComponent implements OnInit {
                 chain: item.chain
               };
 
-              this.localSt.getItem('multisigwallets').subscribe((wallets: any) => {
+              this.storage.get('multisigwallets').subscribe((wallets: any) => {
 
                 if (!wallets) {
                   wallets = {
@@ -56,7 +56,7 @@ export class CreateGoComponent implements OnInit {
                   wallets.items.push(newItem);
                   wallets.currentIndex = wallets.items.length - 1;
                 }
-                this.localSt.setItem('multisigwallets', wallets).subscribe(() => {
+                this.storage.set('multisigwallets', wallets).subscribe(() => {
                   this.isReady = true;
                 });
               });

@@ -3,7 +3,7 @@ import { PasswordModalComponent } from '../../shared/modals/password-modal/passw
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { KanbanSmartContractService } from 'src/app/services/kanban.smartcontract.service';
 import { ToastrService } from 'ngx-toastr';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 import { Web3Service } from '../../services/web3.service';
 import { UtilService } from '../../services/util.service';
 import { environment } from '../../../environments/environment';
@@ -35,7 +35,7 @@ export class AdminComponent implements OnInit {
 
   constructor(
     private toastr: ToastrService,
-    private localSt: LocalStorage,
+    private storage: StorageMap,
     private web3Serv: Web3Service,
     private userReferralServ: UserReferralService,
     private projectServ: ProjectService,
@@ -52,7 +52,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.smartContractAddr = environment.addresses.smartContract.smartConractAdressReferral;
-    this.localSt.getItem('ecomwallets').subscribe((wallets: any) => {
+    this.storage.watch('ecomwallets').subscribe((wallets: any) => {
       if (!wallets || (wallets.length == 0)) {
         return;
       }

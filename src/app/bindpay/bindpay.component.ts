@@ -7,7 +7,7 @@ import { TimerService } from 'src/app/services/timer.service';
 import { UtilService } from 'src/app/services/util.service';
 import { WalletService } from 'src/app/services/wallet.service';
 import { Web3Service } from 'src/app/services/web3.service';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { PasswordModalComponent } from '../shared/modals/password-modal/password-modal.component';
 import { ReceiveCoinModal } from './modals/receive-coin/receive-coin.component';
@@ -43,7 +43,7 @@ export class BindpayComponent implements AfterContentInit{
    constructor(
       public coinServ: CoinService,
       public utilServ: UtilService,
-      private localSt: LocalStorage,
+      private storage: StorageMap,
       private web3Serv: Web3Service,
       private modalServ: BsModalService,
       private toastr: ToastrService,
@@ -55,7 +55,7 @@ export class BindpayComponent implements AfterContentInit{
       private walletServ: WalletService) {}
 
   ngAfterContentInit() {
-    this.localSt.getItem('ecomwallets').subscribe((wallets: any) => {
+    this.storage.watch('ecomwallets').subscribe((wallets: any) => {
 
         if (!wallets || (wallets.length == 0)) {
           return;

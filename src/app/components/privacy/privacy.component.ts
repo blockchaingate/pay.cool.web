@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { LocalStorage } from '@ngx-pwa/local-storage';
 import { Location } from '@angular/common';
 @Component({
   selector: 'app-privacy',
@@ -10,7 +9,7 @@ export class PrivacyComponent {
   lan = 'en';
   public href: string = "";
   public langFromUrl: string = "";
-  constructor(private localSt: LocalStorage,
+  constructor(
     private location: Location
   ) {
     this.href = this.location.path();

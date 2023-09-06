@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 import { UtilService } from '../../../../services/util.service';
 import { KanbanService } from '../../../../services/kanban.service';
 import { CoinService } from '../../../../services/coin.service';
@@ -96,7 +96,7 @@ export class MyAssetDashboardComponent implements OnInit {
     private modalService: BsModalService,
     private toastr: ToastrService,
     private translateServ: TranslateService,
-    private localSt: LocalStorage,
+    private storage: StorageMap,
     public utilServ: UtilService,
     private web3Serv: Web3Service,
     private coinServ: CoinService,
@@ -118,7 +118,7 @@ export class MyAssetDashboardComponent implements OnInit {
     this.gas = 0;
     this.currentTab = 'wallet';
     
-    this.localSt.getItem('ecomwallets').subscribe((wallets: any) => {
+    this.storage.watch('ecomwallets').subscribe((wallets: any) => {
 
       if (!wallets || (wallets.length == 0)) {
         this.router.navigate(['/wallet']);
@@ -145,7 +145,7 @@ export class MyAssetDashboardComponent implements OnInit {
       this.loadWallet(1);
       this.getMyOrder(1);
 
-      this.localSt.getItem('7star_ref').subscribe(
+      this.storage.watch('7star_ref').subscribe(
         (ref: string) => {
           this.referral = ref;
         }
@@ -689,7 +689,7 @@ export class MyAssetDashboardComponent implements OnInit {
 
     this.wallets.currentIndex = this.wallets.items.indexOf(this.wallet);
 
-    this.localSt.setItem('ecomwallets', this.wallets).subscribe(() => {
+    this.storage.set('ecomwallets', this.wallets).subscribe(() => {
       this.loadWallet(1);
     });
   }

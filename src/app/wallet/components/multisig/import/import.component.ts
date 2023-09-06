@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MultisigService } from 'src/app/services/multisig.service';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 import * as exaddr from '../../../../lib/exaddr';
 import { UtilService } from 'src/app/services/util.service';
 @Component({
@@ -16,7 +16,7 @@ export class ImportComponent implements OnInit {
   multisig: any;
   wallets: any;
   constructor(
-    private localSt: LocalStorage,
+    private storage: StorageMap,
     private router: Router,
     private multisigServ: MultisigService,
     private utilServ: UtilService,
@@ -24,7 +24,7 @@ export class ImportComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.localSt.getItem('multisigwallets').subscribe((wallets: any) => {
+    this.storage.watch('multisigwallets').subscribe((wallets: any) => {
       this.wallets = wallets;
     });
   }
@@ -45,7 +45,7 @@ export class ImportComponent implements OnInit {
         wallets.items.push(this.multisig);
         wallets.currentIndex = wallets.items.length - 1;
       }
-      this.localSt.setItem('multisigwallets', wallets).subscribe(() => {
+      this.storage.set('multisigwallets', wallets).subscribe(() => {
         this.router.navigate(['/wallet/multisig/dashboard']);
       });
   }

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PasswordModalComponent } from '../../../../../../../../shared/modals/password-modal/password-modal.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 import { UtilService } from 'src/app/services/util.service';
 import { SafeService } from 'src/app/services/safe.service';
 import { CoinService } from 'src/app/services/coin.service';
@@ -26,7 +26,7 @@ export class ProgressComponent implements OnInit{
   modalRef: BsModalRef;
   hideExecuteButton: boolean;
   constructor(
-    private localSt: LocalStorage, 
+    private storage: StorageMap, 
     private utilServ: UtilService,
     private safeServ: SafeService,
     private coinServ: CoinService,
@@ -37,7 +37,7 @@ export class ProgressComponent implements OnInit{
   ) {}
   ngOnInit(): void {
     
-    this.localSt.getItem('ecomwallets').subscribe((wallets: any) => {
+    this.storage.watch('ecomwallets').subscribe((wallets: any) => {
 
       if (!wallets || (wallets.length == 0)) {
         return;

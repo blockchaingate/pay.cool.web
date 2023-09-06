@@ -2,7 +2,7 @@ import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { environment } from '../../../../../environments/environment';
 import { StarService } from '../../../../services/star.service';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../../../services/api.service';
@@ -82,7 +82,7 @@ export class OrderComponent implements OnInit {
     private userreferalServ: UserReferralService,
     private modalService: BsModalService,
     private starServ: StarService, 
-    private localSt: LocalStorage,
+    private storage: StorageMap,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -104,7 +104,7 @@ export class OrderComponent implements OnInit {
   }
 
   getWalletAddress() {
-    this.localSt.getItem('ecomwallets').subscribe((wallets: any) => {
+    this.storage.watch('ecomwallets').subscribe((wallets: any) => {
 
       if (!wallets || (wallets.length == 0)) {
         return;

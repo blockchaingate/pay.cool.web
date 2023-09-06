@@ -1,7 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 import { SubscribeService } from 'src/app/services/subscribe.service';
-import { LocalStorage } from '@ngx-pwa/local-storage';
 
 @Component({
   selector: 'app-footer',

@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 import { UserReferralService } from 'src/app/services/userreferral.service';
 import { Web3Service } from 'src/app/services/web3.service';
 import { StarService } from '../../services/star.service';
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private _renderer2: Renderer2,
     @Inject(DOCUMENT) private _document: Document,
-    private localSt: LocalStorage, 
+    private storage: StorageMap, 
     private route: ActivatedRoute, 
     private userreferralServ: UserReferralService,
     private web3Serv: Web3Service,
@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
           this.userreferralServ.checkAddress(refCode).subscribe(
             (res: any) => {
               if (res && res.isValid) {
-                this.localSt.setItem('7star_ref', refCode).subscribe(() => { });
+                this.storage.watch('7star_ref', refCode).subscribe(() => { });
               } else {
                 this.errMsg = 'Invalid referral code';
               }

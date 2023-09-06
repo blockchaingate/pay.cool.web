@@ -1,70 +1,70 @@
 import { Injectable } from '@angular/core';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 import { TransactionItem } from '../models/transaction-item';
 import {Transaction} from '../interfaces/kanban.interface';
 import { Wallet } from '../models/wallet';
 
 @Injectable()
 export class StorageService {
-    constructor(private localSt: LocalStorage) {
+    constructor(private storage: StorageMap) {
 
     }
 
     
     async getWallets() {
-        const wallets = await this.localSt.getItem('ecomwallets').toPromise() as Wallet[];
+        const wallets = await this.storage.watch('ecomwallets').toPromise() as Wallet[];
         return wallets;
     }   
 
     addTradeTransaction(tx: Transaction) {
-        this.localSt.getItem('mytransactions').subscribe((transactions: Transaction[]) => {
+        this.storage.watch('mytransactions').subscribe((transactions: Transaction[]) => {
             if (!transactions) {
                 transactions = [];
             }
             transactions.push(tx);
-            return this.localSt.setItem('mytransactions', transactions).subscribe(() => {
+            return this.storage.set('mytransactions', transactions).subscribe(() => {
             });
         });
     }
 
     storeRef(refAddress: string) {
-        this.localSt.setItem('customer_ref', refAddress).subscribe(ret => { });
+        this.storage.set('customer_ref', refAddress).subscribe(ret => { });
     }
 
     getStoreRef() {
-        return this.localSt.getItem('customer_ref');
+        return this.storage.watch('customer_ref');
     }
 
     storeFavoritePairs(favoritePairs: string[] ) {
-        return this.localSt.setItem('favoritePairs', favoritePairs).subscribe(() => {});
+        return this.storage.set('favoritePairs', favoritePairs).subscribe(() => {});
     }
 
     getFavoritePairs() {
-        return this.localSt.getItem('favoritePairs');
+        return this.storage.watch('favoritePairs');
     }   
 
     storeToken(token: string) {
-        return this.localSt.setItem('token', token).subscribe(() => {});
+        return this.storage.set('token', token).subscribe(() => {});
     }
 
     getToken() {
-        return this.localSt.getItem('token');
+        return this.storage.watch('token');
     }
     
     removeToken(){
-        return this.localSt.removeItem('token').subscribe(() => {});
+        return this.storage.delete('token').subscribe(() => {});
     }
 
     storeCampaignQualify() {
-        return this.localSt.setItem('campaignQualify', true).subscribe(() => {});
+        return this.storage.set('campaignQualify', true).subscribe(() => {});
     }
 
     getCampaignQualify() {
-        return this.localSt.getItem('campaignQualify');
+        return this.storage.watch('campaignQualify');
     }
     
     removeCampaignQualify(){
-        return this.localSt.removeItem('campaignQualify').subscribe(() => {});
+        return this.storage.delete('campaignQualify').subscribe(() => {});
     }
 
 
@@ -75,7 +75,7 @@ export class StorageService {
                 transactionHistory = [];
             }
             transactionHistory.push(transactionItem);
-            return this.localSt.setItem('transactions', transactionHistory).subscribe(() => {});
+            return this.storage.set('transactions', transactionHistory).subscribe(() => {});
         });
     }  
 
@@ -90,15 +90,15 @@ export class StorageService {
                     break;
                 }
             }
-            return this.localSt.setItem('transactions', transactionHistory).subscribe(() => {});
+            return this.storage.set('transactions', transactionHistory).subscribe(() => {});
         });
     }     
     getTransactionHistoryList() {
-        return this.localSt.getItem('transactions');
+        return this.storage.watch('transactions');
     }    
 
     getCurrentLang(){
-        return this.localSt.getItem('Lan');
+        return this.storage.watch('Lan');
     }
 
 

@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,12 +10,11 @@ export class SidebarComponent implements OnInit{
   multisigwallets: any;
   wallets: any;
   @Output() onBack = new EventEmitter();
-  constructor(private localSt: LocalStorage) { }
+  constructor(private storage: StorageMap) { }
 
   ngOnInit(): void {
     
-    this.localSt.getItem('multisigwallets').subscribe({next: (wallets: any) => {
-      console.log('something chainge');
+    this.storage.watch('multisigwallets').subscribe({next: (wallets: any) => {
       this.wallets = wallets;
       const multisigwallets = wallets.items;
       this.multisigwallets = multisigwallets;
@@ -29,8 +28,9 @@ export class SidebarComponent implements OnInit{
     this.wallets.currentIndex = index;
     const newWallets = JSON.parse(JSON.stringify(this.wallets));
 
-    this.localSt.setItem('multisigwallets', newWallets).subscribe( () => {
+    this.storage.set('multisigwallets', newWallets).subscribe( () => {
       this.back();
+
     });
   }
 }

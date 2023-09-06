@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 import { ToastrService } from 'ngx-toastr';
 import { Web3Service } from 'src/app/services/web3.service';
 import { PasswordModalComponent } from '../../../../shared/modals/password-modal/password-modal.component';
@@ -57,7 +57,7 @@ export class CreateComponent implements OnInit {
   wallet: any;
   wallets: any;
   constructor(
-    private localSt: LocalStorage, 
+    private storage: StorageMap, 
     private toastrServ: ToastrService, 
     private web3Serv: Web3Service,
     private coinServ: CoinService,
@@ -73,7 +73,7 @@ export class CreateComponent implements OnInit {
 
 
 
-    this.localSt.getItem('ecomwallets').subscribe((wallets: any) => {
+    this.storage.watch('ecomwallets').subscribe((wallets: any) => {
 
       if (!wallets || (wallets.length == 0)) {
         return;

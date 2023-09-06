@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 import { TranslateService } from '@ngx-translate/core';
 import { Language } from '../models/language';
 import { StorageService } from './storage.service';
@@ -14,7 +14,7 @@ export class LanguageService {
     constructor(
         private storageServ: StorageService,
         private tranServ: TranslateService,
-        private _localSt: LocalStorage
+        private storage: StorageMap
     ) { 
         // this.selectedLan = this.getLan();
         this.setLan();
@@ -41,7 +41,7 @@ export class LanguageService {
             if (userLang === 'CN' || userLang === 'cn' || userLang === 'zh') {
                 this.selectedLan = this.languages[1];
                 localStorage.setItem('_lan', 'sc');
-                this._localSt.setItem('_lan', 'sc');
+                this.storage.set('_lan', 'sc');
             }
         }
         this.tranServ.use(this.selectedLan.value);
@@ -52,6 +52,6 @@ export class LanguageService {
         this.tranServ.use(lan.value);
 
         localStorage.setItem('_lan', lan.value);
-        this._localSt.setItem('_lan', lan.value);
+        this.storage.set('_lan', lan.value);
     }
 }

@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WalletService } from '../../../services/wallet.service';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -21,7 +21,7 @@ export class ImportWalletComponent implements OnInit {
     private fb: FormBuilder,
     private translate: TranslateService,
     private walletServ: WalletService,
-    private localSt: LocalStorage) {
+    private storage: StorageMap) {
   }
 
   ngOnInit() {
@@ -69,7 +69,7 @@ export class ImportWalletComponent implements OnInit {
     if (!wallet) {
       alert(this.translate.instant('Error occured, please try again.'));
     } else {
-      this.localSt.getItem('ecomwallets').subscribe((wallets: any) => {
+      this.storage.watch('ecomwallets').subscribe((wallets: any) => {
         if (!wallets) {
           wallets = {
             currentIndex: -1,
@@ -80,7 +80,7 @@ export class ImportWalletComponent implements OnInit {
           wallets.items.push(wallet);
           wallets.currentIndex = wallets.items.length - 1;
         }
-        this.localSt.setItem('ecomwallets', wallets).subscribe(() => {
+        this.storage.set('ecomwallets', wallets).subscribe(() => {
           this.walletServ.refreshWallets(wallets);
           const sig = localStorage.getItem('sig');
           if(sig) {

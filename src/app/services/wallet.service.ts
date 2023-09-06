@@ -13,7 +13,7 @@ import * as Btc from 'bitcoinjs-lib';
 // import * as bchaddr from 'bchaddrjs';
 // import * as wif from 'wif';
 import { Wallet } from '../models/wallet';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 import { DataService } from './data.service';
 import { StoreService } from './store.service';
 import { MerchantService } from './merchant.service';
@@ -22,7 +22,7 @@ import { MerchantService } from './merchant.service';
 export class WalletService {
     constructor(
         private dataServ: DataService,
-        private localSt: LocalStorage, 
+        private storage: StorageMap, 
         private merchantServ: MerchantService,
         private utilServ: UtilService, 
         private coinServ: CoinService) {}
@@ -176,7 +176,7 @@ export class WalletService {
 
     updateToWalletList(wallet: Wallet, index: number) {
 
-        this.localSt.getItem('ecomwallets').subscribe((wallets: Wallet[]) => {
+        this.storage.watch('ecomwallets').subscribe((wallets: Wallet[]) => {
             if (!wallets) {
                 wallets = [];
             }
@@ -184,13 +184,13 @@ export class WalletService {
                 wallets[index] = wallet;
             }
 
-            this.localSt.setItem('ecomwallets', wallets).subscribe(() => {
+            this.storage.set('ecomwallets', wallets).subscribe(() => {
             });
         });
     }
 
     updateWallets(wallets) {
-        return this.localSt.setItem('ecomwallets', wallets);
+        return this.storage.set('ecomwallets', wallets);
     }
 
     generateMnemonic() {

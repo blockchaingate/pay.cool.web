@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 
 @Component({
   selector: 'app-transactions',
@@ -9,10 +9,10 @@ import { LocalStorage } from '@ngx-pwa/local-storage';
 export class TransactionsComponent implements OnInit {
   activeTab: string = 'queue';
   multisigwallet: any;
-  constructor(private localSt: LocalStorage) { }
+  constructor(private storage: StorageMap) { }
 
   ngOnInit(): void {
-    this.localSt.getItem('multisigwallets').subscribe({next: (wallets: any) => {
+    this.storage.watch('multisigwallets').subscribe({next: (wallets: any) => {
       const multisigwallet = wallets.items[wallets.currentIndex];
       this.multisigwallet = multisigwallet;
     }});

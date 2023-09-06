@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 import { MultisigService } from 'src/app/services/multisig.service';
 import { UtilService } from 'src/app/services/util.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-assets',
@@ -21,7 +20,7 @@ export class AssetsComponent implements OnInit {
   wallet: any;
   sendable: boolean;
   constructor(
-    private localSt: LocalStorage, 
+    private storage: StorageMap, 
     private multisigServ: MultisigService,
     private utilServ: UtilService,
     private router: Router
@@ -31,14 +30,14 @@ export class AssetsComponent implements OnInit {
 
 
 
-    this.localSt.getItem('multisigwallets').subscribe({next: (wallets: any) => {
+    this.storage.watch('multisigwallets').subscribe({next: (wallets: any) => {
       const multisigwallet = wallets.items[wallets.currentIndex];
       this.multisigwallet = multisigwallet;
       const chain = multisigwallet.chain;
       const address = multisigwallet.address;
       this.chain = chain;
 
-      this.localSt.getItem('ecomwallets').subscribe((wallets: any) => {
+      this.storage.watch('ecomwallets').subscribe((wallets: any) => {
 
         if (!wallets || (wallets.length == 0)) {
           return;

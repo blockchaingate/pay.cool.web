@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StarService } from 'src/app/services/star.service';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { PasswordModalComponent } from '../../shared/modals/password-modal/password-modal.component';
 import { ToastrService } from 'ngx-toastr';
@@ -26,7 +26,7 @@ export class MembershipComponent implements OnInit {
     private modalService: BsModalService,
     private toastr: ToastrService,    
     private utilServ: UtilService,
-    private localSt: LocalStorage,
+    private storage: StorageMap,
     private web3Serv: Web3Service,
     private kanbanSmartContractServ:KanbanSmartContractService,
     private userreferalServ: UserReferralService,
@@ -34,7 +34,7 @@ export class MembershipComponent implements OnInit {
 
   ngOnInit(): void {
     this.to = '0x6864ac918b94976e175001468aa45733b142fa49';
-    this.localSt.getItem('ecomwallets').subscribe((wallets: any) => {
+    this.storage.watch('ecomwallets').subscribe((wallets: any) => {
       if (!wallets || (wallets.length == 0)) {
         return;
       }

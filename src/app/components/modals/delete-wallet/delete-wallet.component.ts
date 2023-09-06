@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
-import { LocalStorage } from '@ngx-pwa/local-storage';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -11,7 +10,7 @@ export class DeleteWalletModalComponent {
     public onClose: Subject<boolean>;
     checked = false;
 
-    constructor(private _bsModalRef: BsModalRef, private localSt: LocalStorage) { }
+    constructor(private _bsModalRef: BsModalRef) { }
 
     public ngOnInit(): void {
         this.onClose = new Subject();

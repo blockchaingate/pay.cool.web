@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 import { PasswordModalComponent } from '../../shared/modals/password-modal/password-modal.component';
 import { UtilService } from 'src/app/services/util.service';
 import BigNumber from 'bignumber.js';
@@ -29,11 +29,11 @@ export class LockedlpComponent implements OnInit {
     private kanbanSmartContractServ: KanbanSmartContractService,
     private translateServ: TranslateService,
     private modalServ: BsModalService,
-    private localSt: LocalStorage,) { }
+    private storage: StorageMap,) { }
 
   ngOnInit(): void {
 
-    this.localSt.getItem('ecomwallets').subscribe((wallets: any) => {
+    this.storage.watch('ecomwallets').subscribe((wallets: any) => {
 
       if (!wallets || (wallets.length == 0)) {
         return;

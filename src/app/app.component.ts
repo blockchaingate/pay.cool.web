@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 import { DataService } from './services/data.service';
 import { StoreService } from './services/store.service';
 import { WalletService } from './services/wallet.service';
@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   title = 'Pay.cool';
   public href: string = "";
   public isCashierPage: boolean = false;
-  constructor(private localSt: LocalStorage,
+  constructor(private storage: StorageMap,
     private walletServ: WalletService,
     private dataServ: DataService,
     private storeServ: StoreService,
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
       this.isCashierPage = true;
     }
 
-    this.localSt.getItem('ecomwallets').subscribe(
+    this.storage.watch('ecomwallets').subscribe(
       (wallets: any) => {
         if (!wallets || !wallets.items || (wallets.items.length == 0)) {
           //this.router.navigate(['/wallet']);

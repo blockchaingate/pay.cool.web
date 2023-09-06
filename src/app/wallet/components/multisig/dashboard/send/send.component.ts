@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MultisigService } from 'src/app/services/multisig.service';
 import { PasswordModalComponent } from '../../../../../shared/modals/password-modal/password-modal.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 import { SafeService } from 'src/app/services/safe.service';
 import { CoinService } from 'src/app/services/coin.service';
 import { ToastrService } from 'ngx-toastr';
@@ -34,7 +34,7 @@ export class SendComponent implements OnInit{
   constructor(
     private multisigServ: MultisigService, 
     private safeServ: SafeService,
-    private localSt: LocalStorage, 
+    private storage: StorageMap, 
     private utilServ: UtilService,
     private coinServ: CoinService,
     private router: Router,
@@ -52,7 +52,7 @@ export class SendComponent implements OnInit{
 
 
 
-        this.localSt.getItem('multisigwallets').subscribe({next: (wallets: any) => {
+        this.storage.watch('multisigwallets').subscribe({next: (wallets: any) => {
           const multisigwallet = wallets.items[wallets.currentIndex];
           this.multisigwallet = multisigwallet;
           const address = multisigwallet.address;
@@ -104,7 +104,7 @@ export class SendComponent implements OnInit{
     );
 
 
-    this.localSt.getItem('ecomwallets').subscribe((wallets: any) => {
+    this.storage.watch('ecomwallets').subscribe((wallets: any) => {
 
       if (!wallets || (wallets.length == 0)) {
         return;

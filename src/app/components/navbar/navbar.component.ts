@@ -6,7 +6,7 @@ import { useAnimation } from '@angular/animations';
 import { Params, ActivatedRoute, Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 import { DeleteWalletModalComponent } from '../modals/delete-wallet/delete-wallet.component';
 import { TimerService } from 'src/app/services/timer.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -46,7 +46,7 @@ export class NavbarComponent implements OnInit {
     public userAuth: UserAuth,
     private _router: Router,
     private modalService: BsModalService,
-    private _localSt: LocalStorage,
+    private storage: StorageMap,
     private route: ActivatedRoute,
     private location: Location
     ) {
@@ -107,7 +107,7 @@ export class NavbarComponent implements OnInit {
       });
 
     this.setLan();
-    this._localSt.getItem('ecomwallets').subscribe((wallets: any) => {
+    this.storage.watch('ecomwallets').subscribe((wallets: any) => {
       if (wallets && wallets.items.length > 0) {
         this.hasWallet = true;
       }
@@ -150,7 +150,7 @@ export class NavbarComponent implements OnInit {
       if (userLang === 'CN' || userLang === 'cn' || userLang === 'zh') {
         this.selectedLan = this.languages[1];
         localStorage.setItem('_lan', 'sc');
-        this._localSt.setItem('_lan', 'sc');
+        this.storage.set('_lan', 'sc');
       }
     }
     this.tranServ.use(this.selectedLan.value);
@@ -163,7 +163,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl(`/${this.selectedLan.value}/${this.restUrl.join('/')}`);
 
     localStorage.setItem('_lan', lan.value);
-    this._localSt.setItem('_lan', lan.value);
+    this.storage.set('_lan', lan.value);
   }
 
   openConfirmDialog() {
@@ -177,7 +177,7 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.hasWallet = false;
-    this._localSt.removeItem('ecomwallets').subscribe(
+    this.storage.delete('ecomwallets').subscribe(
       () => {
         this.userAuth.logout();
         this._router.navigate(['/home'])

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
 import { UserReferralService } from '../../services/userreferral.service';
 import { PasswordModalComponent } from '../../shared/modals/password-modal/password-modal.component';
 import { KanbanService } from 'src/app/services/kanban.service';
@@ -35,7 +35,8 @@ export class UserTreeComponent implements OnInit {
     private toastr: ToastrService,
     private kanbanSmartContractServ: KanbanSmartContractService,
     private route: ActivatedRoute, 
-    private localSt: LocalStorage, private userreferralServ: UserReferralService) { }
+    private storage: StorageMap, 
+    private userreferralServ: UserReferralService) { }
 
 
   ngOnInit() {
@@ -52,13 +53,13 @@ export class UserTreeComponent implements OnInit {
               if (res && res.isValid) {
                 this.refCode = refCode;
                 this.refCodeComeIn = true;
-                this.localSt.setItem('7star_ref', refCode).subscribe(() => { });
+                this.storage.set('7star_ref', refCode).subscribe(() => { });
               } else {
                 this.errMsg = 'Invalid referral code11';
               }
             });
         } else {
-          this.localSt.getItem('7star_ref').subscribe(
+          this.storage.watch('7star_ref').subscribe(
             (refCode: string) => {
               if(refCode) {
                 this.refCode = refCode;
@@ -72,7 +73,7 @@ export class UserTreeComponent implements OnInit {
       }
     )
 
-    this.localSt.getItem('ecomwallets').subscribe((wallets: any) => {
+    this.storage.watch('ecomwallets').subscribe((wallets: any) => {
 
       if(!wallets || (wallets.length == 0)) {
         return;
