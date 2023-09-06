@@ -1,10 +1,10 @@
-<div class="mb-3">Assets</div>
+<div class="mb-3">{{'Assets'|translate}}</div>
 
 <table class="table table-dark" *ngIf="tokens">
     <thead>
       <tr>
-        <th scope="col">Asset</th>
-        <th scope="col">Balance</th>
+        <th scope="col">{{'Asset'|translate}}</th>
+        <th scope="col">{{'Balance'|translate}}</th>
         <!--
         <th scope="col">Value</th>
         -->
@@ -15,7 +15,7 @@
       <tr>
         <td>{{chain}}</td>
         <td>{{native | amount}}</td>
-        <td><button type="button" class="btn btn-dark" *ngIf="sendable" (click)="send(chain)">Send</button></td>
+        <td><button type="button" class="btn btn-dark" *ngIf="sendable" (click)="send(chain)">{{'Send'|translate}}</button></td>
         <!--
         <td>0</td>
         -->
@@ -27,7 +27,7 @@
         <td>0</td>
         -->
         <td>
-          <button type="button" *ngIf="sendable" class="btn btn-dark" (click)="send(id)">Send</button>
+          <button type="button" *ngIf="sendable" class="btn btn-dark" (click)="send(id)">{{'Send'|translate}}</button>
         </td>
       </tr>
     </tbody>
