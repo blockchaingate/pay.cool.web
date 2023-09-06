@@ -3,7 +3,7 @@
         {{proposal.request.type}}  <b>{{proposal.request.amount}}</b>  {{proposal.request.tokenName}} to
     </div>
     <div>
-        {{proposal.request.to}}
+        {{(proposal.multisig.chain == 'KANBAN') ? (proposal.request.to | tokb) : proposal.request.to}}
     </div>
 </div>
 

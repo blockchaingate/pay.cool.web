@@ -199,6 +199,8 @@ export class CreateComponent implements OnInit {
               const data = res.data;
               this.txid = data.txid;
               this.step = 3;
+            } else {
+              return this.toastrServ.error('Error while creating the wallet');
             }
           }
         );

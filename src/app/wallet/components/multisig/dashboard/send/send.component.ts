@@ -200,7 +200,7 @@ export class SendComponent implements OnInit{
                 this.toastServ.success('Transaction was added to queue successfully.');
                 this.router.navigate(['/wallet/multisig/dashboard/assets']);
               } else {
-                this.toastServ.error('Fail to create the proposal');
+                this.toastServ.error(ret.message ? ret.message : 'Fail to create the proposal');
               }
             },
             error: (error) => {
