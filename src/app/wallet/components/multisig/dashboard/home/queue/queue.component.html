@@ -1,0 +1,13 @@
+<div class="mb-2">Transaction queue ({{proposals ? proposals.length : 0}})</div>
+<div class="card p-3">
+    <div class="d-flex justify-content-between align-items-center item" *ngFor="let proposal of proposals" routerLink="/wallet/multisig/dashboard/transactions">
+        <div>{{proposal.transaction.nonce}}</div>
+        <div>{{proposal.request.type}}</div>
+        <div>
+            <div>{{proposal.request.amount}}</div>
+            <div>{{proposal.request.tokenName}}</div>
+        </div>
+        <div>{{(proposal.signatures ? proposal.signatures.length : 0 )}} / {{proposal.multisig.confirmations}}</div>
+    </div>
+    
+</div>

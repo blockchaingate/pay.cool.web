@@ -9,7 +9,6 @@ import { StorageService } from '../../../services/storage.service';
 import { UtilService } from '../../../services/util.service';
 import { DataService } from '../../../services/data.service';
 import { StoreService } from '../../../services/store.service';
-import { NgxSpinnerService } from "ngx-bootstrap-spinner";
 import { environment } from '../../../../environments/environment';
 import { ABI as feeChargerABI, Bytecode as feeChargerBytecode, version } from '../../../config/feeCharger2';
 import { PasswordModalComponent } from '../../../shared/modals/password-modal/password-modal.component';
@@ -68,7 +67,6 @@ export class StoreComponent implements OnInit {
   constructor(
     private coinServ: CoinService,
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService,
     private translateServ: TranslateService,
     private modalService: BsModalService,
     private kanbanSmartContractServ: KanbanSmartContractService,
@@ -80,40 +78,7 @@ export class StoreComponent implements OnInit {
     private storeServ: StoreService) {
   }
 
-  /*
-  copyToken() {
-    this.utilServ.copy(this.token);
-  }
-  
-  showToken() {
-    console.log('show me');
-    const initialState = {
-      pwdHash: this.wallet.pwdHash,
-      encryptedSeed: this.wallet.encryptedSeed
-    };          
-    if(!this.wallet || !this.wallet.pwdHash) {
-      this.toastr.info('no wallet');
-      //this.router.navigate(['/wallet']);
-      return;
-    }
-    this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
 
-    this.modalRef.content.onClose.subscribe( (seed: Buffer) => {
-      this.showTokenDo(seed);
-    });
-  }
-
-  showTokenDo(seed: Buffer) {
-    const data = {
-      application: 'Pay.cool'
-    };
-
-    const keyPair = this.coinServ.getKeyPairs('FAB', seed, 0, 0, 'b');
-    const privateKey = keyPair.privateKeyBuffer.privateKey;
-    const sig = this.kanbanServ.signJsonData(privateKey, data);
-    this.token = sig.signature;
-  }
-  */
   initStore(store) {
     
     
@@ -304,7 +269,6 @@ export class StoreComponent implements OnInit {
       };      
       if(!this.coin) {
         this.toastr.error('Coin not selected', 'Ok');
-        this.spinner.hide();
         return;
       }
       if(this.images && this.images.length > 0) {
@@ -320,7 +284,6 @@ export class StoreComponent implements OnInit {
         '0x1'
       ];
 
-      console.log('args2====', args2);
       const resp2: any = await this.kanbanSmartContractServ.deploySmartContract(seed, feeChargerABI, feeChargerBytecode, args2);
   
       if(resp2 && resp2.ok && resp2._body && resp2._body.status == '0x1') { 
@@ -351,11 +314,9 @@ export class StoreComponent implements OnInit {
                   data['sig'] = sig.signature;  
                   this.storeServ.update(this.id, data).subscribe(
                     (res: any) => {
-                      console.log();
                       if (res && res.ok) {
                         this.initStore(res._body);
                         this.toastr.success('Store was updated successfully.');
-                        this.spinner.hide();
                       }
                     }
                 );  
@@ -364,11 +325,9 @@ export class StoreComponent implements OnInit {
                   data['sig'] = sig.signature;  
                   this.storeServ.create(data).subscribe(
                     (res: any) => {
-                      console.log();
                       if (res && res.ok) {
                         this.initStore(res._body);
                         this.toastr.success('Store was created.');
-                        this.spinner.hide();
                       }
                     }
                 );  
@@ -376,13 +335,11 @@ export class StoreComponent implements OnInit {
 
               }
               else {
-                  this.spinner.hide();
                   this.toastr.error('Error with creating smart contract.', 'Ok');
               }
             }
           });
       } else {
-        this.spinner.hide();
         this.toastr.error('Error with creating smart contract.', 'Ok');
       }
 
@@ -400,13 +357,11 @@ export class StoreComponent implements OnInit {
       return;      
     }
     let refAddressHex = '';
-    console.log('this.refAddress====', this.refAddress);
     try {
       refAddressHex = this.utilServ.fabToExgAddress(this.refAddress);
     } catch(e) {
 
     }
-    console.log('refAddressHex===', refAddressHex);
     if(!refAddressHex || (refAddressHex.length != 42)) {
       this.toastr.error('Your referral address is not in correct format.');
       return;        
@@ -428,7 +383,6 @@ export class StoreComponent implements OnInit {
     this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
 
     this.modalRef.content.onClose.subscribe( (seed: Buffer) => {
-      this.spinner.show();
       this.addStoreDo(seed);
     });
 
@@ -446,7 +400,6 @@ export class StoreComponent implements OnInit {
     this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
 
     this.modalRef.content.onCloseFabPrivateKey.subscribe( (privateKey: any) => {
-      this.spinner.show();
       this.deleteStoreDo(privateKey);
     });
   }
@@ -464,7 +417,6 @@ export class StoreComponent implements OnInit {
           //this.router.navigate(['/merchant/store']);
 
           //this.toastr.success('Store was deleted.');
-          this.spinner.hide();
           //this.smartContractAddress = store.smartContractAddress;
         }
       }

@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 export class InsightService {
     constructor(private http: HttpClient) {}
     getFetRewardsFromSeed() {
-        const baseUrl = environment.production ? 'https://fabexplorer.com/api/' : 'https://fabtest.info/api/';
+        const baseUrl = environment.production ? 'https://fabexplorer.com/api/' : 'https://test.fabcoin.org/api/';
         const url = baseUrl + 'insight/fetRewardsFromSeed';
         return this.http.get(url);
     }

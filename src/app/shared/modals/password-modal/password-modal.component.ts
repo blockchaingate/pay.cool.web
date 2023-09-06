@@ -60,7 +60,6 @@ export class PasswordModalComponent implements OnInit{
 
         this.kanbanServ.getKanbanBalance(this.utilServ.fabToExgAddress(address)).subscribe(
             (resp: any) => {
-                // console.log('resp=', resp);
                 const fab = this.utilServ.stripHexPrefix(resp.balance.FAB);
                 const gas = this.utilServ.hexToDec(fab) / 1e18;
                 if(gas < this.gas) {
@@ -76,19 +75,9 @@ export class PasswordModalComponent implements OnInit{
   
             },
             error => {
-                // console.log('errorrrr=', error);
             }
         );
-        
-        /*
-        const seed = this.utilServ.aesDecryptSeed(this.encryptedSeed, this.password);
-        const keyPair = this.coinServ.getKeyPairs('FAB', seed, 0, 0, 'b');
-        const privateKey = keyPair.privateKeyBuffer.privateKey;
-        this.onCloseFabPrivateKey.next(privateKey);
-        this.onClosePin.next(this.password);
-        this.onClose.next(seed);
-        this.bsModalRef.hide();
-        */
+
     }
 
     close() {

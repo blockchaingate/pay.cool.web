@@ -26,7 +26,6 @@ export class IpoComponent implements OnInit {
   submit() {
     this.payrewardServ.createIpo(this.user, this.amount, this.liquidity).subscribe(
       (ret: any) => {
-        console.log('ret===', ret);
         this.toastr.success('data was created');
       }
     );
@@ -46,7 +45,6 @@ export class IpoComponent implements OnInit {
       reader.readAsText(file);
       reader.onload = (e) => {
           let csv: string = reader.result as string;
-          //console.log(csv);
 
           const list = csv.split('\n');
           const headers = list[0].split(',');
@@ -63,7 +61,6 @@ export class IpoComponent implements OnInit {
                 continue;
             }
             
-            //console.log('item=', item);
             const data = item.split(',');
             
             if(!data || (data.length < 2)) {
@@ -78,7 +75,6 @@ export class IpoComponent implements OnInit {
           }
           this.payrewardServ.createIpos(ipos).subscribe(
             (ret: any) => {
-              console.log('ret===', ret);
               this.toastr.success('data was updated');
             }
           );
@@ -89,7 +85,6 @@ export class IpoComponent implements OnInit {
     recalculateRewards() {
       this.payrewardServ.recalculateIpoRewards().subscribe(
         (ret: any) => {
-          console.log('ret===', ret);
           this.toastr.success('recalculated');
         }
       );

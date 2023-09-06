@@ -62,7 +62,6 @@ export class TfTreeComponent implements OnInit {
   @Input() walletAddress: string;
 
   ngOnInit(): void {
-    console.log('this.children in init=', this.children);
     this.dataSource.data = this.children;
   }
 

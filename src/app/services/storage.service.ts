@@ -22,8 +22,6 @@ export class StorageService {
                 transactions = [];
             }
             transactions.push(tx);
-            // console.log('transactions before setItem');
-            // console.log(transactions);
             return this.localSt.setItem('mytransactions', transactions).subscribe(() => {
             });
         });
@@ -77,7 +75,6 @@ export class StorageService {
                 transactionHistory = [];
             }
             transactionHistory.push(transactionItem);
-            // console.log('transactionHistory for storeToTransactionHistoryList=', transactionHistory);
             return this.localSt.setItem('transactions', transactionHistory).subscribe(() => {});
         });
     }  
@@ -93,7 +90,6 @@ export class StorageService {
                     break;
                 }
             }
-            // console.log('transactionHistory for storeToTransactionHistoryList=', transactionHistory);
             return this.localSt.setItem('transactions', transactionHistory).subscribe(() => {});
         });
     }     

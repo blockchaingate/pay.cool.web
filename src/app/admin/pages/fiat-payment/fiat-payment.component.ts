@@ -68,7 +68,6 @@ export class FiatPaymentComponent implements OnInit {
 
     this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
 
-      console.log('this.op=', this.op);
       if(this.op == 'requestRefundV2') {
         this.requestRefundV2Do(seed);
       }
@@ -114,7 +113,6 @@ export class FiatPaymentComponent implements OnInit {
     };
     const args = [id, this.utilServ.fabToExgAddress(from), this.utilServ.fabToExgAddress(this.newowner)];
 
-    console.log('args====', args);
     const ret = await this.kanbanSmartContractServ.execSmartContractFromPrivateKey(privateKey, from, environment.addresses.smartContract.locker2, abi, args);
     if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
       this.toastr.success('Ownership was transfered successfully');
@@ -145,7 +143,6 @@ export class FiatPaymentComponent implements OnInit {
 
   requestRefundV2Do(seed: Buffer) {
     const index = this.starCustomer.index;
-    console.log('index=', index);
     const keyPair = this.coinServ.getKeyPairs('FAB', seed, 0, 0, 'b', '1150/' + index);
     const address = keyPair.address;
     if(address != this.starCustomer.address) {
@@ -223,12 +220,9 @@ export class FiatPaymentComponent implements OnInit {
         }
       }
     );
-    console.log('order===', order);
     const realOrderId = order.id.substring(2, 26);
-    console.log('realOrderId=', realOrderId);
     this.orderServ.get(realOrderId).subscribe(
       (ret: any) => {
-        console.log('ret in get(realOrderId)=', ret);
         if(ret && ret.ok) {
           this.realOrder = ret._body;
           const initialState = {

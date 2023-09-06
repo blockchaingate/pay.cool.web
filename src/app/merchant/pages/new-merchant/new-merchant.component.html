@@ -155,12 +155,17 @@
                         <div class="form-group row  my-2">
 
                             <div class="col-sm-12">
-                                <label class="">{{"primarycoin"|translate}} </label>
-                                <select [(ngModel)]="coin" name="coin" class="custom-select"
+                                <div>
+                                    <label class="">{{"primarycoin"|translate}} </label>
+                                </div>
+                                <div>
+                                    <select [(ngModel)]="coin" name="coin" class="custom-select"
                                     aria-label=".form-select-lg example">
                                     <option value="">{{"Select coin"|translate}}:</option>
                                     <option *ngFor="let coin of coins" value="{{coin}}">{{coin}}</option>
-                                </select>
+                                    </select>
+                                </div>
+
                             </div>
                         </div>
 

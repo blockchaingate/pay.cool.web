@@ -24,11 +24,6 @@ export class SubscribeService {
             data['message'] = message;
         }
 
-        console.log("data" + data);
-
-
-
-
         return this.http.post(url, data);
     }
 }

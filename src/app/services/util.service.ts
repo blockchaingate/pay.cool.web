@@ -28,6 +28,22 @@ export class UtilService {
         return 8;
     }
 
+    getTokenName(chain: string, id: string) {
+        if(chain == 'KANBAN') {
+            if(id != 'KANBAN') {
+              return this.getCoinNameByTypeId(Number(id));
+            }
+          } else {
+            if(id == environment.addresses.smartContract.USDT[chain]) {
+              return 'USDT';
+            }
+            if(id == environment.addresses.smartContract.USDC[chain]) {
+              return 'USDC';
+            }
+          }
+          return id;
+    }
+
     showId(id) {
         return id.substring(0, 3) + '...' + id.substring(id.length - 3);
     }
@@ -65,7 +81,6 @@ export class UtilService {
         const strLength = str.length;
         if (strLength >= length) {
             str = str.substring(strLength - length);
-            // console.log(str);
             return str;
         }
         for (let i = 0; i < length - strLength; i++) {
@@ -106,12 +121,9 @@ export class UtilService {
     }   
 
     getFormattedDate(date: any) {
-        // console.log('origin date=', date);
-        // if(Number.is)
         if (!Number.isNaN(date)) {
             date = new Date(date * 1000);
         }
-        // console.log('date=', date);
         const month = date.getMonth() + 1;
         const day = date.getDate();
         const hour = date.getHours();
@@ -324,8 +336,7 @@ export class UtilService {
         }
         const leftHex = hex.slice(0, hex.length - 1);
         const rightHex = hex.slice(-1);
-        // console.log('leftHex=' + leftHex);
-        // console.log('rightHex=' + rightHex);
+
         return this.hexToDec(leftHex) * 16 + this.hexCharToDec(rightHex);
     }   
     

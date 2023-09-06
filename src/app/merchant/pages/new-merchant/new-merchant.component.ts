@@ -8,7 +8,6 @@ import { coins } from '../../../config/coins';
 import { ToastrService } from 'ngx-toastr';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ABI } from '../../../utils/abi';
-import { NgxSpinnerService } from "ngx-bootstrap-spinner";
 import { PasswordModalComponent } from '../../../shared/modals/password-modal/password-modal.component';
 import { MerchantService } from 'src/app/services/merchant.service';
 import { StoreService } from 'src/app/services/store.service';
@@ -55,7 +54,6 @@ export class NewMerchantComponent implements OnInit {
   
   constructor(
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService,
     private modalService: BsModalService,
     private merchantServ: MerchantService,
     private storeServ: StoreService,
@@ -94,10 +92,8 @@ export class NewMerchantComponent implements OnInit {
     }
     this.storeServ.getStoresByAddress(this.walletAddress).subscribe(
       (ret: any) => {
-          console.log('rettt for stores=', ret);
         if(ret && ret.ok) {
           const store = ret._body[0];
-          console.log('store==', store);
           if(store.name) {
             this.name = store.name.en;
             this.nameChinese = store.name.sc;
@@ -164,6 +160,10 @@ export class NewMerchantComponent implements OnInit {
   }
 
   createMerchant() {
+    if(!this.rebateRate) {
+      this.toastr.info('Rebate rate not set');
+      return;
+    }
     const exgAddress = this.utilServ.fabToExgAddress(this.referral);
     if(!this.images || this.images.length === 0) {
       this.toastr.info('no merchant logo');
@@ -176,6 +176,14 @@ export class NewMerchantComponent implements OnInit {
     }
     
 
+    if(!this.coin) {
+      this.toastr.info('Coin not selected');
+      return;
+    }
+
+    if(!this.rebateRate || (this.rebateRate < 3)) {
+      this.rebateRate = 3;
+    }
     const initialState = {
       pwdHash: this.wallet.pwdHash,
       encryptedSeed: this.wallet.encryptedSeed
@@ -188,7 +196,6 @@ export class NewMerchantComponent implements OnInit {
     this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
 
     this.modalRef.content.onClose.subscribe( (seed: Buffer) => {
-      this.spinner.show();
       this.createMerchantDo(seed);
     });
   }
@@ -250,7 +257,6 @@ export class NewMerchantComponent implements OnInit {
         if(ret && ret._id) {
           this.kanbanSmartContractServ.execSmartContract(seed, address, abi, args).then(
             (ret: any) => {
-              console.log('ret for exec smart contract:', ret);
               if(ret && ret.success && ret._body && ret._body.status == '0x1') {
                 this.toastr.info('Merchant was created successfully');
                 //this.clearForm();

@@ -1,167 +1,34 @@
-txid:0x09b5e5fe9f9f0dacc65ffe22c453ae0a76c4ef0aa723dab22dba8da166c99c7f
-
-
-
-
-txid:0x5b6ec0a52d61d1e580b0fd60870641bbc6236720170b096d21f07409c9f113e4
-
-gap	FET 26.62960258755647
-1G4kAcpaxC35jHWnJr1UpfmLKHcnsJmJoP
-(5000)
-0x5...9ab
-gap	FETDUSD-LP 5737762076257326000
-1G4kAcpaxC35jHWnJr1UpfmLKHcnsJmJoP
-(5000)
-0x5...9ab
-marketing	FET 39.94440388133471
-1G4kAcpaxC35jHWnJr1UpfmLKHcnsJmJoP
-(5000)
-0x5...9ab
-marketing	FETDUSD-LP 8606643114385989000
-1G4kAcpaxC35jHWnJr1UpfmLKHcnsJmJoP
-(5000)
-0x5...9ab
-gap	FET 0.2330090226411191
-1G4kAcpaxC35jHWnJr1UpfmLKHcnsJmJoP
-(5000)
-0x5...9ab
-marketing	FET 0.4660180452822382
-1G4kAcpaxC35jHWnJr1UpfmLKHcnsJmJoP
-(5000)
-0x5...9ab
-gap	FET 0.13314801293778236
-1G4kAcpaxC35jHWnJr1UpfmLKHcnsJmJoP
-(5000)
-0x5...9ab
-marketing	FET 0.2330090226411191
-1G4kAcpaxC35jHWnJr1UpfmLKHcnsJmJoP
-(5000)
-0x5...9ab
-gap	FET 0.2662960258755647
-1G4kAcpaxC35jHWnJr1UpfmLKHcnsJmJoP
-(5000)
-0x5...9ab
-marketing	FET 0.4660180452822382
-
-
-
-
-
-
-
-
-{"_id":"6390a521af71b33e3b21ec87","address":"0x0185f15ccd4e7dfec68cdc671fb07ec5a22036be","projectId":"9","__v":0,"dateCreated":"2022-12-07T14:37:21.918Z","newStatus":1,"status":0,"user":"msBALt92abvckwLzjkf6GXps7xebhv4sCz","gv":39500,"internalStatus":1,"pv":500,"referral":"n1eXG5oe6wJ6h43akutyGfphqQsY1UfAUR","statusesInChildren":[{"user":"mweZqx4QFEPDHHryp4K257zRss2VY4zc9D","status":2,"_id":"6398a2e1b1e4046f788a59bc"}]}
-
-metaforce test:
-
-user1:
-deliver reduce reopen during pull lunar series sunset round play mandate wonder
-address: mtjhXkw8umPmfFL2dWdUbP5UZmqnzHXUva
-
-user1child:
-victory belt direct during diesel elite theme print void milk huge off
-mwQ77WnAabEbM93iKn8Vb3armoZuAuGLFa, referral: user
-
-
-txid:
-0xde032de2fc1d59ccfebebab675d6d91cd111ed471290802cc29a4f05a77ac3af
-0x37f94f7d0ee58038e412b615548990c76219f3b3488e77819ada247c1603220f
-0xbcb13d932082709d06d019a9b7951ccd707721c449e9505c28493254aa867140
-
-
-gamearn: analyst tribe easy rocket hobby volcano ankle meat critic swarm vacuum furnace
-gameearn charger: wine sign pass shop embody joke art true evoke coach kidney list
-
-
 0x
-00020000
-005a
-dcd0f23125f74ef621dfa3310625f8af0dcd971b
-00000000000000000000000000000000000000000000000001c6bf5263400000
-00020000
-0032
-dcd0f23125f74ef621dfa3310625f8af0dcd971b
-00000000000000000000000000000000000000000000000001a1cc93b1960000
+6a761202
+000000000000000000000000930b42ec1d03f24b3ff2fa3d10071751ed66235a
+00000000000000000000000000000000000000000000000000005af3107a4000
+0000000000000000000000000000000000000000000000000000000000000140
+0000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000160
+0000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000082
+4f792a8972cfc6c4bbde14452ff6920400b7328d12b2ed8fa587794047cc87b0
+6247089e95b824b608ee4c78cbb53f127c1a60e31f4425bfe6c2c16f38e8829e
+1f28561dbd881d18e15ce01e19ab4475ca2e7602a584363a37678115c42cc499
+2d5b74ea87a6c30bf02d70d19ddc04a41426886b2c487ca1e6c3ba7fe8b52a5c
+0b20000000000000000000000000000000000000000000000000000000000000
 
 
+                                "inputs":[
+                                    {"internalType":"address","name":"to","type":"address"},
+                                    {"internalType":"uint256","name":"value","type":"uint256"},
+                                    {"internalType":"bytes","name":"data","type":"bytes"},
+                                    {"internalType":"enum Enum.Operation","name":"operation","type":"uint8"},
+                                    {"internalType":"uint256","name":"safeTxGas","type":"uint256"},
+                                    {"internalType":"uint256","name":"baseGas","type":"uint256"},
+                                    {"internalType":"uint256","name":"gasPrice","type":"uint256"},
+                                    {"internalType":"address","name":"gasToken","type":"address"},
+                                    {"internalType":"address payable","name":"refundReceiver","type":"address"},
+                                    {"internalType":"bytes","name":"signatures","type":"bytes"}
+                                ],"name":"execTransaction","outputs":[{"internalType":"bool","name":"success","type":"bool"}],"stateMutability":"payable","type":"function"};
 
-approve txid: 0x8abf5e84081d5542857f5acf28e157cc8a4b8d65e67cfe9f6de434634f9ff08c
-brand ndw
-
-merchant credit added: 0x6c4f0e6121f99a1979a057cdfc574410a3dfb0094bac3de8edc6cac8e38ac491
-
-
-faculty hour almost rival awkward soft way cloth swallow sentence comfort eagle
-
-moneris:
-ken
-98@yQ
-
-#edeff0;
-
-0x621d569517dc9e29e9166669
-
-new:gesture number project expand sister lemon dress slush try weekend section planet
-
-const Web3 = require('web3');
-const  Hash = require('eth-lib/lib/hash');
-const Account = require('eth-lib/lib/account');
-
-    signJsonData(privateKey: any, data: any) {
-
-        var queryString = Object.keys(data).filter((k) => (data[k] != null) && (data[k] != undefined))
-        .map(key => key + '=' + (typeof data[key] === 'string' ? data[key] : JSON.stringify(data[key]))).sort().join('&');
-
-        const signature = signKanbanMessageWithPrivateKey(queryString, privateKey);
-        return signature;  
-    }
-
-
-
-  hashKanbanMessage(data) {
-    const web3 = new Web3();
-    var messageHex = web3.utils.isHexStrict(data) ? data : web3.utils.utf8ToHex(data);
-    var messageBytes = web3.utils.hexToBytes(messageHex);
-    var messageBuffer = Buffer.from(messageBytes);
-    var preamble = '\x17Kanban Signed Message:\n' + messageBytes.length;
-    var preambleBuffer = Buffer.from(preamble);
-    var ethMessage = Buffer.concat([preambleBuffer, messageBuffer]);
-    var hash = Hash.keccak256s(ethMessage);    
-    console.log('hash1=', hash);
-    return hash;
-  }
-
-  signKanbanMessageWithPrivateKey(message: string, privateKey: any) {
-    var hash = hashKanbanMessage(message);
-    return signKanbanMessageHashWithPrivateKey(hash, privateKey);
-  }
-
-  signKanbanMessageHashWithPrivateKey(hash: string, privateKey: any) {
-
-    const privateKeyHex = `0x${privateKey.toString('hex')}`;
-    // 64 hex characters + hex-prefix
-    if (privateKeyHex.length !== 66) {
-        throw new Error("Private key must be 32 bytes long");
-    }    
-    var signature = Account.sign(hash, privateKeyHex);
-    var vrs = Account.decodeSignature(signature);
-    return {
-        messageHash: hash,
-        v: vrs[0],
-        r: vrs[1],
-        s: vrs[2],
-        signature: signature
-    };
-  }
-
-
-
-
-
-
-const data = {
-    parentId: this.referral
-};
-
-const sig = signJsonData(privateKey, data);
-data['sig'] = sig.signature; 

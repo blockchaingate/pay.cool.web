@@ -1,0 +1,23 @@
+<ul class="menu">
+    <li class="menu-item" [ngClass]="url == '/wallet/multisig/dashboard' ? 'active' : ''" routerLink="/wallet/multisig/dashboard">
+            <div class="pr-2">
+                <i class="fa fa-home fa-lg" aria-hidden="true"></i>
+            </div>
+            <div>Home</div>
+    </li>
+
+    <li class="menu-item" [ngClass]="url == '/wallet/multisig/dashboard/assets' ? 'active' : ''" routerLink="/wallet/multisig/dashboard/assets">
+            <div class="pr-2">
+                <i class="fa fa-home fa-lg" aria-hidden="true"></i>
+            </div>
+            <div>Assets</div>
+
+    </li>
+
+    <li class="menu-item" [ngClass]="url == '/wallet/multisig/dashboard/transactions' ? 'active' : ''" routerLink="/wallet/multisig/dashboard/transactions">
+        <div class="pr-2">
+            <i class="fa fa-home fa-lg" aria-hidden="true"></i>
+        </div>
+        <div>Transactions</div>
+    </li>
+</ul>

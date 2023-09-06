@@ -48,8 +48,7 @@ export class LockedlpComponent implements OnInit {
     const walletAddressItem = addresses.filter(item => item.name == 'FAB')[0];
     this.address = walletAddressItem.address;
     this.kanbanServ.getfetdusdLpBalance(this.address).subscribe((ret) => {
-      console.log('ret====', ret);
-        //this.ret = tokens;
+
         this.balance = ret.balance;
     }); 
   }

@@ -45,7 +45,6 @@ export class TimerService {
         if (!this.timerEnabled) {
             return;
         }
-        // console.log('begin checkint');
         for (let i = 0; i < this.tokenSubscribe.length; i++) {
             const item = this.tokenSubscribe[i];
             if (item.address === address) {
@@ -56,8 +55,6 @@ export class TimerService {
         const source = timer(1000, 1000);
 
         const subscribeItem = source.subscribe(val => {
-            // console.log('value for checking order ' + val);
-            // console.log('maxTimes=' + maxTimes);
             if ((maxTimes > 0) && (val >= maxTimes - 1)) {
 
                 this.unCheckTokens(address);
@@ -93,7 +90,6 @@ export class TimerService {
         if (!this.timerEnabled) {
             return;
         }       
-        // console.log('begin checkint');
         for (let i = 0; i < this.orderStatusSubscribe.length; i++) {
             const item = this.orderStatusSubscribe[i];
             if (item.address === address) {
@@ -108,7 +104,6 @@ export class TimerService {
             this.kanbanServ.getOrdersByAddressStatus(address, 'open')
             .subscribe(
                 (orders: any) => { 
-                    // console.log('ordersssssssssssssssssss=', orders);
                     this.openOrders.next(orders);
                 }
             );   
@@ -116,7 +111,6 @@ export class TimerService {
             this.kanbanServ.getOrdersByAddressStatus(address, 'closed')
             .subscribe(
                 (orders: any) => { 
-                    // console.log('ordersssssssssssssssssss=', orders);
                     this.closedOrders.next(orders);
                 }
             );   
@@ -124,7 +118,6 @@ export class TimerService {
             this.kanbanServ.getOrdersByAddressStatus(address, 'canceled')
             .subscribe(
                 (orders: any) => { 
-                    // console.log('ordersssssssssssssssssss=', orders);
                     this.canceledOrders.next(orders);
                 }
             );             
@@ -209,7 +202,6 @@ export class TimerService {
                     }
                 );
             } else if (type === 'Deposit') {
-                console.log('check deposit status');
                 this.kanbanServ.getDepositStatusSync(txid).subscribe((res: any) => {
                     if (res && res.code !== undefined) {
                         const code = res.code;
@@ -224,7 +216,6 @@ export class TimerService {
                             status = 'claim';
                         }
                         if (status) {
-                            // console.log('confirmed, status changed');
                             this.transactionStatus.next(
                                 {
                                     txid: txid,
@@ -235,7 +226,6 @@ export class TimerService {
                         }
                     }
                 }, (error) => {
-                    // console.log('error', error);
                 });
             } else if (type === 'Send' || type === 'Add Gas') {
                 if (coin === 'BTC') {

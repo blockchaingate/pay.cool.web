@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-merchant-home',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MerchantHomeComponent implements OnInit {
 
-  constructor() { }
+  merchant: any;
+  constructor(private dataServ: DataService) { }
 
   ngOnInit(): void {
+    this.dataServ.currentMyStore.subscribe(
+      (store: any) => {
+        if(store && store._id) {
+          this.merchant = store;
+        }
+      }
+    );
   }
 
 }

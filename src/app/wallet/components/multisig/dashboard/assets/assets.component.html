@@ -1,0 +1,34 @@
+<div class="mb-3">Assets</div>
+
+<table class="table table-dark" *ngIf="tokens">
+    <thead>
+      <tr>
+        <th scope="col">Asset</th>
+        <th scope="col">Balance</th>
+        <!--
+        <th scope="col">Value</th>
+        -->
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{chain}}</td>
+        <td>{{native | amount}}</td>
+        <td><button type="button" class="btn btn-dark" *ngIf="sendable" (click)="send(chain)">Send</button></td>
+        <!--
+        <td>0</td>
+        -->
+      </tr>
+      <tr *ngFor="let id of tokens.ids; let i = index">
+        <td>{{getName(id)}}</td>
+        <td>{{tokens.balances[i] | amount : ((tokens.decimals && tokens.decimals[i]) ? tokens.decimals[i] : 18)}}</td>
+        <!--
+        <td>0</td>
+        -->
+        <td>
+          <button type="button" *ngIf="sendable" class="btn btn-dark" (click)="send(id)">Send</button>
+        </td>
+      </tr>
+    </tbody>
+</table>

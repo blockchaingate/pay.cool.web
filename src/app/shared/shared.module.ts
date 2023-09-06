@@ -20,6 +20,14 @@ import { FormsModule } from '@angular/forms';
 import { ResizeImageComponent } from './resize-image/resize-image.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 
+import { QrscannerModalComponent } from './modals/qr-scanner/qrscanner-modal.component';
+import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
+
+import { OverflowPipe } from './pipes/overflow.pipe';
+import { TokbPipe } from './pipes/tokb.pipe';
+import { AmountPipe } from './pipes/amount.pipe';
+LOAD_WASM().subscribe((res: any) => {});
+
 @NgModule({
   declarations: [
     TfTreeComponent,
@@ -34,7 +42,11 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     RewardDetailsComponent,
     SendRewardsSummaryComponent,
     UploadMediaComponent,
-    ResizeImageComponent
+    QrscannerModalComponent,
+    ResizeImageComponent,
+    OverflowPipe,
+    TokbPipe,
+    AmountPipe
   ],
   imports: [
     CommonModule,
@@ -43,7 +55,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    ImageCropperModule
+    ImageCropperModule,
+    NgxScannerQrcodeModule
   ],
   exports: [
     TfTreeComponent,
@@ -55,9 +68,13 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     StarRewardsComponent,
     RefundComponent,
     RewardDetailsComponent,
+    QrscannerModalComponent,
     SendRewardsSummaryComponent,
     UploadMediaComponent,
-    ResizeImageComponent
+    ResizeImageComponent,
+    OverflowPipe,
+    TokbPipe,
+    AmountPipe
   ]
 })
 export class SharedModule { }

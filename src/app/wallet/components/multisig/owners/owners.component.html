@@ -1,0 +1,30 @@
+<div class="my-3">
+    <p>
+        Set owners and threshold for the multisig wallet
+    </p>
+    <div class="my-2">
+        <div class="row" *ngFor="let owner of owners; let i = index">
+            <div class="col col-md-4">
+                <div class="mb-1">Name</div>
+                <input type="text" [(ngModel)]="owner.name" class="form-control" placeholder="Owner {{i+1}}">
+            </div>
+            <div class="col col-md-8">
+                <div class="mb-1">Address</div>
+                <div class="d-flex">
+                    <div class="w-100 mr-2">
+                        <input type="text" [(ngModel)]="owner.address" class="form-control" placeholder="Address">
+                    </div>
+                    
+                    <img class="delete" [style.visibility]="(i >= 2) ? 'visible' : 'hidden'" src="/assets/images/delete.svg" (click)="delete(i)">
+                </div>
+                
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col col-md-4">
+                <button type="button" class="btn btn-outline-primary" (click)="addOwner()">Add owner</button>
+            </div>
+            
+        </div>
+    </div>
+</div>

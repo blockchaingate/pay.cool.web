@@ -1,0 +1,31 @@
+<div>
+    <p>Estimated fee, Pay.cool doesn't benefit from this</p>
+    <div class="position-relative">
+        <input type="text" class="form-control" placeholder="{{fee()}} {{chain}}">
+        <div class="inline-button">
+            <button type="button" class="btn btn-link" (click)="openModal(template)">Edit</button>
+        </div>
+      </div>
+</div>
+
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Edit Gas Fee</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="gasPrice">Gas Price (gas)</label>
+            <input type="number" [(ngModel)]="gasPrice" class="form-control" id="gasPrice" placeholder="Enter gas price">
+        </div>
+        <div class="form-group">
+            <label for="gasLimit">Gas Limit (Gwei)</label>
+            <input type="number" [(ngModel)]="gasLimit" class="form-control" id="gasLimit" placeholder="Enter gas limit">
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary btn-block" (click)="save()">Save</button>
+        </div>
+    </div>
+</ng-template>

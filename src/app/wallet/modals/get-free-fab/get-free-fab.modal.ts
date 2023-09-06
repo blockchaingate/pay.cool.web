@@ -34,7 +34,6 @@ export class GetFreeFabModal implements OnInit {
                         const data = res._body;
                         if (res.ok) {
     
-                            console.log('data=', data);
                             this.question = data.question;
                             this.questionair_id = data._id;
                         } else {
@@ -62,31 +61,6 @@ export class GetFreeFabModal implements OnInit {
         );
     }
 
-    /*
-    show() {
-        this.error = null;
-        this.airdropServ.getQuestionair(this.address, this.publicIP).toPromise().then(
-            (res: any) => {
-                if (res) {
-                    const data = res._body;
-                    if (res.ok) {
-
-                        console.log('data=', data);
-                        this.question = data.question;
-                        this.questionair_id = data._id;
-                    } else {
-                        this.error = data;
-                    }
-
-                }
-            }
-        );
-        this.getFreeFabModal.show();
-    }
-    hide() {
-        this.getFreeFabModal.hide();
-    }
-    */
     close() {
         this.modalRef.hide();
     }      

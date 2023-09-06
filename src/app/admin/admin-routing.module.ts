@@ -8,8 +8,6 @@ import { FeeDistributionUpdateRewardCoinsComponent } from './pages/fee-distribut
 import { FeeDistributionUpdateRewardPercentagesComponent } from './pages/fee-distribution-update-reward-percentages/fee-distribution-update-reward-percentages.component';
 import { FeeDistributionUpdatePaymentFeeRateComponent } from './pages/fee-distribution-update-payment-fee-rate/fee-distribution-update-payment-fee-rate.component';
 import { FiatPaymentComponent } from './pages/fiat-payment/fiat-payment.component';
-import { MerchantCreditComponent } from './pages/merchant-credit/merchant-credit.component';
-import { MerchantCreditAddComponent } from './pages/merchant-credit-add/merchant-credit-add.component';
 import { FiatCustomerComponent } from './pages/fiat-customer/fiat-customer.component';
 import { PaymentsComponent } from './pages/payments/payments.component';
 import { VipsComponent } from './pages/vips/vips.component';
@@ -115,12 +113,6 @@ const routes: Routes = [
       },
       {
         path: 'fee-distribution/update-payment-fee-rate', component: FeeDistributionUpdatePaymentFeeRateComponent
-      },
-      {
-        path: 'merchant-credit', component: MerchantCreditComponent
-      },
-      {
-        path: 'merchant-credit/add', component: MerchantCreditAddComponent
       },
       {
         path: '', redirectTo: 'dashboard'

@@ -109,7 +109,6 @@ export class OrderComponent implements OnInit {
       if (!wallets || (wallets.length == 0)) {
         return;
       }
-      console.log('this.wallets==', wallets);
       const wallet = wallets.items[wallets.currentIndex];
       this.wallet = wallet;
       const walletAddressItem = wallet.addresses.filter(item => item.name == 'FAB')[0];
@@ -119,7 +118,6 @@ export class OrderComponent implements OnInit {
       const addresses = wallet.addresses;
       this.kanbanServ.getWalletBalances(addresses).subscribe(
         (res: any) => {
-          console.log('res for getWalletBalances=', res);
           if (res && res.success) {
             this.coins = res.data.filter(item => (item.coin.indexOf('USDT') >= 0) || item.coin.indexOf('DUSD') >= 0);
 
@@ -158,7 +156,7 @@ export class OrderComponent implements OnInit {
     
 
     const myCoin = this.coinServ.formMyCoin(this.wallet.addresses, currentCoin);
-    console.log('myCoin==', myCoin);
+
     const options = {
       gasPrice: this.gasPrice,
       gasLimit: this.gasLimit,
@@ -174,7 +172,6 @@ export class OrderComponent implements OnInit {
       return;
     }
 
-    console.log('txHash===', txHash);
     if (txHash) {
 
        this.txid = txHash;
@@ -188,7 +185,6 @@ export class OrderComponent implements OnInit {
     const addresses = this.wallet.addresses;
     this.kanbanServ.getWalletBalances(addresses).subscribe(
       (res: any) => {
-        console.log('res for getWalletBalances=', res);
         if (res && res.success) {
           const data = res.data;
           this.coins = data.filter(item => (item.coin == this.currentCoin));
@@ -258,7 +254,6 @@ export class OrderComponent implements OnInit {
   confirmPaymentDone(type: string) {
     this.starServ.addPayment(this.id, type, this.order.amount, this.txid).subscribe(
       (res: any) => {
-        console.log('res==', res);
         if(res && res._id) {
           this.payment = res;
           this.payment_id = res._id;
@@ -275,7 +270,6 @@ export class OrderComponent implements OnInit {
   confirmDUSDPaymentDone() {
     this.starServ.addPayment(this.id, 'DUSD', this.order.amount, this.txid).subscribe(
       (res: any) => {
-        console.log('res==', res);
         if(res && res._id) {
           this.payment = res;
           this.payment_id = res._id;
@@ -313,7 +307,7 @@ export class OrderComponent implements OnInit {
                 const data = ret._body;
                 const hash = data.hash;
                 const payeeAccount = data.payeeAccount;
-                console.log('hash=', hash);
+
                 const mapForm = document.createElement('form');
                 mapForm.method = 'POST';
                 mapForm.target = '_blank';
@@ -452,7 +446,6 @@ export class OrderComponent implements OnInit {
       },
 
       (error) => {
-        console.log('error=', error);
         this.toastr.error(error.error.text);
       }
     );
@@ -468,7 +461,7 @@ export class OrderComponent implements OnInit {
             this.errMsg = 'Invalid referral';
           }
         },
-        err => {this.errMsg = err.message; console.log(err.message)}
+        err => {this.errMsg = err.message;}
       );
     } else {
       this.createOrderDo();

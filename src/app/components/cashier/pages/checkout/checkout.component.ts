@@ -14,7 +14,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSelectLan(language: string) {
-    console.log(language);
   }
 
 }

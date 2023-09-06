@@ -65,37 +65,7 @@ export class BindpayComponent implements AfterContentInit{
         this.loadWallet();
   
       });
-    /*
-    this.wallet = await this.walletServ.getCurrentWallet();
-    if (this.wallet) {
-        this.address = this.wallet.excoin.receiveAdds[0].address;
-        const fabAddress = this.utilServ.exgToFabAddress(this.address);
-        this.exAddress = exaddr.toKbpayAddress(fabAddress);
-        this.kanbanServ.getBalance(this.address).subscribe((tokens) => {
-            console.log('tokens====', tokens);
-            this.mytokens = tokens;
-        }); 
-        this.timerServ.tokens.subscribe(
-            (tokens: any) => {
 
-               if(!this.token) {
-                   return;
-               }
-               const coinType = this.token.coinType;
-               const newCoins = tokens.filter(item => item.coinType == coinType);
-               console.log('coinType==', coinType);
-               console.log('newCOins=', newCoins);
-                if(newCoins && newCoins.length > 0) {
-                    const newCoin = newCoins[0];
-                    console.log('newCoin=', newCoin);
-                    if(newCoin.unlockedAmount != this.token.unlockedAmount) {
-                        this.token.unlockedAmount = newCoin.unlockedAmount;
-                    }
-                }
-            }
-        );
-    }   
-    */
   }
 
   onLoadCamera() {
@@ -124,29 +94,7 @@ export class BindpayComponent implements AfterContentInit{
     this.modalRef.content.onClose.subscribe( (seed: Buffer) => {
         this.transferDo(seed);
     });
-    /*
-    this.transactionHistory = false;
-    if(!this.coin && (this.mytokens.length > 0)) {
-        this.coin = this.mytokens[0];
-    }
-    for (let i = 0; i < this.mytokens.length; i++) {
-        if (this.mytokens[i].coinType == this.coin) {
-            this.token = this.mytokens[i];
-            break;
-        }
-    }
-    if (!this.token) {
-        console.log('this.token not found');
-        return;
-    }
-    if (this.amount > this.utilServ.toNumber(this.utilServ.showAmount(this.token.unlockedAmount, 18))) {
-        this.alertServ.openSnackBar(this.translateServ.instant('Not enough balance'), this.translateServ.instant('Ok'));
 
-        return;
-    }
-
-    this.pinModal.show();
-    */
   }
 
 
@@ -188,7 +136,6 @@ export class BindpayComponent implements AfterContentInit{
     let toAddressLegacy = '';
     try {
         toAddressLegacy = exaddr.toLegacyAddress(this.receiverAddress);
-        //console.log('toAddressLegacy===', toAddressLegacy);
     } catch(e) {
 
     }
@@ -200,7 +147,6 @@ export class BindpayComponent implements AfterContentInit{
         return;            
     }
 
-    console.log('this.coin===', this.coin);
     const coinType = this.coin;
     if(coinType <= 0) {
       this.toastr.info(
@@ -227,56 +173,7 @@ export class BindpayComponent implements AfterContentInit{
         this.toastr.error(this.translateServ.instant('Error while transfering your asset'));
     }
     
-    
-    //console.log('transferDo start');
-
-    /*
-    const seed = this.utilServ.aesDecryptSeed(this.wallet.encryptedSeed, this.pin);
-    const keyPairsKanban = this.coinServ.getKeyPairs(this.wallet.excoin, seed, 0, 0);
-    let toAddressLegacy = '';
-    try {
-        toAddressLegacy = exaddr.toLegacyAddress(this.receiverAddress);
-        //console.log('toAddressLegacy===', toAddressLegacy);
-    } catch(e) {
-
-    }
-    
-    if(!toAddressLegacy) {
-        this.alertServ.openSnackBar(
-            this.translateServ.instant('The format of the payment address is incorrect.'), this.translateServ.instant('Ok'));
-
-
-        return;            
-    }
-
-    console.log('toAddressLegacy===', toAddressLegacy);
-    const abiHex = this.web3Serv.getTransferFuncABI(this.coin, this.utilServ.fabToExgAddress(toAddressLegacy), this.amount);
-    console.log('abiHex for getTransferFuncABI=', abiHex);
-    const nonce = await this.kanbanServ.getTransactionCount(keyPairsKanban.address);
-
-    const address = await this.kanbanServ.getCoinPoolAddress();
-    const txhex = await this.web3Serv.signAbiHexWithPrivateKey(abiHex, keyPairsKanban, address, nonce);
-    console.log('txhex=', txhex);
-    this.kanbanServ.sendRawSignedTransaction(txhex).subscribe((resp: any) => {
-        console.log('resp=', resp);
-        if (resp && resp.transactionHash) {
-
-            this.timerServ.checkTokens(keyPairsKanban.address, 10);
-
-            // this.tradeService.saveTransactions(this.openorders);
-            // this.kanbanServ.incNonce();
-
-                this.alertServ.openSnackBar(this.translateServ.instant('Transfer request is pending.'), this.translateServ.instant('Ok'));
-
-        }
-    },
-        (error) => {
-            if (error.error) {
-                this.alertServ.openSnackBar(error.error, 'Ok');
-            }
-
-        });
-    */
+ 
   }
 
   showReceiveAddress() {
@@ -297,12 +194,6 @@ export class BindpayComponent implements AfterContentInit{
       }
     );
 
-    /*
-    
-    const address = this.wallet.excoin.receiveAdds[0].address;
-    const fabAddress = this.utilServ.exgToFabAddress(address);
-
-    */
   }
 
 

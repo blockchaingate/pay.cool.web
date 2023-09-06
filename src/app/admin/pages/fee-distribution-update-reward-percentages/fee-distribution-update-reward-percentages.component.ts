@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { Web3Service } from '../../../services/web3.service';
 import { UtilService } from '../../../services/util.service';
-import { NgxSpinnerService } from 'ngx-bootstrap-spinner';
 
 @Component({
   selector: 'app-fee-distribution-update-reward-percentages',
@@ -39,7 +38,6 @@ export class FeeDistributionUpdateRewardPercentagesComponent implements OnInit {
 
   constructor(
     private dataServ: DataService,
-    private spinner: NgxSpinnerService,
     private utilServ: UtilService,
     private kanbanServ: KanbanService,
     private kanbanSmartContractServ: KanbanSmartContractService,
@@ -104,11 +102,8 @@ export class FeeDistributionUpdateRewardPercentagesComponent implements OnInit {
     const abiData = this.web3Serv.getGeneralFunctionABI(abi, args);
     this.kanbanServ.kanbanCall(this.to, abiData).subscribe(
       (ret: any) => {
-        console.log('ret for isOwner===', ret);
         const kanbanAddress = '0x' + ret.data.substring(ret.data.length - 40);
-        console.log('kanbanAddress==', kanbanAddress);
         this.owner = this.utilServ.exgToFabAddress(kanbanAddress);
-        console.log('this.owner = ', this.owner);
       }
     );
   }  
@@ -125,7 +120,6 @@ export class FeeDistributionUpdateRewardPercentagesComponent implements OnInit {
     this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
 
     this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
-      this.spinner.show();
       this.updateDo(seed);
     });
   }
@@ -168,9 +162,7 @@ export class FeeDistributionUpdateRewardPercentagesComponent implements OnInit {
       this.percentage13,
       this.percentage14
     ], 10000];
-    console.log('args for updateRewardPercent==', args);
     const ret = await this.kanbanSmartContractServ.execSmartContract(seed, this.to, abi, args);
-    this.spinner.hide();
     if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
       this.toastr.success('reward percentages was updated successfully');
       this.router.navigate(['/admin/fee-distribution']);

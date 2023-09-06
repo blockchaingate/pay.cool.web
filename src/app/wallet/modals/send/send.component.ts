@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { MyCoin } from 'src/app/models/mycoin';
 import { CoinService } from 'src/app/services/coin.service';
@@ -35,7 +36,9 @@ import { UtilService } from 'src/app/services/util.service';
 
     constructor(
       private utilServ: UtilService,
-      private modalRef: BsModalRef, private coinServ: CoinService) {}
+      private toastr: ToastrService,
+      private modalRef: BsModalRef, 
+      private coinServ: CoinService) {}
     
     ngOnInit() {
       this.currentCoin = 'FAB';
@@ -54,9 +57,22 @@ import { UtilService } from 'src/app/services/util.service';
     }    
 
     sendCoin() {
+      const to = this.to;
+
+
+      if (!to) {
+        this.toastr.error('No address');
+        return;
+      }
+
+      if((to.indexOf('0x') >= 0) && (to.length != 42)) {
+        this.toastr.error('Wrong address');
+        return;
+      }
+
       const data = {
         currentCoin: this. currentCoin,
-        to: this.to,
+        to: to,
         sendAmount: this.sendAmount,
         comment: this.comment,
         gasPrice: this.gasPrice,
@@ -64,12 +80,12 @@ import { UtilService } from 'src/app/services/util.service';
         satoshisPerByte: this.satoshisPerByte,
         feeLimit: this.feeLimit
       };
+
       this.onClose.next(data);
       this.modalRef.hide();
     }
 
     onFlagChange(event) {
-      console.log('event=', event);
       this.isAdvance = event;
     }
 
@@ -79,10 +95,7 @@ import { UtilService } from 'src/app/services/util.service';
     
     onCoinChange(newCoin) {
       this.currentCoin = newCoin;
-      console.log('newCoin==', newCoin);
       this.mycoin = this.coinServ.formMyCoin(this.addresses, this.currentCoin);
-      console.log('this.coins=', this.coins);
-      console.log('this.coins.filter(item => item.coin == newCoin)=', this.coins.filter(item => item.coin == newCoin));
       this.balance = this.coins.filter(item => item.coin == newCoin)[0].balance;
     }
 

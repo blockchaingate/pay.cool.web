@@ -21,21 +21,18 @@ export class OverviewComponent implements OnInit {
   ngOnInit(): void {
     this.projectServ.getOverview(metaforceProjectId).subscribe(
       (overview: any) => {
-        console.log('overview===', overview);
         this.overview = overview;
       }
     );
 
     this.commonServ.getPrice('FET').subscribe(
       (ret: any) => {
-        console.log('ret===', ret);
         this.fetPrice = ret.price;
       }
     );
 
     this.commonServ.getPrice('FETDUSD-LP').subscribe(
       (ret: any) => {
-        console.log('ret===', ret);
         this.lpPrice = ret.price;
       }
     );

@@ -1,0 +1,66 @@
+<div *ngIf="step == 1">
+    <h3 class="text-white">
+        Import a MultiSig
+    </h3>
+
+    
+    <div class="my-3">
+        <p>
+            Address
+        </p>
+        <div class="my-2">
+            <input type="text" class="form-control" [(ngModel)]="address" id="wallet-address" aria-describedby="emailHelp" placeholder="Enter wallet address">
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <button type="button" class="btn btn-primary btn-lg btn-block" (click)="import()">Next</button>
+    </div>
+
+</div>
+
+<div *ngIf="step == 2">
+    <div class="review">
+        <h4>Review</h4>
+        <div>You're about to import a new Account.</div>    
+    </div>
+
+    <div class="form-group row my-2">
+        <label class="col-sm-3 text-muted">Network</label>
+        <div class="col-sm-9">
+            {{multisig.chain}}
+        </div>
+    </div>
+
+    <div class="form-group row my-2">
+        <label class="col-sm-3 text-muted">Name</label>
+        <div class="col-sm-9">
+            {{multisig.name}}
+        </div>
+    </div>
+
+    <div class="form-group row my-2">
+        <label class="col-sm-3 text-muted">Owners</label>
+        <div class="col-sm-9">
+            <div *ngFor="let owner of multisig.owners" class="py-1">
+                <div>{{owner.name}}</div>
+                <div>{{owner.address}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row my-2">
+        <label class="col-sm-3 text-muted">Threshold</label>
+        <div class="col-sm-9">
+            {{multisig.confirmations}} out of {{multisig.owners.length}}
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between m-3">
+        <div>
+            <button type="button" class="btn btn-outline-secondary" (click)="back()">Back</button>
+        </div>
+        <div><button type="button" class="btn btn-primary" (click)="confirm()">Confirm</button></div>
+    </div>
+</div>
+

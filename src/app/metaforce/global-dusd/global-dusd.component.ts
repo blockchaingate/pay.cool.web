@@ -43,7 +43,6 @@ export class GlobalDusdComponent implements OnInit {
   }
 
   changePageNum(pageNum: number) {
-    console.log('11');
     if(pageNum < 0) {
       pageNum = 0;
     }
@@ -53,6 +52,5 @@ export class GlobalDusdComponent implements OnInit {
         this.rewards = rewards;
       }
     );
-    console.log('22');
   }
 }

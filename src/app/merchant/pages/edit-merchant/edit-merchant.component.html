@@ -1,0 +1,219 @@
+<div class="container-fluid new-merchant">
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="topHint">
+                   <p class="mt-3 leftTop">
+                    <img src="assets/images/logo/paycoolColor.png" alt="qr-code">
+                    
+                   </p>
+                    <p class="mt-3 left01">{{"left01"|translate}}</p>
+                    <p class="mt-3 left02">{{"left02"|translate}}</p>
+                    <p class="mt-3 left03">{{"left03"|translate}}</p>
+                </div>
+                <div class="bottomHint">
+                    <img src="assets/images/img/idea.png" alt="qr-code">
+                    <p class="tips-title">{{"tip01"|translate}}</p>
+                    <p class="tips">{{"tip01-text"|translate}}</p>
+                    <p class="tips-title">{{"tip02"|translate}}</p>
+                    <p class="tips">{{"tip02-text"|translate}}</p>
+                    <p class="tips-title">{{"tip03"|translate}}</p>
+                    <p class="tips">{{"tip03-text"|translate}}</p>
+                    <p class="tips-title">{{"tip04"|translate}}</p>
+                    <p class="tips">{{"tip04-text"|translate}}</p>
+                    <p class="tips-title">{{"tip05"|translate}}</p>
+                    <p class="tips">{{"tip05-text"|translate}}</p>
+
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="new-merchant-form">
+                    <h2>{{"myMerchantReg"| translate }}</h2>
+                    <div *ngIf="currentTab=='EN'">
+                        <div class="form-group row">
+
+                            <div class="col-sm-12">
+                                <label class="">{{"businessname"|translate}}</label>
+                                <input type="text" class="form-control small" placeholder="{{'Enter name' | translate}}"
+                                    [(ngModel)]="name" name="name" id="name" required>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row my-2">
+
+                            <div class="col-sm-12 logo">
+                               <label class="">{{"businesslogo"|translate}} 
+                                <!-- <span
+                                        class="small">{{"Max"|translate}}
+                                        256K<br>320x200 {{"pixels"| translate}}</span> -->
+                                    </label>
+                                    <br>
+                               <!--   <app-admin-upload-media class="ml-4" id="logo" [(images)]="images"
+                                    [singleFile]="true"></app-admin-upload-media> -->
+
+                                <app-resize-image [(images)]="images"></app-resize-image>
+                            </div>
+                        </div>
+
+                        <div class="form-group row my-2">
+
+                            <div class="col-sm-12">
+                                <label class="">{{"businessaddress"|translate}}</label>
+                                <input type="text" class="form-control small"
+                                    placeholder="{{'Enter address' | translate}}" [(ngModel)]="businessAddress"
+                                    name="businessAddress" id="businessAddress" required>
+                            </div>
+                        </div>
+                        <div class="form-group row  my-2">
+                            <div class="col-sm-12">
+                                <label class="">{{"businesswebsite"|translate}}</label>
+                                <input type="text" class="form-control small"
+                                    placeholder="{{'Enter website' | translate}}" [(ngModel)]="website" name="website"
+                                    id="website">
+                            </div>
+                        </div>
+
+                        <div class="form-group row my-2">
+                            <div class="col-sm-12">
+                                <label class="">{{"Contact Name"|translate}}</label>
+                                <input type="text" class="form-control small"
+                                    placeholder="{{'Enter contact name' | translate}}" [(ngModel)]="contactName"
+                                    name="contactName" id="contactname" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row my-2">
+                            <div class="col-sm-12">
+                                <label class="">{{"phone"|translate}}</label>
+                                <input type="text" class="form-control small"
+                                    placeholder="{{'Enter phone' | translate}}" [(ngModel)]="phone" name="phone"
+                                    id="phone" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row  my-2">
+                            <div class="col-sm-12">
+                                <label class="">{{"emailCa"|translate}}</label>
+                                <input type="text" class="form-control small"
+                                    placeholder="{{'Enter email' | translate}}" [(ngModel)]="email" name="email"
+                                    id="email">
+                            </div>
+                        </div>
+
+                        <div class="form-group row  my-2">
+                            <div class="col-sm-12">
+                                <label class="">{{"email2"|translate}}</label>
+                                <input type="text" class="form-control small"
+                                    placeholder="{{'Enter email' | translate}}" [(ngModel)]="email2" name="email2"
+                                    id="email2">
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="form-group row  my-2">
+                            <div class="col-sm-12">
+                                <label class="">{{"businesshour"|translate}}</label>
+                                <input type="text" class="form-control small"
+                                    placeholder="{{'businesshour' | translate}}" [(ngModel)]="openTime"
+                                    name="openTime" id="openTime">
+                            </div>
+                        </div>
+
+                        <!-- <div class="form-group row  my-2">
+
+                            <div class="col-sm-12">
+                                <label class="">{{"Close time"|translate}}</label>
+                                <input type="text" class="form-control small"
+                                    placeholder="{{'Enter close time' | translate}}" [(ngModel)]="closeTime"
+                                    name="closeTime" id="closeTime">
+                            </div>
+                        </div> -->
+
+                        <div class="form-group row  my-2">
+
+                            <div class="col-sm-12">
+                                <label class="">{{"businessdescrip"|translate}}</label>
+                                <textarea type="text" class="form-control small"
+                                    placeholder="{{'Enter business contents' | translate}}"
+                                    [(ngModel)]="businessContents" name="businessContents" id="bizcontact">
+              </textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row  my-2">
+
+                            <div class="col-sm-12">
+                                <label class="">{{'rebate' | translate}}(%) *</label>
+                                <input type="number" onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                                    class="form-control small" placeholder="{{'Rebate rate' | translate}}"
+                                    [(ngModel)]="rebateRate" name="rebateRate" id="rebaterate" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row  my-2">
+
+                            <div class="col-sm-12">
+                                <div>
+                                    <label class="">{{"primarycoin"|translate}} </label>
+                                </div>
+                                <div>
+                                    <select [(ngModel)]="coin" name="coin" class="custom-select"
+                                    aria-label=".form-select-lg example">
+                                    <option value="">{{"Select coin"|translate}}:</option>
+                                    <option *ngFor="let coin of coins" value="{{coin}}">{{coin}}</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row  my-2">
+
+                            <div class="col-sm-12">
+                                <label class="">{{'tax' | translate}} *</label>
+                                <input type="number" onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                                    class="form-control small" placeholder="{{'Tax rate' | translate}}"
+                                    [(ngModel)]="taxRate" name="taxRate" id="taxrate" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row  my-2">
+
+                            <div class="col-sm-12">
+                                <label class="">{{'lock' | translate}} *</label>
+                                <input type="number" onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                                    class="form-control small" placeholder="{{'locked days' | translate}}"
+                                    [(ngModel)]="lockedDays" name="lockedDays" id="lockedDays">
+                            </div>
+                        </div>
+                        <div class="form-group row  my-2">
+
+                            <div class="col-sm-12">
+                                <label for="merchantreferer" class="">{{"merchantreferer"|translate}}</label>
+                                <input type="text" [(ngModel)]="referral" class="form-control" id="referralAddress"
+                                    aria-describedby="referralAddress" placeholder="{{'merchantreferer' | translate}}">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="d-grid gap-2 d-flex justify-content-end">
+                        <div class="text-right py-2 mb-3 mt-3 ">
+                            <button type="submit" class="btn btn-primary btn-bg-xl" (click)="updateMerchant()">{{('update') |
+                                translate}}</button>
+                        </div>
+
+                    </div>
+
+                    <div *ngIf="txHash" class="py-3">
+                        <a href="{{txHash}}" target="_blank">{{txHash}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

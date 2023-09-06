@@ -7,7 +7,7 @@ import { CoinService } from '../../../../services/coin.service';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
-import BigNumber from 'bignumber.js/bignumber';
+import BigNumber from 'bignumber.js';
 import { Signature } from '../../../../interfaces/kanban.interface';
 import { Web3Service } from '../../../../services/web3.service';
 import { UserReferralService } from '../../../../services/userreferral.service';
@@ -20,7 +20,6 @@ import { Campaign } from '../../../../models/campaign';
 import { StarOrder } from '../../../../models/order';
 import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 import { KanbanSmartContractService } from 'src/app/services/kanban.smartcontract.service';
-import { Console } from 'node:console';
 import { StarService } from 'src/app/services/star.service';
 
 @Component({
@@ -120,19 +119,17 @@ export class MyAssetDashboardComponent implements OnInit {
     this.currentTab = 'wallet';
     
     this.localSt.getItem('ecomwallets').subscribe((wallets: any) => {
-      console.log('wallets=', wallets);
+
       if (!wallets || (wallets.length == 0)) {
         this.router.navigate(['/wallet']);
       }
       this.wallets = wallets;
-      console.log('this.wallets==', this.wallets);
       this.wallet = this.wallets.items[this.wallets.currentIndex];
       this.walletAdd = this.wallet.addresses.filter(c => c.name === 'FAB')[0].address;
 
       
       this.userreferalSer.checkAddress(this.walletAdd).subscribe(
         (res: any) => {
-          console.log('ressss=', res);
           if (res) {
             this.participated = res.isValid;
           }
@@ -141,7 +138,6 @@ export class MyAssetDashboardComponent implements OnInit {
       this.userreferalSer.checkAddress(this.walletAdd).subscribe(
         (ret: any) => {
           this.isValidMember = ret.isValid;
-          console.log('this.isValidMember==', this.isValidMember);
         }
       );
 
@@ -335,7 +331,6 @@ export class MyAssetDashboardComponent implements OnInit {
 
   onPaymentMethodSelect(paymethod: string) {
     this.paymentMethod = paymethod;
-    console.log('assets==', this.assets);
 
     this.getPaymentQrcode();
     if(!this.assets || this.assets.length == 0) {
@@ -359,7 +354,6 @@ export class MyAssetDashboardComponent implements OnInit {
   }
 
   addGas() {
-    console.log('fabBalance===', this.fabBalance);
     if (this.fabBalance <= 0) {
       this.toastr.info(this.translateServ.instant("Not enough FAB in wallet, can not add gas"));
       return;
@@ -407,10 +401,8 @@ export class MyAssetDashboardComponent implements OnInit {
     } else if (this.opType == 'sendCoin') {
       this.sendCoinDo();
     } else if (this.opType == 'deposit') {
-      console.log('deposit do start');
       this.depositDo();
     } else if (this.opType == 'withdraw') {
-      console.log('withdrawDo do start');
       this.withdrawDo();
     }
   }
@@ -424,17 +416,15 @@ export class MyAssetDashboardComponent implements OnInit {
       this.warnPwdErr();
       return;
     }
-    console.log('amount withdraw=', amount);
     const keyPairsKanban = this.coinServ.getKeyPairs('FAB', seed, 0, 0, 'b');
     const amountInLink = new BigNumber(amount).multipliedBy(new BigNumber(1e18)); // it's for all coins.
     let addressInWallet = currentCoin.receiveAdds[0].address;
 
     if (currentCoin.name === 'BTC' || currentCoin.name === 'FAB' || currentCoin.name === 'DOGE' || currentCoin.name === 'LTC') {
       const bytes = bs58.decode(addressInWallet);
-      console.log('bytes=', bytes);
+
       addressInWallet = bytes.toString();
 
-      console.log('addressInWallet=', addressInWallet);
     } else if (currentCoin.name === 'BCH') {
       const keyPairsCurrentCoin = this.coinServ.getKeyPairs('BCH', seed, 0, 0, 'b');
       let prefix = '6f';
@@ -470,7 +460,6 @@ export class MyAssetDashboardComponent implements OnInit {
       }
       const bytes = bs58.decode(fabAddress);
       addressInWallet = bytes.toString();
-      console.log('addressInWallet for exg', addressInWallet);
     }
 
     const abiHex = this.web3Serv.getWithdrawFuncABI(this.currentCoinId, amountInLink, addressInWallet);
@@ -499,27 +488,13 @@ export class MyAssetDashboardComponent implements OnInit {
     const txKanbanHex = await this.web3Serv.signAbiHexWithPrivateKey(abiHex, keyPairsKanban, coinPoolAddress, nonce, 0, options);
 
     this.kanbanServ.sendRawSignedTransaction(txKanbanHex).subscribe((resp: any) => {
-      // console.log('resp=', resp);
+
       if (resp && resp.transactionHash) {
         this.toastr.error(this.translateServ.instant('Your withdraw request is pending.'));
-        /*
-        this.modalWithdrawRef.hide();
-        this.kanbanServ.incNonce();
-        if (this.lan === 'zh') {
-            this.alertServ.openSnackBarSuccess('提币请求提交成功，等待处理。', 'Ok');
-        } else {
-            this.alertServ.openSnackBarSuccess('Your withdraw request is pending.', 'Ok');
-        }
-        */
+
       } else {
         this.toastr.error(this.translateServ.instant('Errors happened, please try again.'));
-        /*
-          if (this.lan === 'zh') {
-              this.alertServ.openSnackBar('发生错误，请再试一次。', 'Ok');
-          } else {
-              this.alertServ.openSnackBar('Errors happened, please try again.', 'Ok');
-          }
-        */
+
       }
     });
   }
@@ -534,7 +509,7 @@ export class MyAssetDashboardComponent implements OnInit {
       return;
     }
     const scarAddress = await this.kanbanServ.getScarAddress();
-    console.log('scarAddress=', scarAddress);
+
     const currentCoin = this.coinServ.formMyCoin(this.wallet.addresses, 'FAB');
     const { txHash, errMsg } = await this.coinServ.depositFab(scarAddress, seed, currentCoin, amount);
     if (errMsg) {
@@ -553,26 +528,18 @@ export class MyAssetDashboardComponent implements OnInit {
 
     const coinType = this.coinServ.getCoinTypeIdByName(currentCoin);
 
-    console.log('coinType is', coinType);
     const seed = this.utilServ.aesDecryptSeed(this.wallet.encryptedSeed, pin);
     if (!seed) {
       this.warnPwdErr();
       return;
     }
 
-    console.log('currentCoin==', currentCoin);
     const myCoin = this.coinServ.formMyCoin(this.wallet.addresses, currentCoin);
     let keyPairs = this.coinServ.getKeyPairs(myCoin.tokenType ? myCoin.tokenType : myCoin.name, seed, 0, 0, 'b');
     keyPairs.tokenType = myCoin.tokenType;
     const officalAddress = this.coinServ.getOfficialAddress(currentCoin);
     if (!officalAddress) {
-      /*
-        if (this.lan === 'zh') {
-            this.alertServ.openSnackBar(currentCoin.name + '官方地址无效', 'Ok');
-        } else {
-            this.alertServ.openSnackBar('offical address for ' + currentCoin.name + ' is unavailable', 'Ok');
-        }
-        */
+
       this.toastr.error(this.translateServ.instant('offical address is unavailable'));
       return;
     }
@@ -627,14 +594,6 @@ export class MyAssetDashboardComponent implements OnInit {
 
     const subString = amountInLinkString.substr(amountInTxString.length);
     if (subString && Number(subString) !== 0) {
-      console.log('not equal 2');
-      /*
-      if (this.lan === 'zh') {
-          this.alertServ.openSnackBar('转账数量不符合', 'Ok');
-      } else {
-          this.alertServ.openSnackBar('deposit amount not the same', 'Ok');
-      }
-      */
       this.toastr.error(this.translateServ.instant('deposit amount not the same'));
       return;
     }
@@ -642,68 +601,34 @@ export class MyAssetDashboardComponent implements OnInit {
     const originalMessage = this.coinServ.getOriginalMessage(coinType, this.utilServ.stripHexPrefix(txHash)
       , amountInLink, this.utilServ.stripHexPrefix(addressInKanban));
 
-    console.log('originalMessage in deposit=', originalMessage);
     const signedMessage: Signature = this.coinServ.signedMessage(originalMessage, keyPairs);
 
 
     const coinPoolAddress = await this.kanbanServ.getCoinPoolAddress();
     const abiHex = this.web3Serv.getDepositFuncABI(coinType, txHash, amountInLink, addressInKanban, signedMessage);
 
-    console.log('abiHex=', abiHex);
     const nonce = await this.kanbanServ.getTransactionCount(addressInKanban);
-    // const nonce = await this.kanbanServ.getNonce(addressInKanban);
-    // console.log('nonce there we go =', nonce);
+
     const optionsKanban = {
       gasPrice: this.kanbanGasPrice,
       gasLimit: this.kanbanGasLimit,
     };
     const txKanbanHex = await this.web3Serv.signAbiHexWithPrivateKey(abiHex, keyPairsKanban, coinPoolAddress, nonce, 0, optionsKanban);
 
-    console.log('txKanbanHex=', txKanbanHex);
-    // return 0;
     this.kanbanServ.submitDeposit(txHex, txKanbanHex).subscribe((resp: any) => {
-      // console.log('resp=', resp);
+
       if (resp && resp.data && resp.data.transactionID) {
-        /*
-        const item = {
-            walletId: this.wallet.id,
-            type: 'Deposit',
-            coin: currentCoin.name,
-            tokenType: currentCoin.tokenType,
-            amount: amount,
-            txid: resp.data.transactionID,
-            to: officalAddress,
-            time: new Date(),
-            confirmations: '0',
-            blockhash: '',
-            comment: '',
-            status: 'pending'
-        };
-        this.storageService.storeToTransactionHistoryList(item);
-        this.timerServ.transactionStatus.next(item);
-        this.timerServ.checkTransactionStatus(item);
-        */
-        //this.kanbanServ.incNonce();
-        //this.coinServ.addTxids(txids);
-        /*
-        if (this.lan === 'zh') {
-            this.alertServ.openSnackBarSuccess('转币去交易所请求已提交，请等待' + environment.depositMinimumConfirmations[currentCoin.name] + '个确认', 'Ok');
-        } else {
-            this.alertServ.openSnackBarSuccess('Moving fund to DEX was submitted, please wait for ' + environment.depositMinimumConfirmations[currentCoin.name] + ' confirmations.', 'Ok');
-        }
-        */
+
 
         this.ngxSmartModalService.getModal('passwordModal').close();
         this.toastr.info(this.translateServ.instant('Moving fund to DEX was submitted, please wait for ')
           + environment.depositMinimumConfirmations[currentCoin] + this.translateServ.instant('confirmations.'));
       } else if (resp.error) {
         this.toastr.error(resp.error);
-        //this.alertServ.openSnackBar(resp.error, 'Ok');
       }
     },
       error => {
-        console.log('error====');
-        console.log(error);
+
         if (error.error && error.error.error) {
           this.toastr.error(error.error.error);
           //this.alertServ.openSnackBar(error.error.error, 'Ok');
@@ -739,27 +664,7 @@ export class MyAssetDashboardComponent implements OnInit {
     if (txHex && txHash) {
       this.toastr.info(this.translateServ.instant('your transaction was submitted successful, please wait a while to check status.'));
       this.ngxSmartModalService.getModal('passwordModal').close();
-      /*
-      const item = {
-          walletId: this.wallet.id,
-          type: 'Send',
-          coin: this.currentCoin,
-          amount: amount,
-          txid: txHash,
-          to: this.to,
-          time: new Date(),
-          confirmations: '0',
-          blockhash: '',
-          comment: this.comment,
-          status: 'pending'
-      };
-      console.log('before next');
-      this.timerServ.transactionStatus.next(item);
-      this.timerServ.checkTransactionStatus(item);
-      console.log('after next');
-      this.storageService.storeToTransactionHistoryList(item);
-      this.coinService.addTxids(txids);
-      */
+
     }
   }
 
@@ -768,7 +673,6 @@ export class MyAssetDashboardComponent implements OnInit {
   }
 
   onCoinChange(newCoin) {
-    console.log('newCoin==', newCoin);
     this.currentCoin = newCoin;
     this.currentCoinAddress = this.getCurrentCoinAddress();
   }
@@ -780,7 +684,6 @@ export class MyAssetDashboardComponent implements OnInit {
 
   onChange(value) {
     this.errMsg = '';
-    console.log('value==', value);
 
     this.wallet = this.wallets.items.filter(item => (item.id == value))[0];
 
@@ -793,7 +696,6 @@ export class MyAssetDashboardComponent implements OnInit {
 
   getCurrentCoinAddress() {
     const addresses = this.wallet.addresses;
-    console.log('addresses==', addresses);
     let fabAddress = '';
     let ethAddress = '';
     for (let i = 0; i < addresses.length; i++) {
@@ -840,13 +742,11 @@ export class MyAssetDashboardComponent implements OnInit {
     this.refreshAssets();
     this.kanbanServ.getWalletBalances(addresses).subscribe(
       (res: any) => {
-        console.log('res for getWalletBalances=', res);
         if (res && res.success) {
           this.coins = res.data.filter(item => ((item.coin != 'CAD') && (item.coin != 'RMB')));
           const exgCoin = this.coins.filter(item => item.coin == 'EXG')[0];
           const fabCoin = this.coins.filter(item => item.coin == 'FAB')[0];
           this.fabBalance = fabCoin.balance;
-          console.log('fabCoin==', fabCoin);
           this.currentCoin = exgCoin.coin;
           this.currentCoinAddress = this.getCurrentCoinAddress();
           this.walletBalance = Number(exgCoin.balance) + Number(exgCoin.lockBalance);
@@ -858,7 +758,6 @@ export class MyAssetDashboardComponent implements OnInit {
 
   dlDataUrlBin() {
     const y = document.getElementById('address_qr_code').getElementsByTagName('canvas')[0];
-    //console.log('y.src=' + y.src);
     if (y) {
       var link = y.toDataURL("image/png");
       this.link = link;
@@ -872,7 +771,6 @@ export class MyAssetDashboardComponent implements OnInit {
         this.assets = resp;
       },
       error => {
-        // console.log('errorrrr=', error);
       }
     );
   }
@@ -880,12 +778,10 @@ export class MyAssetDashboardComponent implements OnInit {
   refreshGas() {
     this.kanbanServ.getKanbanBalance(this.kanbanAddress).subscribe(
       (resp: any) => {
-        // console.log('resp=', resp);
         const fab = this.utilServ.stripHexPrefix(resp.balance.FAB);
         this.gas = this.utilServ.hexToDec(fab) / 1e18;
       },
       error => {
-        // console.log('errorrrr=', error);
       }
     );
   }
@@ -977,7 +873,6 @@ export class MyAssetDashboardComponent implements OnInit {
       },
 
       (error) => {
-        console.log('error=', error);
         this.toastr.error(error.error.text);
       }
     );
@@ -995,7 +890,6 @@ export class MyAssetDashboardComponent implements OnInit {
     if (this.referral && this.referral.length > 32) {
       this.userreferalSer.checkAddress(this.referral).subscribe(
         (res: any) => {
-          console.log('hehre');
           if (res && res.isValid || !environment.production) {
             this.createOrderDo();
           } else {
@@ -1004,10 +898,9 @@ export class MyAssetDashboardComponent implements OnInit {
           }
 
         },
-        err => { this.errMsg = err.message; console.log(err.message) }
+        err => { this.errMsg = err.message;  }
       );
     } else {
-      // this.createOrderDo();
     }
   }
 
@@ -1077,7 +970,6 @@ export class MyAssetDashboardComponent implements OnInit {
   }
   pay() {
 
-    console.log('pay begin');
     if(this.balance < 2000) {
       this.toastr.info('Not enough balance to make this transaction.');
       return;
@@ -1098,13 +990,10 @@ export class MyAssetDashboardComponent implements OnInit {
     this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
 
     this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
-      //console.log('seed===', seed);
-      console.log('this.to=', this.to);
-      console.log('this.abihex=', this.abihex);
+
       const ret = await this.kanbanSmartContractServ.execSmartContractAbiHex(seed, this.to, this.abihex);
       //const txid = ret.transactionHash;
       if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
-        console.log('ret._body===', ret._body);
         const txid = ret._body.transactionHash;
         this.toastr.success('Transaction was made, txid is: ' + txid);
         this.starSer.savePayment(this.walletAdd, txid).subscribe(

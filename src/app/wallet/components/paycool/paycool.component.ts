@@ -9,7 +9,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Web3Service } from '../../../services/web3.service';
 import { StarService } from '../../../services/star.service';
 import { UtilService } from '../../../services/util.service';
-import { NgxSpinnerService } from 'ngx-bootstrap-spinner';
 import { CoinService } from 'src/app/services/coin.service';
 
 @Component({
@@ -23,6 +22,8 @@ export class PaycoolComponent implements OnInit{
     wallet: any;
     name: string;
     to: string;
+    amount: number;
+    address: string;
     walletAddress: string;
     templateId: string;
     tab: string;
@@ -38,12 +39,9 @@ export class PaycoolComponent implements OnInit{
         private kanbanSmartContractServ: KanbanSmartContractService,
         private dataServ: DataService,
         private route: ActivatedRoute,
-        private coinServ: CoinService,
-        private spinner: NgxSpinnerService,
         private toastr: ToastrService,
         private starServ: StarService,
         private web3Serv: Web3Service,
-        private utilServ: UtilService,
         public kanbanServ: KanbanService,
         private modalService: BsModalService,) {}
     ngOnInit() {
@@ -62,7 +60,7 @@ export class PaycoolComponent implements OnInit{
             this.data = params['data'];
             this.id = params['i'];
             this.templateId = params['t'];
-            console.log('ttttid=', this.templateId);
+            this.address = params['a'];
             if(this.data) {
               this.args = this.web3Serv.decodeData(['bytes32', 'uint32', 'uint256','uint256', 'address[]', 'address[]'], this.data.substring(10));
             }
@@ -75,7 +73,6 @@ export class PaycoolComponent implements OnInit{
                   if(this.id) {
                     this.starServ.getPaycoolRewardInfo(this.id, walletAddress).subscribe(
                       (ret: any) => {
-                        console.log('ret from here=', ret);
                         this.order = ret;
                       }
                     );
@@ -90,7 +87,6 @@ export class PaycoolComponent implements OnInit{
       this.payType = type;
       this.starServ.getPaycoolRewardInfoWithPayType(this.id, this.walletAddress, this.payType).subscribe(
         (ret: any) => {
-          console.log('ret from here=', ret);
           this.order = ret;
         }
       );
@@ -121,13 +117,11 @@ export class PaycoolComponent implements OnInit{
         this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
       
         this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
-            this.spinner.show();
             this.submitDo(seed);
         });        
     }
 
     async submitDo(seed: Buffer) {
-      console.log('submitDo start');
       let abi;
       let args;
       let to;
@@ -214,6 +208,19 @@ export class PaycoolComponent implements OnInit{
         }
         
         
+      } else
+      if(this.address) {
+        const ret1 = await this.starServ.createOrderFromAddressPromise(this.address, this.amount);
+        if(ret1 && ret1._id) {
+          this.id = ret1._id;
+          this.starServ.getPaycoolRewardInfoWithPayType(this.id, this.walletAddress, this.payType).subscribe(
+            (ret: any) => {
+              this.order = ret;
+
+              this.submitDo(seed);
+            }
+          );
+        }
       }
 
 

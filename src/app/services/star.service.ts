@@ -23,6 +23,16 @@ export class StarService {
       return await this.http.post(url, body).toPromise();
    }
 
+   async createOrderFromAddressPromise(address: string, amount: number): Promise<any> {
+      const url = environment.endpoints.api + 'userpay/createOrderFromAddress';
+      const body = {
+         address,
+         amount
+      }
+
+      return await this.http.post(url, body).toPromise();
+   }
+
    getReissueSummary() {
       const url = environment.endpoints.blockchaingate + '7star-charge-fund/reissue/summary';
       return this.http.get(url);
@@ -74,7 +84,6 @@ export class StarService {
          defaultBlock: block
       }
 
-      console.log('data====', data);
       return this.http.post(url, data);
    }
 

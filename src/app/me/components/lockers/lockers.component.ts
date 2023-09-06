@@ -67,7 +67,6 @@ export class LockersComponent implements OnInit {
 
   unlock(item) {
     this.locker = item;
-    console.log('this.locker===', this.locker);
     const initialState = {
       pwdHash: this.wallet.pwdHash,
       encryptedSeed: this.wallet.encryptedSeed

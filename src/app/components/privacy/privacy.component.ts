@@ -14,7 +14,6 @@ export class PrivacyComponent {
     private location: Location
   ) {
     this.href = this.location.path();
-    console.log('this.href=', this.href);
     this.langFromUrl = this.href.split('/')[1];
 
     if (this.langFromUrl === 'en' || this.langFromUrl === 'sc' || this.langFromUrl === 'tc') {
@@ -22,7 +21,6 @@ export class PrivacyComponent {
     } else {
       this.lan = localStorage.getItem('_lan') || 'en';
     }
-    console.log('Privacy this.lan=', this.lan);
 
   }
 }

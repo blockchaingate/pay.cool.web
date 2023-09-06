@@ -20,7 +20,7 @@ export class QrscannerModalComponent implements AfterContentInit {
         vibrate: 400,
         // isBeep: true,
         // decode: 'macintosh',
-        deviceActive: 1,
+        //deviceActive: 1,
         constraints: { 
           audio: false,
           video: {
@@ -40,15 +40,14 @@ export class QrscannerModalComponent implements AfterContentInit {
     ngAfterContentInit() {}
 
     public onEvent(e: ScannerQRCodeResult[]): void {
-      console.log(e);
     }
   
     public handle(action: any, fn: string): void {
-      action[fn]().subscribe(console.log, alert);
+      action[fn]().subscribe(alert);
     }
   
     public onDowload(action): void {
-      action.download().subscribe(console.log, alert);
+      action.download().subscribe(alert);
     }
   
     public onSelects(files: any): void {
@@ -60,7 +59,6 @@ export class QrscannerModalComponent implements AfterContentInit {
   
     public onSelects2(files: any): void {
       this.qrcode.loadFilesToScan(files, this.config).subscribe((res: ScannerQRCodeSelectedFiles[]) => {
-        console.log(res);
         this.qrCodeResult2 = res;
         // alert(JSON.stringify(res))
       });

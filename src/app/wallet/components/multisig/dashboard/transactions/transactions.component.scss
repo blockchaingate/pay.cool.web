@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    border-bottom: 1px solid grey;
+}
+
+.header>div {
+    color: #989d98;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+
+.header>div.active {
+    color: rgb(223, 223, 223);
+    border-bottom: 3px solid rgb(223, 223, 223);
+}

@@ -83,7 +83,6 @@ export class ImportWalletComponent implements OnInit {
         this.localSt.setItem('ecomwallets', wallets).subscribe(() => {
           this.walletServ.refreshWallets(wallets);
           const sig = localStorage.getItem('sig');
-          console.log('siggggg=', sig);
           if(sig) {
               this.route.navigate(['/transfer-ownership/' + sig]);
           } else {

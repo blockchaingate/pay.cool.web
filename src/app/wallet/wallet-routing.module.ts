@@ -8,7 +8,6 @@ import { ImportWalletComponent } from './components/import-wallet/import-wallet.
 import { ConfirmMnemonicsComponent } from './components/create-wallet/confirmmnem.component';
 import { WalletPwdComponent } from './components/create-wallet/wallet-pwd.component';
 import { PaycoolComponent } from './components/paycool/paycool.component';
-
 const routes: Routes = [
     {
         path: '', component: WalletComponent,
@@ -19,6 +18,12 @@ const routes: Routes = [
             { path: 'import', component: ImportWalletComponent},
             { path: 'confirm', component: ConfirmMnemonicsComponent},
             { path: 'pwd', component: WalletPwdComponent},
+            
+            {
+                path: 'multisig',
+                loadChildren: () => import('./components/multisig/multisig.module').then(w => w.MultisigModule)
+            },
+
             { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
         ]
     },

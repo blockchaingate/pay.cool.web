@@ -43,7 +43,6 @@ export class PackageComponent implements OnInit {
             this.package = thepackage;
             if(thepackage.coins && thepackage.coins.length > 0) {
               this.coin = thepackage.coins[0];
-              console.log('this.coin==', this.coin);
             }
           }
         );
@@ -109,7 +108,6 @@ export class PackageComponent implements OnInit {
       return;
     }
     const params = this.order.params;
-    console.log('params==', params);
 
     let ret = await this.kanbanSmartContractServ.execSmartContractAbiHex(seed, params[0].to, params[0].data);
     if(ret && ret.success && ret._body && ret._body.status == '0x1') {

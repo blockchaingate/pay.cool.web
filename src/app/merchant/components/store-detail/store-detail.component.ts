@@ -15,7 +15,6 @@ export class StoreDetailComponent implements OnInit {
     private translateServ: TranslateService) { }
 
   ngOnInit(): void {
-    console.log('store====', this.store);
   }
 
   showName(name) {

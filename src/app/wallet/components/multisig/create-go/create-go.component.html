@@ -1,0 +1,53 @@
+<div class="pb-2">
+    Create new Account
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col col-md-8 col-12">
+            <div class="card left p-3">
+                <div class="text-center py-2">
+                    Transaction is being executed
+                </div>
+                <div class="alert alert-info text-center" role="alert">
+                    Please do not leave this page.
+                </div>
+
+                <div>
+                    <p>
+                        Validating transaction:
+                    </p>
+                    <p>
+                        {{txid}}
+                    </p>
+                </div>
+
+                <div *ngIf="address">
+                    <p>
+                        Your Wallet address:
+                    </p>
+                    <p>
+                        {{chain == 'KANBAN' ? (address|tokb) : address}}
+                    </p>
+                </div>
+
+                <div *ngIf="hasError" class="text-danger">
+                    Error while creating the address
+                </div>
+
+ 
+
+                <div *ngIf="isReady" class="text-center mt-3">
+                    <a type="button" class="btn btn-primary" [routerLink]="['/wallet/multisig/dashboard']">Start using your wallet</a>
+                </div>
+            </div>
+        </div>
+        <div class="col col-md-4 col-12">
+            <div class="card right p-3">
+                <div>Account usage</div>
+                <div>Connect your Account</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -7,7 +7,6 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { KanbanSmartContractService } from '../../services/kanban.smartcontract.service';
 import { ToastrService } from 'ngx-toastr';
 import { DataService } from '../../services/data.service';
-import { NgxSpinnerService } from "ngx-bootstrap-spinner";
 
 @Component({
   selector: 'app-wallet-star-rewards',
@@ -24,7 +23,6 @@ export class StarRewardsComponent implements OnInit{
     constructor(
       public kanbanServ: KanbanService,
       private dataServ: DataService,
-      private spinner: NgxSpinnerService,
       private kanbanSmartContractServ: KanbanSmartContractService,
       private modalService: BsModalService,   
       private toastr: ToastrService,   
@@ -95,7 +93,7 @@ export class StarRewardsComponent implements OnInit{
 
     redeemable(reward) {
       const timestamp = Math.floor(Date.now() / 1000);
-      //console.log();
+
       if(reward.status == 1 && reward.releaseTime < timestamp) {
         return true;
       }
@@ -112,16 +110,12 @@ export class StarRewardsComponent implements OnInit{
       this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
   
       this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
-        this.spinner.show();
         this.redeemDo(seed);
       });      
     }
 
     async redeemDo(seed: Buffer) {
-      console.log('this.reward===', this.reward);
       let address = this.reward.address;
-      console.log('address===', address);
-      //address = '0x3a3bc5a481892291720de88c17e1b41ae6a6a3e1';
       let abi;
       let args;
 
@@ -178,7 +172,6 @@ export class StarRewardsComponent implements OnInit{
 
 
       const ret = await this.kanbanSmartContractServ.execSmartContract(seed, address, abi, args);
-      this.spinner.hide();
       if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
         this.reward.status = 3;
         this.toastr.success('The reward was redeemed.');

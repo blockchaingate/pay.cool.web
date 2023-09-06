@@ -36,14 +36,12 @@ export class MetaComponent implements OnInit {
     this.pageNum = 0;
     this.insightServ.getBuysBySearch(this.from, this.to, this.type, this.address, this.typesOfPackage, this.pageSize, this.pageNum).subscribe(
       (ret) => {
-        console.log('ret==', ret);
         this.buys = ret;
       }
     );
 
     this.insightServ.getBuysBySearchTotal(this.from, this.to, this.type, this.address, this.typesOfPackage).subscribe(
       (ret) => {
-        console.log('ret==', ret);
         this.total = ret;
       }
     );
@@ -92,7 +90,6 @@ export class MetaComponent implements OnInit {
     
     this.insightServ.getBuysBySearch(this.from, this.to, this.type, this.address, this.typesOfPackage, this.pageSize, pageNum).subscribe(
       (ret) => {
-        console.log('ret==', ret);
         this.buys = ret;
       }
     );

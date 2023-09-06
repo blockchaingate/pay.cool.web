@@ -1,0 +1,10 @@
+<button type="button" class="btn btn-success" *ngIf="!confirmedByMe && confirmable" (click)="confirm()">Confirm</button>
+<div *ngIf="confirmedByMe">
+    <span class="badge badge-primary">
+    Confirmed by me
+    </span>
+</div>
+
+<div class="mt-3">
+    <button type="button" *ngIf="!proposal.txid && (proposal.multisig.confirmations <= proposal.signatures.length) && !hideExecuteButton" class="btn btn-success btn-block" (click)="execute()">Execute</button>
+</div>

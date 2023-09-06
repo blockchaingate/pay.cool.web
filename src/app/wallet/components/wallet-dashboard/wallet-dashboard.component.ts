@@ -53,7 +53,7 @@ export class WalletDashboardComponent implements OnInit {
   currentCoin: string;
   transactionHistories: any;
   merchantTransactionHistories: any;
-
+  multisig: any;
   sendCoinParams: any;
 
   addresses: any;
@@ -117,6 +117,14 @@ export class WalletDashboardComponent implements OnInit {
       this.loadWallet();
 
     });
+
+    this.localSt.getItem('multisigwallets').subscribe(
+      {
+        next: (wallets: any) => {
+          const multisigwallet = wallets.items[wallets.currentIndex];
+          this.multisig = multisigwallet;
+        }
+      });
   }
 
   receive() {
@@ -147,10 +155,8 @@ export class WalletDashboardComponent implements OnInit {
 
         this.kanbanServ.getWalletBalances(this.addresses).subscribe(
           (res: any) => {
-            console.log('res for getWalletBalances=', res);
             if (res && res.success) {
               this.coins = res.data.filter(item => ((item.coin == 'FAB')));
-              console.log('this.coins===', this.coins);
               if(this.coins && (this.coins.length > 0)) {
                 const fabAmount = this.coins[0].balance;
                 if(fabAmount < amount) {
@@ -202,9 +208,7 @@ export class WalletDashboardComponent implements OnInit {
       mycoin, seed,
       to, amount, options, false
     );    
-    console.log('amount=', amount);
-    console.log('transFee=', transFee);
-    console.log('tranFeeUnit=', tranFeeUnit);
+
     for (let i = 0; i < this.wallet.mycoins.length; i++) {
         if (this.wallet.mycoins[i].name === 'FAB' && !fabBalance) {
             fabBalance = this.wallet.mycoins[i].balance;
@@ -217,8 +221,7 @@ export class WalletDashboardComponent implements OnInit {
         }
     }
 
-    console.log('ethBalance=', ethBalance);
-    console.log('transFee=', transFee);
+
     const currentCoinBalance = this.coins.filter(item => item.coin == currentCoin)[0].balance;
 
     if(mycoin.tokenType) {
@@ -261,7 +264,6 @@ export class WalletDashboardComponent implements OnInit {
 
     this.modalRef.content.onClose.subscribe(result => {
       this.sendCoinParams = result;
-      //console.log('results', result);
       const initialState = {
         coins: this.coins,
         pwdHash: this.wallet.pwdHash,
@@ -274,7 +276,6 @@ export class WalletDashboardComponent implements OnInit {
 
         this.kanbanServ.getWalletBalances(this.addresses).subscribe(
           (res: any) => {
-            console.log('res for getWalletBalances=', res);
             if (res && res.success) {
               this.coins = res.data.filter(item => ((item.coin != 'CAD') && (item.coin != 'RMB')));
               if(!this.checkAmount(seed)) {
@@ -375,18 +376,20 @@ export class WalletDashboardComponent implements OnInit {
     if(tabName == 'rewards') {
       this.starSer.getLockers(this.walletAddress).subscribe(
         (resp: any) => {
-          console.log('resp for rewards=', resp);
           if(resp && resp.ok) {
             this.rewards = resp._body;
-            console.log('this.rewards===', this.rewards);
           }
         }
       );
     }
   }
 
+  multisigWallet() {
+    const url = this.multisig ? '/wallet/multisig/dashboard' : '/wallet/multisig';
+    this.router.navigate([url]);
+  }
+
   onChange(value) {
-    console.log('value==', value);
 
     this.wallet = this.wallets.items.filter(item => (item.id == value))[0];
 
@@ -433,13 +436,11 @@ export class WalletDashboardComponent implements OnInit {
 
     this.kanbanServ.getWalletBalances(addresses).subscribe(
       (res: any) => {
-        console.log('res for getWalletBalances=', res);
         if (res && res.success) {
           this.coins = res.data.filter(item => ((item.coin != 'CAD') && (item.coin != 'RMB')));
           const exgCoin = this.coins.filter(item => item.coin == 'EXG')[0];
           const fabCoin = this.coins.filter(item => item.coin == 'FAB')[0];
           this.fabBalance = fabCoin.balance;
-          console.log('fabCoin==', fabCoin);
           this.currentCoin = exgCoin.coin;
           //this.currentCoinAddress = this.getCurrentCoinAddress();
           this.walletBalance = Number(exgCoin.balance) + Number(exgCoin.lockBalance);
@@ -455,10 +456,8 @@ export class WalletDashboardComponent implements OnInit {
     this.kanbanServ.getExchangeBalance(this.kanbanAddress).subscribe(
       (resp: any) => {
         this.assets = resp;
-        console.log('this.assets=', this.assets);
       },
       error => {
-        // console.log('errorrrr=', error);
       }
     );
   }
@@ -466,12 +465,10 @@ export class WalletDashboardComponent implements OnInit {
   refreshGas() {
     this.kanbanServ.getKanbanBalance(this.kanbanAddress).subscribe(
       (resp: any) => {
-        // console.log('resp=', resp);
         const fab = this.utilServ.stripHexPrefix(resp.balance.FAB);
         this.gas = this.utilServ.hexToDec(fab) / 1e18;
       },
       error => {
-        // console.log('errorrrr=', error);
       }
     );
   }
@@ -497,7 +494,6 @@ export class WalletDashboardComponent implements OnInit {
       },
 
       (error) => {
-        console.log('error=', error);
         this.toastr.error(error.error.text);
       }
     );
@@ -516,11 +512,9 @@ export class WalletDashboardComponent implements OnInit {
       this.modalRef.content.onClosePin.subscribe( (pin: string) => {
         this.modalRef = this.modalServ.show(LoginSettingModal);
         this.modalRef.content.onClose.subscribe( (newPassword: string) => {
-          console.log('old wallet===', this.wallet);
+
           this.wallet = this.walletServ.updateWalletPassword(this.wallet, pin, newPassword);
-          console.log('new wallet===', this.wallet);
           this.walletServ.updateToWalletList(this.wallet, this.wallets.currentIndex);
-          console.log('currentIndex===', this.wallets.currentIndex);
           this.toastr.info(
             this.translateServ.instant('Your password was changed successfully'),
             this.translateServ.instant('Ok'));
@@ -591,7 +585,7 @@ export class WalletDashboardComponent implements OnInit {
           }
 
         },
-        err => { this.errMsg = err.message; console.log(err.message) }
+        err => { this.errMsg = err.message;  }
       );
     } else {
       this.createOrderDo();

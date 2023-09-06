@@ -23,7 +23,6 @@ export class AppComponent implements OnInit {
   }
   ngOnInit() {
     this.href = this.location.path();
-    console.log('this.href=', this.href);
     
     this.href = this.href.split('/')[1];
 

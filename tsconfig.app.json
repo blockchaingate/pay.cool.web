@@ -4,6 +4,29 @@
   "enableIvy": true ,
   "compilerOptions": {
     "outDir": "./out-tsc/app",
+    "paths": {
+      "crypto": [
+        "./node_modules/crypto-browserify"
+      ],
+      "https": [
+        "./node_modules/https-browserify"
+      ],
+      "http": [
+        "./node_modules/stream-http"
+      ],
+      "stream": [
+        "./node_modules/stream-browserify"
+      ],
+      "querystring": [
+        "./node_modules/querystring-es3"
+      ],
+      "url": [
+        "./node_modules/url"
+      ],
+      "zlib": [
+        "./node_modules/browserify-zlib"
+      ]
+    },
     "types": []
   },
   "files": [

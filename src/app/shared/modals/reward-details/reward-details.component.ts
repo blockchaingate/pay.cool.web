@@ -47,7 +47,6 @@ import BigNumber from 'bignumber.js';
 
 
         releaseTime = reward.releaseTime;
-        console.log('reward===', reward);
         const user = reward.user;
         const shouldGet = reward.shouldGet;
         const actualGet = Number(this.showAmount(reward.amount[0]));
@@ -58,11 +57,9 @@ import BigNumber from 'bignumber.js';
           if(rewards[j].user == user) {
             existed = true;
             rewards[j].amount = new BigNumber(rewards[j].amount).minus(new BigNumber(actualGet)).toNumber();
-            console.log('rewards[j].amount===', rewards[j].amount);
           }
         }
 
-        console.log('amount===', amount);
         if(!existed) {
           if(amount > 0) {
             const item = {
@@ -142,12 +139,10 @@ import BigNumber from 'bignumber.js';
                 (ret: any) => {
                   if(ret && ret.ok) {
                     const body = ret._body;
-                    console.log('body===', body);
                     this.customer = body.from;
                     const to = body.to;
                     const blockNumber = body.blockNumber;
                     if(!body.input) {
-                      console.log('no body.input');
                       return;
                     }
                     const rewardInfo = body.input.rewardInfo;
@@ -164,7 +159,6 @@ import BigNumber from 'bignumber.js';
 
                     this.totalRewards = new BigNumber(rewardInfo.substring(6, 6+64), 16).shiftedBy(-18).toNumber();
 
-                    console.log('this.totalRewards=', this.totalRewards);
                     this.storeServ.getStoreByFeeCharger(to).subscribe(
                       (ret: any) => {
                         if(ret && ret.ok) {
@@ -182,15 +176,12 @@ import BigNumber from 'bignumber.js';
                                 (ret: any) => {
                                   const hex = ret.data;
                                   this.paidCoinValue = new BigNumber(hex, 16).shiftedBy(-8).toNumber();
-                                  console.log('this.rewardCoinValue=', this.rewardCoinValue);
                                   this.totalRewardsInRewardCoin = new BigNumber(this.totalRewards).multipliedBy(new BigNumber(this.paidCoinValue)).dividedBy(new BigNumber(this.rewardCoinValue)).toNumber(); 
-                                  console.log('this.totalRewardsInRewardCoin=', this.totalRewardsInRewardCoin);
+
 
                                   for(let i = 0; i < this.rewards.length; i++) {
                                     const userTypes = this.getUserType(this.rewards[i].user);
-                                    console.log('userTypes for ' + this.rewards[i].user + ' is ' + userTypes);
                                     this.rewards[i]['shouldGet'] = this.shouldGet(this.totalRewardsInRewardCoin, userTypes);
-                                    console.log('shouldGet=', this.rewards[i]['shouldGet']);
                                   }
                                 }
                               );  

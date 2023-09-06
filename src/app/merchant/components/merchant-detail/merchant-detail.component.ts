@@ -15,7 +15,6 @@ export class MerchantDetailComponent implements OnInit {
     private translateServ: TranslateService) { }
 
   ngOnInit(): void {
-    console.log('merchant====', this.merchant);
   }
 
   showName(name) {

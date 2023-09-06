@@ -24,7 +24,6 @@ export class StoresComponent implements OnInit {
       (ret: any) => {
         if(ret && ret.ok) {
           this.stores = ret._body;
-          console.log('this.stores=', this.stores);
         }
       }
     );

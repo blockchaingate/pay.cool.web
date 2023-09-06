@@ -14,17 +14,14 @@ import { TransactionHistoryComponent } from './transaction-history/transaction-h
 import { TimerService } from 'src/app/services/timer.service';
 import { WalletService } from 'src/app/services/wallet.service';
 import { CoinService } from 'src/app/services/coin.service';
-import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
 import { LockedlpComponent } from './lockedlp/lockedlp.component';
-import { QrscannerModalComponent } from '../shared/modals/qr-scanner/qrscanner-modal.component';
 
 @NgModule({
     declarations: [
         BindpayComponent,
         TransactionHistoryComponent,
         ReceiveCoinModal,
-        LockedlpComponent,
-        QrscannerModalComponent
+        LockedlpComponent
     ],
     imports: [
         CommonModule,
@@ -35,8 +32,7 @@ import { QrscannerModalComponent } from '../shared/modals/qr-scanner/qrscanner-m
         MatIconModule,
         MatButtonModule,
         ModalModule.forRoot(),
-        BindpayRoutingModule,
-        NgxScannerQrcodeModule
+        BindpayRoutingModule
     ],
     providers: [
         TimerService,

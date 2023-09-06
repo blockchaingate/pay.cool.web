@@ -122,7 +122,6 @@ export class ProjectPackageEditComponent implements OnInit {
 
   editProjectPackageDo(seed: Buffer) {
 
-    console.log('thiis.project=', this.project);
     const data = {
       project: this.project,
       name: {

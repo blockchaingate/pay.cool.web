@@ -79,7 +79,6 @@ export class PaymentsComponent implements OnInit {
   }
 
   rewardDetails(item) {
-    console.log('item===', item);
     const initialState = {
       orderId: item.id,
       paidCoinType: item.coinType

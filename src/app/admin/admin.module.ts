@@ -6,7 +6,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxSpinnerModule } from "ngx-bootstrap-spinner";
 import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
 import { QRCodeModule } from 'angularx-qrcode';
 import { TranslateModule } from '@ngx-translate/core';
@@ -19,8 +18,6 @@ import { FeeDistributionUpdateRewardCoinsComponent } from './pages/fee-distribut
 import { FeeDistributionUpdateRewardPercentagesComponent } from './pages/fee-distribution-update-reward-percentages/fee-distribution-update-reward-percentages.component';
 import { FeeDistributionUpdatePaymentFeeRateComponent } from './pages/fee-distribution-update-payment-fee-rate/fee-distribution-update-payment-fee-rate.component';
 import { FiatPaymentComponent } from './pages/fiat-payment/fiat-payment.component';
-import { MerchantCreditComponent } from './pages/merchant-credit/merchant-credit.component';
-import { MerchantCreditAddComponent } from './pages/merchant-credit-add/merchant-credit-add.component';
 import { FiatCustomerComponent } from './pages/fiat-customer/fiat-customer.component';
 import { PaymentsComponent } from './pages/payments/payments.component';
 import { VipsComponent } from './pages/vips/vips.component';
@@ -53,8 +50,6 @@ import { ModifyReferralModalComponent } from './pages/merchant-approve/modify-re
     FeeDistributionUpdateRewardPercentagesComponent,
     FeeDistributionUpdatePaymentFeeRateComponent,
     FiatPaymentComponent,
-    MerchantCreditComponent,
-    MerchantCreditAddComponent,
     FiatCustomerComponent,
     PaymentsComponent,
     VipsComponent,
@@ -84,7 +79,6 @@ import { ModifyReferralModalComponent } from './pages/merchant-approve/modify-re
     ModalModule.forRoot(),
     TranslateModule.forChild(),
     ReactiveFormsModule,
-    NgxSpinnerModule,
     RichTextEditorModule
   ],
   providers: [TranslateService]

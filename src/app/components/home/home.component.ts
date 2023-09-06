@@ -37,7 +37,6 @@ export class HomeComponent implements OnInit {
     
     const requestRefundId = '0x89d7e2530fc14714db77bc40b53c65ec27e4c39544278c90f4355a1e10dd8376';
     const hashForSignature = this.web3Serv.hashKanbanMessage( requestRefundId);
-    console.log('hashForSignature==', hashForSignature);
     
     this.route.queryParams.subscribe(
       (params: ParamMap) => {
@@ -74,7 +73,6 @@ export class HomeComponent implements OnInit {
 
     // this.y = 1;
     this.total = this.x * this.y;
-    console.log("Total: " + this.total);
   }
 
   runAnime() {

@@ -1,0 +1,24 @@
+<div class="card w-100" *ngIf="multisigwallet">
+    <div *ngIf="page=='main'">
+        <div class="bg-primary text-center">{{multisigwallet.chain}}</div>
+        <div class="p-3">
+            <div class="border-bottom pb-3">
+                <app-account [multisigwallet]="multisigwallet" (onBack)="onBack()"></app-account>
+                <app-buttons [multisigwallet]="multisigwallet"></app-buttons>
+    
+                <!--
+                <div class="my-3">
+                    <button type="button" class="btn btn-secondary btn-block">New transaction</button>
+                </div>
+                -->
+            </div>
+            <div>
+                <app-menu></app-menu>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-3" *ngIf="page=='sidebar'">
+        <app-sidebar (onBack)="onBackFromSidebar()"></app-sidebar>
+    </div>
+</div>

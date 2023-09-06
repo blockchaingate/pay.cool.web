@@ -1,0 +1,60 @@
+<div *ngIf="step == 1">
+    <h3 class="text-white">
+        Create a MultiSig
+    </h3>
+    
+    <div class="my-3">
+        <p>
+            Select your multisig network, after creating the multisig wallet, you can use it on the selected network only
+        </p>
+        <div class="my-2">
+            <app-network-select [(ngModel)]="chain"></app-network-select>
+        </div>
+    </div>
+    
+    <div class="my-3">
+        <p>
+            Set your multisig wallet name, wallet name is stored in your device only
+        </p>
+        <div class="my-2">
+            <input type="text" class="form-control" [(ngModel)]="name" id="wallet-name" aria-describedby="emailHelp" placeholder="Enter wallet name">
+        </div>
+    </div>
+    
+    <app-owners [(ngModel)]="owners"></app-owners>
+    
+    <div class="my-3">
+        <p>
+            Minimum number of confirmations
+        </p>
+        <div class="d-inline-flex align-items-center">
+            <select class="form-control" id="confirmations" [(ngModel)]="confirmations">
+                <option *ngFor="let owner of owners; let i = index">{{i + 1}}</option>
+            </select>
+            <span class="pl-3 pr-2"> / </span>
+            <span>{{this.owners.length}}</span>
+        </div>
+    </div>
+    
+    <app-fee [(gasPrice)]="gasPrice" [(gasLimit)]="gasLimit" [chain]="chain"></app-fee>
+
+    <div class="mt-3">
+        <button type="button" class="btn btn-primary btn-lg btn-block" (click)="create()">Next</button>
+    </div>
+</div>
+<div *ngIf="step == 2">
+    <app-create-confirm 
+    [chain]="chain" 
+    [name]="name" 
+    [owners]="owners" 
+    [confirmations]="confirmations"
+    [gasPrice]="gasPrice"
+    [gasLimit]="gasLimit"
+    (stepUpdated)="stepUpdated($event)"
+    ></app-create-confirm>
+</div>
+<div *ngIf="step == 3">
+    <app-create-go *ngIf="txid" [txid]="txid" [chain]="chain" [contractAddress]="contractAddress"></app-create-go>
+</div>
+
+

@@ -1,0 +1,15 @@
+<div class="border-bottom">
+    <div>
+        {{proposal.request.type}}  <b>{{proposal.request.amount}}</b>  {{proposal.request.tokenName}} to
+    </div>
+    <div>
+        {{proposal.request.to}}
+    </div>
+</div>
+
+<div>
+    txHash: {{proposal.transactionHash | overflow}}
+</div>
+<div>
+    Created: {{proposal.dateCreated}}
+</div>

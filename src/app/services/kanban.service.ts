@@ -35,10 +35,8 @@ export class KanbanService {
         var queryString = Object.keys(data).filter((k) => (data[k] != null) && (data[k] != undefined))
         .map(key => key + '=' + (typeof data[key] === 'string' ? data[key] : JSON.stringify(data[key]))).sort().join('&');
 
-        console.log('queryString===', queryString);
-        //const test = this.web3Serv.signMessageTest(queryString, privateKey);
         const signature = this.web3Serv.signKanbanMessageWithPrivateKey(queryString, privateKey);
-        //console.log('signature here=', signature);
+
         return signature;  
     }
 
@@ -110,13 +108,13 @@ export class KanbanService {
             timestamp: 0
         };
         const url = environment.endpoints.kanban + 'getTransferHistoryEvents';
-        console.log('url===', url);
+
         return this.http.postRaw(url, data);
     }
 
     getKanbanBalance(address: string) {
         const path = this.baseUrl + 'kanban/getBalance/' + address;
-        // console.log('path1=' + path);
+
         return this.http.getRaw(path);
     }    
 
@@ -131,8 +129,7 @@ export class KanbanService {
         });
         const options = {
             headers: httpHeaders
-        };
-        // console.log('data for submitDeposit=', data);       
+        };     
         const path = this.baseUrl + 'submitDeposit';
         return this.http.postRaw(path, data, options);
     }
@@ -180,17 +177,15 @@ export class KanbanService {
         const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
         let path = 'ecombar/getIddockAddress'; 
         path = this.baseUrl + path;
-        // console.log('nouse in here:', path);
+
         const res = await this.http.getRaw(path, { headers, responseType: 'text' }).toPromise() as string;
         return res;
     }
     
     async getTransactionCount(address: string) {
-        //return this.getNonce(address);
 
         let path = 'kanban/getTransactionCount/' + address; 
         path = this.baseUrl + path;
-        // console.log('nouse in here:', path);
         const res = await this.http.getRaw(path).toPromise() as TransactionAccountResponse;
         return res.transactionCount;
 
@@ -226,7 +221,7 @@ export class KanbanService {
     getOrdersByAddressStatus(address: string, status: string, start: number = 0, count: number = 200) {
         let path = 'ordersbyaddresspaged/' + address + '/' + start + '/' + count + '/' + status;
         path = environment.endpoints.kanban + path;
-        console.log('path for getOrdersByAddress=' + path);
+
         const res = this.http.get(path);
         return res;
     }
