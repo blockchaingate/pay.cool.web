@@ -13,7 +13,9 @@ export class SidebarComponent implements OnInit{
   constructor(private localSt: LocalStorage) { }
 
   ngOnInit(): void {
+    
     this.localSt.getItem('multisigwallets').subscribe({next: (wallets: any) => {
+      console.log('something chainge');
       this.wallets = wallets;
       const multisigwallets = wallets.items;
       this.multisigwallets = multisigwallets;
@@ -25,7 +27,9 @@ export class SidebarComponent implements OnInit{
 
   changeWallet(index: number) {
     this.wallets.currentIndex = index;
-    this.localSt.setItem('multisigwallets', this.wallets).subscribe( () => {
+    const newWallets = JSON.parse(JSON.stringify(this.wallets));
+
+    this.localSt.setItem('multisigwallets', newWallets).subscribe( () => {
       this.back();
     });
   }

@@ -7,7 +7,10 @@
         </button>
     </div>
 </div>
-<div *ngFor="let multisigwallet of multisigwallets; let i = index" class="border p-2 m-2 item" (click)="changeWallet(i)">
-    <app-account-item [multisigwallet]="multisigwallet"></app-account-item>
+<div *ngIf="multisigwallets">
+    <div *ngFor="let multisigwallet of multisigwallets.reverse(); let i = index" class="border p-2 m-2 item" (click)="changeWallet(i)">
+        <app-account-item [multisigwallet]="multisigwallet"></app-account-item>
+    </div>
 </div>
+
 
