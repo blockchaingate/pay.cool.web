@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { MultisigRoutingModule } from './multisig-routing.module';
+import { TranslateModule } from '@ngx-translate/core';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { MultisigComponent } from './multisig.component';
 import { CreateComponent } from './create/create.component';
@@ -34,6 +35,7 @@ import { CreateConfirmComponent } from './create-confirm/create-confirm.componen
     RouterModule,
     SharedModule,
     MultisigRoutingModule,
+    TranslateModule.forChild(),
     ModalModule.forRoot(),
     BsDropdownModule.forRoot()
   ]

@@ -18,6 +18,7 @@ import { QueueComponent } from './home/queue/queue.component';
 import { SendModule } from './send/send.module';
 import { SidebarComponent } from './left/sidebar/sidebar.component';
 import { AccountItemComponent } from './left/account-item/account-item.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { AccountItemComponent } from './left/account-item/account-item.component
     RouterModule,
     QRCodeModule,
     SharedModule,
+    TranslateModule.forChild(),
     ModalModule.forRoot(),
     SendModule,
     DashboardRoutingModule

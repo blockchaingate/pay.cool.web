@@ -6,15 +6,15 @@
         <div class="col col-md-8 col-12">
             <div class="card left p-3">
                 <div class="text-center py-2">
-                    Transaction is being executed
+                    {{'Transaction is being executed'|translate}}
                 </div>
                 <div class="alert alert-info text-center" role="alert">
-                    Please do not leave this page.
+                    {{'Please do not leave this page.'|translate}}'
                 </div>
 
                 <div>
                     <p>
-                        Validating transaction:
+                        {{'Validating transaction'|translate}}:
                     </p>
                     <p>
                         {{txid}}
@@ -23,7 +23,7 @@
 
                 <div *ngIf="address">
                     <p>
-                        Your Wallet address:
+                        {{'Your Wallet address'|translate}}:
                     </p>
                     <p>
                         {{chain == 'KANBAN' ? (address|tokb) : address}}
@@ -31,20 +31,20 @@
                 </div>
 
                 <div *ngIf="hasError" class="text-danger">
-                    Error while creating the address
+                    {{'Error while creating the address'|translate}}
                 </div>
 
  
 
                 <div *ngIf="isReady" class="text-center mt-3">
-                    <a type="button" class="btn btn-primary" [routerLink]="['/wallet/multisig/dashboard']">Start using your wallet</a>
+                    <a type="button" class="btn btn-primary" [routerLink]="['/wallet/multisig/dashboard']">{{'Start using your wallet'|translate}}</a>
                 </div>
             </div>
         </div>
         <div class="col col-md-4 col-12">
             <div class="card right p-3">
-                <div>Account usage</div>
-                <div>Connect your Account</div>
+                <div>{{'Account usage'|translate}}</div>
+                <div>{{'Connect your Account'|translate}}</div>
             </div>
         </div>
     </div>

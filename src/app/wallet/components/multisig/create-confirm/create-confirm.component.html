@@ -1,31 +1,31 @@
 <div class="pb-2">
-    Create new Account
+    {{'Create new Account'|translate}}
 </div>
 <div class="container">
     <div class="row">
         <div class="col col-md-8 col-12">
             <div class="card left p-3">
                 <div class="review">
-                    <h4>Review</h4>
-                    <div>You're about to create a new Account and will have to confirm the transaction with your connected wallet.</div>    
+                    <h4>{{'Review'|translate}}</h4>
+                    <div>{{'reviewExp'|translate}}</div>    
                 </div>
 
                 <div class="form-group row my-2">
-                    <label class="col-sm-3 text-muted">Network</label>
+                    <label class="col-sm-3 text-muted">{{'Network'|translate}}</label>
                     <div class="col-sm-9">
                         {{chain}}
                     </div>
                 </div>
 
                 <div class="form-group row my-2">
-                    <label class="col-sm-3 text-muted">Name</label>
+                    <label class="col-sm-3 text-muted">{{'Name'|translate}}</label>
                     <div class="col-sm-9">
                         {{name}}
                     </div>
                 </div>
 
                 <div class="form-group row my-2">
-                    <label class="col-sm-3 text-muted">Owners</label>
+                    <label class="col-sm-3 text-muted">{{'Owners'|translate}}</label>
                     <div class="col-sm-9">
                         <div *ngFor="let owner of owners" class="py-1">
                             <div>{{owner.name}}</div>
@@ -35,14 +35,14 @@
                 </div>
 
                 <div class="form-group row my-2">
-                    <label class="col-sm-3 text-muted">Threshold</label>
+                    <label class="col-sm-3 text-muted">{{'Threshold'|translate}}</label>
                     <div class="col-sm-9">
                         {{confirmations}} out of {{owners.length}}
                     </div>
                 </div>
 
                 <div class="form-group row my-2">
-                    <label class="col-sm-3 text-muted">Est. network fee</label>
+                    <label class="col-sm-3 text-muted">{{'Est. network fee'|translate}}</label>
                     <div class="col-sm-9">
                         {{fee()}} {{chain}}
                     </div>
@@ -50,17 +50,17 @@
 
                 <div class="d-flex justify-content-between m-3">
                     <div>
-                        <button type="button" class="btn btn-outline-secondary" (click)="back()">Back</button>
+                        <button type="button" class="btn btn-outline-secondary" (click)="back()">{{'Back'|translate}}</button>
                     </div>
-                    <div><button type="button" class="btn btn-primary" (click)="next()">Next</button></div>
+                    <div><button type="button" class="btn btn-primary" (click)="next()">{{'Next'|translate}}</button></div>
                 </div>
             </div>
         </div>
         <div class="col col-md-4 col-12">
             <div class="card right p-3">
-                <div>Account creation</div>
-                <div>Wait for the creation</div>
-                <div>Depending on network usage, it can take some time until the transaction is successfully added to the blockchain and picked up by our services.</div>
+                <div>{{'Account creation'|translate}}</div>
+                <div>{{'Wait for the creation'|translate}}</div>
+                <div>{{'networkExp'|translate}}</div>
             </div>
         </div>
     </div>
