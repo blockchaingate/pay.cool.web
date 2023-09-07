@@ -87,7 +87,7 @@ export class NetworkSelectComponent implements ControlValueAccessor, OnInit {
         name = 'Ethereum chain';
         break;   
       case 'BNB': 
-        name = 'BNB chain';
+        name = 'BSC chain';
         break;               
     }
     return name;
