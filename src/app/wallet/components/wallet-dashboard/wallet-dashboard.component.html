@@ -25,6 +25,7 @@
                     <qrcode [qrdata]="walletAddress" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
                 </div>
                 <div class="text-left">{{"Universal ID" | translate}}: {{walletAddress}}</div>
+                <div class="text-left">{{"Kanban address" | translate}}: {{walletAddress | tokb}}</div>
                 <div class="text-left">{{"Kanban Gas" | translate}}: {{gas}}</div>
             </div>
 
@@ -48,7 +49,7 @@
                 <a href="/wallet/import">{{"Import Wallet"|translate}}</a>
                 <a href="/wallet/create">{{"Create Wallet"|translate}}</a>
                 <a (click)="tab = 'wallet_assets'">{{"Wallet Balance"|translate}}</a>
-                <a (click)="tab = 'exchange_assets'">{{"Exchange Balance"|translate}}</a>
+                <a (click)="tab = 'exchange_assets'">{{"Kanban Balance"|translate}}</a>
                 <a (click)="tab = 'history'">{{"Transaction History"|translate}}</a>
 
                 <a (click)="changeTab('rewards')">{{'Rewards' | translate}}</a>
