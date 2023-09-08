@@ -1,7 +1,7 @@
 import * as Btc from 'bitcoinjs-lib';
 export const environment = {
   env: 'prod',
-  version: '1.0.10',
+  version: '1.0.11',
   production: true,
   EPAY_API: 'https://api.epay.com/paymentApi',
   appid: '5b6a8688905612106e976a69',

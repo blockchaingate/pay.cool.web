@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges, OnChanges } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { MultisigService } from 'src/app/services/multisig.service';
 
@@ -7,7 +7,7 @@ import { MultisigService } from 'src/app/services/multisig.service';
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.scss']
 })
-export class HistoryComponent implements OnInit{
+export class HistoryComponent implements OnInit, OnChanges{
   @Input() multisigwallet: any;
 
   transactions: any;
@@ -15,7 +15,7 @@ export class HistoryComponent implements OnInit{
   pageNum: number = 0;
   chain: string;
   constructor(private multisigServ: MultisigService, private toastServ: ToastrService) {}
-  ngOnInit(): void {
+  loadTransactions() {
     this.chain = this.multisigwallet.chain;
     this.multisigServ.getTransactions(this.multisigwallet.address, this.pageSize, this.pageNum).subscribe(
       {
@@ -29,5 +29,15 @@ export class HistoryComponent implements OnInit{
         }
       }
     );
+  }
+  ngOnInit(): void {
+    this.loadTransactions();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.multisigwallet && changes.multisigwallet.currentValue) {
+      this.multisigwallet = changes.multisigwallet.currentValue;
+      this.loadTransactions();
+    }
   }
 }
