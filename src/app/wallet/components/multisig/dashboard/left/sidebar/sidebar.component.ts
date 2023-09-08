@@ -26,9 +26,9 @@ export class SidebarComponent implements OnInit{
 
   changeWallet(index: number) {
     this.wallets.currentIndex = index;
-    const newWallets = JSON.parse(JSON.stringify(this.wallets));
+    //const newWallets = JSON.parse(JSON.stringify(this.wallets));
 
-    this.storage.set('multisigwallets', newWallets).subscribe( () => {
+    this.storage.set('multisigwallets', this.wallets).subscribe( () => {
       this.back();
 
     });
