@@ -200,7 +200,11 @@ export class CreateComponent implements OnInit {
               this.txid = data.txid;
               this.step = 3;
             } else {
-              return this.toastrServ.error('Error while creating the wallet');
+              let message = 'Error while creating the wallet';
+              if(res.message) {
+                message = res.message;
+              }
+              return this.toastrServ.error(message);
             }
           }
         );
