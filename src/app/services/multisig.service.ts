@@ -49,6 +49,18 @@ export class MultisigService {
         return this.http.post(url, body);
     }
 
+    getGasBalance(chain: string, address: string) {
+        let balanceEndpoint = 'balance';
+        if(chain == 'KANBAN') {
+            balanceEndpoint = 'balanceold';
+        }
+        const url = this.baseUrl + chain.toLowerCase() + '/' + balanceEndpoint;
+        const body = {
+            native: address
+        };
+        return this.http.post(url, body);
+    }
+
     createProposal(data: any) {
         const url = this.baseUrl + 'multisigproposal';
         return this.http.post(url, data);

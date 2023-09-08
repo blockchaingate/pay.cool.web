@@ -7,6 +7,8 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { CoinService } from 'src/app/services/coin.service';
 import { UtilService } from 'src/app/services/util.service';
 import * as exaddr from '../../../../lib/exaddr';
+import { MultisigService } from 'src/app/services/multisig.service';
+import BigNumber from 'bignumber.js';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -62,6 +64,7 @@ export class CreateComponent implements OnInit {
     private web3Serv: Web3Service,
     private coinServ: CoinService,
     private utilServ: UtilService,
+    private multisigServ: MultisigService,
     private modalServ: BsModalService
   ) { }
 
@@ -113,7 +116,7 @@ export class CreateComponent implements OnInit {
     
   }
 
-  create() {
+  createGo() {
     let addresses = this.owners.filter(item => item.address).map(item => item.address);
     if(addresses.length < this.confirmations) {
       this.toastrServ.error('Invalid confirmations');
@@ -134,6 +137,40 @@ export class CreateComponent implements OnInit {
     }
     this.addresses = addresses;
     this.step = 2;
+  }
+
+  create() {
+
+    this.loadWallet();
+    this.multisigServ.getGasBalance(this.chain, this.address).subscribe(
+      {
+        next:(ret: any) => {
+          if(ret && ret.success) {
+            let balance = ret.data.native;
+            if(balance) {
+              balance = new BigNumber(balance).shiftedBy(-18).toNumber();
+            }
+
+            const fee = new BigNumber(this.gasPrice).multipliedBy(this.gasLimit).shiftedBy(-9).toNumber();
+            if(fee > balance) {
+              return this.toastrServ.info('Not enough ' + this.chain  + ' for wallet creation.');
+            }
+            this.createGo();
+
+          }else {
+            let message = "Cannot get gas balance";
+            if(ret.message) {
+              message = ret.message;
+            }
+            this.toastrServ.error(message);
+          }
+        },
+        error: (error: any) => {
+          this.toastrServ.error(error);
+        }
+      }
+    );
+
   }
 
   confirm() {
