@@ -88,7 +88,7 @@ export class SafeService {
                                         if(ret && ret.success) {
                                             observer.next(ret.data);
                                         } else {
-                                            return observer.error('Error while submiting raw transaction');
+                                            return observer.error(ret.message ? ret.message : 'Error while submiting raw transaction');
                                         }
                                     },
                                     error: (error) => {

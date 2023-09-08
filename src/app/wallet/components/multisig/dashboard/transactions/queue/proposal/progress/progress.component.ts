@@ -139,6 +139,7 @@ export class ProgressComponent implements OnInit{
     this.safeServ.executeTransaction(chain, privateKey, keyPair.address, this.proposal, this.signatures).subscribe(
       {
         next: (ret: any) => {
+          console.log('ret===', ret);
           if(ret._id) {
             this.toastServ.success('Transaction was submitted.');
             this.router.navigate(['/wallet/multisig/dashboard/assets']);
@@ -181,6 +182,8 @@ export class ProgressComponent implements OnInit{
             signer: keyPair.address,
             data: signature
           });
+          this.confirmable = false;
+          this.confirmedByMe = true;
           if(this.confirmations <= this.signatures.length) {
             return this.executeDo(seed);
           }
