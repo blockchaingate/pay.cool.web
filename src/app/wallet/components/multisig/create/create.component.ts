@@ -9,6 +9,7 @@ import { UtilService } from 'src/app/services/util.service';
 import * as exaddr from '../../../../lib/exaddr';
 import { MultisigService } from 'src/app/services/multisig.service';
 import BigNumber from 'bignumber.js';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -31,20 +32,17 @@ export class CreateComponent implements OnInit {
     this._chain = value;
     if(value == 'KANBAN') {
       this.gasPrice = 0.05;
-      this.gasLimit = 20000000;
     } else
     if(value == 'ETH') {
-      this.gasPrice = 5;
-      this.gasLimit = 5000000;
+      this.gasPrice = (environment.production ? 50 : 5);
     } else
     if(value == 'BNB') {
-      this.gasPrice = 10;
-      this.gasLimit = 5000000;
+      this.gasPrice = (environment.production ? 5 : 10);
     }
   }
 
   gasPrice: number = 0.05;
-  gasLimit: number = 20000000;
+  gasLimit: number = 300000;
   confirmations: number = 2;
   owners: any = [
     {
