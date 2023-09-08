@@ -8,7 +8,7 @@
     </div>
 </div>
 <div *ngIf="multisigwallets">
-    <div *ngFor="let multisigwallet of multisigwallets.reverse(); let i = index" class="border p-2 m-2 item" (click)="changeWallet(i)">
+    <div *ngFor="let multisigwallet of multisigwallets.reverse(); let i = index" class="border-grey p-2 m-2 item" (click)="changeWallet(i)">
         <app-account-item [multisigwallet]="multisigwallet"></app-account-item>
     </div>
 </div>
