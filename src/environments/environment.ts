@@ -45,8 +45,8 @@ export const environment = {
     LTC: {
         exchangily: 'https://ltctest.fabcoinapi.com/',
     },
-    //blockchain: 'https://testapi.fundark.com/api/'    
-    blockchain: 'http://localhost:3000/api/'
+    blockchain: 'https://testapi.fundark.com/api/'    
+    //blockchain: 'http://localhost:3000/api/'
   },
   chains: {
     BTC: {
