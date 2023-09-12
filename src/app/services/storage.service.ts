@@ -12,7 +12,7 @@ export class StorageService {
 
     
     async getWallets() {
-        const wallets = await this.storage.watch('ecomwallets').toPromise() as Wallet[];
+        const wallets = await this.storage.get('ecomwallets').toPromise() as Wallet[];
         return wallets;
     }   
 

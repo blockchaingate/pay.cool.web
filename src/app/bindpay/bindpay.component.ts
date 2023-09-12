@@ -55,7 +55,7 @@ export class BindpayComponent implements AfterContentInit{
       private walletServ: WalletService) {}
 
   ngAfterContentInit() {
-    this.storage.watch('ecomwallets').subscribe((wallets: any) => {
+    this.storage.get('ecomwallets').subscribe((wallets: any) => {
 
         if (!wallets || (wallets.length == 0)) {
           return;

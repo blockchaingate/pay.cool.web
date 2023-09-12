@@ -107,7 +107,7 @@ export class NavbarComponent implements OnInit {
       });
 
     this.setLan();
-    this.storage.watch('ecomwallets').subscribe((wallets: any) => {
+    this.storage.get('ecomwallets').subscribe((wallets: any) => {
       if (wallets && wallets.items.length > 0) {
         this.hasWallet = true;
       }

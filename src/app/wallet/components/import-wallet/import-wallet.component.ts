@@ -69,7 +69,7 @@ export class ImportWalletComponent implements OnInit {
     if (!wallet) {
       alert(this.translate.instant('Error occured, please try again.'));
     } else {
-      this.storage.watch('ecomwallets').subscribe((wallets: any) => {
+      this.storage.get('ecomwallets').subscribe((wallets: any) => {
         if (!wallets) {
           wallets = {
             currentIndex: -1,

@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
       this.isCashierPage = true;
     }
 
-    this.storage.watch('ecomwallets').subscribe(
+    this.storage.get('ecomwallets').subscribe(
       (wallets: any) => {
         if (!wallets || !wallets.items || (wallets.items.length == 0)) {
           //this.router.navigate(['/wallet']);

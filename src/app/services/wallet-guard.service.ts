@@ -13,7 +13,7 @@ export class WalletGuardService implements CanActivate {
     private dataServ: DataService,
     private storage: StorageMap) {}
   canActivate(): Observable<boolean> {
-    return this.storage.watch('ecomwallets').pipe(
+    return this.storage.get('ecomwallets').pipe(
       take(1),
       map((wallets: any) => {
         if(!wallets || !wallets.items || (wallets.items.length == 0)) {

@@ -176,7 +176,7 @@ export class WalletService {
 
     updateToWalletList(wallet: Wallet, index: number) {
 
-        this.storage.watch('ecomwallets').subscribe((wallets: Wallet[]) => {
+        this.storage.get('ecomwallets').subscribe((wallets: Wallet[]) => {
             if (!wallets) {
                 wallets = [];
             }

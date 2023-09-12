@@ -118,7 +118,7 @@ export class MyAssetDashboardComponent implements OnInit {
     this.gas = 0;
     this.currentTab = 'wallet';
     
-    this.storage.watch('ecomwallets').subscribe((wallets: any) => {
+    this.storage.get('ecomwallets').subscribe((wallets: any) => {
 
       if (!wallets || (wallets.length == 0)) {
         this.router.navigate(['/wallet']);

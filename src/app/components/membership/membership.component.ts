@@ -34,7 +34,7 @@ export class MembershipComponent implements OnInit {
 
   ngOnInit(): void {
     this.to = '0x6864ac918b94976e175001468aa45733b142fa49';
-    this.storage.watch('ecomwallets').subscribe((wallets: any) => {
+    this.storage.get('ecomwallets').subscribe((wallets: any) => {
       if (!wallets || (wallets.length == 0)) {
         return;
       }

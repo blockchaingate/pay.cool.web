@@ -104,7 +104,7 @@ export class OrderComponent implements OnInit {
   }
 
   getWalletAddress() {
-    this.storage.watch('ecomwallets').subscribe((wallets: any) => {
+    this.storage.get('ecomwallets').subscribe((wallets: any) => {
 
       if (!wallets || (wallets.length == 0)) {
         return;

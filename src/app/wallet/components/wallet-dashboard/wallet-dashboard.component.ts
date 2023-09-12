@@ -95,18 +95,23 @@ export class WalletDashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    console.log('1111');
     this.lan = this.translateServ.currentLang;
     this.tab = 'wallet_assets';
-    this.storage.watch('7star_ref').subscribe(
+
+    /*
+    this.storage.get('7star_ref').subscribe(
       (ref: string) => {
         this.referral = ref;
       }
     );
+    */
+    console.log('222');
     this.amount = 2000;
     this.currency = 'USD';
     this.gas = 0;
-    this.storage.watch('ecomwallets').subscribe((wallets: any) => {
+    console.log('3333');
+    this.storage.get('ecomwallets').subscribe((wallets: any) => {
 
       if (!wallets || (wallets.length == 0)) {
         return;
@@ -118,13 +123,18 @@ export class WalletDashboardComponent implements OnInit {
 
     });
 
+    console.log('4444');
     this.storage.watch('multisigwallets').subscribe(
       {
         next: (wallets: any) => {
-          const multisigwallet = wallets.items[wallets.currentIndex];
-          this.multisig = multisigwallet;
+          if(wallets) {
+            const multisigwallet = wallets.items[wallets.currentIndex];
+            this.multisig = multisigwallet;
+          }
+
         }
       });
+      console.log('5555');
   }
 
   receive() {
@@ -408,6 +418,7 @@ export class WalletDashboardComponent implements OnInit {
   }
 
   loadWallet() {
+    console.log('loading....');
     const addresses = this.wallet.addresses;
     this.addresses = addresses;
     const walletAddressItem = addresses.filter(item => item.name == 'FAB')[0];
