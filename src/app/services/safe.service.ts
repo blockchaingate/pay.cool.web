@@ -43,8 +43,11 @@ export class SafeService {
                             
                             signaturesArray = signaturesArray.sort((a, b) => a.signer > b.signer ? 1 : -1);
                             for(let i = 0; i < signaturesArray.length; i++) {
-                                const signature = signaturesArray[i];
-                                signatures += signature.data.substring(2);
+                                let signature = signaturesArray[i].data;
+                                if(signature.indexOf('0x') === 0) {
+                                    signature = signature.substring(2);
+                                }
+                                signatures += signature;
                             }
                             const args = [
                                 transaction.to, 
