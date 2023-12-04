@@ -1,6 +1,6 @@
 <div>
   <div class="title1">
-      <h1>{{"recent apk"|translate}}</h1>
+      <h1>{{"recent apk"|translate}}</h1> <h2>{{"totalDownload" | translate}} {{totalDownloads}}</h2>
   </div>
 
 <div fxLayout="column" fxLayoutAlign="start start" class="downlaodBody">
@@ -24,7 +24,7 @@
   
     </mat-card-content>
     <mat-card-actions>
-      <a class="buttonOutline" href="https://pay.cool/download/latest.apk">
+      <a class="buttonOutline" (click)="donwloadAPK()">
         <button class="button button2">{{"downloadApk" | translate}}</button>
       </a>
       
