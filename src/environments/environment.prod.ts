@@ -1,7 +1,6 @@
 import * as Btc from 'bitcoinjs-lib';
 export const environment = {
   env: 'prod',
-  version: '1.0.14',
   production: true,
   EPAY_API: 'https://api.epay.com/paymentApi',
   appid: '5b6a8688905612106e976a69',
@@ -208,10 +207,13 @@ addresses: {
     },
 
     smartContract: {
+        locker2: '0xd5df71a7d38cd2677edb8936b268e887d7f2bf73',
+        smartContractMerchantNode: '0x214c1b62d9c3cdb2206f770e0ba38f41076cb9e1',
+        smartConractMerchantInfo: '0xbef8c08bc04cb10380f58185ba03918d4f217430',
+        feeDistribution2: '0x61299bf38e671e923b466a102d945e89d580f4b2',
+
 
         smartConractProjectUserRelation: '0xae7657cc5923398bfd810660f8009d05ff98f5c4',
-        smartConractMerchantInfo: '0xfb19be78052afe787616a867f6436d5a54591175',
-        smartContractMerchantNode: '0x9add9cfa6fa78b5ddc2d79b6ae8fd993f26ea1b5',
         smartConractAdressReferral: '0xcd9c20e8e1252d5cd5eacd825e1be2dbda808000',
 
         /*
@@ -220,9 +222,7 @@ addresses: {
         exchangeRate: '0xc790135e17490400a46bebff9efcc77dac39bdcf',
         sevenStarProxy: '0x541ce3f716a3d6b64b0da9f51e7fe8ad52294f28',
         */
-       
-        feeDistribution2: '0xaa0057ff519c1d9ded18ae5e7cb6a047e6a4d5c7',
-        locker2: '0xb3fcb4fe8771fa67e8a98d7cd31a5a642ed58493',
+
         exchangeRate2: '0xb760282b470219d974b79734063313fbc7016567',
         sevenStarProxy2: '0x9609c27a06565c59923fe3bf81cdf6f10394f4a6',
         merchantCredit2: '0xb6b3b79ce88b04393c23ae1f6f3d649578814568',

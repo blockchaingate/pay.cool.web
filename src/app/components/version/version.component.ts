@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../../environments/environment';
+import { version } from '../../../environments/version';
 
 @Component({
   selector: 'app-version',
@@ -11,7 +11,7 @@ export class VersionComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.version = environment.version;
+    this.version = version;
   }
 
 }
