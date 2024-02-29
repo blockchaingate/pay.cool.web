@@ -1,4 +1,5 @@
 <div class="container-fluid">
+
     <!--    <div class="container"> -->
     <div class="row theme-banner-two">
         <!-- <div class="col-md-12 banner-img">
@@ -44,7 +45,17 @@
         </div>
 
     </div>
-
+    <div class="row">
+        <div class="annun">
+            <p>🎉🎉🎉 {{'announcement1' | translate}} 🎉🎉🎉</p>
+            <ul class="button-group mt-3 mb-3">
+                <li>
+                    <a [routerLink]="['/announcement']" routerLinkActive="router-link-active">{{"Learn More" |
+                        translate}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
     <div class="row partner-slider">
         <div class="item">
             <a href="https://exchangily.com"><img src="/assets/images/logos/pureExLogo.png" alt=""></a>
@@ -330,24 +341,26 @@
                                 </ul>
                             </div>
                         </div>
-        
+
                         <div class="androidapp center col-md-4">
-        
+
                             <div class="py-3 mx-8">
                                 <img class="qrImg" src="assets/images/paycool_android.png" alt="Pay.cool Android link">
                             </div>
                             <div class="py-3">
                                 <ul class="button-group linkBtn">
                                     <li>
-                                        <a href="https://play.google.com/store/apps/details?id=cool.pay.paycool&hl=en_CA&gl=US">
-                                            <img src="/assets/imagesBg/icon/playstore.png" width="80" alt=""> Google Play
+                                        <a
+                                            href="https://play.google.com/store/apps/details?id=cool.pay.paycool&hl=en_CA&gl=US">
+                                            <img src="/assets/imagesBg/icon/playstore.png" width="80" alt=""> Google
+                                            Play
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="androidapp center col-md-4">
-        
+
                             <div class="py-3 mx-8">
                                 <img class="qrImg" src="assets/images/download.png" alt="Pay.cool Android link">
                             </div>
@@ -355,7 +368,7 @@
                                 <ul class="button-group linkBtn">
                                     <li>
                                         <a routerLink="/download" target="_self">
-                                         APK
+                                            APK
                                         </a>
                                     </li>
                                 </ul>
