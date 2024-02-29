@@ -78,6 +78,7 @@ import { NewFeaturesComponent } from './components/newFeatures/newFeatures.compo
 import { LanguageService } from './services/language.service';
 import { ConfirmUnlocklpComponent } from './components/confirm-unlocklp/confirm-unlocklp.component';
 import { CashierModule } from './components/cashier/cashier.module';
+import { AnnounceComponent } from './components/announce/announce.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -105,7 +106,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     UserDetailComponent,
     GetrewardsComponent,
     NewFeaturesComponent,
-    ConfirmUnlocklpComponent
+    ConfirmUnlocklpComponent,
+    AnnounceComponent
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,7 @@ import { SupportComponent } from './components/support/support.component'
 import { RefComponent } from './components/ref/ref.component';
 import { IpolistComponent } from './reissue/ipolist/ipolist.component';
 import { GetrewardsComponent } from './components/getrewards/getrewards.component';
+import { AnnounceComponent } from './components/announce/announce.component';
 
 const routes: Routes = [
   {
@@ -101,8 +102,10 @@ const routes: Routes = [
   {
     path: 'payment-fail', component: PaymentFailComponent
   },
+  { path: 'announcement',component: AnnounceComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'cashier', loadChildren: () => import('./components/cashier/cashier.module').then(m => m.CashierModule) },
+  
 ];
 
 @NgModule({
