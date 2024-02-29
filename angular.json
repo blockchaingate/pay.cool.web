@@ -39,7 +39,7 @@
                         "styles": [
                             "src/styles.scss",
                             "node_modules/ngx-toastr/toastr.css",
-                            "node_modules/ngx-smart-modal/ngx-smart-modal.scss",
+                            "node_modules/ngx-smart-modal/styles/ngx-smart-modal.scss",
                             "node_modules/cropperjs/dist/cropper.css"
                         ],
                         "stylePreprocessorOptions": {

@@ -76,6 +76,7 @@ import { AddGasModal } from './modals/add-gas/add-gas.modal';
     GetFreeFabModal,
     AddGasModal
   ],
+  /*
   entryComponents: [
     ReceiveComponent,
     SendComponent,
@@ -85,6 +86,7 @@ import { AddGasModal } from './modals/add-gas/add-gas.modal';
     GetFreeFabModal,
     AddGasModal
   ],
+  */
   exports: [
   ]
 })
