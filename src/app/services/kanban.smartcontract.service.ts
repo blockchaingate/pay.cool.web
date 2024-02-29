@@ -45,8 +45,13 @@ export class KanbanSmartContractService {
     }
 
     async getExecSmartContractAbiHexFromPrivateKey(privateKey, address, smartContractAddress: string, abihex: string, gasLimit = 8000000) {
-      let gasPrice = environment.chains.KANBAN.gasPrice;
       const nonce = await this.kanbanServ.getTransactionCount(this.utilServ.fabToExgAddress(address));
+      return this.getExecSmartContractAbiHexFromPrivateKeyNonce(privateKey, nonce, smartContractAddress, abihex, gasLimit); 
+    }
+
+    getExecSmartContractAbiHexFromPrivateKeyNonce(privateKey, nonce, smartContractAddress: string, abihex: string, gasLimit = 8000000) {
+      let gasPrice = environment.chains.KANBAN.gasPrice;
+      
   
       let kanbanValue = 0;
   

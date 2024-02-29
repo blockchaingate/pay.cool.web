@@ -87,6 +87,21 @@ export class KanbanService {
         return resp; 
     }
 
+    async sendRawSignedTransactionsPromise(rawtxs) {
+        const url = environment.endpoints.api + 'kanban/postrawtransactionsPromise' ;
+        //const url = this.baseUrl + 'kanban/sendRawTransaction';
+        const data = {
+            rawtxs
+        };
+        let resp;
+        try {
+            resp = await this.http.postRaw(url, data).toPromise();
+        } catch (e) {
+        }
+
+        return resp;
+    }
+
     async sendRawSignedTransactionPromise(txhex: string) {
         const url = environment.endpoints.api + 'kanban/v2/sendRawTransactionPromise' ;
         //const url = this.baseUrl + 'kanban/sendRawTransaction';

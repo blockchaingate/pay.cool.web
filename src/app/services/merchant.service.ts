@@ -6,11 +6,11 @@ import { HttpService } from './http.service';
 export class MerchantService {
   constructor(private http: HttpService) { }
 
-  getAllPagination(pageNum: number, pageSize: number) {
+  getAllPagination(pageSize: number, pageNum: number) {
     return this.http.getRaw(environment.endpoints.api + 'merchantreferral/' + pageSize + '/' + pageNum);
   }
 
-  getAllNodes(pageNum: number, pageSize: number) {
+  getAllNodes(pageSize: number, pageNum: number) {
     return this.http.getRaw(environment.endpoints.api + 'merchantnode/' + pageSize + '/' + pageNum);
   }
 

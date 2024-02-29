@@ -214,11 +214,13 @@ addresses: {
         smartContractMerchantNode: '0x9add9cfa6fa78b5ddc2d79b6ae8fd993f26ea1b5',
         smartConractAdressReferral: '0xcd9c20e8e1252d5cd5eacd825e1be2dbda808000',
 
+        /*
         feeDistribution: '0xf3b46ef452099ec2b6f81644b6da75c91c5e116a',
         locker: '0x08283086b2192666128b7a6eaf66df2dfd3f1b6b',
         exchangeRate: '0xc790135e17490400a46bebff9efcc77dac39bdcf',
         sevenStarProxy: '0x541ce3f716a3d6b64b0da9f51e7fe8ad52294f28',
-        
+        */
+       
         feeDistribution2: '0xaa0057ff519c1d9ded18ae5e7cb6a047e6a4d5c7',
         locker2: '0xb3fcb4fe8771fa67e8a98d7cd31a5a642ed58493',
         exchangeRate2: '0xb760282b470219d974b79734063313fbc7016567',

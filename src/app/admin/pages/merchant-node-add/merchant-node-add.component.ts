@@ -116,7 +116,7 @@ export class MerchantNodeAddComponent implements OnInit {
     ];
 
     const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.smartContractMerchantNode, abi, args);
-    if(ret2 && ret2.ok && ret2._body && ret2._body.status == '0x1') {
+    if(ret2 && ret2.success && ret2._body && ret2._body.status == '0x1') {
       this.toastr.success('node was added successfully');
       this.router.navigate(['/admin/merchant-nodes']);
     } else {

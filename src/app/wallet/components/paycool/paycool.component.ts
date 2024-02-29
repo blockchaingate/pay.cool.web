@@ -41,6 +41,8 @@ export class PaycoolComponent implements OnInit{
         private route: ActivatedRoute,
         private toastr: ToastrService,
         private starServ: StarService,
+        private coinServ: CoinService,
+        private utilServ: UtilService,
         private web3Serv: Web3Service,
         public kanbanServ: KanbanService,
         private modalService: BsModalService,) {}
@@ -124,6 +126,7 @@ export class PaycoolComponent implements OnInit{
     async submitDo(seed: Buffer) {
       let abi;
       let args;
+      /*
       let to;
       if(this.to) {
         abi = {
@@ -178,9 +181,33 @@ export class PaycoolComponent implements OnInit{
       ];
       to = this.to;
       } else 
-      if(this.id){
+      */
+      if(this.id) {
         const params = this.order.params;
 
+        const keyPairsKanban = this.coinServ.getKeyPairs('FAB', seed, 0, 0, 'b');
+        let privKey: any = keyPairsKanban.privateKeyBuffer;
+    
+        if(!Buffer.isBuffer(privKey)) {
+          privKey = privKey.privateKey;
+        }
+  
+        const address = keyPairsKanban.address;
+
+
+        const nonce = await this.kanbanServ.getTransactionCount(this.utilServ.fabToExgAddress(address));
+        const rawtx1 = this.kanbanSmartContractServ.getExecSmartContractAbiHexFromPrivateKeyNonce(privKey, nonce, params[0].to, params[0].data); 
+        const rawtx2 = this.kanbanSmartContractServ.getExecSmartContractAbiHexFromPrivateKeyNonce(privKey, nonce + 1, params[1].to, params[1].data); 
+
+        const res = await this.kanbanServ.sendRawSignedTransactionsPromise([rawtx1, rawtx2]);
+        //return res;
+
+        if(res && res.success && res.data && res.data.status == '0x1') {
+          this.toastr.success('the transaction was procssed successfully');
+        } else {
+          this.toastr.error('Failed to chargeFund with fee, txid:' + res.data.transactionHash);
+        }
+        /*
         let ret = await this.kanbanSmartContractServ.execSmartContractAbiHex(seed, params[0].to, params[0].data);
         if(ret && ret.success && ret._body && ret._body.status == '0x1') {
           ret = await this.kanbanSmartContractServ.execSmartContractAbiHex(seed, params[1].to, params[1].data);
@@ -192,6 +219,7 @@ export class PaycoolComponent implements OnInit{
         } else {
           this.toastr.error('Failed to authorizeOperator, txid:' + ret._body.transactionHash);
         }
+        */
 
       } else
       if(this.templateId) {

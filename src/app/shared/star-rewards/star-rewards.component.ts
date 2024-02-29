@@ -119,7 +119,7 @@ export class StarRewardsComponent implements OnInit{
       let abi;
       let args;
 
-      if(address == environment.addresses.smartContract.locker) {
+      if(address == environment.addresses.smartContract.locker2) {
         abi = {
           "constant": false,
           "inputs": [

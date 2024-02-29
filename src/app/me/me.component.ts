@@ -13,6 +13,7 @@ export class MeComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    console.log();
     this.tabName = 'payments';
 
   }

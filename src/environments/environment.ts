@@ -21,7 +21,7 @@ export const environment = {
     prod: 'https://blockchaingate.com/v2/',
     kanban: 'https://kanbantest.fabcoinapi.com/',
     emailApi: "https://api.blockchaingate.com/v2/subscribes/",
-    api: 'https://test.fabcoin.org/api/',
+    api: 'https://testapi.fundark.com/api/',
     // blockchaingate: 'https://api.blockchaingate.com/v2/',
     //blockchaingate: 'http://localhost:3002/v2/',
     blockchaingate: 'https://test.blockchaingate.com/v2/',
@@ -193,9 +193,14 @@ export const environment = {
         FAB: '1FNEhT8uTmrEMvHGCGohnEFv6Q1z4qRhQu'
     },
     smartContract: {
+        locker2: '0xa10d9d3baaa556e547b4d4b2dc6089e1544296b8',
+        smartContractMerchantNode: '0x34003720fba250c94a1d7b978deb0bfff407fac5',
+        smartConractMerchantInfo: '0xed1efbabdee02fb865a04b4899db4a09d1ecf683',
+        feeDistribution2: '0x38b1bfb0ac48603649eb95768404c302b8862cab',
+
+
+        
         smartConractProjectUserRelation: '0x0185f15ccd4e7dfec68cdc671fb07ec5a22036be',
-        smartConractMerchantInfo: '0xab9f22b6bb7a134cb0058bc4582d5ce043269700',
-        smartContractMerchantNode: '0xc2f52d79994ed8f0b68e73edf28f3f562da75a06',
         smartConractAdressReferral: '0x686bba93b02abf2efdcfec1b42a2c93e6e7bb6a6',
         /*
         smartConractFeeCharger: '0x84abbbc0ccfb542787da81de570583e8e127cd2f',
@@ -205,13 +210,16 @@ export const environment = {
         smartContractZap: '0xefd18bf4b9f14fc182e24302bb41a80a68e8ecf2',
         smartContractPackage: '0xb19c9516de58b9f636c5e1e9ccabd4375fde6a61',
         */
+
+        /*
         feeDistribution: '0x81dd9357bf85bdb272e9ee1ec0ec2baa8bdffd06',
         locker: '0xab64a2a910a6dda85620a109cd012bb4a7b20b6f',
         exchangeRate: '0xb9622a9e96ea64bcb0bafc609f810994250f0db4',
         sevenStarProxy: '0x0449e15d3695023c3ae50e48687b704d3b3e25ce',
+        */
+
         
-        feeDistribution2: '0x127a02844ef0f532cf4b7daf94ff322b7d3feedd',
-        locker2: '0xb1555c941b5ae20c8ec4549c26000ca6e06805c5',
+        
         exchangeRate2: '0x181ce350dccde3ace0153bbb844fdf39c16540da',
         sevenStarProxy2: '0x7881175b4014b3848caf41afb0702cb2f19fa8fc',
         merchantCredit2: '0xb23d43b57931e49747776c3d86861d54c21705cb',
