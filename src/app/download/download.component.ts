@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
 import { VersionModel } from 'src/app/models/version';
 import { environment } from 'src/environments/environment.prod';
-import { catchError, tap } from "rxjs/operators";
 
 @Component({
   selector: 'app-download',
@@ -19,8 +17,7 @@ export class DownloadComponent implements OnInit {
 
   items: VersionModel[] = [];
    lastestApk!: VersionModel;
-   testApk!: VersionModel;
- 
+   testApk!: VersionModel; 
 
    constructor(
     private http: HttpClient,
@@ -42,6 +39,10 @@ export class DownloadComponent implements OnInit {
     this.getFiles().subscribe((data: any) => {
 
       this.lastestApk = data.find((obj: { versionName: string; }) => obj.versionName === "Realize");
+
+      console.log("this.lastestApk");
+      console.log(this.lastestApk);
+
       this.testApk = data.find((obj: { versionName: string; }) => obj.versionName === "Candidate");
       this.items = data.filter((obj: { versionName: string; }) => obj.versionName != "Realize" && obj.versionName != "Candidate");
       this.getDownloadCount(data[0].versionNumber);
@@ -54,27 +55,32 @@ export class DownloadComponent implements OnInit {
   }
 
   getDownloadCount(number: String ) {
-    const url = environment.endpoints.api + "/appInsight/stats/1?version=";
+    let parts = number.split('+');
+
+    const url = environment.endpoints.api + "appInsight/stats/1?version="+ parts[0];
+
      this.http.get(url).subscribe((data: any) => {
-      this.totalDownloads = data.data.record.downloadCount;
+
+      this.totalDownloads = data.data.record.downloadCount ?? 0;
+   
      });
   }
 
 
-  setDownloadCount(number: String ) {
-    const url = environment.endpoints.api + "/appInsight/downloadApp";
-    var ipAddress = this.http.get("http://api.ipify.org/?format=json");
-
-    const data = {
-      appId : "1",
-      version: number,
-      ipAddress: ipAddress["ip"],
-      downloadSource: "1",
-      campaign: ""
-    }
-
-     this.http.put(url, data);
-   
+  async setDownloadCount(number: String ) {
+    const url = environment.endpoints.api + "appInsight/downloadApp";
+ 
+    this.http.get("http://www.geoplugin.net/json.gp").subscribe((data: any) => {
+      const param = {
+        appId: "1",
+        version: number,
+        ipAddress: data["geoplugin_request"],
+        downloadSource: "1",
+        campaign: "N/A",
+      };
+      this.http.put(url, param);
+    });
+ 
   }
 
   donwloadAPK() {
@@ -82,9 +88,5 @@ export class DownloadComponent implements OnInit {
     this.setDownloadCount(this.lastestApk.versionNumber);
 
   window.location.href = "https://pay.cool/download/latest.apk";
-
   }
-
-
-
 }
