@@ -207,10 +207,10 @@ addresses: {
     },
 
     smartContract: {
-        locker2: '0xd5df71a7d38cd2677edb8936b268e887d7f2bf73',
-        smartContractMerchantNode: '0x214c1b62d9c3cdb2206f770e0ba38f41076cb9e1',
-        smartConractMerchantInfo: '0xbef8c08bc04cb10380f58185ba03918d4f217430',
-        feeDistribution2: '0x61299bf38e671e923b466a102d945e89d580f4b2',
+        locker2: '0x9a56b2370ac5a41b84d1bc72c1722b6fc27e77d0',
+        smartContractMerchantNode: '0x73e5219c3479712f6f8f8e7029ad5dc562ceb750',
+        smartConractMerchantInfo: '0x86f0d5d854c08c192689650aaecbe9be2548774e',
+        feeDistribution2: '0x2f20125f2ed7cb0f0ac1b928f5e751307a7686a8',
 
 
         smartConractProjectUserRelation: '0xae7657cc5923398bfd810660f8009d05ff98f5c4',

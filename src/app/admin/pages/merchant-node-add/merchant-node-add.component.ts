@@ -24,7 +24,7 @@ export class MerchantNodeAddComponent implements OnInit {
   tokenTypes: any = [
     {
       value: 0,
-      text:'Senor'
+      text:'Senior'
     },
     {
       value: 1,
