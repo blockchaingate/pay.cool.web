@@ -55,7 +55,11 @@ export class MerchantNodeAddComponent implements OnInit {
   }
 
   confirm() {
-    const initialState = {
+    if(!this.to) {
+      this.toastr.error('To cannot be empty');
+      return;
+    }
+    const initialState = { 
       pwdHash: this.wallet.pwdHash,
       encryptedSeed: this.wallet.encryptedSeed
     };          
