@@ -14,7 +14,7 @@
     resizeToWidth="320"></image-cropper>
 
 <div class="mt-3 mb-1 Preview" *ngIf="croppedImage!=''">{{'Selection Preview' | translate}}</div>
-<img [src]="croppedImage" />
+<img [src]="croppedImagePreview" />
 
 <!-- error message -->
 <div *ngIf="errMsg != ''" class="text-danger">{{errMsg}}</div>

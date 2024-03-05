@@ -255,6 +255,8 @@ export class NewMerchantComponent implements OnInit {
     this.merchantServ.createMerchantReferral(data).subscribe(
       (ret: any) => {
         if(ret && ret._id) {
+          return this.toastr.info('Merchant was created successfully');
+          /*
           this.kanbanSmartContractServ.execSmartContract(seed, address, abi, args).then(
             (ret: any) => {
               if(ret && ret.success && ret._body && ret._body.status == '0x1') {
@@ -267,6 +269,7 @@ export class NewMerchantComponent implements OnInit {
               }
             }
           );
+          */
         } else {
           this.toastr.error('Merchant was created failed');
         }

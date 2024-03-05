@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output,Input, SimpleChanges} from '@angular/core';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { UploadService, DocType } from '../../services/upload.service';
-
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-resize-image',
   templateUrl: './resize-image.component.html',
@@ -10,6 +10,7 @@ import { UploadService, DocType } from '../../services/upload.service';
 export class ResizeImageComponent implements OnInit {
   imageChangedEvent: any = '';
   croppedImage: any = '';
+  croppedImagePreview: any = '';
   productId = '45fdssirfssss';
 
   @Input() images: any;
@@ -21,7 +22,7 @@ export class ResizeImageComponent implements OnInit {
   @Output()
   imagesChange = new EventEmitter<any>();
 
-  constructor(private uploadService: UploadService) { }
+  constructor(private uploadService: UploadService, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     if (!this.images || (this.images.length == 0)) {
@@ -31,6 +32,7 @@ export class ResizeImageComponent implements OnInit {
     }
   }
 
+  /*
   ngOnChanges(changes: SimpleChanges) {
     const {images} = changes;
     if (images && images.currentValue && (images.currentValue.length > 0)) {
@@ -38,7 +40,7 @@ export class ResizeImageComponent implements OnInit {
         this.croppedImage = this.images[0];
     }
   }
-  
+  */
   fileChangeEvent(event: any): void {
 
 
@@ -46,7 +48,11 @@ export class ResizeImageComponent implements OnInit {
   }
 
   imageCropped(event: ImageCroppedEvent) {
-    this.croppedImage = event.base64;
+    //this.croppedImage = event.base64;
+    //this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl);
+    this.croppedImage = event.blob;
+    this.croppedImagePreview = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl);
+    console.log('this.croppedImage===', this.croppedImage);
   }
 
   imageLoaded() {
@@ -93,7 +99,9 @@ export class ResizeImageComponent implements OnInit {
       (ret: any) => {
         const signedUrl = ret.signed_request;
         this.url = ret.url;
-        const file = this.dataURLtoFile(this.croppedImage, fileName);
+        //const file = this.dataURLtoFile(this.croppedImage, fileName);
+        const file =  new File([this.croppedImage],fileName);;
+        console.log('file===', file);
         this.uploadService.uploadFileToSignedUrl(signedUrl, fileType, file).subscribe(
           retn => {
 

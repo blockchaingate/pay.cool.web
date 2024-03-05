@@ -12,6 +12,8 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { CoinService } from 'src/app/services/coin.service';
 import { ModifyReferralModalComponent } from './modify-referral.modal';
+import { ABI } from '../../../utils/abi';
+const hash = require('object-hash');
 
 @Component({
   selector: 'app-merchant-approve',
@@ -213,6 +215,37 @@ export class MerchantApproveComponent implements OnInit {
 
   async approveDo(seed: Buffer) {
     try {
+
+      const keyPairsKanban = this.coinServ.getKeyPairs('FAB', seed, 0, 0, 'b');
+      let privKey: any = keyPairsKanban.privateKeyBuffer;
+  
+      if(!Buffer.isBuffer(privKey)) {
+        privKey = privKey.privateKey;
+      }
+      const address = environment.addresses.smartContract.smartConractMerchantInfo;
+      const walletAddress = keyPairsKanban.address;
+      let nonce = await this.kanbanServ.getTransactionCount(this.utilServ.fabToExgAddress(walletAddress));
+      const rawtxs = [];
+      if(!this.merchant.status) {
+        
+        const abi = ABI.createMerchant;
+        const merchantHex = hash(this.merchant);
+        const args = [
+          this.merchant.id, 
+          '0x' + merchantHex,
+          this.utilServ.fabToExgAddress(this.merchant.referral), 
+          this.utilServ.fabToExgAddress(this.merchant.paymentReceiver)
+        ];  
+        
+        const abihex1 = this.kanbanSmartContractServ.formExecKanbanSmartContractABI(abi, args);
+        
+        const rawtx1 = this.kanbanSmartContractServ.getExecSmartContractAbiHexFromPrivateKeyNonce(privKey, nonce++, address, abihex1); 
+        rawtxs.push(rawtx1);
+
+      }
+
+
+
       const args = [
         this.merchant.id,
         this.nodeId
@@ -239,9 +272,13 @@ export class MerchantApproveComponent implements OnInit {
         "type": "function"
       };
 
-      const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.smartConractMerchantInfo, abi, args);
+      const abihex2 = this.kanbanSmartContractServ.formExecKanbanSmartContractABI(abi, args);
+      const rawtx1 = this.kanbanSmartContractServ.getExecSmartContractAbiHexFromPrivateKeyNonce(privKey, nonce++, address, abihex2); 
+      rawtxs.push(rawtx1);
 
-      if(ret2 && ret2.success && ret2._body && ret2._body.status == '0x1') {
+      const ret2 = await this.kanbanServ.sendRawSignedTransactionsPromise(rawtxs);
+
+      if(ret2 && ret2.success && ret2.data && ret2.data.status == '0x1') {
         this.toastr.success('the merchant was approved.');
         this.router.navigate(['/admin/merchants']);
       } else {
