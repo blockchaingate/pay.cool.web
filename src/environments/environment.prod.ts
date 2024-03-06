@@ -209,7 +209,7 @@ addresses: {
     smartContract: {
         locker2: '0x9a56b2370ac5a41b84d1bc72c1722b6fc27e77d0',
         smartContractMerchantNode: '0x73e5219c3479712f6f8f8e7029ad5dc562ceb750',
-        smartConractMerchantInfo: '0x86f0d5d854c08c192689650aaecbe9be2548774e',
+        smartConractMerchantInfo: '0x56aaf3fd0c9114417f9cb06b2c3963179b0e2ba9',
         feeDistribution2: '0x2f20125f2ed7cb0f0ac1b928f5e751307a7686a8',
 
 

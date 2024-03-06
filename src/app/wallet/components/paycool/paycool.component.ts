@@ -205,21 +205,9 @@ export class PaycoolComponent implements OnInit{
         if(res && res.success && res.data && res.data.status == '0x1') {
           this.toastr.success('the transaction was procssed successfully');
         } else {
-          this.toastr.error('Failed to chargeFund with fee, txid:' + res.data.transactionHash);
+          const txids = res.data.txids;
+          this.toastr.error('Failed to chargeFund with fee, txid:' + txids[txids.length - 1]);
         }
-        /*
-        let ret = await this.kanbanSmartContractServ.execSmartContractAbiHex(seed, params[0].to, params[0].data);
-        if(ret && ret.success && ret._body && ret._body.status == '0x1') {
-          ret = await this.kanbanSmartContractServ.execSmartContractAbiHex(seed, params[1].to, params[1].data);
-          if(ret && ret.success && ret._body && ret._body.status == '0x1') {
-            this.toastr.success('the transaction was procssed successfully');
-          } else {
-            this.toastr.error('Failed to chargeFund with fee, txid:' + ret._body.transactionHash);
-          }
-        } else {
-          this.toastr.error('Failed to authorizeOperator, txid:' + ret._body.transactionHash);
-        }
-        */
 
       } else
       if(this.templateId) {
