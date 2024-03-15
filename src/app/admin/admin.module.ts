@@ -31,6 +31,8 @@ import { ProjectUserAddComponent } from './pages/project-user-add/project-user-a
 import { UserReferralsComponent } from './pages/user-referrals/user-referrals.component';
 import { MerchantNodesComponent } from './pages/merchant-nodes/merchant-nodes.component';
 import { MerchantNodeAddComponent } from './pages/merchant-node-add/merchant-node-add.component';
+import { UserNodesComponent } from './pages/user-nodes/user-nodes.component';
+import { UserNodeAddComponent } from './pages/user-node-add/user-node-add.component';
 import { ProjectEditComponent } from './pages/project-edit/project-edit.component';
 import { ProjectPackagesComponent } from './pages/project-packages/project-packages.component';
 import { ProjectPackageAddComponent } from './pages/project-package-add/project-package-add.component';
@@ -63,6 +65,8 @@ import { ModifyReferralModalComponent } from './pages/merchant-approve/modify-re
     UserReferralsComponent,
     MerchantNodesComponent,
     MerchantNodeAddComponent,
+    UserNodesComponent,
+    UserNodeAddComponent,
     ProjectEditComponent,
     ProjectPackagesComponent,
     ProjectPackageAddComponent,

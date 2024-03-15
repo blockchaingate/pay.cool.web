@@ -23,6 +23,10 @@ import { UserReferralsComponent } from './pages/user-referrals/user-referrals.co
 
 import { MerchantNodesComponent } from './pages/merchant-nodes/merchant-nodes.component';
 import { MerchantNodeAddComponent } from './pages/merchant-node-add/merchant-node-add.component';
+
+import { UserNodesComponent } from './pages/user-nodes/user-nodes.component';
+import { UserNodeAddComponent } from './pages/user-node-add/user-node-add.component';
+
 import { ProjectEditComponent } from './pages/project-edit/project-edit.component';
 
 import { ProjectPackagesComponent } from './pages/project-packages/project-packages.component';
@@ -71,6 +75,9 @@ const routes: Routes = [
       },  
       {
         path: 'merchant-nodes', component: MerchantNodesComponent
+      },  
+      {
+        path: 'user-nodes', component: UserNodesComponent
       },  
       {
         path: 'merchant-node/add', component: MerchantNodeAddComponent

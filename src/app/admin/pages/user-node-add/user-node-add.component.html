@@ -1,0 +1,33 @@
+<div style="border:1px solid #ccc">
+    <div class="container">
+      <h1>{{'Add merchant node' | translate}}</h1>
+      <hr>
+
+        <label for="email"><b>{{'To' | translate}}</b></label>
+        <input type="text" placeholder="Enter to address" [(ngModel)]="to" name="to" required>
+
+        <div class="form-group">
+            <label><b>{{'Token type' | translate}}</b></label>
+            <div class="form-control small">
+                <select [(ngModel)]="tokenType" name="tokenType" class="form-select form-select-sm mb-3 small coinselect" aria-label=".form-select-lg example">
+                    <option value="">{{'Select coin' | translate}}:</option>
+                    <option *ngFor="let type of tokenTypes" value="{{type.value}}">{{type.text}}</option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <label for="email"><b>{{'Credit Score' | translate}}</b></label>
+            <input type="number" placeholder="creditScore" [(ngModel)]="creditScore" name="creditScore" required>
+    
+        </div>
+        <div>
+            <label for="email"><b>{{'Senior' | translate}}</b></label>
+            <input type="number" placeholder="senior" [(ngModel)]="senior" name="senior" required>
+    
+        </div>
+
+        <div class="text-right py-2">
+            <button class="btn signinbtn" (click)="confirm()">{{('Confirm') | translate}}</button>
+        </div>
+    </div>
+</div>
