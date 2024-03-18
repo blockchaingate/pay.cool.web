@@ -211,7 +211,7 @@ addresses: {
         smartContractMerchantNode: '0x73e5219c3479712f6f8f8e7029ad5dc562ceb750',
         smartConractMerchantInfo: '0x56aaf3fd0c9114417f9cb06b2c3963179b0e2ba9',
         feeDistribution2: '0x2f20125f2ed7cb0f0ac1b928f5e751307a7686a8',
-        smartContractUserNode: '',
+        smartContractUserNode: '0x27529dc33f860e0c64d27614df85ae2aa49f21b7',
 
         smartConractProjectUserRelation: '0xae7657cc5923398bfd810660f8009d05ff98f5c4',
         smartConractAdressReferral: '0xcd9c20e8e1252d5cd5eacd825e1be2dbda808000',

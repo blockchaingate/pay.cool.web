@@ -119,12 +119,12 @@ export class UserNodeAddComponent implements OnInit {
       '0x'
     ];
 
-    const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.smartContractMerchantNode, abi, args);
+    const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.smartContractUserNode, abi, args);
     if(ret2 && ret2.success && ret2._body && ret2._body.status == '0x1') {
       this.toastr.success('node was added successfully');
-      this.router.navigate(['/admin/merchant-nodes']);
+      this.router.navigate(['/admin/user-nodes']);
     } else {
-      this.toastr.error('Error while adding merchant node');
+      this.toastr.error('Error while adding user node');
     }
   }
 }

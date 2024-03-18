@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MerchantService } from 'src/app/services/merchant.service';
+import { UserService } from 'src/app/services/user.service';
 import { UtilService } from 'src/app/services/util.service';
 
 @Component({
@@ -13,12 +13,12 @@ export class UserNodesComponent implements OnInit {
 
   constructor(
     private router: Router, 
-    private merchantServ: MerchantService,
+    private userServ: UserService,
     private utilServ: UtilService
   ) { }
 
   ngOnInit(): void {
-    this.merchantServ.getAllNodes(100, 0).subscribe(
+    this.userServ.getAllNodes(100, 0).subscribe(
       (nodes: any) => {
         this.merchantNodes = nodes;
       }
@@ -26,7 +26,7 @@ export class UserNodesComponent implements OnInit {
   }
 
   add() {
-    this.router.navigate(['/admin/merchant-node/add']);
+    this.router.navigate(['/admin/user-node/add']);
   }
   showAddress(exgAddress) {
     return this.utilServ.exgToFabAddress(exgAddress);

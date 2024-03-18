@@ -26,6 +26,10 @@ export class MerchantService {
     return this.http.postRaw(environment.endpoints.api + 'merchantreferral/modifyReferral', data);
   }
 
+  modifyRewardStrategy(data) {
+    return this.http.postRaw(environment.endpoints.api + 'merchantreferral/admin/modifyRewardStrategy', data);
+  }
+
   update(id, data) {
     return this.http.putRaw(environment.endpoints.api + 'merchantreferral/' + id, data);
   }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { AdminRoutingModule } from './admin-routing.module';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -38,7 +39,8 @@ import { ProjectPackagesComponent } from './pages/project-packages/project-packa
 import { ProjectPackageAddComponent } from './pages/project-package-add/project-package-add.component';
 import { ProjectPackageEditComponent } from './pages/project-package-edit/project-package-edit.component';
 import { UserReferralEditComponent } from './pages/user-referral-edit/user-referral-edit.component';
-import { ModifyReferralModalComponent } from './pages/merchant-approve/modify-referral.modal';
+import { ModifyReferralModal } from './pages/merchant-approve/modify-referral/modify-referral.modal';
+import { RewardStrategyModal } from './pages/merchant-approve/reward-strategy/reward-strategy.modal';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,8 @@ import { ModifyReferralModalComponent } from './pages/merchant-approve/modify-re
     ProjectPackageAddComponent,
     ProjectPackageEditComponent,
     UserReferralEditComponent,
-    ModifyReferralModalComponent
+    ModifyReferralModal,
+    RewardStrategyModal
   ],
   imports: [
     AdminRoutingModule,
@@ -80,6 +83,7 @@ import { ModifyReferralModalComponent } from './pages/merchant-approve/modify-re
     FormsModule,
     QRCodeModule,
     SharedModule,
+    TabsModule.forRoot(),
     ModalModule.forRoot(),
     TranslateModule.forChild(),
     ReactiveFormsModule,

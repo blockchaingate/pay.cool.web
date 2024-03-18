@@ -11,7 +11,8 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { CoinService } from 'src/app/services/coin.service';
-import { ModifyReferralModalComponent } from './modify-referral.modal';
+import { ModifyReferralModal } from './modify-referral/modify-referral.modal';
+import { RewardStrategyModal } from './reward-strategy/reward-strategy.modal';
 import { ABI } from '../../../utils/abi';
 const hash = require('object-hash');
 
@@ -84,7 +85,7 @@ export class MerchantApproveComponent implements OnInit {
   }
 
   modifyReferral() {
-    this.modalRef = this.modalService.show(ModifyReferralModalComponent, { });
+    this.modalRef = this.modalService.show(ModifyReferralModal, { });
     this.modalRef.content.onClose.subscribe( (newReferral: string) => {
       const initialState = {
         pwdHash: this.wallet.pwdHash,
@@ -100,6 +101,51 @@ export class MerchantApproveComponent implements OnInit {
         this.modifyReferralDo(seed, newReferral);
       });
     });
+  }
+
+  rewardStrategy() {
+    this.modalRef = this.modalService.show(RewardStrategyModal, { });
+    this.modalRef.content.onClose.subscribe( (strategy: any) => {
+      const initialState = {
+        pwdHash: this.wallet.pwdHash,
+        encryptedSeed: this.wallet.encryptedSeed
+      };          
+      if(!this.wallet || !this.wallet.pwdHash) {
+        this.router.navigate(['/wallet']);
+        return;
+      }
+      this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
+  
+      this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
+        this.modifyRewardStrategyDo(seed, strategy);
+      });
+    });
+  }
+
+  async modifyRewardStrategyDo(seed: Buffer, strategy: any) {
+    const data = {
+      id: this.merchant.id,
+      rewardStrategy: strategy
+    };
+
+    const keyPair = this.coinServ.getKeyPairs('FAB', seed, 0, 0, 'b');
+    const privateKey = keyPair.privateKeyBuffer.privateKey;
+
+    const sig = this.kanbanServ.signJsonData(privateKey, data);
+    data['sig'] = sig.signature;  
+
+    this.merchantServ.modifyRewardStrategy(data).subscribe(
+      async (res: any) => {
+        if(res && res.modifiedCount) {
+          this.toastr.success('the merchant\'s reward strategy was modified.');
+        } else {
+          this.toastr.error('Error while modifying reward strategy');
+        }
+      },
+      (error: any) => {
+        this.toastr.error(error.error.error);
+      }
+    );
   }
 
   async modifyReferralDo(seed: Buffer, newReferral: string) {

@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
   templateUrl: './modify-referral.modal.html',
   styleUrls: ['./modify-referral.modal.scss']
 })
-export class ModifyReferralModalComponent implements OnInit{
+export class ModifyReferralModal implements OnInit{
     referral: string;
     public onClose: Subject<string>;
     constructor(private bsModalRef: BsModalRef) {
