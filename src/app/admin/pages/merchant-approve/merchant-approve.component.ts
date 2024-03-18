@@ -104,7 +104,7 @@ export class MerchantApproveComponent implements OnInit {
   }
 
   rewardStrategy() {
-    this.modalRef = this.modalService.show(RewardStrategyModal, { });
+    this.modalRef = this.modalService.show(RewardStrategyModal, { initialState: { strategy: this.merchant.rewardStrategy }});
     this.modalRef.content.onClose.subscribe( (strategy: any) => {
       const initialState = {
         pwdHash: this.wallet.pwdHash,
@@ -136,7 +136,8 @@ export class MerchantApproveComponent implements OnInit {
 
     this.merchantServ.modifyRewardStrategy(data).subscribe(
       async (res: any) => {
-        if(res && res.modifiedCount) {
+        if(res && res._id) {
+          this.merchant = res;
           this.toastr.success('the merchant\'s reward strategy was modified.');
         } else {
           this.toastr.error('Error while modifying reward strategy');
