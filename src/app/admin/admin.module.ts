@@ -34,6 +34,10 @@ import { MerchantNodesComponent } from './pages/merchant-nodes/merchant-nodes.co
 import { MerchantNodeAddComponent } from './pages/merchant-node-add/merchant-node-add.component';
 import { UserNodesComponent } from './pages/user-nodes/user-nodes.component';
 import { UserNodeAddComponent } from './pages/user-node-add/user-node-add.component';
+
+import { UserNodeLinksComponent } from './pages/user-node-links/user-node-links.component';
+import { UserNodeLinkAddComponent } from './pages/user-node-link-add/user-node-link-add.component';
+
 import { ProjectEditComponent } from './pages/project-edit/project-edit.component';
 import { ProjectPackagesComponent } from './pages/project-packages/project-packages.component';
 import { ProjectPackageAddComponent } from './pages/project-package-add/project-package-add.component';
@@ -69,6 +73,8 @@ import { RewardStrategyModal } from './pages/merchant-approve/reward-strategy/re
     MerchantNodeAddComponent,
     UserNodesComponent,
     UserNodeAddComponent,
+    UserNodeLinksComponent,
+    UserNodeLinkAddComponent,
     ProjectEditComponent,
     ProjectPackagesComponent,
     ProjectPackageAddComponent,

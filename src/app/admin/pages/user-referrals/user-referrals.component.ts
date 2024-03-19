@@ -69,6 +69,7 @@ export class UserReferralsComponent implements OnInit {
     if(item.newStatus && item.newStatus > item.status) {
       status = item.newStatus;
     }
+    status = status % 8;
     const statuses = this.statuses.filter(item => item.value == status);
     if(statuses && statuses.length > 0) {
       return statuses[0].text;

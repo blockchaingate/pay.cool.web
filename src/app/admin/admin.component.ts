@@ -84,6 +84,11 @@ export class AdminComponent implements OnInit {
         icon: 'store'
       },  
       {
+        title: 'User Node Links',
+        link: 'user-node-links',
+        icon: 'store'
+      },
+      {
         title: 'Merchants',
         link: 'merchants',
         icon: 'store'
