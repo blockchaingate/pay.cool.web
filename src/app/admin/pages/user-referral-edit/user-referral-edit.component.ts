@@ -85,7 +85,7 @@ export class UserReferralEditComponent implements OnInit {
       this.utilServ.fabToExgAddress(this.newReferral)
     ];
     const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.smartConractAdressReferral, abi, args);
-    if(ret2 && ret2.ok && ret2._body && ret2._body.status == '0x1') {
+    if(ret2 && ret2.success && ret2._body && ret2._body.status == '0x1') {
       this.toastr.success('user referral was change successfully');
       this.router.navigate(['/admin/users']);
     } else {

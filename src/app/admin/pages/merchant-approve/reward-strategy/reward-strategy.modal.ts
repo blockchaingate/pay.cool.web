@@ -88,6 +88,7 @@ export class RewardStrategyModal implements OnInit {
         return;
       }
       this.strategy = {
+        enable: true,
         customer: this.customer,
         customerReferral: [
           this.customerLv1,
