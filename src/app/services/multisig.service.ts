@@ -30,9 +30,7 @@ export class MultisigService {
 
     getAssets(chain: string, address: string) {
         let balanceEndpoint = 'balance';
-        if(chain == 'KANBAN') {
-            balanceEndpoint = 'balanceold';
-        }
+
         const url = this.baseUrl + chain.toLowerCase() + '/' + balanceEndpoint;
         const body = {
             native: address
@@ -51,9 +49,7 @@ export class MultisigService {
 
     getGasBalance(chain: string, address: string) {
         let balanceEndpoint = 'balance';
-        if(chain == 'KANBAN') {
-            balanceEndpoint = 'balanceold';
-        }
+
         const url = this.baseUrl + chain.toLowerCase() + '/' + balanceEndpoint;
         const body = {
             native: address

@@ -21,7 +21,7 @@
         -->
       </tr>
       <tr *ngFor="let id of tokens.ids; let i = index">
-        <td>{{getName(id)}}</td>
+        <td>{{getName(tokens, i)}}</td>
         <td>{{tokens.balances[i] | amount : ((tokens.decimals && tokens.decimals[i]) ? tokens.decimals[i] : 18)}}</td>
         <!--
         <td>0</td>

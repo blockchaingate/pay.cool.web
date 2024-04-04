@@ -97,13 +97,13 @@ export class Web3Service {
   getCommon(chain: string) {
 
       const customCommon = Common.forCustomChain(
-        environment.chains.ETH.chain,
+        'mainnet',
         {
           name: environment.chains.KANBAN.chain.name,
           networkId: environment.chains[chain].chain.networkId,
           chainId: environment.chains[chain].chain.chainId
         },
-        environment.chains.ETH.hardfork,
+        'petersburg'
       );
     return customCommon;
   }
@@ -325,13 +325,13 @@ export class Web3Service {
     let txhex = '';
 
     const customCommon = Common.forCustomChain(
-      environment.chains.ETH.chain,
+      'mainnet',
       {
         name: environment.chains.KANBAN.chain.name,
         networkId: environment.chains.KANBAN.chain.networkId,
         chainId: environment.chains.KANBAN.chain.chainId
       },
-      environment.chains.ETH.hardfork,
+      'petersburg'
     );
     const tx = new Eth.Transaction(txObject, { common: customCommon });
 
@@ -661,13 +661,13 @@ sameString(str1: string, str2: string): boolean {
         } else {
           
           const customCommon = Common.forCustomChain(
-            environment.chains.ETH.chain,
+            'mainnet',
             {
               name: environment.chains[chain].chain.name,
               networkId: environment.chains[chain].chain.networkId,
               chainId: environment.chains[chain].chain.chainId
             },
-            environment.chains.ETH.hardfork,
+            'petersburg'
           );
           options = { common: customCommon };
         }

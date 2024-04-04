@@ -71,13 +71,13 @@ export class KanbanSmartContractService {
   
   
       const customCommon = Common.forCustomChain(
-        environment.chains.ETH.chain,
+        'mainnet',
         {
           name: environment.chains.KANBAN.chain.name,
           networkId: environment.chains.KANBAN.chain.networkId,
           chainId: environment.chains.KANBAN.chain.chainId
         },
-        environment.chains.ETH.hardfork,
+        'petersburg'
       );
       const tx = new Eth.Transaction(txObject, { common: customCommon });
   
@@ -158,16 +158,15 @@ export class KanbanSmartContractService {
         }
         
         let txhex = '';
-    
-    
+   
         const customCommon = Common.forCustomChain(
-          environment.chains.ETH.chain,
+          'mainnet',
           {
             name: environment.chains.KANBAN.chain.name,
             networkId: environment.chains.KANBAN.chain.networkId,
             chainId: environment.chains.KANBAN.chain.chainId
           },
-          environment.chains.ETH.hardfork,
+          'petersburg'
         );
         const tx = new Eth.Transaction(txObject, { common: customCommon });
     

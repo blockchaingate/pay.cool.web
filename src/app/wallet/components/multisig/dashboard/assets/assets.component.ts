@@ -60,8 +60,8 @@ export class AssetsComponent implements OnInit {
     }});
   }
 
-  getName(id: string) {
-    return this.utilServ.getTokenName(this.chain, id);
+  getName(tokens: any, index: number) {
+    return tokens.symbols[index];
   }
   loadWallet() {
 
