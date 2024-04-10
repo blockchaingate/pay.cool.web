@@ -62,6 +62,7 @@ import { SafeService } from './services/safe.service';
 import { MultisigService } from './services/multisig.service';
 import { WalletGuardService } from './services/wallet-guard.service';
 import { KanbanSmartContractService } from './services/kanban.smartcontract.service';
+import { EventService } from './services/event.service';
 import { MembershipComponent } from './components/membership/membership.component';
 import { PrivacyComponent } from './components/privacy/privacy.component';
 import { AboutComponent } from './components/about/about.component';
@@ -79,6 +80,8 @@ import { LanguageService } from './services/language.service';
 import { ConfirmUnlocklpComponent } from './components/confirm-unlocklp/confirm-unlocklp.component';
 import { CashierModule } from './components/cashier/cashier.module';
 import { AnnounceComponent } from './components/announce/announce.component';
+import { EventDetailComponent } from './components/event/event-detail/event-detail.component';
+import { EventComponent } from './components/event/event.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -107,7 +110,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     GetrewardsComponent,
     NewFeaturesComponent,
     ConfirmUnlocklpComponent,
-    AnnounceComponent
+    AnnounceComponent,
+    EventDetailComponent,
+    EventComponent
   ],
   imports: [
     BrowserModule,
@@ -177,7 +182,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     WalletGuardService,
     StoreService,
     KanbanSmartContractService,
-    LanguageService
+    LanguageService,
+    EventService
   ],
   bootstrap: [AppComponent]
 })

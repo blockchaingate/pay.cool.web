@@ -17,6 +17,8 @@ import { RefComponent } from './components/ref/ref.component';
 import { IpolistComponent } from './reissue/ipolist/ipolist.component';
 import { GetrewardsComponent } from './components/getrewards/getrewards.component';
 import { AnnounceComponent } from './components/announce/announce.component';
+import { EventComponent } from './components/event/event.component';
+import { EventDetailComponent } from './components/event/event-detail/event-detail.component';
 
 const routes: Routes = [
   {
@@ -46,23 +48,23 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(w => w.AdminModule)
-  }, 
+  },
   {
     path: 'solution',
     loadChildren: () => import('./components/solution/solution.module').then(w => w.SolutionModule)
-  }, 
+  },
   {
     path: 'admin2',
     loadChildren: () => import('./components/admin/admin.module').then(w => w.AdminModule)
-  },  
+  },
   {
     path: 'merchants',
     loadChildren: () => import('./merchant/merchant.module').then(w => w.MerchantModule)
-  },  
+  },
   {
     path: 'manual',
     loadChildren: () => import('./components/manual/manual.module').then(w => w.ManualModule)
-  },  
+  },
   {
     path: 'my-assets',
     loadChildren: () => import('./components/my-assets/my-asset.module').then(a => a.MyAssetModule)
@@ -75,13 +77,15 @@ const routes: Routes = [
     path: 'insight',
     loadChildren: () => import('./insight/insight.module').then(a => a.InsightModule)
   },
-  { path: 'docs', 
-  loadChildren: () => import('./docs/docs.module').then(a => a.DocsModule)
+  {
+    path: 'docs',
+    loadChildren: () => import('./docs/docs.module').then(a => a.DocsModule)
   },
-  // {
-  //   path: 'cashier',
-  //   loadChildren: () => import('./components/cashier/cashier.module').then(a => a.CashierModule)
-  // },
+  {
+    path: 'cashier',
+    loadChildren: () => import('./components/cashier/cashier.module').then(m => m.CashierModule)
+  },
+  // components
   { path: 'getrewards', component: GetrewardsComponent },
   { path: 'version', component: VersionComponent },
   { path: 'ipolist', component: IpolistComponent },
@@ -96,16 +100,15 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'job', component: JobComponent },
   { path: 'newFeatures', component: NewFeaturesComponent },
-  {
-    path: 'payment-success', component: PaymentSuccessComponent
-  },
-  {
-    path: 'payment-fail', component: PaymentFailComponent
-  },
-  { path: 'announcement',component: AnnounceComponent },
+  { path: 'payment-success', component: PaymentSuccessComponent },
+  { path: 'payment-fail', component: PaymentFailComponent },
+  { path: 'announcement', component: AnnounceComponent },
+  { path: 'event', component: EventComponent },
+  { path: 'event-detail:id', component: EventDetailComponent },
+
+  // otherwise redirect to home
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'cashier', loadChildren: () => import('./components/cashier/cashier.module').then(m => m.CashierModule) },
-  
+
 ];
 
 @NgModule({

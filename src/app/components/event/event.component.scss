@@ -1,0 +1,29 @@
+.event-header{
+    h2{
+        color: #fff;
+        font-size: 3em;
+    }
+}
+
+.eventDesc{
+    color: #8485c1;
+    font-size: 13px;
+}
+
+.date{
+    color: #929ad7;
+    font-weight: 800;
+    font-size: 13px;
+}
+
+.eventImg{
+    // padding: 10px;
+    height: 100%;
+    width: 260px;
+    background: url("https://images.unsplash.com/photo-1556035511-3168381ea4d4?q=80&w=250");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    border-radius: 5px;
+}
