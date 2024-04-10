@@ -25,6 +25,8 @@ export class RewardStrategyModal implements OnInit {
   merchantNodeLv2: number = 0;
   merchantNodeLv3: number = 0;
 
+  enable: boolean = false;
+
   strategy: any;
   public onClose: Subject<any>;
   constructor(private bsModalRef: BsModalRef, private toastr: ToastrService) {
@@ -33,6 +35,7 @@ export class RewardStrategyModal implements OnInit {
   ngOnInit(): void {
     if(this.strategy) {
       this.customer = this.strategy.customer;
+      this.enable = this.strategy.enable;
       this.merchant = this.strategy.merchant;
       this.merchantLv1 = this.strategy.merchantReferral;
 
@@ -88,7 +91,7 @@ export class RewardStrategyModal implements OnInit {
         return;
       }
       this.strategy = {
-        enable: true,
+        enable: this.enable,
         customer: this.customer,
         customerReferral: [
           this.customerLv1,
