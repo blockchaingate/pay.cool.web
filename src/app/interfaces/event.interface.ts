@@ -9,7 +9,7 @@ export interface Event {
     eventTitle:                string;
     eventDescription:          string;
     eventLocation:             string;
-    eventDate:                 Date;
+    eventDate:                 string;
     eventRegistrationDeadline: Date;
     eventRegistrationUrl:      string;
     eventOrganizer:            string;
