@@ -35,25 +35,26 @@
                         <strong class="d-inline-block mb-2 text-success-emphasis">Event</strong>
                         <div>{{event.eventOrganizer}}</div>
                     </div> -->
-                    <div class="mb-1 text-body-secondary organizer">{{"Organizer" | translate}}: {{event.eventOrganizer}}</div>
+                    <div class="mb-1 text-body-secondary organizer">{{"Organizer" | translate}}:
+                        {{event.eventOrganizer}}</div>
                     <h3 class="mb-0">{{event.eventTitle}}</h3>
-                    <div class="mb-1 text-body-secondary date mt-2">{{"Event Location" | translate}} : {{event.eventLocation }}</div>
+                    <div class="mb-1 text-body-secondary date mt-2">{{"Event Location" | translate}} :
+                        {{event.eventLocation }}</div>
                     <div class="mb-1 text-body-secondary date">{{"Event Data" | translate}} : {{event.eventDate |
                         date:'medium' }}</div>
                     <div class="mb-1 text-body-secondary date">{{"Registration Deadline" | translate}} :
                         {{event.eventRegistrationDeadline | date:'medium' }}</div>
-                    <div class="mb-1 text-body-secondary date mb-2">{{"Service Email" | translate}}: {{event.eventCustomerServiceEmail}}</div>
+                    <div class="mb-1 text-body-secondary date mb-2">{{"Service Email" | translate}}:
+                        {{event.eventCustomerServiceEmail}}</div>
                     <div class="mb-auto eventDesc">{{event.eventDescription}}</div>
-
-                    <button class="btn btn-primary mt-3">
-                        <a href="{{event.eventRegistrationUrl}}" target="_blank" class="">
+                    <a href="{{event.eventRegistrationUrl}}" target="_blank" class="">
+                        <button class="btn btn-primary mt-3 w-100">
                             {{"Register" | translate}}
-                        </a>
-                    </button>
+                        </button>
+                    </a>
                 </div>
                 <div class="col-auto d-none d-lg-block py-4 pr-4">
-                    <div
-                        class="img-fluid eventImg"></div>
+                    <div class="img-fluid eventImg"></div>
                 </div>
             </div>
 
