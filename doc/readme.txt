@@ -1,5 +1,16 @@
-0xe535d030ca4242153ac33e6f917b988bf0717d750023bef75ba0be644c6d755b
+multisig abi:
 
-
-oczwCWznwf9bxnbvrbEFDAurMRuJmCiEBS
-oLv9ZZsM9cQomBmrRv7ZDf9SAr3kcA5Zyp
+                            const abi = {
+                                "inputs":[
+                                    {"internalType":"address","name":"to","type":"address"},
+                                    {"internalType":"uint256","name":"value","type":"uint256"},
+                                    {"internalType":"bytes","name":"data","type":"bytes"},
+                                    {"internalType":"enum Enum.Operation","name":"operation","type":"uint8"},
+                                    {"internalType":"uint256","name":"safeTxGas","type":"uint256"},
+                                    {"internalType":"uint256","name":"baseGas","type":"uint256"},
+                                    {"internalType":"uint256","name":"gasPrice","type":"uint256"},
+                                    {"internalType":"address","name":"gasToken","type":"address"},
+                                    {"internalType":"address payable","name":"refundReceiver","type":"address"},
+                                    {"internalType":"bytes","name":"signatures","type":"bytes"}
+                                ],"name":"execTransaction","outputs":[{"internalType":"bool","name":"success","type":"bool"}],"stateMutability":"payable","type":"function"};
+                                
