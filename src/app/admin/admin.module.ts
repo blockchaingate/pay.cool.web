@@ -31,12 +31,12 @@ import { ProjectUsersComponent } from './pages/project-users/project-users.compo
 import { ProjectUserAddComponent } from './pages/project-user-add/project-user-add.component';
 import { UserReferralsComponent } from './pages/user-referrals/user-referrals.component';
 import { MerchantNodesComponent } from './pages/merchant-nodes/merchant-nodes.component';
+import { MerchantNodeUsersComponent } from './pages/merchant-node-users/merchant-node-users.component';
 import { MerchantNodeAddComponent } from './pages/merchant-node-add/merchant-node-add.component';
 import { UserNodesComponent } from './pages/user-nodes/user-nodes.component';
 import { UserNodeAddComponent } from './pages/user-node-add/user-node-add.component';
 
-import { UserNodeLinksComponent } from './pages/user-node-links/user-node-links.component';
-import { UserNodeLinkAddComponent } from './pages/user-node-link-add/user-node-link-add.component';
+import { UserNodeUsersComponent } from './pages/user-node-users/user-node-users.component';
 
 import { ProjectEditComponent } from './pages/project-edit/project-edit.component';
 import { ProjectPackagesComponent } from './pages/project-packages/project-packages.component';
@@ -70,11 +70,11 @@ import { RewardStrategyModal } from './pages/merchant-approve/reward-strategy/re
     ProjectUserAddComponent,
     UserReferralsComponent,
     MerchantNodesComponent,
+    MerchantNodeUsersComponent,
     MerchantNodeAddComponent,
     UserNodesComponent,
     UserNodeAddComponent,
-    UserNodeLinksComponent,
-    UserNodeLinkAddComponent,
+    UserNodeUsersComponent,
     ProjectEditComponent,
     ProjectPackagesComponent,
     ProjectPackageAddComponent,

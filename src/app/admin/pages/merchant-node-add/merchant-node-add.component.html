@@ -2,10 +2,19 @@
     <div class="container">
       <h1>{{'Add merchant node' | translate}}</h1>
       <hr>
+        <div>
+            <label for="od"><b>{{'ID' | translate}}</b></label>
+            <input type="number" placeholder="Enter id" [(ngModel)]="id" name="id" required>
+        </div>
+        <div>
+            <label for="to"><b>{{'To' | translate}}</b></label>
+            <input type="text" placeholder="Enter to address" [(ngModel)]="to" name="to" required>
+        </div>
 
-        <label for="email"><b>{{'To' | translate}}</b></label>
-        <input type="text" placeholder="Enter to address" [(ngModel)]="to" name="to" required>
-
+        <div>
+            <label for="amount"><b>{{'Amount' | translate}}</b></label>
+            <input type="text" placeholder="Enter amount" [(ngModel)]="amount" name="amount" required>
+        </div>
         <div class="form-group">
             <label><b>{{'Token type' | translate}}</b></label>
             <div class="form-control small">

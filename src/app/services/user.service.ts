@@ -10,7 +10,7 @@ export class UserService {
     return this.http.getRaw(environment.endpoints.api + 'usernode/' + pageSize + '/' + pageNum);
   }
 
-  getAllNodeLinks(pageSize: number, pageNum: number) {
-    return this.http.getRaw(environment.endpoints.api + 'usernodelink/' + pageSize + '/' + pageNum);
+  getAllNodeUsers(pageSize: number, pageNum: number) {
+    return this.http.getRaw(environment.endpoints.api + 'usernodeuser/' + pageSize + '/' + pageNum);
   }
 }

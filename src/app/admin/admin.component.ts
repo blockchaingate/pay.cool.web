@@ -57,65 +57,36 @@ export class AdminComponent implements OnInit {
         icon: 'store'
       }, 
       {
-        title: 'Fiat customer',
-        link: 'fiat-customer',
+        title: 'Merchants',
+        link: 'merchants',
         icon: 'store'
-      }, 
-      {
-        title: 'Fiat payment',
-        link: 'fiat-payment',
-        icon: 'store'
-      },      
-      /*
-      {
-        title: 'Stores',
-        link: 'stores',
-        icon: 'store'
-      },      
-      */   
+      },   
       {
         title: 'Merchant Nodes',
         link: 'merchant-nodes',
         icon: 'store'
       },  
       {
+        title: 'Merchant Node Users',
+        link: 'merchant-node-users',
+        icon: 'store'
+      },
+      {
+        title: 'Users',
+        link: 'users',
+        icon: 'store'
+      },
+      {
         title: 'User Nodes',
         link: 'user-nodes',
         icon: 'store'
       },  
       {
-        title: 'User Node Links',
-        link: 'user-node-links',
+        title: 'User Node Users',
+        link: 'user-node-users',
         icon: 'store'
-      },
-      {
-        title: 'Merchants',
-        link: 'merchants',
-        icon: 'store'
-      },  
-      {
-        title: 'Users',
-        link: 'users',
-        icon: 'store'
-      },  
-      /*    
-      {
-        title: 'Exchange rate',
-        link: 'exchange-rate',
-        icon: 'category'
-      },
-      {
-        title: 'Fee distribution',
-        link: 'fee-distribution',
-        icon: 'collection'
-      },
-      
-      {
-        title: 'Merchant credit',
-        link: 'merchant-credit',
-        icon: 'collection'
-      }  
-      */
+      }
+
     ];
 
 

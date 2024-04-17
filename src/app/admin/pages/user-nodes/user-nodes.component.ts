@@ -9,7 +9,7 @@ import { UtilService } from 'src/app/services/util.service';
   styleUrls: ['./user-nodes.component.scss']
 })
 export class UserNodesComponent implements OnInit {
-  merchantNodes: any;
+  userNodes: any;
 
   constructor(
     private router: Router, 
@@ -20,7 +20,7 @@ export class UserNodesComponent implements OnInit {
   ngOnInit(): void {
     this.userServ.getAllNodes(100, 0).subscribe(
       (nodes: any) => {
-        this.merchantNodes = nodes;
+        this.userNodes = nodes;
       }
     );
   }
@@ -28,9 +28,11 @@ export class UserNodesComponent implements OnInit {
   add() {
     this.router.navigate(['/admin/user-node/add']);
   }
+
   showAddress(exgAddress) {
     return this.utilServ.exgToFabAddress(exgAddress);
   }
+  
   showType(type: number) {
     let text = '';
     switch(type) {

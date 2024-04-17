@@ -19,6 +19,8 @@ export class MerchantNodeAddComponent implements OnInit {
   tokenType: number;
   creditScore: number;
   senior: number;
+  amount: number;
+  id: number;
   modalRef: BsModalRef;
 
   tokenTypes: any = [
@@ -79,8 +81,18 @@ export class MerchantNodeAddComponent implements OnInit {
       "inputs": [
         {
           "internalType": "address",
-          "name": "_to",
+          "name": "account",
           "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
         },
         {
           "internalType": "uint8",
@@ -98,30 +110,36 @@ export class MerchantNodeAddComponent implements OnInit {
           "type": "uint256"
         },
         {
-          "internalType": "string",
-          "name": "uri",
-          "type": "string"
+          "internalType": "address",
+          "name": "_root",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
         }
       ],
-      "name": "safeMint",
-      "outputs": [
-        
-      ],
+      "name": "mint",
+      "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
     };
 
     const args = [
       this.utilServ.fabToExgAddress(this.to), 
+      this.id, 
+      this.amount,
       this.tokenType, 
       this.creditScore,
       this.senior,
+      '0x0000000000000000000000000000000000000001',
       '0x'
     ];
 
     const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.smartContractMerchantNode, abi, args);
     if(ret2 && ret2.success && ret2._body && ret2._body.status == '0x1') {
-      this.toastr.success('node was added successfully');
+      this.toastr.success('merchant node was added successfully');
       this.router.navigate(['/admin/merchant-nodes']);
     } else {
       this.toastr.error('Error while adding merchant node');

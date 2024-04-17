@@ -14,6 +14,10 @@ export class MerchantService {
     return this.http.getRaw(environment.endpoints.api + 'merchantnode/' + pageSize + '/' + pageNum);
   }
 
+  getAllNodeUsers(pageSize: number, pageNum: number) {
+    return this.http.getRaw(environment.endpoints.api + 'merchantnodeuser/' + pageSize + '/' + pageNum);
+  }
+
   getMerchant(id) {
     return this.http.getRaw(environment.endpoints.api + 'merchantreferral/' + id);
   }

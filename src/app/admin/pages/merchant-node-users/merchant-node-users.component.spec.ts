@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserNodeLinkAddComponent } from './user-node-link-add.component';
+import { MerchantNodesComponent } from './merchant-nodes.component';
 
-describe('UserNodeLinkAddComponent', () => {
-  let component: UserNodeLinkAddComponent;
-  let fixture: ComponentFixture<UserNodeLinkAddComponent>;
+describe('MerchantNodesComponent', () => {
+  let component: MerchantNodesComponent;
+  let fixture: ComponentFixture<MerchantNodesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserNodeLinkAddComponent ]
+      declarations: [ MerchantNodesComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserNodeLinkAddComponent);
+    fixture = TestBed.createComponent(MerchantNodesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

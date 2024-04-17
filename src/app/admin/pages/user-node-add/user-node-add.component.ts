@@ -15,10 +15,13 @@ import { UtilService } from 'src/app/services/util.service';
 })
 export class UserNodeAddComponent implements OnInit {
   wallet: any;
+  id: number;
   to: string;
   tokenType: number;
   creditScore: number;
   senior: number;
+  amount: number;
+  root: string;
   modalRef: BsModalRef;
 
   tokenTypes: any = [
@@ -79,8 +82,18 @@ export class UserNodeAddComponent implements OnInit {
       "inputs": [
         {
           "internalType": "address",
-          "name": "_to",
+          "name": "account",
           "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
         },
         {
           "internalType": "uint8",
@@ -98,30 +111,36 @@ export class UserNodeAddComponent implements OnInit {
           "type": "uint256"
         },
         {
-          "internalType": "string",
-          "name": "uri",
-          "type": "string"
+          "internalType": "address",
+          "name": "_root",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
         }
       ],
-      "name": "safeMint",
-      "outputs": [
-        
-      ],
+      "name": "mint",
+      "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
     };
 
     const args = [
       this.utilServ.fabToExgAddress(this.to), 
+      this.id, 
+      this.amount,
       this.tokenType, 
       this.creditScore,
       this.senior,
+      this.utilServ.fabToExgAddress(this.root),
       '0x'
     ];
 
     const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.smartContractUserNode, abi, args);
     if(ret2 && ret2.success && ret2._body && ret2._body.status == '0x1') {
-      this.toastr.success('node was added successfully');
+      this.toastr.success('user node was added successfully');
       this.router.navigate(['/admin/user-nodes']);
     } else {
       this.toastr.error('Error while adding user node');

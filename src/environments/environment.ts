@@ -193,10 +193,13 @@ export const environment = {
     },
     smartContract: {
         locker2: '0xa10d9d3baaa556e547b4d4b2dc6089e1544296b8',
-        smartContractMerchantNode: '0x34003720fba250c94a1d7b978deb0bfff407fac5',
+
+        smartContractMerchantNode: '0x2948b04f5b7b49f6d0ab2506d50d0de6aabea939',
+        smartContractUserNode: '0x7acd88d123fd97538594cf6eafbf5f6c203ee52a',
+
         smartConractMerchantInfo: '0xed1efbabdee02fb865a04b4899db4a09d1ecf683',
         feeDistribution2: '0x38b1bfb0ac48603649eb95768404c302b8862cab',
-        smartContractUserNode: '0xb945eb8272872e1137f2f002d4190eb303947cdb',
+        
 
         smartConractProjectUserRelation: '0x0185f15ccd4e7dfec68cdc671fb07ec5a22036be',
         smartConractAdressReferral: '0x686bba93b02abf2efdcfec1b42a2c93e6e7bb6a6',

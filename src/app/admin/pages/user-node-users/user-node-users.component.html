@@ -1,0 +1,14 @@
+<div class="container">
+    <ul class="responsive-table">
+        <li class="table-header">
+            <div class="col col-4">{{'TokenId' | translate}}</div>
+            <div class="col col-4">{{'Owner' | translate}}</div>
+            <div class="col col-4">{{'Amount' | translate}}</div>
+        </li>
+        <li class="table-row" *ngFor="let userNodeUser of userNodeUsers">
+            <div class="col col-4" data-label="TokenId">{{userNodeUser.tokenId}}</div>
+            <div class="col col-4" data-label="Owner">{{showAddress(userNodeUser.owner)}}</div>
+            <div class="col col-4" data-label="Amount">{{userNodeUser.amount}}</div>
+        </li>
+    </ul>
+</div>

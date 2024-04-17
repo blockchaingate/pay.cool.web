@@ -7,15 +7,17 @@
     <ul class="responsive-table">
         <li class="table-header">
             <div class="col col-2">{{'TokenId' | translate}}</div>
-            <div class="col col-6">{{'Owner' | translate}}</div>
             <div class="col col-2">{{'TokenType' | translate}}</div>
+            <div class="col col-2">{{'creditScore' | translate}}</div>
             <div class="col col-2">{{'Senior' | translate}}</div>
+            <div class="col col-4">{{'Root' | translate}}</div>
         </li>
-        <li class="table-row" *ngFor="let merchantNode of merchantNodes">
-            <div class="col col-2" data-label="Name">{{merchantNode.tokenId}}</div>
-            <div class="col col-6" data-label="Name">{{showAddress(merchantNode.owner)}}</div>
-            <div class="col col-2" data-label="Name">{{showType(merchantNode.tokenType)}}</div>
-            <div class="col col-2" data-label="Name">{{merchantNode.senior}}</div>
+        <li class="table-row" *ngFor="let userNode of userNodes">
+            <div class="col col-2" data-label="Name">{{userNode.tokenId}}</div>
+            <div class="col col-2" data-label="Name">{{showType(userNode.tokenType)}}</div>
+            <div class="col col-2" data-label="creditScore">{{userNode.creditScore}}</div>
+            <div class="col col-2" data-label="Name">{{userNode.senior}}</div>
+            <div class="col col-4" data-label="Name">{{showAddress(userNode.root)}}</div>
         </li>
     </ul>
 </div>

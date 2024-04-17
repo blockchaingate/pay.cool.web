@@ -24,11 +24,12 @@ import { UserReferralsComponent } from './pages/user-referrals/user-referrals.co
 import { MerchantNodesComponent } from './pages/merchant-nodes/merchant-nodes.component';
 import { MerchantNodeAddComponent } from './pages/merchant-node-add/merchant-node-add.component';
 
+import { MerchantNodeUsersComponent } from './pages/merchant-node-users/merchant-node-users.component';
+
 import { UserNodesComponent } from './pages/user-nodes/user-nodes.component';
 import { UserNodeAddComponent } from './pages/user-node-add/user-node-add.component';
 
-import { UserNodeLinksComponent } from './pages/user-node-links/user-node-links.component';
-import { UserNodeLinkAddComponent } from './pages/user-node-link-add/user-node-link-add.component';
+import { UserNodeUsersComponent } from './pages/user-node-users/user-node-users.component';
 
 import { ProjectEditComponent } from './pages/project-edit/project-edit.component';
 
@@ -80,22 +81,19 @@ const routes: Routes = [
         path: 'merchant-nodes', component: MerchantNodesComponent
       },  
       {
+        path: 'merchant-node-users', component: MerchantNodeUsersComponent
+      },  
+      {
         path: 'user-nodes', component: UserNodesComponent
       },  
       {
-        path: 'user-node-links', component: UserNodeLinksComponent
+        path: 'user-node-users', component: UserNodeUsersComponent
       },  
       {
         path: 'merchant-node/add', component: MerchantNodeAddComponent
       }, 
       {
         path: 'user-node/add', component: UserNodeAddComponent
-      },
-      {
-        path: 'user-node-link/add', component: UserNodeLinkAddComponent
-      },
-      {
-        path: 'user-node-link/edit/:address/:userNodeId', component: UserNodeLinkAddComponent
       },
       {
         path: 'users', component: UserReferralsComponent
