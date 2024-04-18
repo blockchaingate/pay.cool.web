@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../../../services/user.service';
+import { MerchantService } from '../../../services/merchant.service';
 import { UtilService } from '../../../services/util.service';
 
 @Component({
@@ -11,14 +11,13 @@ import { UtilService } from '../../../services/util.service';
 export class MerchantNodeUsersComponent implements OnInit {
   merchantNodeUsers: any;
 
-  constructor(
-    private router: Router, 
-    private userServ: UserService,
+  constructor( 
+    private merchantServ: MerchantService,
     private utilServ: UtilService
   ) { }
 
   ngOnInit(): void {
-    this.userServ.getAllNodeUsers(100, 0).subscribe(
+    this.merchantServ.getAllNodeUsers(100, 0).subscribe(
       (nodes: any) => {
         this.merchantNodeUsers = nodes;
       }
