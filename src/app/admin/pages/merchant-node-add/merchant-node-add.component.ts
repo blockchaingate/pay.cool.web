@@ -26,16 +26,16 @@ export class MerchantNodeAddComponent implements OnInit {
   tokenTypes: any = [
     {
       value: 0,
-      text:'Senior'
+      text:'Global'
     },
     {
       value: 1,
-      text: 'Intermediate'
+      text: 'National'
     }
     ,
     {
       value: 2,
-      text: 'Junior'
+      text: 'Regional'
     }
     
   ];

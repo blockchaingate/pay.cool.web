@@ -35,13 +35,13 @@ export class MerchantNodesComponent implements OnInit {
     let text = '';
     switch(type) {
       case 0:
-        text = 'Senior';
+        text = 'Global';
         break;
       case 1:
-        text = 'Intermediate';
+        text = 'National';
         break;
       case 2: 
-        text = 'Junior';
+        text = 'Regional';
         break;
     }
     return text;
