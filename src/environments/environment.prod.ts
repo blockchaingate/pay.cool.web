@@ -209,8 +209,8 @@ addresses: {
     smartContract: {
         locker2: '0x9a56b2370ac5a41b84d1bc72c1722b6fc27e77d0',
 
-        smartContractMerchantNode: '',
-        smartContractUserNode: '',
+        smartContractMerchantNode: '0xf846051d657b37337ecd7e04bba10cf9b4467545',
+        smartContractUserNode: '0xc89fcaac386421032b510edb9a35b8f48097b5f4',
 
         smartConractMerchantInfo: '0x56aaf3fd0c9114417f9cb06b2c3963179b0e2ba9',
         feeDistribution2: '0x2f20125f2ed7cb0f0ac1b928f5e751307a7686a8',
