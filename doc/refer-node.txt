@@ -1,0 +1,3 @@
+1. Related operatons: User, UserNode, UserNodeLink. it is the same as MerchantNode, is an ERC1155 NFT.
+2. Same code as MerchantNode, can have multiple owners, each owner can have different shares.
+3. UserNode is node for users (referrers), each UserNode is an ERC-1155 node, means each owner can have a fraction of the node, each UserNode has a 1-billion shares (tokens).
