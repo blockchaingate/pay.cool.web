@@ -9,16 +9,16 @@
             <div class="col col-2">{{'TokenId' | translate}}</div>
             <div class="col col-2">{{'TokenType' | translate}}</div>
             <div class="col col-1">{{'creditScore' | translate}}</div>
-            <div class="col col-1">{{'Senior' | translate}}</div>
+            <div class="col col-1">{{'Parent' | translate}}</div>
             <div class="col col-4">{{'Root' | translate}}</div>
             <div class="col col-2"></div>
         </li>
         <li class="table-row" *ngFor="let userNode of userNodes">
-            <div class="col col-2" data-label="Name">{{userNode.tokenId}}</div>
-            <div class="col col-2" data-label="Name">{{showType(userNode.tokenType)}}</div>
+            <div class="col col-2" data-label="TokenId">{{userNode.tokenId}}</div>
+            <div class="col col-2" data-label="TokenType">{{showType(userNode.tokenType)}}</div>
             <div class="col col-1" data-label="creditScore">{{userNode.creditScore}}</div>
-            <div class="col col-1" data-label="Name">{{userNode.senior}}</div>
-            <div class="col col-4" data-label="Name">{{showAddress(userNode.root)}}</div>
+            <div class="col col-1" data-label="Parent">{{userNode.senior}}</div>
+            <div class="col col-4" data-label="Root">{{showAddress(userNode.root)}}</div>
             <div class="col col-2" data-label="Update">
                 <a href="/admin/user-node/{{userNode.tokenId}}/update">
                     Update
