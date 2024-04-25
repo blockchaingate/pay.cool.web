@@ -93,8 +93,14 @@ const routes: Routes = [
         path: 'merchant-node/add', component: MerchantNodeAddComponent
       }, 
       {
+        path: 'merchant-node/:id/update', component: MerchantNodeAddComponent
+      }, 
+      {
         path: 'user-node/add', component: UserNodeAddComponent
       },
+      {
+        path: 'user-node/:id/update', component: UserNodeAddComponent
+      }, 
       {
         path: 'users', component: UserReferralsComponent
       },  

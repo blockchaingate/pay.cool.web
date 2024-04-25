@@ -4,14 +4,14 @@
       <hr>
         <div>
             <label for="id"><b>{{'ID' | translate}}</b></label>
-            <input type="number" placeholder="Enter id" [(ngModel)]="id" name="id" required>
+            <input type="text" placeholder="Enter id" [(ngModel)]="id" name="id" [readonly]="mode == 'update'" required>
         </div>
-        <div>
-            <label for="email"><b>{{'To' | translate}}</b></label>
+        <div *ngIf="mode == 'create'">
+            <label for="to"><b>{{'To' | translate}}</b></label>
             <input type="text" placeholder="Enter to address" [(ngModel)]="to" name="to" required>
         </div>
 
-        <div>
+        <div *ngIf="mode == 'create'">
             <label for="amount"><b>{{'Amount' | translate}}</b></label>
             <input type="text" placeholder="Enter amount" [(ngModel)]="amount" name="amount" required>
         </div>

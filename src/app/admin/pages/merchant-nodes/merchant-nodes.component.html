@@ -10,12 +10,18 @@
             <div class="col col-2">{{'TokenType' | translate}}</div>
             <div class="col col-2">{{'creditScore' | translate}}</div>
             <div class="col col-2">{{'Senior' | translate}}</div>
+            <div class="col col-2"></div>
         </li>
         <li class="table-row" *ngFor="let merchantNode of merchantNodes">
             <div class="col col-2" data-label="TokenId">{{merchantNode.tokenId}}</div>
             <div class="col col-2" data-label="TokenType">{{showType(merchantNode.tokenType)}}</div>
             <div class="col col-2" data-label="creditScore">{{merchantNode.creditScore}}</div>
             <div class="col col-2" data-label="Senior">{{merchantNode.senior}}</div>
+            <div class="col col-2" data-label="Update">
+                <a href="/admin/merchant-node/{{merchantNode.tokenId}}/update">
+                    Update
+                </a>
+            </div>
         </li>
     </ul>
 </div>

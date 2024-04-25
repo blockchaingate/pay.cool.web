@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { PasswordModalComponent } from '../../../shared/modals/password-modal/password-modal.component';
 import { KanbanSmartContractService } from 'src/app/services/kanban.smartcontract.service';
@@ -20,8 +20,9 @@ export class MerchantNodeAddComponent implements OnInit {
   creditScore: number;
   senior: number;
   amount: number;
-  id: number;
+  id: string;
   modalRef: BsModalRef;
+  mode: string;
 
   tokenTypes: any = [
     {
@@ -45,10 +46,20 @@ export class MerchantNodeAddComponent implements OnInit {
     private router: Router, 
     private utilServ: UtilService,
     private modalService: BsModalService,
+    private route: ActivatedRoute,
     private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
+    this.mode = 'create';
+    this.route.paramMap.subscribe(
+      (param: ParamMap) => {
+        this.id = param.get('id');
+        if(this.id) {
+          this.mode = 'update';
+        }
+      }
+    );
     this.dataServ.currentWallet.subscribe(
       (wallet: any) => {
         this.wallet = wallet;
@@ -57,10 +68,7 @@ export class MerchantNodeAddComponent implements OnInit {
   }
 
   confirm() {
-    if(!this.to) {
-      this.toastr.error('To cannot be empty');
-      return;
-    }
+
     const initialState = { 
       pwdHash: this.wallet.pwdHash,
       encryptedSeed: this.wallet.encryptedSeed
@@ -77,65 +85,115 @@ export class MerchantNodeAddComponent implements OnInit {
   }
 
   async addNodeDo(seed: Buffer) {
-    const abi = {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "account",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "id",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "amount",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint8",
-          "name": "_tokenType",
-          "type": "uint8"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_creditScore",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_senior",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "_root",
-          "type": "address"
-        },
-        {
-          "internalType": "bytes",
-          "name": "data",
-          "type": "bytes"
-        }
-      ],
-      "name": "mint",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    };
+    let abi;
+    let args;
+    if(this.mode == 'create') {
+      if(!this.to) {
+        this.toastr.error('To cannot be empty');
+        return;
+      }
+      abi = {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint8",
+            "name": "_tokenType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_creditScore",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_senior",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "_root",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "name": "mint",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      };
+  
+      args = [
+        this.utilServ.fabToExgAddress(this.to), 
+        this.id, 
+        this.amount,
+        this.tokenType, 
+        this.creditScore,
+        this.senior,
+        '0x0000000000000000000000000000000000000001',
+        '0x'
+      ];
+    } else {
+      abi = {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_tokenId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint8",
+            "name": "_tokenType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_creditScore",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_senior",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "_root",
+            "type": "address"
+          }
+        ],
+        "name": "setTokenInfo",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      };
+      args = [
+        this.id, 
+        this.tokenType,
+        this.creditScore,
+        this.senior,
+        '0x0000000000000000000000000000000000000001'
+      ];
+    }
 
-    const args = [
-      this.utilServ.fabToExgAddress(this.to), 
-      this.id, 
-      this.amount,
-      this.tokenType, 
-      this.creditScore,
-      this.senior,
-      '0x0000000000000000000000000000000000000001',
-      '0x'
-    ];
 
     const ret2 = await this.kanbanSmartContractServ.execSmartContract(seed, environment.addresses.smartContract.smartContractMerchantNode, abi, args);
     if(ret2 && ret2.success && ret2._body && ret2._body.status == '0x1') {
