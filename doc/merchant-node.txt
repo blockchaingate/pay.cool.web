@@ -1,0 +1,5 @@
+1. A merchantNode is an NFT.
+2. Each merchantNode is an ERC-1155 token, means it can have multiple owners and each owner can have different shares, default total shares is 1 billion.
+3. A merchant must & only belong to a single local-merchant-node (only one layer).
+4. A local-merchant-node must & only belong to a single national-merchant-node.
+5. A national-merchant- must & only belong to a single world-merchant-node
