@@ -45,13 +45,13 @@ export class UserNodesComponent implements OnInit {
       case 2: 
         text = 'President';
         break;
-        case 3: 
+      case 3: 
         text = 'Director';
         break;
-        case 4: 
+      case 4: 
         text = 'Manager';
         break;
-        case 5: 
+      case 5: 
         text = 'Team Leader';
         break;
     }
