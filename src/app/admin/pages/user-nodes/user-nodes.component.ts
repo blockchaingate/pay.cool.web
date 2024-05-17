@@ -37,13 +37,22 @@ export class UserNodesComponent implements OnInit {
     let text = '';
     switch(type) {
       case 0:
-        text = 'Global';
+        text = 'Chair';
         break;
       case 1:
-        text = 'National';
+        text = 'CEO';
         break;
       case 2: 
-        text = 'Regional';
+        text = 'President';
+        break;
+      case 3: 
+        text = 'Director';
+        break;
+      case 4: 
+        text = 'Manager';
+        break;
+      case 5: 
+        text = 'Team Leader';
         break;
     }
     return text;

@@ -28,16 +28,27 @@ export class UserNodeAddComponent implements OnInit {
   tokenTypes: any = [
     {
       value: 0,
-      text:'Global'
+      text:'Chair'
     },
     {
       value: 1,
-      text: 'National'
-    }
-    ,
+      text: 'CEO'
+    },
     {
       value: 2,
-      text: 'Regional'
+      text: 'President'
+    },
+    {
+      value: 3,
+      text: 'Director'
+    },
+    {
+      value: 4,
+      text: 'Manager'
+    },
+    {
+      value: 5,
+      text: 'Team leader'
     }
   ];
   constructor(
