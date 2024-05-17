@@ -54,6 +54,8 @@ export class EditMerchantComponent implements OnInit {
   businessContentsChinese: string;
   lockedDays: number;
   hideOnStore: boolean;
+  appId: string;
+  appSecret: string;
   coins = coins;
   
   constructor(
@@ -113,6 +115,23 @@ export class EditMerchantComponent implements OnInit {
     );
   }
 
+  generateApiCredential() {
+    const initialState = {
+      pwdHash: this.wallet.pwdHash,
+      encryptedSeed: this.wallet.encryptedSeed
+    };          
+    if(!this.wallet || !this.wallet.pwdHash) {
+      this.toastr.info('no wallet');
+      //this.router.navigate(['/wallet']);
+      return;
+    }
+    this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
+
+    this.modalRef.content.onClose.subscribe( (seed: Buffer) => {
+      this.generateApiCredentialDo(seed);
+    });
+  }
+
   changeTab(tabName: string) {
     this.currentTab = tabName;
   }
@@ -156,6 +175,31 @@ export class EditMerchantComponent implements OnInit {
     this.modalRef.content.onClose.subscribe( (seed: Buffer) => {
       this.updateMerchantDo(seed);
     });
+  }
+
+  generateApiCredentialDo(seed) {
+    const data = {
+      merchant_id: this.id
+    };
+
+    const keyPair = this.coinServ.getKeyPairs('FAB', seed, 0, 0, 'b');
+    const privateKey = keyPair.privateKeyBuffer.privateKey;
+    const sig = this.kanbanServ.signJsonData(privateKey, data);
+    data['sig'] = sig.signature;  
+
+    this.merchantServ.generateApiCredential(data).subscribe(
+      (ret: any) => {
+        if(ret && ret.success) {
+          const data = ret.data;
+          this.appId = data.app_id;
+          this.appSecret = data.app_secret;
+          this.toastr.info('Api credential was generated successfully');
+        } else {
+          this.toastr.error('Failed to generate api credential merchant');
+        }
+
+      }
+    );
   }
 
   updateMerchantDo(seed) {

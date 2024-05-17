@@ -38,6 +38,10 @@ export class MerchantService {
     return this.http.putRaw(environment.endpoints.api + 'merchantreferral/' + id, data);
   }
   
+  generateApiCredential(data) {
+    return this.http.postRaw(environment.endpoints.api + 'merchantapp', data);
+  }
+
   createMerchantReferral(data: any) {
     const url = environment.endpoints.api + 'merchantreferral';
     return this.http.postRaw(url, data);

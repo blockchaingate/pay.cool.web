@@ -18,7 +18,6 @@ import { MerchantDetailComponent } from './components/merchant-detail/merchant-d
 import { NewMerchantComponent } from './pages/new-merchant/new-merchant.component';
 import { EditMerchantComponent } from './pages/edit-merchant/edit-merchant.component';
 import { MerchantsComponent } from './pages/merchants/merchants.component';
-import { MerchantInfoComponent } from './pages/merchant-info/merchant-info.component';
 import { MerchantHomeComponent } from './pages/merchant-home/merchant-home.component';
 import { MerchantSubmittedComponent } from './pages/merchant-submitted/merchant-submitted.component';
 import { ContactComponent } from './pages/contact/contact.component';
@@ -34,7 +33,6 @@ import { ContactComponent } from './pages/contact/contact.component';
     NewMerchantComponent,
     EditMerchantComponent,
     MerchantsComponent,
-    MerchantInfoComponent,
     MerchantHomeComponent,
     MerchantSubmittedComponent,
     ContactComponent

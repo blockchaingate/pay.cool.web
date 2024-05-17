@@ -6,7 +6,6 @@ import { StoresComponent } from './pages/stores/stores.component';
 import { NewMerchantComponent } from './pages/new-merchant/new-merchant.component';
 import { EditMerchantComponent } from './pages/edit-merchant/edit-merchant.component';
 import { MerchantsComponent } from './pages/merchants/merchants.component';
-import { MerchantInfoComponent } from './pages/merchant-info/merchant-info.component';
 import { MerchantHomeComponent } from './pages/merchant-home/merchant-home.component';
 import { MerchantSubmittedComponent } from './pages/merchant-submitted/merchant-submitted.component';
 import { ContactComponent } from './pages/contact/contact.component';
@@ -27,9 +26,7 @@ const routes: Routes = [
       {
         path: 'merchant-submitted', component: MerchantSubmittedComponent
       },
-      {
-        path: 'merchant-info', component: MerchantInfoComponent
-      },    
+ 
       {
         path: '', redirectTo: 'merchants'
       },

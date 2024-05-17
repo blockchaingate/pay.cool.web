@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Web3Service } from './web3.service';
 
 @Injectable()
 export class UserReferralService {

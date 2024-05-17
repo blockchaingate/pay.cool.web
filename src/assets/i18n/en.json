@@ -21,6 +21,7 @@
     "Assets": "Assets",
     "Merchant": "Merchant",
     "Team": "Team",
+    "generateApiCredential": "Generate API credential",
     "may_degrade_level": "Clicking Redeem on this locker may lead to a drop in metaforce partnership level.",
     "Member": "Member",
     "Merchant credit": "Merchant credit",
