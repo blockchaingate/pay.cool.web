@@ -11,8 +11,8 @@
                         <button type="submit" class="btn btn-primary btn-bg-xl" (click)="generateApiCredential()">{{('generateApiCredential') |
                             translate}}
                         </button>
-                        <div class="mt-2" *ngIf="appId">App id: {{appId}}</div>
-                        <div class="mt-2" *ngIf="appSecret">App secret: {{appSecret}}</div>
+                        <div class="mt-2" *ngIf="apiKey">Api key: {{apiKey}}</div>
+                        <div class="mt-2" *ngIf="apiSecret">Api secret: {{apiSecret}}</div>
                     </div>
                 </div>
                 <div class="bottomHint">

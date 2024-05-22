@@ -54,8 +54,8 @@ export class EditMerchantComponent implements OnInit {
   businessContentsChinese: string;
   lockedDays: number;
   hideOnStore: boolean;
-  appId: string;
-  appSecret: string;
+  apiKey: string;
+  apiSecret: string;
   coins = coins;
   
   constructor(
@@ -191,8 +191,8 @@ export class EditMerchantComponent implements OnInit {
       (ret: any) => {
         if(ret && ret.success) {
           const data = ret.data;
-          this.appId = data.app_id;
-          this.appSecret = data.app_secret;
+          this.apiKey = data.api_key;
+          this.apiSecret = data.api_secret;
           this.toastr.info('Api credential was generated successfully');
         } else {
           this.toastr.error('Failed to generate api credential merchant');
