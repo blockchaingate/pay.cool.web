@@ -47,6 +47,7 @@ export class EditMerchantComponent implements OnInit {
   coin: string;
   taxRate: number;
   id: string;
+  status: any;
   walletAddress: string;
   nameChinese: string;
   businessAddressChinese: string;
@@ -110,6 +111,7 @@ export class EditMerchantComponent implements OnInit {
           this.coin = store.coin;
           this.referral = store.referral;
           this.hideOnStore = store.hideOnStore;
+          this.status = store.status;
         }
       }
     );

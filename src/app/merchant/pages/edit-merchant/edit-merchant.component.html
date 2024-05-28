@@ -35,8 +35,10 @@
                     <h2>{{"myMerchantReg"| translate }}</h2>
                     <div *ngIf="currentTab=='EN'">
                         <div class="form-group row">
-
-                            <div class="col-sm-12">
+                            <div *ngIf="status != 2" class="col-sm-12 text-danger">
+                                Your merchant is in review.
+                            </div>
+                            <div class="col-sm-12" *ngIf="status == 2">
                                 <label class="">{{"merchantID"|translate}}</label>
                                 {{id}}
                             </div>
