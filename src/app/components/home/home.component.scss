@@ -801,8 +801,8 @@ h3 {
     color: #fff;
 }
 
-.linkBtn li {
-    // margin: 0 20px;
+.linkBtn li{
+    
 }
 
 .linkBtn li a {
@@ -810,6 +810,17 @@ h3 {
     text-align: center;
     color: #333;
     background-color: #eee;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 14px;
+    line-height: 14px;
+    height: 60px;
+
+    img{
+        height: 20px;
+        width: 20px;
+    }
 
     i:before {
         color: #333;

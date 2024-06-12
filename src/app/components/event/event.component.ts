@@ -18,7 +18,7 @@ export class EventComponent implements OnInit {
 
 
   ngOnInit() {
-    this.eventServ.getEvents().subscribe( {
+    this.eventServ.getEvents().subscribe({
       next: (data: Event[]) => {
         this.events = data;
         this.isLoaded = true;
