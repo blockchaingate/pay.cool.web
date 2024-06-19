@@ -30,9 +30,9 @@ export class DownloadComponent implements OnInit {
    }
 
   getFiles() {
-    // return this.http.get('https://pay.cool/download/version.json');
+    return this.http.get('https://pay.cool/download/version.json');
   
-    return this.http.get('/assets/version.json');
+    // return this.http.get('/assets/version.json');
    }
 
 
