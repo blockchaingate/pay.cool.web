@@ -19,17 +19,20 @@ export class DownloadComponent implements OnInit {
    lastestApk!: VersionModel;
    testApk!: VersionModel; 
 
+   showOlder = false;
+
    constructor(
     private http: HttpClient,
     public dialog: MatDialog
   ) {
-    
+    //scroll to top
+    window.scrollTo(0, 0);
    }
 
   getFiles() {
-    return this.http.get('https://pay.cool/download/version.json');
+    // return this.http.get('https://pay.cool/download/version.json');
   
-    // return this.http.get('/assets/version.json');
+    return this.http.get('/assets/version.json');
    }
 
 
@@ -88,5 +91,10 @@ export class DownloadComponent implements OnInit {
     this.setDownloadCount(this.lastestApk.versionNumber);
 
   window.location.href = "https://pay.cool/download/latest.apk";
+  }
+
+
+  showOlderVersions() {
+    this.showOlder = !this.showOlder;
   }
 }

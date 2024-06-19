@@ -5,6 +5,7 @@
 .title1 h1 {
   font-size: 50px;
   color: #fff;
+  text-align: center;
 }
 .align-right {
   float: right;
@@ -28,6 +29,16 @@ h2 {
   font-size: 30px;
   color: #fff;
   padding-bottom: 20px;
+}
+
+.older-btn{
+  text-align: center;
+  margin: 0 auto;
+}
+
+.downlaodBody{
+  text-align: center;
+  margin:  0 auto;
 }
 @media (min-width: 300px) {
   .example-card {
