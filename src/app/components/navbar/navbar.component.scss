@@ -123,3 +123,37 @@
     margin-left: auto;
     margin-right: 0;
 }
+
+
+
+
+.mobileNav{
+    display: none;
+}
+
+
+@media (max-width: 991px) {
+    .mobileNav{
+        display: block;
+    }
+
+    .front-nav{
+        display: none;
+    }
+
+    li.nav-item {
+        width: fit-content;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .mainSidePanel{
+        background: #151423;
+        position: absolute;
+        top: 72px;
+        right: -33px;
+        width: 50vw;
+        height: calc(100vh - 72px);
+    }
+}
+

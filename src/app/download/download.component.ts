@@ -16,27 +16,27 @@ export class DownloadComponent implements OnInit {
   totalDownloads: number = 0;
 
   items: VersionModel[] = [];
-   lastestApk!: VersionModel;
-   testApk!: VersionModel; 
+  lastestApk!: VersionModel;
+  testApk!: VersionModel;
 
-   showOlder = false;
+  showOlder = false;
 
-   constructor(
+  constructor(
     private http: HttpClient,
     public dialog: MatDialog
   ) {
     //scroll to top
     window.scrollTo(0, 0);
-   }
+  }
 
   getFiles() {
     return this.http.get('https://pay.cool/download/version.json');
-  
+
     // return this.http.get('/assets/version.json');
-   }
+  }
 
 
-   ngOnInit() {
+  ngOnInit() {
     this.breakpoint = (window.innerWidth <= 400) ? 1 : 3;
 
     this.getFiles().subscribe((data: any) => {
@@ -50,29 +50,29 @@ export class DownloadComponent implements OnInit {
       this.items = data.filter((obj: { versionName: string; }) => obj.versionName != "Realize" && obj.versionName != "Candidate");
       this.getDownloadCount(data[0].versionNumber);
     });
-    
+
   }
 
-  openTest(){
-    this.clickCount ++;
+  openTest() {
+    this.clickCount++;
   }
 
-  getDownloadCount(number: String ) {
+  getDownloadCount(number: String) {
     let parts = number.split('+');
 
-    const url = environment.endpoints.api + "appInsight/stats/1?version="+ parts[0];
+    const url = environment.endpoints.api + "appInsight/stats/1";
 
-     this.http.get(url).subscribe((data: any) => {
+    this.http.get(url).subscribe((data: any) => {
 
       this.totalDownloads = data.data.record.downloadCount ?? 0;
-   
-     });
+
+    });
   }
 
 
-  async setDownloadCount(number: String ) {
+  async setDownloadCount(number: String) {
     const url = environment.endpoints.api + "appInsight/downloadApp";
- 
+
     this.http.get("http://www.geoplugin.net/json.gp").subscribe((data: any) => {
       const param = {
         appId: "1",
@@ -83,14 +83,14 @@ export class DownloadComponent implements OnInit {
       };
       this.http.put(url, param);
     });
- 
+
   }
 
   donwloadAPK() {
-    this.totalDownloads ++; 
+    this.totalDownloads++;
     this.setDownloadCount(this.lastestApk.versionNumber);
 
-  window.location.href = "https://pay.cool/download/latest.apk";
+    window.location.href = "https://pay.cool/download/latest.apk";
   }
 
 
