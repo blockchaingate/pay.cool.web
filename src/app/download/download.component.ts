@@ -20,6 +20,7 @@ export class DownloadComponent implements OnInit {
   testApk!: VersionModel;
 
   showOlder = false;
+  isLoaded = false;
 
   constructor(
     private http: HttpClient,
@@ -37,6 +38,7 @@ export class DownloadComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log("DownloadComponent ngOnInit!");
     this.breakpoint = (window.innerWidth <= 400) ? 1 : 3;
 
     this.getFiles().subscribe((data: any) => {
@@ -49,6 +51,8 @@ export class DownloadComponent implements OnInit {
       this.testApk = data.find((obj: { versionName: string; }) => obj.versionName === "Candidate");
       this.items = data.filter((obj: { versionName: string; }) => obj.versionName != "Realize" && obj.versionName != "Candidate");
       this.getDownloadCount(data[0].versionNumber);
+
+      this.isLoaded = true;
     });
 
   }
