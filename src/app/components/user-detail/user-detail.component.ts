@@ -17,6 +17,8 @@ import { DataService } from 'src/app/services/data.service';
 import { Router } from '@angular/router';
 import { PasswordModalComponent } from '../../shared/modals/password-modal/password-modal.component';
 import { ConfirmUnlocklpComponent } from '../confirm-unlocklp/confirm-unlocklp.component';
+import { KanbanService } from 'src/app/services/kanban.service';
+import { CoinService } from 'src/app/services/coin.service';
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
@@ -61,6 +63,8 @@ export class UserDetailComponent implements OnInit {
     private router: Router,
     private lockerServ: LockerService,
     private chargeServ: ChargeService,
+    private kanbanServ: KanbanService,
+    private coinServ: CoinService,
     private kanbanSmartContractServ: KanbanSmartContractService,
     private payRewardServ: PayRewardService,
     private userreferralServ: UserReferralService) { }
@@ -372,6 +376,62 @@ export class UserDetailComponent implements OnInit {
       this.confirmUnlock(item);
     }
 
+  }
+
+  unlockAll() {
+    const initialState = {
+      pwdHash: this.wallet.pwdHash,
+      encryptedSeed: this.wallet.encryptedSeed
+    };          
+    if(!this.wallet || !this.wallet.pwdHash) {
+      this.router.navigate(['/wallet']);
+      return;
+    }
+    this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
+
+    this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
+
+      const keyPairsKanban = this.coinServ.getKeyPairs('FAB', seed, 0, 0, 'b');
+      let privKey: any = keyPairsKanban.privateKeyBuffer;
+  
+      if(!Buffer.isBuffer(privKey)) {
+        privKey = privKey.privateKey;
+      }
+
+      const address = keyPairsKanban.address;
+
+      let nonce = await this.kanbanServ.getTransactionCount(this.utilServ.fabToExgAddress(address));
+
+      const abi = {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_lockerId",
+            "type": "uint256"
+          }
+        ],
+        "name": "releaseLocker",
+        "outputs": [
+          
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      };
+
+      const gasLimit = 8000000;
+      for(let i = 0; i < this.myLPLockers.length; i++) {
+        console.log('i ==', i);
+        const item = this.myLPLockers[i];
+        const args = [
+          item.id
+        ];
+        //this.unlockDo(seed, item);
+        const abiData = this.kanbanSmartContractServ.formExecKanbanSmartContractABI(abi, args);
+        const abihex = this.kanbanSmartContractServ.getExecSmartContractAbiHexFromPrivateKeyNonce(privKey, nonce++, item.address, abiData, gasLimit); 
+        console.log('abihex==', abihex);
+      }
+      
+    });
   }
 
   async unlockDo(seed: Buffer, item) {

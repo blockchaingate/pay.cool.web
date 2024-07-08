@@ -4,7 +4,6 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { UserReferralService } from '../../services/userreferral.service';
 import { PasswordModalComponent } from '../../shared/modals/password-modal/password-modal.component';
-import { KanbanService } from 'src/app/services/kanban.service';
 import { UtilService } from 'src/app/services/util.service';
 import { KanbanSmartContractService } from 'src/app/services/kanban.smartcontract.service';
 import { environment } from 'src/environments/environment';
