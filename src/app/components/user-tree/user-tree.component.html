@@ -1,5 +1,5 @@
 <div class="userTreeMain">
-  <div class="py-1 user-tree-page userTreeContent">
+  <div class="user-tree-page userTreeContent">
     <div class="container text-center mb-5 refArea" *ngIf="!wallet">
       <p class="orangered">{{"NoWalletNote2"|translate}}</p>
     </div>
@@ -18,8 +18,7 @@
           {{errMsg|translate}}
         </div>
         <div class="wrapper-center py-3">
-          <button class="btn btn-primary" (click)="joinForFree()" type="submit" [disabled]="!refCode">{{"Join for
-            free"|translate}}</button>
+          <button class="btn btn-primary" (click)="joinForFree()" type="submit" [disabled]="!refCode">{{"Join for free"|translate}}</button>
         </div>
       </div>
     </div>

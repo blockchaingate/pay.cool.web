@@ -1,4 +1,4 @@
-<div class="color-white" *ngIf="user">
+<div class="color-black" *ngIf="user">
 
     <ul class="nav nav-tabs">
         <li class="nav-item">
@@ -16,9 +16,11 @@
         <li class="nav-item">
           <a class="nav-link hand-cursor" [ngClass]="tabName=='myLPLockers' ? 'active' : ''" (click)="changeTab('myLPLockers')">My LP Lockers</a>
         </li>   
+        <!--
         <li class="nav-item">
           <a class="nav-link hand-cursor" [ngClass]="tabName=='myCPLockers' ? 'active' : ''" (click)="changeTab('myCPLockers')">My CP Lockers</a>
         </li>   
+        -->
         <li class="nav-item">
           <a class="nav-link hand-cursor" [ngClass]="tabName=='myLockers' ? 'active' : ''" (click)="changeTab('myLockers')">My Paycool Lockers</a>
         </li>      
@@ -63,6 +65,11 @@
     </div> 
 
     <div *ngIf="tabName=='myLPLockers'">
+      <div class="m-3 text-right">
+        <button type="button" class="btn btn-primary" (click)="unlockAll()">
+          Unlock all
+        </button>
+      </div>
       <ul class="responsive-table">
         <li class="table-header">
           <div class="col col-3">{{'ID' | translate}}</div>

@@ -3,7 +3,7 @@
     padding: 10px;
 
     .table-header {
-        background-color: #17113b;
+        background-color: #dfdee6;
         font-size: 14px;
         text-transform: uppercase;
         letter-spacing: 0.03em;
@@ -18,15 +18,15 @@
     }
 
     .table-row {
-        background-color: #2d155d;
-        box-shadow: 0px 0px 9px 0px rgb(0 0 0 / 10%);
+        background-color: #d1cdd8;
+        box-shadow: 0px 0px 9px 0px rgba(218, 213, 213, 0.1);
         transition: all 0.2s ease-in-out;
         -webkit-transition: all 0.2s ease-in-out;
     }
 
     .table-row:hover{
         scale: 1.01;
-        background-color: #422185;
+        background-color: #a7a2b4;
     }
 }
 
