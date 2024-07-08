@@ -42,15 +42,18 @@ export class DownloadComponent implements OnInit {
     this.breakpoint = (window.innerWidth <= 400) ? 1 : 3;
 
     this.getFiles().subscribe((data: any) => {
+      console.log("data: ", data);
+      // string to json 
+      const newData = JSON.parse(data);
 
-      this.lastestApk = data.find((obj: { versionName: string; }) => obj.versionName === "Realize");
+      this.lastestApk = newData.find((obj: { versionName: string; }) => obj.versionName === "Realize");
 
       console.log("this.lastestApk");
       console.log(this.lastestApk);
 
-      this.testApk = data.find((obj: { versionName: string; }) => obj.versionName === "Candidate");
-      this.items = data.filter((obj: { versionName: string; }) => obj.versionName != "Realize" && obj.versionName != "Candidate");
-      this.getDownloadCount(data[0].versionNumber);
+      this.testApk = newData.find((obj: { versionName: string; }) => obj.versionName === "Candidate");
+      this.items = newData.filter((obj: { versionName: string; }) => obj.versionName != "Realize" && obj.versionName != "Candidate");
+      this.getDownloadCount(newData[0].versionNumber);
 
       this.isLoaded = true;
     });
