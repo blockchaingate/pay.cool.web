@@ -31,7 +31,11 @@ export class DownloadComponent implements OnInit {
   }
 
   getFiles() {
-    return this.http.get('https://pay.cool/download/version.json');
+    const tempRes = this.http.get('https://pay.cool/download/version.json');
+    console.log("tempRes: ", tempRes);
+    return tempRes;
+
+    // return this.http.get('https://pay.cool/download/version.json');
 
     // return this.http.get('/assets/version.json');
   }
@@ -41,22 +45,39 @@ export class DownloadComponent implements OnInit {
     console.log("DownloadComponent ngOnInit!");
     this.breakpoint = (window.innerWidth <= 400) ? 1 : 3;
 
-    this.getFiles().subscribe((data: any) => {
-      console.log("data: ", data);
-      // string to json 
-      const newData = JSON.parse(data);
+    try {
+      this.getFiles().subscribe((data: any) => {
+        console.log("data: ", data);
+        let newData: any[];
+       
+        if (Array.isArray(data)) {
+           //check if data is an array
+          newData = data;
+        } else if (
+          typeof data === 'string' || data instanceof String
+        ) {
+          //check data isstring 
+          newData = JSON.parse(data as string);
+        } else {
+          newData = data;
+        }
 
-      this.lastestApk = newData.find((obj: { versionName: string; }) => obj.versionName === "Realize");
+        this.lastestApk = newData.find((obj: { versionName: string; }) => obj.versionName === "Realize");
 
-      console.log("this.lastestApk");
-      console.log(this.lastestApk);
+        console.log("this.lastestApk");
+        console.log(this.lastestApk);
 
-      this.testApk = newData.find((obj: { versionName: string; }) => obj.versionName === "Candidate");
-      this.items = newData.filter((obj: { versionName: string; }) => obj.versionName != "Realize" && obj.versionName != "Candidate");
-      this.getDownloadCount(newData[0].versionNumber);
+        this.testApk = newData.find((obj: { versionName: string; }) => obj.versionName === "Candidate");
+        this.items = newData.filter((obj: { versionName: string; }) => obj.versionName != "Realize" && obj.versionName != "Candidate");
+        this.getDownloadCount(newData[0].versionNumber);
 
-      this.isLoaded = true;
-    });
+        this.isLoaded = true;
+      });
+    } catch (e) {
+      console.log("catch issue: ", e);
+    }
+
+
 
   }
 
