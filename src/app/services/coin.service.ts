@@ -512,7 +512,7 @@ export class CoinService {
 
                 addr = address;
             }
-
+            
             priKey = childNode.toWIF();
             pubKey = `0x${childNode.publicKey.toString('hex')}`;
 
