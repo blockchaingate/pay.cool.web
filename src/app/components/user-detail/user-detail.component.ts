@@ -19,6 +19,7 @@ import { PasswordModalComponent } from '../../shared/modals/password-modal/passw
 import { ConfirmUnlocklpComponent } from '../confirm-unlocklp/confirm-unlocklp.component';
 import { KanbanService } from 'src/app/services/kanban.service';
 import { CoinService } from 'src/app/services/coin.service';
+import { ProgressModalComponent } from '../modals/progress/progress.component';
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
@@ -419,6 +420,11 @@ export class UserDetailComponent implements OnInit {
       };
 
       const gasLimit = 8000000;
+      const txids = [];
+      const initialState = {
+        txids
+      };   
+      this.modalRef = this.modalService.show(ProgressModalComponent, { initialState });
       for(let i = 0; i < this.myLPLockers.length; i++) {
         console.log('i ==', i);
         const item = this.myLPLockers[i];
@@ -427,8 +433,13 @@ export class UserDetailComponent implements OnInit {
         ];
         //this.unlockDo(seed, item);
         const abiData = this.kanbanSmartContractServ.formExecKanbanSmartContractABI(abi, args);
-        const abihex = this.kanbanSmartContractServ.getExecSmartContractAbiHexFromPrivateKeyNonce(privKey, nonce++, item.address, abiData, gasLimit); 
-        console.log('abihex==', abihex);
+        const txhex = this.kanbanSmartContractServ.getExecSmartContractAbiHexFromPrivateKeyNonce(privKey, nonce++, item.address, abiData, gasLimit); 
+        //console.log('txhex==', txhex);
+        const ret = await this.kanbanServ.sendRawSignedTransactionPromise(txhex);
+        console.log('ret====', ret);
+        if(ret.success) {
+          txids.push(ret._body);
+        }
       }
       
     });
