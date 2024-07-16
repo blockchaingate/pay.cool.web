@@ -232,7 +232,10 @@ export class UserDetailComponent implements OnInit {
     );
   }
 
-  showStatus(status: any) {
+  showStatus(tabName: string, status: any) {
+    if(tabName == 'paycool') {
+      return 'User';
+    }
     const statuses = this.statuses.filter(item => item.value == status);
     if(statuses && statuses.length > 0) {
       return statuses[0].text;
