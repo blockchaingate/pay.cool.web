@@ -74,7 +74,6 @@ import { TransferOwnershipComponent } from './components/transfer-ownership/tran
 import { SupportComponent } from './components/support/support.component';
 import { RefComponent } from './components/ref/ref.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
-import { ProgressModalComponent } from './components/modals/progress/progress.component';
 import { GetrewardsComponent } from './components/getrewards/getrewards.component';
 import { NewFeaturesComponent } from './components/newFeatures/newFeatures.component';
 import { LanguageService } from './services/language.service';
@@ -108,7 +107,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     TransferOwnershipComponent,
     RefComponent,
     UserDetailComponent,
-    ProgressModalComponent,
     GetrewardsComponent,
     NewFeaturesComponent,
     ConfirmUnlocklpComponent,

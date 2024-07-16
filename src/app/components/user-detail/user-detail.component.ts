@@ -19,7 +19,7 @@ import { PasswordModalComponent } from '../../shared/modals/password-modal/passw
 import { ConfirmUnlocklpComponent } from '../confirm-unlocklp/confirm-unlocklp.component';
 import { KanbanService } from 'src/app/services/kanban.service';
 import { CoinService } from 'src/app/services/coin.service';
-import { ProgressModalComponent } from '../modals/progress/progress.component';
+import { ProgressModalComponent } from '../../shared/modals/progress/progress.component';
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',

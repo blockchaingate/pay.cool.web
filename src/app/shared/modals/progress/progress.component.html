@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{"Unlock progress"}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="onCancel()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div *ngFor="let item of txids">
+        <div class="alert" [ngClass]="(item.status == '0x1') ? 'alert-success' : 'alert-danger'" role="alert" >
+            <small>{{item.transactionHash}}</small>
+        </div>
+    </div>
+</div>

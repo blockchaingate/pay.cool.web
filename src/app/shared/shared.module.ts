@@ -16,6 +16,7 @@ import { UploadMediaComponent } from './upload-media/upload-media.component';
 import { TransferOwnershipComponent } from './modals/transfer-ownership/transfer-ownership.component';
 import { RewardDetailsComponent } from './modals/reward-details/reward-details.component';
 import { SendRewardsSummaryComponent } from './modals/send-rewards-summary/send-rewards-summary.component';
+import { ProgressModalComponent } from './modals/progress/progress.component';
 import { FormsModule } from '@angular/forms';
 import { ResizeImageComponent } from './resize-image/resize-image.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
@@ -34,6 +35,7 @@ LOAD_WASM().subscribe((res: any) => {});
     InfoBoxComponent,
     OrderHistoryComponent,
     PasswordModalComponent,
+    ProgressModalComponent,
     RequestRefundComponent,
     TransferOwnershipComponent,
     RefundComponent,
@@ -63,6 +65,7 @@ LOAD_WASM().subscribe((res: any) => {});
     InfoBoxComponent,
     OrderHistoryComponent,
     PasswordModalComponent,
+    ProgressModalComponent,
     RequestRefundComponent,
     TransferOwnershipComponent,
     StarRewardsComponent,
