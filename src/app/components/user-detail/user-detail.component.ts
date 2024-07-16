@@ -427,7 +427,7 @@ export class UserDetailComponent implements OnInit {
       const initialState = {
         txids
       };   
-      this.modalRef = this.modalService.show(ProgressModalComponent, { initialState });
+      this.modalRef = this.modalService.show(ProgressModalComponent, { initialState, class: 'modal-lg' });
       for(let i = 0; i < this.myLPLockers.length; i++) {
         console.log('i ==', i);
         const item = this.myLPLockers[i];

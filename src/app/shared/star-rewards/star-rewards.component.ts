@@ -7,6 +7,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { KanbanSmartContractService } from '../../services/kanban.smartcontract.service';
 import { ToastrService } from 'ngx-toastr';
 import { DataService } from '../../services/data.service';
+import { ProgressModalComponent } from '../../shared/modals/progress/progress.component';
 
 @Component({
   selector: 'app-wallet-star-rewards',
@@ -113,10 +114,79 @@ export class StarRewardsComponent implements OnInit{
       }); 
     }
 
-    redeemAllDo(seed) {
-
+    async redeemAllDo(seed) {
+      let abi;
+      let args;
+      const txids = [];
+      const initialState = {
+        txids
+      };   
+      this.modalRef = this.modalService.show(ProgressModalComponent, { initialState, class: 'modal-lg' });
+      for(let i = 0; i < this.rewards.length; i++) {
+        const reward = this.rewards[i];
+        if(!this.redeemable(reward)) {
+          continue;
+        }
+        const address = reward.address;
+        if(address == environment.addresses.smartContract.locker2) {
+          abi = {
+            "constant": false,
+            "inputs": [
+              {
+                "name": "_ID",
+                "type": "bytes32"
+              },
+              {
+                "name": "_user",
+                "type": "address"
+              }
+            ],
+            "name": "releaseLocker",
+            "outputs": [
+              
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+          };
+          args = [reward.id, this.utilServ.fabToExgAddress(reward.user)];
+        } else {
+          abi = {
+            "inputs": [
+              {
+                "internalType": "bytes32",
+                "name": "_ID",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "address",
+                "name": "_lockerOwner",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "_lockPeriod",
+                "type": "uint256"
+              }
+            ],
+            "name": "releaseLocker",
+            "outputs": [
+              
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+          };
+          args = [reward.id, this.utilServ.fabToExgAddress(reward.user), reward.lockPeriod];
+        }
+  
+  
+        const ret = await this.kanbanSmartContractServ.execSmartContract(seed, address, abi, args);
+        if(ret && (ret.ok || ret.success) && ret._body) {
+          txids.push(ret._body);
+        }
+      }
     }
-    
+
     redeem(reward) {
       this.reward = reward;
       const initialState = {

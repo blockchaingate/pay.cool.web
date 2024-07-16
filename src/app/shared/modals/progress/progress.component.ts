@@ -23,6 +23,7 @@ export class ProgressModalComponent {
     }
 
     public onCancel(): void {
+        console.log('hide');
         this._bsModalRef.hide();
     }
 
