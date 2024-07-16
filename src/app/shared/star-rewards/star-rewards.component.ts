@@ -100,6 +100,23 @@ export class StarRewardsComponent implements OnInit{
       return false;
     }
 
+    redeemAll() {
+      const initialState = {
+        pwdHash: this.wallet.pwdHash,
+        encryptedSeed: this.wallet.encryptedSeed
+      };          
+      
+      this.modalRef = this.modalService.show(PasswordModalComponent, { initialState });
+  
+      this.modalRef.content.onClose.subscribe( async (seed: Buffer) => {
+        this.redeemAllDo(seed);
+      }); 
+    }
+
+    redeemAllDo(seed) {
+
+    }
+    
     redeem(reward) {
       this.reward = reward;
       const initialState = {
