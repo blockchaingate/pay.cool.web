@@ -197,6 +197,7 @@ export class NewMerchantComponent implements OnInit {
 
     this.modalRef.content.onClose.subscribe( (seed: Buffer) => {
       this.createMerchantDo(seed);
+      this.router.navigate(['/home']);
     });
   }
 
@@ -255,7 +256,7 @@ export class NewMerchantComponent implements OnInit {
     this.merchantServ.createMerchantReferral(data).subscribe(
       (ret: any) => {
         if(ret && ret._id) {
-          return this.toastr.info('Merchant was created successfully');
+          return this.toastr.info('Merchant was created successfully, Please wait for approval');
           /*
           this.kanbanSmartContractServ.execSmartContract(seed, address, abi, args).then(
             (ret: any) => {
@@ -271,7 +272,7 @@ export class NewMerchantComponent implements OnInit {
           );
           */
         } else {
-          this.toastr.error('Merchant was created failed');
+          this.toastr.error('Merchant creation failed');
         }
 
       }
