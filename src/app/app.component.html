@@ -7,8 +7,8 @@
 
     <div class="html-top-content">
         <!-- ********************** Theme Top Banne & Header ************************ -->
-
         <app-navbar *ngIf="!isCashierPage"></app-navbar>
+
         <div  [ngClass]="{'main-container': !isCashierPage}">
             <router-outlet></router-outlet>
         </div>
