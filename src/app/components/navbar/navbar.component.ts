@@ -56,12 +56,12 @@ export class NavbarComponent implements OnInit {
 
     [, this.langFromUrl, ...this.restUrl] = this.href.split('/');
 
-    
+    if('en,sc,tc,es,jp,tr'.indexOf(this.langFromUrl) < 0) { 
+      this.langFromUrl = ''; 
+    }
   }
 
   ngOnInit() {
-
-
     this.pendingtransactions = [];
     this.closetransactions = [];
     this.timerServ.transactionStatus.subscribe(
@@ -127,15 +127,11 @@ export class NavbarComponent implements OnInit {
 
   }
 
-
   tester() {
-
   }
 
   setLan() {
-
-
-    const storedLan = this.langFromUrl != ""? this.langFromUrl:localStorage.getItem('_lan');
+    const storedLan = this.langFromUrl != ""? this.langFromUrl : localStorage.getItem('_lan');
     if (storedLan) {
       if (storedLan === 'en') {
         this.selectedLan = this.languages[0];
@@ -146,7 +142,7 @@ export class NavbarComponent implements OnInit {
       }
     } else {
       let userLang = navigator.language;
-      userLang = userLang.substr(0, 2);
+      userLang = userLang.substring(0, 2);
       if (userLang === 'CN' || userLang === 'cn' || userLang === 'zh') {
         this.selectedLan = this.languages[1];
         localStorage.setItem('_lan', 'sc');
