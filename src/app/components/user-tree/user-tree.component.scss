@@ -1,8 +1,10 @@
 
 .userTreeMain {
+    min-height: 600px;
     background-color: white;
     padding-top: 2rem;
 }
+
 .title {
     color: red;
 }
@@ -44,40 +46,23 @@ input {
     border: 1px solid red;
 }
 
-
-
 a.link {
     cursor: pointer;
     text-decoration: underline;
-    color: #1ed5f1;
+    color: darkblue;
 }
 
 a.link:not([href]):not([tabindex]) {
-    color: #1ed5f1;
+    color: darkblue;
     text-decoration: underline;
 }
 
-
-.memberArea {
-    background-color: #1c1c31;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding: 10px;
-    
-}
-
-
 .refArea {
-    background-color: #1c1c31;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
     padding: 10px;
     color: #fff;
 
     h5{
-        font-size: 30px;
-        font-weight: 800;
-        margin-bottom: -2px;
-        color: #7168d9;
+        font-size: 18px;
+        font-weight: 600;
     }
 }

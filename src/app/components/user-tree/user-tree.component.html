@@ -1,5 +1,6 @@
 <div class="userTreeMain">
   <div class="user-tree-page userTreeContent">
+
     <div class="container text-center mb-5 refArea" *ngIf="!wallet">
       <p class="orangered">{{"NoWalletNote2"|translate}}</p>
     </div>
@@ -23,13 +24,13 @@
       </div>
     </div>
 
-    <div class="container  text-center mb-5 refArea" *ngIf="myReferralUrl">
+    <div class="container text-center mb-5 refArea" *ngIf="myReferralUrl">
       <h5>{{"My wallet"| translate}}: <u>{{wallet.name}}</u></h5>
       <br>
       <div>
         {{"My referral link"| translate}}:
-        <a class="link lightgreen">
-          <span class="cyan">{{myReferralUrl}}</span>
+        <a class="link">
+          <span>{{myReferralUrl}}</span>
         </a>
       </div>
       <div id="myWalletId">

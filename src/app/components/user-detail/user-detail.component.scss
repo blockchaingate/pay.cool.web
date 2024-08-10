@@ -30,6 +30,14 @@
     }
 }
 
+.link {
+    cursor: pointer;
+}
+
+.link:hover {
+    color: orange;
+}
+
 .userTreeMain {
     display: flex;
     flex-direction: column;
