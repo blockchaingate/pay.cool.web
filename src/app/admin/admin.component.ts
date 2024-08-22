@@ -85,6 +85,11 @@ export class AdminComponent implements OnInit {
         title: 'User Node Users',
         link: 'user-node-users',
         icon: 'store'
+      },  
+      {
+        title: 'Fiat Orders',
+        link: 'fiat-orders',
+        icon: 'store'
       }
 
     ];

@@ -1,8 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { Subject } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import { StarService } from 'src/app/services/star.service';
+import { UserpayService } from 'src/app/services/userpay.service';
 import { UtilService } from 'src/app/services/util.service';
 import { KanbanService } from 'src/app/services/kanban.service';
 import { StoreService } from 'src/app/services/store.service';
@@ -31,7 +30,7 @@ import BigNumber from 'bignumber.js';
     constructor(
       private modalService:BsModalService,
       private utilServ: UtilService,
-      private starServ: StarService,
+      private userpayServ: UserpayService,
       private kanbanServ: KanbanService,
       private storeServ: StoreService,
       private modalRef: BsModalRef) {
@@ -127,7 +126,7 @@ import BigNumber from 'bignumber.js';
     }
     ngOnInit(): void {
       this.lvs = [];
-      this.starServ.getRewardsByOrderId(this.orderId).subscribe(
+      this.userpayServ.getRewardsByOrderId(this.orderId).subscribe(
         (ret: any) => {
           if(ret.ok) {
             this.rewards = ret._body;
@@ -167,12 +166,12 @@ import BigNumber from 'bignumber.js';
                           this.merchantRef = store.refAddress;
 
 
-                          this.starServ.getCoinValue(this.rewardCoinType, blockNumber).subscribe(
+                          this.userpayServ.getCoinValue(this.rewardCoinType, blockNumber).subscribe(
                             (ret: any) => {
                               const hex = ret.data;
                               this.rewardCoinValue = new BigNumber(hex, 16).shiftedBy(-8).toNumber();
       
-                              this.starServ.getCoinValue(this.paidCoinType, blockNumber).subscribe(
+                              this.userpayServ.getCoinValue(this.paidCoinType, blockNumber).subscribe(
                                 (ret: any) => {
                                   const hex = ret.data;
                                   this.paidCoinValue = new BigNumber(hex, 16).shiftedBy(-8).toNumber();

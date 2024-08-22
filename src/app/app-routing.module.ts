@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { ClaimComponent } from './components/claim/claim.component';
 import { UserTreeComponent } from './components/user-tree/user-tree.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { PaymentSuccessComponent } from './components/payment/success.component';
@@ -95,6 +96,7 @@ const routes: Routes = [
   { path: 'transfer-ownership/:id', component: TransferOwnershipComponent },
   { path: 'ref/:refcode', component: RefComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'claim/:code', component: ClaimComponent },
   { path: ':lang/privacy', component: PrivacyComponent },
   { path: 'support', component: SupportComponent },
   { path: 'about', component: AboutComponent },

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DataService } from 'src/app/services/data.service';
-import { StarService } from 'src/app/services/star.service';
+import { UserpayService } from 'src/app/services/userpay.service';
 
 @Component({
   selector: 'app-transfer-ownership',
@@ -18,8 +18,7 @@ export class TransferOwnershipComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private dataServ: DataService,
-    
-    private starServ: StarService) { }
+    private userpayServ: UserpayService) { }
 
   ngOnInit(): void {
     this.txids = [];
@@ -49,7 +48,7 @@ export class TransferOwnershipComponent implements OnInit {
 
   transfer() {
     this.txids = [];
-    this.starServ.transferLockersOwnership(this.address, this.id).subscribe(
+    this.userpayServ.transferLockersOwnership(this.address, this.id).subscribe(
       (ret: any) => {
         if(ret && ret._id) {
           this.toastr.info(' Reward was transfer successfully');

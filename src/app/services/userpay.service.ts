@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Web3Service } from './web3.service';
 
 @Injectable()
-export class StarService {
+export class UserpayService {
    constructor(
       private web3Serv: Web3Service,
       private http: HttpClient) { }
@@ -164,6 +164,25 @@ export class StarService {
    getPaycoolRewardInfo(id: string, address: string) {
       const url = environment.endpoints.api + 'userpay/order/' + id + '/' + address + '/rewardInfo';
       return this.http.get(url);
+   }
+
+   getOrderByCode(code: string) {
+      const url = environment.endpoints.api + 'userpay/order/code/' + code;
+      return this.http.get(url);
+   }
+
+   getAllFiatOrders(pageSize: number, pageNum: number) {
+      const url = environment.endpoints.api + 'userpay/fiat-order/' + pageSize + '/' + pageNum;
+      return this.http.get(url);
+   }
+
+   claimReward(code: string, address: string) {
+      const data = {
+         code,
+         address
+      };
+      const url = environment.endpoints.api + 'userpay/order/claim';
+      return this.http.post(url, data);
    }
 
    ///order/:id/:address/rewardInfo
