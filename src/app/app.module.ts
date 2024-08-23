@@ -28,7 +28,7 @@ import { PaymentSuccessComponent } from './components/payment/success.component'
 import { PaymentFailComponent } from './components/payment/fail.component';
 import { DeleteWalletModalComponent } from './components/modals/delete-wallet/delete-wallet.component';
 import { MatStepperModule } from '@angular/material/stepper';
-import { StarService } from './services/star.service';
+import { UserpayService } from './services/userpay.service';
 import { ApiService } from './services/api.service';
 import { CoinService } from './services/coin.service';
 import { HttpService } from './services/http.service';
@@ -82,6 +82,7 @@ import { CashierModule } from './components/cashier/cashier.module';
 import { AnnounceComponent } from './components/announce/announce.component';
 import { EventDetailComponent } from './components/event/event-detail/event-detail.component';
 import { EventComponent } from './components/event/event.component';
+import { ClaimComponent } from './components/claim/claim.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -112,7 +113,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ConfirmUnlocklpComponent,
     AnnounceComponent,
     EventDetailComponent,
-    EventComponent
+    EventComponent,
+    ClaimComponent
   ],
   imports: [
     BrowserModule,
@@ -148,7 +150,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     // NgxGraphModule
   ],
   providers: [
-    StarService,
+    UserpayService,
     ApiService,
     CoinService,
     HttpService,

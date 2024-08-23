@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StarService } from 'src/app/services/star.service';
+import { UserpayService } from 'src/app/services/userpay.service';
 import { AngularCsv } from 'angular7-csv';
 
 @Component({
@@ -10,12 +10,12 @@ import { AngularCsv } from 'angular7-csv';
 export class VipsComponent implements OnInit {
   rewards: any;
   walletAddress: string;
-  constructor(private starServ: StarService) { }
+  constructor(private userpayServ: UserpayService) { }
 
   ngOnInit(): void {
     this.rewards = [];
     this.walletAddress = '';
-    this.starServ.getVipTree().toPromise().then(
+    this.userpayServ.getVipTree().toPromise().then(
       (ret: any) => {
         this.calculateRewards(ret);
       }

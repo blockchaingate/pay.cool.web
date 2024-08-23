@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StarService } from 'src/app/services/star.service';
+import { UserpayService } from 'src/app/services/userpay.service';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { PasswordModalComponent } from '../../shared/modals/password-modal/password-modal.component';
@@ -29,8 +29,7 @@ export class MembershipComponent implements OnInit {
     private storage: StorageMap,
     private web3Serv: Web3Service,
     private kanbanSmartContractServ:KanbanSmartContractService,
-    private userreferalServ: UserReferralService,
-    private starServ: StarService) { }
+    private userreferalServ: UserReferralService) { }
 
   ngOnInit(): void {
     this.to = '0x6864ac918b94976e175001468aa45733b142fa49';

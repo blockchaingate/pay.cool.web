@@ -13,4 +13,6 @@ export class UserService {
   getAllNodeUsers(pageSize: number, pageNum: number) {
     return this.http.getRaw(environment.endpoints.api + 'usernodeuser/' + pageSize + '/' + pageNum);
   }
+
+
 }

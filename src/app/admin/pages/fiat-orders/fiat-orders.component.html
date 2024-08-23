@@ -1,0 +1,21 @@
+<div class="container">
+    <ul class="responsive-table">
+        <li class="table-header">
+            <div class="col col-3">{{'Code' | translate}}</div>
+            <div class="col col-3">{{'Total Amount' | translate}}</div>
+            <div class="col col-3">{{'Fab Address' | translate}}</div>
+            <div class="col col-2">{{'Status' | translate}}</div>
+        </li>
+        <li class="table-row" *ngFor="let order of orders">
+            <div class="col col-3" data-label="Code">{{order.code}}</div>
+            <div class="col col-3" data-label="Total Amount">{{order.totalAmount}}</div>
+            <div class="col col-4" data-label="Fab Address">{{order.fabAddress}}</div>
+            <div class="col col-2" data-label="Status">
+                <div>{{order.paymentStatus}}</div>
+                <div>
+                    <button type="button" class="btn btn-primary" (click)="sendReward(order)">Send reward</button>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

@@ -37,7 +37,7 @@ import { UserNodesComponent } from './pages/user-nodes/user-nodes.component';
 import { UserNodeAddComponent } from './pages/user-node-add/user-node-add.component';
 
 import { UserNodeUsersComponent } from './pages/user-node-users/user-node-users.component';
-
+import { FiatOrdersComponent } from './pages/fiat-orders/fiat-orders.component';
 import { ProjectEditComponent } from './pages/project-edit/project-edit.component';
 import { ProjectPackagesComponent } from './pages/project-packages/project-packages.component';
 import { ProjectPackageAddComponent } from './pages/project-package-add/project-package-add.component';
@@ -75,6 +75,7 @@ import { RewardStrategyModal } from './pages/merchant-approve/reward-strategy/re
     UserNodesComponent,
     UserNodeAddComponent,
     UserNodeUsersComponent,
+    FiatOrdersComponent,
     ProjectEditComponent,
     ProjectPackagesComponent,
     ProjectPackageAddComponent,

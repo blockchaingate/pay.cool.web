@@ -20,7 +20,7 @@ import { Campaign } from '../../../../models/campaign';
 import { StarOrder } from '../../../../models/order';
 import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 import { KanbanSmartContractService } from 'src/app/services/kanban.smartcontract.service';
-import { StarService } from 'src/app/services/star.service';
+import { UserpayService } from 'src/app/services/userpay.service';
 
 @Component({
   selector: 'app-my-asset-dashboard',
@@ -104,7 +104,7 @@ export class MyAssetDashboardComponent implements OnInit {
     public ngxSmartModalService: NgxSmartModalService,
     private kanbanServ: KanbanService,
     private userreferalSer: UserReferralService,
-    private starSer: StarService,
+    private userpaySer: UserpayService,
     private router: Router) {
   }
 
@@ -284,7 +284,7 @@ export class MyAssetDashboardComponent implements OnInit {
   }
 
   getCampaigns() {
-    this.starSer.getCampaigns().toPromise().then(ret => {
+    this.userpaySer.getCampaigns().toPromise().then(ret => {
       this.campaigns = <Campaign[]>ret;
     }).catch(err => { this.errMsg = err.message; });
   }
@@ -825,7 +825,7 @@ export class MyAssetDashboardComponent implements OnInit {
 
     const sig = this.kanbanServ.signJsonData(privateKey, data);
     data['sig'] = sig.signature; 
-    this.starSer.createRef(data).subscribe(
+    this.userpaySer.createRef(data).subscribe(
       (ret: any) => {
         if(ret && ret._id) {
           this.isValidMember = true;
@@ -855,7 +855,7 @@ export class MyAssetDashboardComponent implements OnInit {
   }
 
   createOrderDo() {
-    this.starSer.createOrder(
+    this.userpaySer.createOrder(
       {
         walletAdd: this.walletAdd,
         amount: this.amount,
@@ -908,7 +908,7 @@ export class MyAssetDashboardComponent implements OnInit {
     this.errMsg = '';
     this.orderId = this.campaignOrders[1]._id;
     // alert('orderId: ' + this.orderId + ', paymentmethod: ' + this.paymentMethod + ', amount: ' + this.amount + ', txId: ' + this.txId);
-    this.starSer.addPayment(this.orderId, this.paymentMethod, this.amount, this.txId).toPromise().then(
+    this.userpaySer.addPayment(this.orderId, this.paymentMethod, this.amount, this.txId).toPromise().then(
       ret => {
         if (ret['status'] === 208) {
           this.errMsg = "Can't make duplicate payment";
@@ -996,7 +996,7 @@ export class MyAssetDashboardComponent implements OnInit {
       if(ret && ret.ok && ret._body && ret._body.status == '0x1') {
         const txid = ret._body.transactionHash;
         this.toastr.success('Transaction was made, txid is: ' + txid);
-        this.starSer.savePayment(this.walletAdd, txid).subscribe(
+        this.userpaySer.savePayment(this.walletAdd, txid).subscribe(
           (ret) => {
 
           }

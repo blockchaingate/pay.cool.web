@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StarService } from 'src/app/services/star.service';
+import { UserpayService } from 'src/app/services/userpay.service';
 
 @Component({
   selector: 'app-fiat-customer',
@@ -8,10 +8,10 @@ import { StarService } from 'src/app/services/star.service';
 })
 export class FiatCustomerComponent implements OnInit {
   customers: any;
-  constructor(private starSer: StarService) { }
+  constructor(private userpaySer: UserpayService) { }
 
   ngOnInit(): void {
-    this.starSer.getStarCustomers().subscribe(
+    this.userpaySer.getStarCustomers().subscribe(
       (ret: any) => {
         if(ret && ret.ok) {
           this.customers = ret._body;

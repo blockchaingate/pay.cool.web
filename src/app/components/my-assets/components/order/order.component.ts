@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { environment } from '../../../../../environments/environment';
-import { StarService } from '../../../../services/star.service';
+import { UserpayService } from '../../../../services/userpay.service';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
@@ -81,7 +81,7 @@ export class OrderComponent implements OnInit {
     private toastr: ToastrService,
     private userreferalServ: UserReferralService,
     private modalService: BsModalService,
-    private starServ: StarService, 
+    private userpayServ: UserpayService, 
     private storage: StorageMap,
     private route: ActivatedRoute,
     private router: Router
@@ -129,7 +129,7 @@ export class OrderComponent implements OnInit {
   }
 
   getOrderById() {
-    this.starServ.getOrder(this.id).subscribe(
+    this.userpayServ.getOrder(this.id).subscribe(
       (res: any) => {
         if(res['walletAdd']) {
           this.order = res;
@@ -137,7 +137,7 @@ export class OrderComponent implements OnInit {
       }
     );
 
-    this.starServ.getPayment(this.id).subscribe(
+    this.userpayServ.getPayment(this.id).subscribe(
       (res: any) => {
         this.payment = res;
       }          
@@ -252,7 +252,7 @@ export class OrderComponent implements OnInit {
   }
 
   confirmPaymentDone(type: string) {
-    this.starServ.addPayment(this.id, type, this.order.amount, this.txid).subscribe(
+    this.userpayServ.addPayment(this.id, type, this.order.amount, this.txid).subscribe(
       (res: any) => {
         if(res && res._id) {
           this.payment = res;
@@ -268,7 +268,7 @@ export class OrderComponent implements OnInit {
   }
 
   confirmDUSDPaymentDone() {
-    this.starServ.addPayment(this.id, 'DUSD', this.order.amount, this.txid).subscribe(
+    this.userpayServ.addPayment(this.id, 'DUSD', this.order.amount, this.txid).subscribe(
       (res: any) => {
         if(res && res._id) {
           this.payment = res;
@@ -285,7 +285,7 @@ export class OrderComponent implements OnInit {
 
   payWithEpay() {
 
-    this.starServ.addPayment(this.id, 'Epay', this.order.amount, this.txid).subscribe(
+    this.userpayServ.addPayment(this.id, 'Epay', this.order.amount, this.txid).subscribe(
       (res: any) => {
         if(res && res._id) {
           const payment_id = res._id;
@@ -394,7 +394,7 @@ export class OrderComponent implements OnInit {
   }
 
   confirmCashAppPay() {
-    this.starServ.addPayment(this.id, 'CashApp', this.order.amount, this.accountName).subscribe(
+    this.userpayServ.addPayment(this.id, 'CashApp', this.order.amount, this.accountName).subscribe(
       (res: any) => {
         if(res && res._id) {      
           this.goPayStep = 2;
@@ -404,12 +404,12 @@ export class OrderComponent implements OnInit {
   }
 
   changePaymentStatus(status: number) {
-    this.starServ.changeOrderStatus(this.id, status).subscribe(
+    this.userpayServ.changeOrderStatus(this.id, status).subscribe(
       (res: any) => {
       }
     );
     
-    this.starServ.changePaymentStatus(this.payment_id, status).subscribe(
+    this.userpayServ.changePaymentStatus(this.payment_id, status).subscribe(
       (res: any) => {
         if(res && res._id) {      
           this.payment = res;
@@ -430,7 +430,7 @@ export class OrderComponent implements OnInit {
   }
 
   createOrderDo() {
-    this.starServ.createOrder(
+    this.userpayServ.createOrder(
       {
         walletAdd: this.walletAdd,
         amount: this.amount,

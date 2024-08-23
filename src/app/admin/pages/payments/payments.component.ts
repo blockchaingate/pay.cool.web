@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StarService } from '../../../services/star.service';
+import { UserpayService } from '../../../services/userpay.service';
 import { UtilService } from '../../../services/util.service';
 import BigNumber from 'bignumber.js';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
@@ -21,12 +21,12 @@ export class PaymentsComponent implements OnInit {
     private modalService:BsModalService,
     private utilServ: UtilService,
     private router: Router,
-    private starSer: StarService) { }
+    private userpaySer: UserpayService) { }
 
   ngOnInit(): void {
     this.pageNum = 1;
     this.pageSize = 10;
-    this.starSer.getStarChargeFunds(this.pageNum, this.pageSize).subscribe(
+    this.userpaySer.getStarChargeFunds(this.pageNum, this.pageSize).subscribe(
       (ret: any) => {
         if(ret && ret.ok) {
           this.charges = ret._body;
@@ -40,7 +40,7 @@ export class PaymentsComponent implements OnInit {
       return;
     }
     this.pageNum --;
-    this.starSer.getStarChargeFunds(this.pageNum, this.pageSize).subscribe(
+    this.userpaySer.getStarChargeFunds(this.pageNum, this.pageSize).subscribe(
       (ret: any) => {
         if(ret && ret.ok) {
           this.charges = ret._body;
@@ -51,7 +51,7 @@ export class PaymentsComponent implements OnInit {
 
   next() {
     this.pageNum ++;
-    this.starSer.getStarChargeFunds(this.pageNum, this.pageSize).subscribe(
+    this.userpaySer.getStarChargeFunds(this.pageNum, this.pageSize).subscribe(
       (ret: any) => {
         if(ret && ret.ok) {
           this.charges = ret._body;

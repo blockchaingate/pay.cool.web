@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import BigNumber from 'bignumber.js';
 import { OrderService } from 'src/app/services/order.service';
-import { StarService } from 'src/app/services/star.service';
+import { UserpayService } from 'src/app/services/userpay.service';
 import { UtilService } from 'src/app/services/util.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { RequestRefundComponent } from '../../../shared/modals/request-refund/request-refund.component';
@@ -41,10 +41,10 @@ export class FiatPaymentComponent implements OnInit {
     private web3Serv: Web3Service,
     private orderServ: OrderService,
     private dataServ: DataService,
-    private starSer: StarService) { }
+    private userpaySer: UserpayService) { }
 
   ngOnInit(): void {
-    this.starSer.getStarChargeFundFromCredits().subscribe(
+    this.userpaySer.getStarChargeFundFromCredits().subscribe(
       (ret: any) => {
         if(ret && ret.ok) {
           this.charges = ret._body;
@@ -179,7 +179,7 @@ export class FiatPaymentComponent implements OnInit {
 
   transferOwnership(order) {
     const from = order.from;
-    this.starSer.get7StarCustomerByAddress(from).subscribe(
+    this.userpaySer.get7StarCustomerByAddress(from).subscribe(
       (ret: any) => {
         if(ret && ret.ok) {
           this.starCustomer = ret._body;
@@ -213,7 +213,7 @@ export class FiatPaymentComponent implements OnInit {
 
   requestRefund(order) {
     const from = order.from;
-    this.starSer.get7StarCustomerByAddress(from).subscribe(
+    this.userpaySer.get7StarCustomerByAddress(from).subscribe(
       (ret: any) => {
         if(ret && ret.ok) {
           this.starCustomer = ret._body;

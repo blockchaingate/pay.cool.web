@@ -12,7 +12,7 @@ import { MyAssetsComponent } from './my-assets.component';
 import { MyAssetDashboardComponent } from './components/dashboard/asset-dashboard.component';
 
 import { TranslateService } from '@ngx-translate/core';
-import { StarService } from '../../services/star.service';
+import { UserpayService } from '../../services/userpay.service';
 
 import { MyAssetRoutingModule } from './my-asset-routing.module';
 
@@ -31,7 +31,7 @@ import { MyAssetRoutingModule } from './my-asset-routing.module';
     MatSelectModule
   ],
   providers: [
-    StarService,
+    UserpayService,
     TranslateService,
   ],
   declarations: [
