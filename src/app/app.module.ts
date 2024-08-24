@@ -83,6 +83,7 @@ import { AnnounceComponent } from './components/announce/announce.component';
 import { EventDetailComponent } from './components/event/event-detail/event-detail.component';
 import { EventComponent } from './components/event/event.component';
 import { ClaimComponent } from './components/claim/claim.component';
+import { AnimComponent } from './components/animation/anim.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -90,6 +91,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
+    AnimComponent,
     HomeComponent,
     UserTreeComponent,
     NavbarComponent,
