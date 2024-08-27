@@ -180,7 +180,7 @@
     "Title28": "24小时7天全球无国界的方便点对点加密货币支付与汇款",
     "Title29": "通过加入贝库俱乐部，无限增加自己的被",
     "Title30": "随时随地使用无现金支付",
-    "Title31": "扫描二维码，轻松下载并安装贝库支付App",
+    "Title31": "扫描二维码，轻松下载并安装贝库支付App:",
     "Read PDF file for details": "讀PDF文件了解詳細說明",
     "Currency": "幣種",
     "Select Currency": "選擇幣種",
@@ -570,5 +570,6 @@
     "Learn More": "了解更多",
     "Developers": "開發者",
     "User": "用戶",
-    "Referrer": "推薦人"
+    "Referrer": "推薦人",
+    "Animation": "经济模型动画"
 }
