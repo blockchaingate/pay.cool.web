@@ -13,6 +13,10 @@
 }
 
 @media (max-width: 768px) {
+    .outbox {
+        padding: 12px;
+    }
+
     .main {
         font-size: 12px;
     }
