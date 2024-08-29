@@ -9,6 +9,21 @@
     margin: auto;
 }
 
+.menuitm {
+    color: black;
+    background-color: #a3a1a1;
+    border-right: 1px solid black;
+}
+
+.menuitm:hover {
+    background-color: #d3d1d1;
+}
+
+.selected {
+    color: blue;
+    background-color: white;
+}
+
 @media (max-width: 768px) {
     .mainpage {
         padding: 12px;

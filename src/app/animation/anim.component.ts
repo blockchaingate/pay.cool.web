@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './anim.component.html',
   styleUrls: ['./anim.component.scss']
 })
-export class AnimComponent {}
+export class AnimComponent {
+  selected=0;
+}
