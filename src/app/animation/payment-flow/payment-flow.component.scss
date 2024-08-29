@@ -1,12 +1,12 @@
 .outbox {
     width: 100%;
-    margin: auto;
 }
 
 .main {
     width: 100%;
     max-width: 800px;
     margin:auto;
+    padding: 2rem;
     border: 1px dashed gray;
     font-size: 16px;
 }
@@ -14,5 +14,6 @@
 @media (max-width: 768px) {
     .main {
         font-size: 12px;
+        padding: 1rem;
     }
 }
