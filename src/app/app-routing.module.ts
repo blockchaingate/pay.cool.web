@@ -20,9 +20,14 @@ import { GetrewardsComponent } from './components/getrewards/getrewards.componen
 import { AnnounceComponent } from './components/announce/announce.component';
 import { EventComponent } from './components/event/event.component';
 import { EventDetailComponent } from './components/event/event-detail/event-detail.component';
-import { AnimComponent } from './components/animation/anim.component';
+import { AnimModule } from './animation/anim.module';
+// import { AnimComponent } from './components/animation/anim.component';
 
 const routes: Routes = [
+  {
+    path: 'animation',
+    loadChildren: () => import('./animation/anim.module').then(w => w.AnimModule)
+  },
   {
     path: 'reissue',
     loadChildren: () => import('./reissue/reissue.module').then(w => w.ReissueModule)
@@ -108,7 +113,7 @@ const routes: Routes = [
   { path: 'announcement', component: AnnounceComponent },
   { path: 'event', component: EventComponent },
   { path: 'event-detail:id', component: EventDetailComponent },
-  { path: 'animation', component: AnimComponent },
+ // { path: 'animation', component: AnimComponent },
 
   // otherwise redirect to home
   { path: '', redirectTo: '/home', pathMatch: 'full' },

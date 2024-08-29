@@ -1,7 +1,6 @@
 .outbox {
     width: 100%;
     margin: auto;
-    padding: 40px;
 }
 
 .main {
@@ -12,12 +11,16 @@
     font-size: 16px;
 }
 
-@media (max-width: 768px) {
-    .outbox {
-        padding: 12px;
-    }
+.merchants {
+    font-size: 40;
+}
 
+@media (max-width: 768px) {
     .main {
         font-size: 12px;
+    }
+
+    .merchants {
+        font-size: 20px;
     }
 }

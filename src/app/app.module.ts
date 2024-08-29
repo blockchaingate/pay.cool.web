@@ -83,7 +83,8 @@ import { AnnounceComponent } from './components/announce/announce.component';
 import { EventDetailComponent } from './components/event/event-detail/event-detail.component';
 import { EventComponent } from './components/event/event.component';
 import { ClaimComponent } from './components/claim/claim.component';
-import { AnimComponent } from './components/animation/anim.component';
+// import { AnimComponent } from './components/animation/anim.component';
+import {AnimModule} from './animation/anim.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -91,7 +92,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    AnimComponent,
+//    AnimComponent,
     HomeComponent,
     UserTreeComponent,
     NavbarComponent,
@@ -134,6 +135,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatCheckboxModule,
     MatSelectModule,
     QRCodeModule,
+    AnimModule,
     ModalModule.forRoot(),
     NgxSmartModalModule.forRoot(),
     ToastrModule.forRoot(),

@@ -1,0 +1,16 @@
+.mainpage {
+    width: 100%;
+    padding: 40px;
+}
+
+.menu {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+}
+
+@media (max-width: 768px) {
+    .mainpage {
+        padding: 12px;
+    }
+}
