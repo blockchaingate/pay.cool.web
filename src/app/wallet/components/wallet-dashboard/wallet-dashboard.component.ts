@@ -7,7 +7,7 @@ import { CoinService } from '../../../services/coin.service';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { TimerService } from '../../../services/timer.service';
-import { StarService } from '../../../services/star.service';
+import { UserpayService } from '../../../services/userpay.service';
 import { LoginSettingModal } from '../../modals/login-setting/login-setting.modal';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ReceiveComponent } from '../../modals/receive/receive.component';
@@ -89,7 +89,7 @@ export class WalletDashboardComponent implements OnInit {
     private timerServ: TimerService,
     private coinServ: CoinService,
     private kanbanServ: KanbanService,
-    private starSer: StarService,
+    private userpaySer: UserpayService,
     private userreferralServ: UserReferralService,
     private router: Router) {
   }
@@ -366,7 +366,7 @@ export class WalletDashboardComponent implements OnInit {
     this.tab = tabName;
 
     if(tabName == 'historyCustomer') {
-      this.starSer.getTransactionHisotryForCustomer(this.walletAddress).subscribe(
+      this.userpaySer.getTransactionHisotryForCustomer(this.walletAddress).subscribe(
         (ret: any) => {
           if(ret && ret.ok) {
             this.transactionHistories = ret._body;
@@ -375,7 +375,7 @@ export class WalletDashboardComponent implements OnInit {
       );
     } else
     if(tabName == 'historyMerchant') {
-      this.starSer.getTransactionHisotryForMerchant(this.walletAddress).subscribe(
+      this.userpaySer.getTransactionHisotryForMerchant(this.walletAddress).subscribe(
         (ret: any) => {
           if(ret && ret.ok) {
             this.merchantTransactionHistories = ret._body;
@@ -384,7 +384,7 @@ export class WalletDashboardComponent implements OnInit {
       );        
     } else
     if(tabName == 'rewards') {
-      this.starSer.getLockers(this.walletAddress).subscribe(
+      this.userpaySer.getLockers(this.walletAddress).subscribe(
         (resp: any) => {
           if(resp && resp.ok) {
             this.rewards = resp._body;
@@ -489,7 +489,7 @@ export class WalletDashboardComponent implements OnInit {
   }
 
   createOrderDo() {
-    this.starSer.createOrder(
+    this.userpaySer.createOrder(
       {
         walletAdd: this.walletAdd,
         amount: this.amount,

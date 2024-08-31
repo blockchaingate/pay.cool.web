@@ -133,7 +133,7 @@
     "Title28": "24/7 borderless peer-to-peer crypto payments",
     "Title29": "Grow your passive income with Pay.Cool rewards",
     "Title30": "Cashless Payment Anywhere Anytime",
-    "Title31": "Download and install Pay.Cool App today.",
+    "Title31": "Download and install Pay.Cool App today:",
     "Read PDF file for details": "Read PDF file for details",
     "Currency": "Currency",
     "Select Currency": "Select Currency",
@@ -521,5 +521,6 @@
     "Location": "Location",
     "Developers": "Developers",
     "User": "User",
-    "Referrer": "Referrer"
+    "Referrer": "Referrer",
+    "Animation": "Animation"
 }

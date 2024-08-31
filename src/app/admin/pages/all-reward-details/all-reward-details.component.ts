@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
-import { StarService } from 'src/app/services/star.service';
+import { UserpayService } from 'src/app/services/userpay.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { PasswordModalComponent } from '../../../shared/modals/password-modal/password-modal.component';
@@ -26,7 +26,7 @@ export class AllRewardDetailsComponent implements OnInit {
     private router: Router,
     private utilServ: UtilService,
     private dataServ: DataService,
-    private starServ: StarService) { }
+    private userpayServ: UserpayService) { }
 
   ngOnInit(): void {
     this.dataServ.currentWallet.subscribe(
@@ -35,7 +35,7 @@ export class AllRewardDetailsComponent implements OnInit {
       }
     ); 
 
-    this.starServ.getReissueSummary().subscribe(
+    this.userpayServ.getReissueSummary().subscribe(
       (ret: any) => {
         if(ret && ret.ok) {
           this.rewards = ret._body;

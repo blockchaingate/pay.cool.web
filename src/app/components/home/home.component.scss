@@ -14,6 +14,14 @@
     background-image: linear-gradient(0deg, #14172a, #14172a);
 }
 
+.videobox {
+    margin: auto;
+    border: 1px solid red;
+    width: 100%;
+    min-width: 360px;
+    max-width: 640px;
+}
+
 .divInner:hover {
     background: rgb(39, 10, 88);
 }
@@ -751,6 +759,10 @@ div:lang(sc) {
     .apps-overview .inner-wrapper .button-group li {
         text-align: center;
     }
+}
+
+.downloadapp {
+ margin: 1rem;
 }
 
 .bgImg {

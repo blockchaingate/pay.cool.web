@@ -7,7 +7,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { KanbanSmartContractService } from '../../../services/kanban.smartcontract.service';
 import { ToastrService } from 'ngx-toastr';
 import { Web3Service } from '../../../services/web3.service';
-import { StarService } from '../../../services/star.service';
+import { UserpayService } from '../../../services/userpay.service';
 import { UtilService } from '../../../services/util.service';
 import { CoinService } from 'src/app/services/coin.service';
 
@@ -40,7 +40,7 @@ export class PaycoolComponent implements OnInit{
         private dataServ: DataService,
         private route: ActivatedRoute,
         private toastr: ToastrService,
-        private starServ: StarService,
+        private userpayServ: UserpayService,
         private coinServ: CoinService,
         private utilServ: UtilService,
         private web3Serv: Web3Service,
@@ -73,7 +73,7 @@ export class PaycoolComponent implements OnInit{
                 if(walletAddress) {
                   this.walletAddress = walletAddress;
                   if(this.id) {
-                    this.starServ.getPaycoolRewardInfo(this.id, walletAddress).subscribe(
+                    this.userpayServ.getPaycoolRewardInfo(this.id, walletAddress).subscribe(
                       (ret: any) => {
                         this.order = ret;
                       }
@@ -87,7 +87,7 @@ export class PaycoolComponent implements OnInit{
     }
     changePayType(type:string) {
       this.payType = type;
-      this.starServ.getPaycoolRewardInfoWithPayType(this.id, this.walletAddress, this.payType).subscribe(
+      this.userpayServ.getPaycoolRewardInfoWithPayType(this.id, this.walletAddress, this.payType).subscribe(
         (ret: any) => {
           this.order = ret;
         }
@@ -97,7 +97,7 @@ export class PaycoolComponent implements OnInit{
     changeTab(tab: string) {
       this.tab = tab;
       if(tab == "history") {
-        this.starServ.getTransactionHisotryForCustomer(this.walletAddress).subscribe(
+        this.userpayServ.getTransactionHisotryForCustomer(this.walletAddress).subscribe(
           (ret: any) => {
             if(ret && ret.ok) {
               this.transactionHistories = ret._body;
@@ -211,10 +211,10 @@ export class PaycoolComponent implements OnInit{
 
       } else
       if(this.templateId) {
-        const ret1 = await this.starServ.createOrderFromTemplatePromise(this.templateId);
+        const ret1 = await this.userpayServ.createOrderFromTemplatePromise(this.templateId);
         if(ret1 && ret1._id) {
           this.id = ret1._id;
-          this.starServ.getPaycoolRewardInfoWithPayType(this.id, this.walletAddress, this.payType).subscribe(
+          this.userpayServ.getPaycoolRewardInfoWithPayType(this.id, this.walletAddress, this.payType).subscribe(
             (ret: any) => {
               this.order = ret;
 
@@ -226,10 +226,10 @@ export class PaycoolComponent implements OnInit{
         
       } else
       if(this.address) {
-        const ret1 = await this.starServ.createOrderFromAddressPromise(this.address, this.amount);
+        const ret1 = await this.userpayServ.createOrderFromAddressPromise(this.address, this.amount);
         if(ret1 && ret1._id) {
           this.id = ret1._id;
-          this.starServ.getPaycoolRewardInfoWithPayType(this.id, this.walletAddress, this.payType).subscribe(
+          this.userpayServ.getPaycoolRewardInfoWithPayType(this.id, this.walletAddress, this.payType).subscribe(
             (ret: any) => {
               this.order = ret;
 

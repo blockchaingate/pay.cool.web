@@ -12,8 +12,8 @@ import { TimerService } from 'src/app/services/timer.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { TransactionItem } from '../../models/transaction-item';
 import { Location } from '@angular/common';
-declare var $: any;
 import { ElementRef, Renderer2 } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'app-navbar',

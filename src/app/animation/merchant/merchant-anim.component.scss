@@ -1,0 +1,30 @@
+.outbox {
+    width: 100%;
+    margin: auto;
+}
+
+.main {
+    width: 100%;
+    max-width: 800px;
+    margin:auto;
+    border: 1px dashed gray;
+    font-size: 16px;
+}
+
+.merchants {
+    font-size: 40;
+}
+
+.msg {
+    margin: 1rem;
+}
+
+@media (max-width: 768px) {
+    .main {
+        font-size: 12px;
+    }
+
+    .merchants {
+        font-size: 20px;
+    }
+}

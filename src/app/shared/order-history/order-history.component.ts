@@ -9,7 +9,7 @@ import { RequestRefundComponent } from '../modals/request-refund/request-refund.
 import { RefundComponent } from '../modals/refund/refund.component';
 import { KanbanSmartContractService } from '../../services/kanban.smartcontract.service';
 import { ToastrService } from 'ngx-toastr';
-import { StarService } from '../../services/star.service';
+import { UserpayService } from '../../services/userpay.service';
 import { CoinService } from '../../services/coin.service';
 import { Web3Service } from '../../services/web3.service';
 import { KanbanService } from '../../services/kanban.service';
@@ -34,7 +34,7 @@ export class OrderHistoryComponent implements OnInit {
     order: any;
     constructor(
         private dataServ: DataService,
-        private starServ: StarService,
+        private userpayServ: UserpayService,
         private coinServ: CoinService,
         private orderServ: OrderService,
         private kanbanServ: KanbanService,
@@ -66,7 +66,7 @@ export class OrderHistoryComponent implements OnInit {
 
     
     showRewards(orderId: string) {
-      this.starServ.getRewardsByOrderId(orderId).subscribe(
+      this.userpayServ.getRewardsByOrderId(orderId).subscribe(
         (ret: any) => {
           if(ret && ret.ok) {
             const rewards = ret._body;
@@ -113,7 +113,7 @@ export class OrderHistoryComponent implements OnInit {
 
       requestRefund(order) {
 
-        this.starServ.getOrderVersion(order._id).subscribe(
+        this.userpayServ.getOrderVersion(order._id).subscribe(
           (ret: any) => {
             if(ret && ret.ok) {
               const version = ret._body.version;
@@ -163,7 +163,7 @@ export class OrderHistoryComponent implements OnInit {
       }
 
       refund(order) {
-        this.starServ.getOrderVersion(order._id).subscribe(
+        this.userpayServ.getOrderVersion(order._id).subscribe(
           (ret: any) => {
             if(ret && ret.ok) {
               const version = ret._body.version;
@@ -780,7 +780,7 @@ export class OrderHistoryComponent implements OnInit {
       }
 
       async cancelRequestRefundDo(seed: Buffer) {
-        this.starServ.getOrderVersion(this.order._id).subscribe(
+        this.userpayServ.getOrderVersion(this.order._id).subscribe(
           async (ret: any) => {
             if(ret && ret.ok) {
               const version = ret._body.version;

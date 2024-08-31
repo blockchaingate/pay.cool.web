@@ -30,7 +30,7 @@ import { UserNodesComponent } from './pages/user-nodes/user-nodes.component';
 import { UserNodeAddComponent } from './pages/user-node-add/user-node-add.component';
 
 import { UserNodeUsersComponent } from './pages/user-node-users/user-node-users.component';
-
+import { FiatOrdersComponent } from './pages/fiat-orders/fiat-orders.component';
 import { ProjectEditComponent } from './pages/project-edit/project-edit.component';
 
 import { ProjectPackagesComponent } from './pages/project-packages/project-packages.component';
@@ -88,6 +88,9 @@ const routes: Routes = [
       },  
       {
         path: 'user-node-users', component: UserNodeUsersComponent
+      },  
+      {
+        path: 'fiat-orders', component: FiatOrdersComponent
       },  
       {
         path: 'merchant-node/add', component: MerchantNodeAddComponent

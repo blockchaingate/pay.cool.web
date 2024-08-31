@@ -13,6 +13,12 @@ export class OrderService {
         const path = 'orders/7StarOrder';
         return this.http.get(path, false);
     }
+    
+    getOrderByCode(code) {
+        const path = 'orders/code/' + code;
+        return this.http.get(path, false);
+    }
+
     get7StarPaymentDetails(id: string) {
         const path = 'orders/7StarOrder/' + id;
         return this.http.get(path, false);

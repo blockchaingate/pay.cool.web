@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { ClaimComponent } from './components/claim/claim.component';
 import { UserTreeComponent } from './components/user-tree/user-tree.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { PaymentSuccessComponent } from './components/payment/success.component';
@@ -19,8 +20,14 @@ import { GetrewardsComponent } from './components/getrewards/getrewards.componen
 import { AnnounceComponent } from './components/announce/announce.component';
 import { EventComponent } from './components/event/event.component';
 import { EventDetailComponent } from './components/event/event-detail/event-detail.component';
+import { AnimModule } from './animation/anim.module';
+// import { AnimComponent } from './components/animation/anim.component';
 
 const routes: Routes = [
+  {
+    path: 'animation',
+    loadChildren: () => import('./animation/anim.module').then(w => w.AnimModule)
+  },
   {
     path: 'reissue',
     loadChildren: () => import('./reissue/reissue.module').then(w => w.ReissueModule)
@@ -95,6 +102,7 @@ const routes: Routes = [
   { path: 'transfer-ownership/:id', component: TransferOwnershipComponent },
   { path: 'ref/:refcode', component: RefComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'claim/:code', component: ClaimComponent },
   { path: ':lang/privacy', component: PrivacyComponent },
   { path: 'support', component: SupportComponent },
   { path: 'about', component: AboutComponent },
@@ -105,6 +113,7 @@ const routes: Routes = [
   { path: 'announcement', component: AnnounceComponent },
   { path: 'event', component: EventComponent },
   { path: 'event-detail:id', component: EventDetailComponent },
+ // { path: 'animation', component: AnimComponent },
 
   // otherwise redirect to home
   { path: '', redirectTo: '/home', pathMatch: 'full' },
