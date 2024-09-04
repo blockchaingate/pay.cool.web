@@ -26,9 +26,13 @@ export class NavbarComponent implements OnInit {
     { value: 'en', viewValue: 'English' },
     { value: 'es', viewValue: 'Española' },
     { value: 'fr', viewValue: 'Français' },
-    { value: 'en', viewValue: 'English' },
+    { value: 'it', viewValue: 'Italiana' },
+    { value: 'kr', viewValue: '한국인' },
+    { value: 'jp', viewValue: '日本語' },
     { value: 'sc', viewValue: '简体中文' },
-    { value: 'tc', viewValue: '繁體中文' }
+    { value: 'tc', viewValue: '繁體中文' },
+    { value: 'tr', viewValue: 'Türkçe' },
+    { value: 'ar', viewValue: 'عربي' }
   ];
 
   selectedLan = this.languages[0];
