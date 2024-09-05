@@ -2,78 +2,71 @@
 
     <!--    <div class="container"> -->
     <div class="row theme-banner-two">
-        <!-- <div class="col-md-12 banner-img">
-            <div class="titletxt txt1" data-aos="fade-left">PAY</div>
-            <img src="assets/images/img/paycool12.png" alt="banner" class="img-fluid" data-aos="fade-center">
-            <div class="titletxt txt2" data-aos="fade-right">COOL</div>
-        </div> -->
         <div class="col-md-6">
-            <div class="main-text-wrapper " data-aos="fade-right">
+            <div class="main-text-wrapper" data-aos="fade-right">
                 <div class="lefttxt">
                     <div>
-                        <!-- <h1><span class="titletxt">PAY<span style="color:red">.</span>COOL {{"paycoll"|translate}}</span></h1> -->
                         <h1><span>{{"homeTitle" | translate}}</span></h1>
                     </div>
-                    <div style="margin-top: 2em; margin-bottom: 3rem;">
-                        <h6>
-                            <span style="color: white;">
-                                {{"homeIntro"|translate}}
-                            </span>
+                    <div class="homedesc">
+                        <h6 style="color: white;">
+                            {{"homeIntro"|translate}}
                         </h6>
                     </div>
-                    <!-- <ul class="button-group joinBtn">
-                        <li>
-                            <a [routerLink]="['/user-tree']" routerLinkActive="router-link-active">{{"Get The APP" |
-                                translate}}</a>
-                        </li>
-                    </ul> -->
 
-                    <div class="row">
-                        <div class="appleapp  col-md-4">
-                            <div class="py-3 mx-8">
-                                <img class="qrImg" src="assets/images/paycool_apple.png" alt="Pay.cool iOS link">
-                            </div>
-                            <div class="py-3">
-                                <ul class="button-group linkBtn">
-                                    <li>
-                                        <a href="https://apps.apple.com/us/app/pay-cool/id1636549193">
-                                            <i class="flaticon-apple"></i> <div>Apple Store</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                    <div class="downloadarea">
+                        <div class="row">
+                            <div class="downloadapp"><b>{{"Title31"|translate}}</b></div>
                         </div>
-        
-                        <div class="androidapp center col-md-4">
-        
-                            <div class="py-3 mx-8">
-                                <img class="qrImg" src="assets/images/paycool_android.png" alt="Pay.cool Android link">
+                        <div class="row">
+                            <div class="appleapp col-md-4">
+                                <div class="py-3 mx-8">
+                                    <img class="qrImg" src="assets/images/paycool_apple.png" alt="Pay.cool iOS link">
+                                </div>
+                                <div class="py-3">
+                                    <ul class="button-group linkBtn">
+                                        <li>
+                                            <a href="https://apps.apple.com/us/app/pay-cool/id1636549193">
+                                                <i class="flaticon-apple"></i>
+                                                <div>Apple Store</div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="py-3">
-                                <ul class="button-group linkBtn">
-                                    <li>
-                                        <a
-                                            href="https://play.google.com/store/apps/details?id=cool.pay.paycool&hl=en_CA&gl=US">
-                                            <img src="/assets/imagesBg/icon/playstore.png" width="20" alt=""> <div>Google
-                                            Play</div>
-                                        </a>
-                                    </li>
-                                </ul>
+
+                            <div class="androidapp center col-md-4">
+
+                                <div class="py-3 mx-8">
+                                    <img class="qrImg" src="assets/images/paycool_android.png"
+                                        alt="Pay.cool Android link">
+                                </div>
+                                <div class="py-3">
+                                    <ul class="button-group linkBtn">
+                                        <li>
+                                            <a
+                                                href="https://play.google.com/store/apps/details?id=cool.pay.paycool&hl=en_CA&gl=US">
+                                                <img src="/assets/imagesBg/icon/playstore.png" width="20" alt="">
+                                                <div>Google Play</div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <div class="androidapp center col-md-4">
-        
-                            <div class="py-3 mx-8">
-                                <img class="qrImg" src="assets/images/download.png" alt="Pay.cool Android link">
-                            </div>
-                            <div class="py-3">
-                                <ul class="button-group linkBtn">
-                                    <li>
-                                        <a routerLink="/download" target="_self">
-                                        <div> APK</div>
-                                        </a>
-                                    </li>
-                                </ul>
+                            <div class="androidapp center col-md-4">
+
+                                <div class="py-3 mx-8">
+                                    <img class="qrImg" src="assets/images/download.png" alt="Pay.cool Android link">
+                                </div>
+                                <div class="py-3">
+                                    <ul class="button-group linkBtn">
+                                        <li>
+                                            <a routerLink="/download" target="_self">
+                                                <div> APK</div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -83,43 +76,25 @@
         </div>
         <div class="col-md-6">
             <div class="main-text-wrapper center" data-aos="fade-right">
-                <div class="">
-                    <div>
-                        <img src="/assets/images/pay-cool-phone.png" alt="banner" class="img-fluid">
-                    </div>
-
-
-                </div>
-
+                <img src="/assets/images/pay-cool-phone.png" alt="banner" class="img-fluid">
             </div>
         </div>
-
     </div>
-    <!-- <div class="row">
-        <div class="annun">
-            <p>🎉🎉🎉 {{'announcement1' | translate}} 🎉🎉🎉</p>
-            <ul class="button-group mt-3 mb-3">
-                <li>
-                    <a [routerLink]="['/announcement']" routerLinkActive="router-link-active">{{"Learn More" |
-                        translate}}</a>
-                </li>
-            </ul>
-        </div>
-    </div> -->
+
     <div class="row partner-slider">
-        <div class="item">
+        <div class="col-md-2 item">
             <a href="https://exchangily.com"><img src="/assets/images/logos/pureExLogo.png" alt=""></a>
         </div>
-        <div class="item">
+        <div class="col-md-2 item">
             <a href="https://fabcoin.org"><img src="/assets/images/logos/fab.png" alt=""></a>
         </div>
-        <div class="item">
+        <div class="col-md-2 item">
             <a href="https://ecombar.com"><img src="/assets/images/logos/ecombar-logo.png" alt=""></a>
         </div>
-        <div class="item">
+        <div class="col-md-2 item">
             <a href="https://iddock.com"><img src="/assets/images/logos/iddock-final.png" alt=""></a>
         </div>
-        <div class="item">
+        <div class="col-md-2 item">
             <a href="#"><img src="/assets/images/logos/kanban.png" alt=""></a>
         </div>
     </div>
@@ -280,7 +255,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="col-md-4">
                     <div class="why-box why-box-bg2">
@@ -374,16 +348,15 @@
 
         </div>
     </div>
-    <div class="row our-features-three appDecs">
+    <div class="row our-features-three">
         <div class="container">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <!-- image -->
-                    <div class="image">
+                    <div class="imagepp">
                         <img src="/assets/images/img/phone.png" alt="" class="img-fluid">
                     </div>
                 </div>
-                <div class="col-md-1"></div>
                 <div class="col-md-6">
                     <div class="theme-title2 text-center" data-aos="fade-up">
                         <h2 class="blueTitle">{{"Title25" | translate}}</h2>
@@ -410,12 +383,11 @@
         </div>
     </div>
 
-
     <div class="row color-two apps-overview" id="downloadapp">
         <div class="container mt-8 text-center">
             <div class="row inner-wrapper">
                 <div class="col-md-6">
-                    <div class=" py-2">
+                    <div class="py-2">
                         <h2 class="white">{{"Title30"|translate}}</h2>
                         <div class="">{{"Title31"| translate}}</div>
                     </div>

@@ -12,8 +12,8 @@ import { TimerService } from 'src/app/services/timer.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { TransactionItem } from '../../models/transaction-item';
 import { Location } from '@angular/common';
-declare var $: any;
 import { ElementRef, Renderer2 } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'app-navbar',
@@ -24,8 +24,15 @@ export class NavbarComponent implements OnInit {
   public modalRef: BsModalRef;
   languages: Language[] = [
     { value: 'en', viewValue: 'English' },
+    { value: 'es', viewValue: 'Española' },
+    { value: 'fr', viewValue: 'Français' },
+    { value: 'it', viewValue: 'Italiana' },
+    { value: 'kr', viewValue: '한국인' },
+    { value: 'jp', viewValue: '日本語' },
     { value: 'sc', viewValue: '简体中文' },
-    { value: 'tc', viewValue: '繁體中文' }
+    { value: 'tc', viewValue: '繁體中文' },
+    { value: 'tr', viewValue: 'Türkçe' },
+    { value: 'ar', viewValue: 'عربي' }
   ];
 
   selectedLan = this.languages[0];
@@ -56,7 +63,7 @@ export class NavbarComponent implements OnInit {
 
     [, this.langFromUrl, ...this.restUrl] = this.href.split('/');
 
-    if('en,sc,tc,es,jp,tr'.indexOf(this.langFromUrl) < 0) { 
+    if('en,sc,tc,fr,es,jp,tr,kr,it'.indexOf(this.langFromUrl) < 0) { 
       this.langFromUrl = ''; 
     }
   }

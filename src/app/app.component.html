@@ -6,17 +6,19 @@
     </div>
 
     <div class="html-top-content">
-        <!-- ********************** Theme Top Banne & Header ************************ -->
+        <!-- ************** Theme Top Banne & Header ********************* -->
         <app-navbar *ngIf="!isCashierPage"></app-navbar>
 
-        <div  [ngClass]="{'main-container': !isCashierPage}">
+        <div [ngClass]="{'main-container': !isCashierPage}">
             <router-outlet></router-outlet>
         </div>
-        <app-footer *ngIf="!isCashierPage"></app-footer>
+
+        <app-footer *ngIf="!isCashierPage">
+        </app-footer>
         <!-- Scroll Top Button -->
         <button class="scroll-top tran3s color-one-bg">
             <i class="fa fa-long-arrow-up" aria-hidden="true"></i>
         </button>
-
     </div>
+
 </div>

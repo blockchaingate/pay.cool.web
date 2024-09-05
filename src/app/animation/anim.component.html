@@ -1,0 +1,19 @@
+<div class="mainpage">
+    <div class="menu row">
+        <div class="col-md-2 col-3 menuitm" [class.selected]="selected==0" (click)="selected=0">
+            <a routerLink="/animation/payment-flow" routerLinkActive="active">Payment Flow</a>
+        </div>
+        <div class="col-md-2 col-3 menuitm" [class.selected]="selected==1" (click)="selected=1">
+            <a routerLink="/animation/merchant-anim" routerLinkActive="active">Merchant</a>
+        </div>
+        <div class="col-md-2 col-3 menuitm"  [class.selected]="selected===2" (click)="selected=2">
+            <a routerLink="/animation/consumer" routerLinkActive="active">Consumer</a>
+        </div>
+        <div class="col-md-2 col-3 menuitm" [class.selected]="selected==3" (click)="selected=3">
+            <a routerLink="/animation/refer" routerLinkActive="active">Refer</a>
+        </div>
+    </div>
+    <div>
+        <router-outlet></router-outlet>
+    </div>
+</div>
