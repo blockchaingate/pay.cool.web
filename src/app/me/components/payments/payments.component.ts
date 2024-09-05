@@ -77,6 +77,7 @@ export class PaymentsComponent implements OnInit {
 
   requestRefund(item: any) {
     this.payment = item;
+    console.log('this.payment===', this.payment);
     const initialState = {
       pwdHash: this.wallet.pwdHash,
       encryptedSeed: this.wallet.encryptedSeed
