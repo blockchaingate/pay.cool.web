@@ -10,12 +10,8 @@ import { Event } from '../../interfaces/event.interface';
 export class EventComponent implements OnInit {
   events: Event[] = [];
   isLoaded = false;
-  constructor(
-    private eventServ: EventService
-  ) {
-
+  constructor(private eventServ: EventService) {
   }
-
 
   ngOnInit() {
     this.eventServ.getEvents().subscribe({
@@ -27,10 +23,7 @@ export class EventComponent implements OnInit {
         console.log(err);
         this.isLoaded = true;
       }
-     
-
     });
-
-
   }
+
 }

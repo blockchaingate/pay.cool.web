@@ -21,6 +21,7 @@ declare var $: any;
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  isHiddenOnMobile = false;
   public modalRef: BsModalRef;
   languages: Language[] = [
     { value: 'en', viewValue: 'English' },
@@ -132,9 +133,6 @@ export class NavbarComponent implements OnInit {
       $(".dropdown-menu").toggle();
     });
 
-  }
-
-  tester() {
   }
 
   setLan() {
