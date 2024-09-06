@@ -88,3 +88,33 @@ h3 {
     font-weight: 800;
     margin-left: 10px;
 }
+
+.div-center {
+    margin: auto;
+}
+
+.emailbox {
+    width: 280px;
+}
+
+.subbox {
+    display: flex;
+}
+
+@media (max-width: 650px) {
+    .container {
+        width: vw;
+    }
+
+    .subnewbox {
+        width: 100%;
+    }
+
+    .emailbox {
+        width: 100%;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+}
