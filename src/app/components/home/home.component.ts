@@ -47,15 +47,10 @@ export class HomeComponent implements OnInit {
 
       }
     )
-      this.runAnimation();
   }
 
-  runAnimation() {
-
- }
   ngAfterViewInit(): void {
   }
-
 
   setSize() {
     let width = window.innerWidth;
