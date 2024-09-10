@@ -26,10 +26,6 @@ const routes: Routes = [
       {
         path: 'merchant-submitted', component: MerchantSubmittedComponent
       },
- 
-      {
-        path: '', redirectTo: 'merchants'
-      },
       {
         path: 'merchants', component: MerchantsComponent
       },
@@ -41,6 +37,9 @@ const routes: Routes = [
       },
       {
         path: 'contact', component: ContactComponent
+      },
+      {
+        path: '', redirectTo: 'home', pathMatch: 'full'
       }
     ]
   }

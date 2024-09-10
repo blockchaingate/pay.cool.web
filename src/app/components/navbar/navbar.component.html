@@ -39,48 +39,34 @@
                                 routerLinkActive="active">{{"Consumer" | translate}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " aria-current="page" routerLink="./merchants/home"
-                                routerLinkActive="active">{{"Merchant" | translate}}</a>
+                            <a class="nav-link" aria-current="page" routerLink="./merchants/home" routerLinkActive="active">{{"Merchant" | translate}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " aria-current="page" routerLink="./event"
-                                routerLinkActive="active">{{"Events" | translate}}</a>
+                            <a class="nav-link " aria-current="page" routerLink="./event" routerLinkActive="active">{{"Events" | translate}}</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item small">
-                            <a class="nav-link" aria-current="page" href="./home" routerLinkActive="active">{{"Home" |
-                                translate}}</a>
+                            <a class="nav-link" aria-current="page" href="./home" routerLinkActive="active">{{"Home" | translate}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" routerLink="./wallet"
-                                routerLinkActive="active">{{"Wallet" | translate}}</a>
+                            <a class="nav-link" aria-current="page" routerLink="./wallet" routerLinkActive="active">{{"Wallet" | translate}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" routerLink="./bindpay"
-                                routerLinkActive="active">{{"Lightning Remit" | translate}}</a>
+                            <a class="nav-link" aria-current="page" routerLink="./bindpay" routerLinkActive="active">{{"Lightning Remit" | translate}}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" routerLink="./animation"
-                                routerLinkActive="active">{{"Animation" | translate}}</a>
+                            <a class="nav-link" aria-current="page" routerLink="./animation" routerLinkActive="active">{{"Animation" | translate}}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" routerLink="./merchants/contact"
-                                routerLinkActive="active">{{"Help" | translate}}</a>
+                            <a class="nav-link" aria-current="page" routerLink="./merchants/contact" routerLinkActive="active">{{"Help" | translate}}</a>
                         </li>
-
-
-                        <!-- <li class="nav-item" *ngIf="hasWallet">
-                            <a class="nav-link  hand-cursor" aria-current="page" (click)="openConfirmDialog()">{{"Delete" | translate}}</a>
-                        </li> -->
-
                         <li class="nav-item dropdown">
-                            <a class="nav-link active dropdown-toggle lanitem" id="dropdown" data-bs-toggle="dropdown"
-                                aria-expanded="false">{{selectedLan.viewValue}}</a>
+                            <a class="nav-link active dropdown-toggle lanitem" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">{{selectedLan.viewValue}}</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdown">
-                                <li *ngFor="let lan of languages" (click)="onSelectLan(lan)">
+                                <li *ngFor="let lan of languages" (click)="onSelectLan(lan);">
                                     <span class="dropdown-item hand-cursor xsmall">{{lan.viewValue}}</span>
                                 </li>
                             </ul>

@@ -22,7 +22,8 @@
                         <ul>
                             <li><a href="/">{{'Home'|translate}}</a></li>
                             <li><a href="/{{storedLan}}/privacy">{{'Privacy'|translate}}</a></li>
-                            <li><a href="https://www.npmjs.com/package/cool-connect" target="_blank">{{'Developers'|translate}}</a></li>
+                            <li><a href="https://www.npmjs.com/package/cool-connect"
+                                    target="_blank">{{'Developers'|translate}}</a></li>
                             <li><a href="/support">{{'Help'|translate}}</a></li>
                         </ul>
                     </div>
@@ -69,23 +70,26 @@
     <div class="container-fluid bg-light">
         <div class="container">
             <!-- subscribe box -->
-            <div class="row pt-5">
-                <div class="col-md-2"></div>
-                <div class="col-md-8 center">
-                    <h3>{{'subNews'| translate}}</h3>
-                    <form (ngSubmit)="onSubmit()" #emailForm="ngForm" class="in-row">
-                        <div class="form-group max-space">
-                            <input type="email" class="form-control" id="emailInput" name="email" [(ngModel)]="email" required placeholder="{{'signEml'|translate}}">
-                            <div *ngIf="emailForm.submitted && !emailValid" class="text-danger">
-                                {{'emailVal'| translate}}
-                            </div>
-                            <div *ngIf="emailForm.submitted && emailValid" class="text-success ">
-                                {{'succesScrib'|translate}}! </div>
+            <div class="row pt-5 div-center subnewbox">
+                <h3>{{'subNews'| translate}}</h3>
+            </div>
+
+            <div class="row div-center subnewbox">
+                <form (ngSubmit)="onSubmit()" #emailForm="ngForm" class="in-row">
+                    <div class="form-group">
+                        <input type="email" class="form-control emailbox" id="emailInput" name="email" [(ngModel)]="email"  required placeholder="{{'signEml'|translate}}">
+                        <div *ngIf="emailForm.submitted && !emailValid" class="text-danger">
+                            {{'emailVal'| translate}}
                         </div>
-                        <button type="submit" class="btn btn-primary rounded-btn ">{{'Get Started'|translate}}</button>
-                    </form>
-                </div>
-                <div class="col-md-2"></div>
+                        <div *ngIf="emailForm.submitted && emailValid" class="text-success ">
+                            {{'succesScrib'|translate}}!
+                        </div>
+                    </div>
+                    <div class="subbtn">
+                        <button type="submit" class="btn btn-primary rounded-btn">{{'Get Started'|translate}}</button>
+                    </div>
+
+                </form>
             </div>
 
         </div>

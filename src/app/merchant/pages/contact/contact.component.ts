@@ -250,11 +250,8 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit() {
-
     // check if form is valid
     if (this.myForm.valid) {
-
-
       this.subService.addEmail(
         this.myForm.value.email,
         JSON.stringify(this.myForm.value)

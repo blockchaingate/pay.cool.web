@@ -73,10 +73,17 @@
     background: #f2543f;
 }
 
-
 h1 {
     font-size: 4em;
     font-family: "Sora", "Microsoft YaHei", "微軟正黑體", "蘋果儷中黑", Helvetica, Arial, sans-serif;
+}
+
+h2 {
+    font-size: 3.5em;
+}
+
+h3 {
+    color: white;
 }
 
 h6 {
@@ -144,6 +151,7 @@ h6 {
 }
 
 .partner-slider {
+    width: 100%;
     padding: 10px 0;
 }
 
@@ -190,6 +198,121 @@ h6 {
     margin-top: -80px;
 }
 
+.downloadapp {
+    margin: 1rem;
+   }
+   
+   .flaticon-apple {
+       color: #fff;
+   }
+   
+   .linkBtn li a {
+       margin: 0 auto;
+       text-align: center;
+       color: #333;
+       background-color: #eee;
+       display: flex;
+       justify-content: space-evenly;
+       align-items: center;
+       font-size: 14px;
+       line-height: 14px;
+       height: 60px;
+   
+       img{
+           height: 20px;
+           width: 20px;
+       }
+   
+       i:before {
+           color: #333;
+       }
+   }
+   
+   .about-box {
+       background: #0f0e1c;
+       padding-bottom: 150px;
+       display: flex;
+   
+       .icon {
+           padding-top: 50px;
+           padding-bottom: 30px;
+           img {
+               text-align: center;
+               margin: 0 auto;
+           }
+       }
+   
+       .cool-box {
+           color: #fff;
+       }
+   
+       h2 {
+           color: #fff;
+       }
+   
+       h4 {
+           font-size: 20px;
+           color: #fff;
+       }
+   
+       .text {
+           color: #fff;
+       }
+   
+       .descBlock {
+           color: #fff;
+       }
+   }
+   
+   .appDecs {
+       padding-bottom: 150px;
+   
+       .blueTitle{
+           padding-bottom: 30px;
+       }
+   
+       .appRow{
+           display: flex;
+           flex-direction: row;
+           justify-content: left;
+           align-items: center;
+           margin: 0 auto;
+           width: 100%;
+           max-width: 1000px;
+           padding: 10px 20px;
+           text-align: left;
+   
+           img{
+               margin-right: 5px;
+           }
+       }
+   
+       .descBlock{
+           max-width: 90%;
+       }
+   
+       .phone2Img{
+           //vertical align middle;
+           display: flex;
+           flex-direction: column;
+           justify-content: center;
+           align-items: center;
+           margin: 0 auto;
+           max-width: 1000px;
+           padding: 10px 20px;
+       }
+       
+   }
+      
+   .annun{
+       text-align: center;
+       margin: 0 auto;
+   
+       a{
+           padding: 10px 36px;
+       }
+   }
+
 .apps-overview .inner-wrapper .button-group li a {
     font-size: 16px;
 }
@@ -231,7 +354,7 @@ h6 {
     }
 
     h2 {
-        font-size: 2.5em;
+        font-size: 2.8em;
     }
 }
 
@@ -241,7 +364,7 @@ h6 {
     }
 
     .partner-slider .item img {
-        margin: 0 auto;
+        margin: 0;
     }
 
     .lefttxt {
@@ -332,6 +455,10 @@ h6 {
         margin-bottom: -100px;
     }
 
+    .imagepp {
+        display: none;
+    }
+
     .lefttxt {
         margin-top: 0em;
         padding-left: 0em;
@@ -347,7 +474,7 @@ h6 {
     }
 
     h2 {
-        font-size: 1.4em;
+        font-size: 1.3em;
     }
 
     h6{
@@ -359,13 +486,17 @@ h6 {
         max-width: 60px;
         max-height: 20px;
         filter: brightness(0) invert(1);
-    }  
+    }
 }
 
 @media (max-width: 450px) {
     .theme-banner-two .main-text-wrapper {
         margin-top: 0em;
         padding: 0;
+    }
+
+    .theme-title2 {
+        padding-bottom: 20px;
     }
 
     .downloadarea {
@@ -412,11 +543,11 @@ h6 {
     }
 
     h1 {
-        font-size: 1em;
+        font-size: 1.2em;
     }
 
     h2 {
-        font-size: 1em;
+        font-size: 0.9em;
     }
 
     h6{
@@ -425,7 +556,7 @@ h6 {
     }
 
     .partner-slider img {
-        max-width: 60px;
+        max-width: 30px;
         max-height: 20px;
         filter: brightness(0) invert(1);
     }  
@@ -452,166 +583,4 @@ h6 {
         text-align: justify;
     }
 
-}
-
-.downloadapp {
- margin: 1rem;
-}
-
-.bgImg {
-    background-image: url("/assets/images/math_and_inf.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50%;
-}
-
-.bgImg2 {
-    background-image: url("/assets/images/team-city.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50%;
-}
-
-.qrcode {
-    display: flex;
-}
-
-.qrcode div {
-    margin: 2em 3em;
-}
-
-.iframe-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    border: 1px solid gray;
-    box-shadow: 6px 6px 3px gray;
-}
-
-.iframe-container iframe {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-h3 {
-    color: white;
-}
-
-.flaticon-apple {
-    color: #fff;
-}
-
-.linkBtn li a {
-    margin: 0 auto;
-    text-align: center;
-    color: #333;
-    background-color: #eee;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    font-size: 14px;
-    line-height: 14px;
-    height: 60px;
-
-    img{
-        height: 20px;
-        width: 20px;
-    }
-
-    i:before {
-        color: #333;
-    }
-}
-
-.about-box {
-    background: #0f0e1c;
-    padding-bottom: 150px;
-    display: flex;
-
-    .icon {
-        padding-top: 50px;
-        padding-bottom: 30px;
-        img {
-            text-align: center;
-            margin: 0 auto;
-        }
-    }
-
-    .cool-box {
-        color: #fff;
-    }
-
-    h2 {
-        color: #fff;
-    }
-
-    h4 {
-        font-size: 20px;
-        color: #fff;
-    }
-
-    .text {
-        color: #fff;
-    }
-
-    .descBlock {
-        color: #fff;
-    }
-}
-
-.apps-overview{
-
-    h2{
-        font-size: 50px;
-    }
-}
-
-.appDecs{
-    padding-bottom: 150px;
-
-
-    .blueTitle{
-        padding-bottom: 30px;
-    }
-    .appRow{
-        display: flex;
-        flex-direction: row;
-        justify-content: left;
-        align-items: center;
-        margin: 0 auto;
-        max-width: 1000px;
-        padding: 10px 20px;
-        text-align: left;
-
-        img{
-            margin-right: 5px;
-        }
-    }
-
-    .descBlock{
-        max-width: 90%;
-    }
-
-    .phone2Img{
-        //vertical align middle;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin: 0 auto;
-        max-width: 1000px;
-        padding: 10px 20px;
-    }
-    
-}
-
-
-.annun{
-    text-align: center;
-    margin: 0 auto;
-
-    a{
-        padding: 10px 36px;
-    }
 }

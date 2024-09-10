@@ -68,6 +68,10 @@
 }
 
 @media (max-width:450px){
+    .hide-on-mobile {
+        display: block;
+    }
+
     .title {
         font-size: 16px;
     }
