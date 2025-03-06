@@ -3,7 +3,7 @@ import { environment } from '../../environments/environment';
 import {Balance,  EthTransactionRes
     , FabTransactionResponse, CoinsPrice, BtcUtxo, KEthBalance, FabUtxo, EthTransactionStatusRes, GasPrice,
     FabTokenBalance, FabTransactionJson, BtcTransactionResponse, BtcTransaction} from '../interfaces/balance.interface';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { UtilService } from './util.service';
 
 import TronWeb from 'tronweb';

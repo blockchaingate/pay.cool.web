@@ -88,18 +88,18 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "pay_cool:build"
+                        "buildTarget": "pay_cool:build"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "pay_cool:build:production"
+                            "buildTarget": "pay_cool:build:production"
                         }
                     }
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "pay_cool:build"
+                        "buildTarget": "pay_cool:build"
                     }
                 },
                 "test": {

@@ -7,7 +7,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { QRCodeModule } from 'angularx-qrcode';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -89,108 +89,100 @@ import {AnimModule} from './animation/anim.module';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
-@NgModule({
-  declarations: [
-    AppComponent,
-//    AnimComponent,
-    HomeComponent,
-    UserTreeComponent,
-    NavbarComponent,
-    PaymentSuccessComponent,
-    PaymentFailComponent,
-    DeleteWalletModalComponent,
-    FooterComponent,
-    PrivacyComponent,
-    AboutComponent,
-    JobComponent,
-    MembershipComponent,
-    VersionComponent,
-    ManualComponent,
-    ScComponent,
-    SupportComponent,
-    TransferOwnershipComponent,
-    RefComponent,
-    UserDetailComponent,
-    GetrewardsComponent,
-    NewFeaturesComponent,
-    ConfirmUnlocklpComponent,
-    AnnounceComponent,
-    EventDetailComponent,
-    EventComponent,
-    ClaimComponent
-  ],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    SharedModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    AdminModule,
-    MatStepperModule,
-    FontAwesomeModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatCheckboxModule,
-    MatSelectModule,
-    QRCodeModule,
-    AnimModule,
-    ModalModule.forRoot(),
-    NgxSmartModalModule.forRoot(),
-    ToastrModule.forRoot(),
-    TranslateModule.forRoot(
-      {
-        loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
-        }
-      }
-    ),
-
-    CashierModule
-    // TreeDiagramModule,
-    // NgxGraphModule
-  ],
-  providers: [
-    UserpayService,
-    ApiService,
-    CoinService,
-    HttpService,
-    KanbanService,
-    MemberService,
-    UserAuth,
-    UtilService,
-    WalletService,
-    Web3Service,
-    CommonService,
-    IddockService,
-    StorageService,
-    TimerService,
-    OrderService,
-    BuyService,
-    ProjectService,
-    UploadService,
-    SettingService,
-    AirdropService,
-    SafeService,
-    DataService,
-    MultisigService,
-    PayRewardService,
-    ChargeService,
-    InsightService,
-    GlobalRewardService,
-    RewardService,
-    UserReferralService,
-    LockerService,
-    MerchantService,
-    WalletGuardService,
-    StoreService,
-    KanbanSmartContractService,
-    LanguageService,
-    EventService
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        //    AnimComponent,
+        HomeComponent,
+        UserTreeComponent,
+        NavbarComponent,
+        PaymentSuccessComponent,
+        PaymentFailComponent,
+        DeleteWalletModalComponent,
+        FooterComponent,
+        PrivacyComponent,
+        AboutComponent,
+        JobComponent,
+        MembershipComponent,
+        VersionComponent,
+        ManualComponent,
+        ScComponent,
+        SupportComponent,
+        TransferOwnershipComponent,
+        RefComponent,
+        UserDetailComponent,
+        GetrewardsComponent,
+        NewFeaturesComponent,
+        ConfirmUnlocklpComponent,
+        AnnounceComponent,
+        EventDetailComponent,
+        EventComponent,
+        ClaimComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        CommonModule,
+        SharedModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        FormsModule,
+        AdminModule,
+        MatStepperModule,
+        FontAwesomeModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatCheckboxModule,
+        MatSelectModule,
+        QRCodeModule,
+        AnimModule,
+        ModalModule.forRoot(),
+        NgxSmartModalModule.forRoot(),
+        ToastrModule.forRoot(),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
+        CashierModule
+        // TreeDiagramModule,
+        // NgxGraphModule
+    ], providers: [
+        UserpayService,
+        ApiService,
+        CoinService,
+        HttpService,
+        KanbanService,
+        MemberService,
+        UserAuth,
+        UtilService,
+        WalletService,
+        Web3Service,
+        CommonService,
+        IddockService,
+        StorageService,
+        TimerService,
+        OrderService,
+        BuyService,
+        ProjectService,
+        UploadService,
+        SettingService,
+        AirdropService,
+        SafeService,
+        DataService,
+        MultisigService,
+        PayRewardService,
+        ChargeService,
+        InsightService,
+        GlobalRewardService,
+        RewardService,
+        UserReferralService,
+        LockerService,
+        MerchantService,
+        WalletGuardService,
+        StoreService,
+        KanbanSmartContractService,
+        LanguageService,
+        EventService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }

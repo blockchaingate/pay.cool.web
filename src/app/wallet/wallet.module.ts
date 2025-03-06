@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonModule} from '@angular/material/button';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { QRCodeModule } from 'angularx-qrcode';
@@ -34,60 +34,53 @@ import { ShowSeedPhraseModal } from './modals/show-seed-phrase/show-seed-phrase.
 import { GetFreeFabModal } from './modals/get-free-fab/get-free-fab.modal';
 import { AddGasModal } from './modals/add-gas/add-gas.modal';
 
-@NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    RouterModule,
-    MatCheckboxModule,
-    MatRadioModule,
-    MatButtonModule,
-    NgxBootstrapSwitchModule.forRoot(),
-    QRCodeModule,
-    BsDropdownModule.forRoot(),
-    TranslateModule.forChild(),
-    WalletRoutingModule,
-    SharedModule
-  ],
-  providers: [
-    TranslateService
-  ],
-  declarations: [
-    WalletComponent,
-    WalletDashboardComponent,
-    MnemonicComponent,
-    MnemeditComponent,
-    CreateWalletComponent,
-    ConfirmMnemonicsComponent,
-    NoWalletComponent,
-    CoinsListComponent,
-    WalletPwdComponent,
-    TransactionHistoryComponent,
-    ImportWalletComponent,
-    ReceiveComponent,
-    AssetsListComponent,
-    SendComponent,
-    TransactionDetailComponent,
-    PaycoolComponent,
-    LoginSettingModal,
-    ShowSeedPhraseModal,
-    GetFreeFabModal,
-    AddGasModal
-  ],
-  /*
-  entryComponents: [
-    ReceiveComponent,
-    SendComponent,
-    TransactionDetailComponent,
-    LoginSettingModal,
-    ShowSeedPhraseModal,
-    GetFreeFabModal,
-    AddGasModal
-  ],
-  */
-  exports: [
-  ]
-})
+@NgModule({ declarations: [
+        WalletComponent,
+        WalletDashboardComponent,
+        MnemonicComponent,
+        MnemeditComponent,
+        CreateWalletComponent,
+        ConfirmMnemonicsComponent,
+        NoWalletComponent,
+        CoinsListComponent,
+        WalletPwdComponent,
+        TransactionHistoryComponent,
+        ImportWalletComponent,
+        ReceiveComponent,
+        AssetsListComponent,
+        SendComponent,
+        TransactionDetailComponent,
+        PaycoolComponent,
+        LoginSettingModal,
+        ShowSeedPhraseModal,
+        GetFreeFabModal,
+        AddGasModal
+    ],
+    /*
+    entryComponents: [
+      ReceiveComponent,
+      SendComponent,
+      TransactionDetailComponent,
+      LoginSettingModal,
+      ShowSeedPhraseModal,
+      GetFreeFabModal,
+      AddGasModal
+    ],
+    */
+    exports: [], imports: [CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        MatCheckboxModule,
+        MatRadioModule,
+        MatButtonModule,
+        NgxBootstrapSwitchModule.forRoot(),
+        QRCodeModule,
+        BsDropdownModule.forRoot(),
+        TranslateModule.forChild(),
+        WalletRoutingModule,
+        SharedModule], providers: [
+        TranslateService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class WalletModule { }
