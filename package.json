@@ -56,7 +56,7 @@
     "https-browserify": "^1.0.0",
     "jquery": "^3.7.1",
     "lodash": "^4.17.20",
-    "ngx-bootstrap": "^11.0.2",
+    "ngx-bootstrap": "^18.0.2",
     "ngx-image-cropper": "~7.1.2",
     "ngx-scanner-qrcode": "1.6.7",
     "ngx-smart-modal": "^14.0.3",
