@@ -9,7 +9,7 @@ export enum DocType { KYC = 'KYC', PRODUCT = 'PRODUCT', SERVICE = 'SERVICE', OTH
 export class UploadService {
   constructor(private http: HttpService) { }
 
-  uploadFile(fileToUpload: File, docType: DocType, objectId: string) {
+  applyUrlAndUploadFile(fileToUpload: File, docType: DocType, objectId: string) {
     return this.applyPresignedUrl(fileToUpload.name, fileToUpload.type, docType, objectId).subscribe(
       (url: any) => this.uploadFileToSignedUrl(url, fileToUpload.type, fileToUpload));
   }

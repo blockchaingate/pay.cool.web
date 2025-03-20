@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output,Input, SimpleChanges} from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, SimpleChanges } from '@angular/core';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { UploadService, DocType } from '../../services/upload.service';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -41,9 +41,8 @@ export class ResizeImageComponent implements OnInit {
     }
   }
   */
+
   fileChangeEvent(event: any): void {
-
-
     this.imageChangedEvent = event;
   }
 
@@ -51,37 +50,33 @@ export class ResizeImageComponent implements OnInit {
     //this.croppedImage = event.base64;
     //this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl);
     this.croppedImage = event.blob;
-    this.croppedImagePreview = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl);
+    this.croppedImagePreview = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl ?? '');
     console.log('this.croppedImage===', this.croppedImage);
   }
 
   imageLoaded() {
-
     this.displayUpload = true;
   }
 
   cropperReady() {
-
   }
 
   loadImageFailed() {
-
   }
 
   dataURLtoFile(dataurl, filename) {
     var arr = dataurl.split(','),
-        mime = arr[0].match(/:(.*?);/)[1],
-        bstr = atob(arr[arr.length - 1]), 
-        n = bstr.length, 
-        u8arr = new Uint8Array(n);
-    while(n--){
-        u8arr[n] = bstr.charCodeAt(n);
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[arr.length - 1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
     }
-    return new File([u8arr], filename, {type:mime});
-}
+    return new File([u8arr], filename, { type: mime });
+  }
 
   uploadImage() {
-
     //check if image is selected
     if (!this.croppedImage) {
       this.errMsg = 'Please select an image.';
@@ -89,38 +84,38 @@ export class ResizeImageComponent implements OnInit {
     }
 
     const now = new Date();
-    const milliseconds = now.getTime(); 
+    const milliseconds = now.getTime();
 
     //image name with current date in milliseconds
     const fileName = "Merchant" + milliseconds + ".png";
     const fileType = 'image/png';
-    
+
     this.uploadService.applyPresignedUrl(fileName, fileType, DocType.PRODUCT, this.productId).subscribe(
       (ret: any) => {
         const signedUrl = ret.signed_request;
         this.url = ret.url;
         //const file = this.dataURLtoFile(this.croppedImage, fileName);
-        const file =  new File([this.croppedImage],fileName);;
+        const file = new File([this.croppedImage], fileName);;
         console.log('file===', file);
         this.uploadService.uploadFileToSignedUrl(signedUrl, fileType, file).subscribe(
           retn => {
-
             this.images = [this.url];
             // this.uploaded.emit(this.url);
             // this.imagesChange.emit(this.croppedImage);
             this.imagesChange.emit(this.images);
-            this.successMsg = 'Uploaded'; 
+            this.successMsg = 'Uploaded';
 
             this.uploadSuccess = true;
           },
-          err => { 
-            this.errMsg = 'Error in uploading.'; });
+          err => {
+            this.errMsg = 'Error in uploading.';
+          });
       },
-      error => this.errMsg = 'Error happened during apply presigned url.'
+      error => { 
+        this.errMsg = 'Error happened during apply presigned url.';
+        console.log('error in upload image to S3 ===> ', error);
+      }
     );
   }
-
-
-
 
 }
