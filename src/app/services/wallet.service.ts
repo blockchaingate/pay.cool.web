@@ -22,10 +22,10 @@ import { MerchantService } from './merchant.service';
 export class WalletService {
     constructor(
         private dataServ: DataService,
-        private storage: StorageMap, 
+        private storage: StorageMap,
         private merchantServ: MerchantService,
-        private utilServ: UtilService, 
-        private coinServ: CoinService) {}
+        private utilServ: UtilService,
+        private coinServ: CoinService) { }
 
     refreshWallets(wallets: any) {
         this.dataServ.changeWallets(wallets);
@@ -34,27 +34,27 @@ export class WalletService {
         const addresses = wallet.addresses;
         const walletAddressItem = addresses.filter(item => item.name == 'FAB')[0];
         const walletAddress = walletAddressItem.address;
-        if(walletAddress) {
-          this.dataServ.changeWalletAddress(walletAddress); 
+        if (walletAddress) {
+            this.dataServ.changeWalletAddress(walletAddress);
 
-          this.merchantServ.getMerchantsByAddress(walletAddress).subscribe(
-            (ret: any) => {
-              if(ret && ret.length > 0) {
-                const store = ret[0];
-                this.dataServ.changeMyStore(store);
-              } else {
-                this.dataServ.changeMyStore(null);
-              }
+            this.merchantServ.getMerchantsByAddress(walletAddress).subscribe(
+                (ret: any) => {
+                    if (ret && ret.length > 0) {
+                        const store = ret[0];
+                        this.dataServ.changeMyStore(store);
+                    } else {
+                        this.dataServ.changeMyStore(null);
+                    }
 
-            });
+                });
 
         }
     }
 
-    initMyCoinAddresses(seed) {
-        const allCoins = [];
+    initMyCoinAddresses(seed: Buffer) {
+        const allCoins: { name: string; address: any }[] = [];
         const coins = Object.getOwnPropertyNames(environment.CoinType);
-        for(let i=0;i<coins.length;i++) {
+        for (let i = 0; i < coins.length; i++) {
             const coin = coins[i];
             const address = this.coinServ.getKeyPairs(coin, seed, 0, 0, 'a');
             const item = {
@@ -80,8 +80,8 @@ export class WalletService {
         const base58 = childNode.neutered().toBase58();
         return base58;
     }
-    
-    getPrivateKeyAddressForChild(seed, index) {
+
+    getPrivateKeyAddressForChild(seed: any , index: number) {
         const name = 'FAB';
         const path = 'm/44\'/' + environment.CoinType[name] + '\'/0\'/' + 0 + '/' + 0;
         const childPath = path + '/' + environment.CoinType[name] + '/' + index;
@@ -103,10 +103,10 @@ export class WalletService {
 
         return {
             rootPrivateKey: privateKey,
-            rootAddress:address,
+            rootAddress: address,
             privateKey: privateKeyChild,
             address: addrChild.address
-        }                 
+        }
     }
 
     pwdStrength(pwd: string): string {
@@ -147,7 +147,7 @@ export class WalletService {
 
     // Format wallet from input data.
     formatWallet(pwd: string, name: string, mnemonic: string) {
-        const seed = bip39.mnemonicToSeedSync(mnemonic);
+        const seed: Buffer = bip39.mnemonicToSeedSync(mnemonic);
 
         const seedHash = this.utilServ.SHA256(seed.toString());
         const seedHashStr = seedHash.toString();
@@ -164,9 +164,9 @@ export class WalletService {
 
     updateWalletPassword(wallet: Wallet, oldPassword: string, newPassword: string) {
         const pwdHashStr = this.utilServ.SHA256(newPassword).toString();
-        const  mnemonic = this.utilServ.aesDecrypt(wallet.encryptedMnemonic, oldPassword);
+        const mnemonic = this.utilServ.aesDecrypt(wallet.encryptedMnemonic, oldPassword);
         const seed = bip39.mnemonicToSeedSync(mnemonic);
-        const encryptedMnemonic = this.utilServ.aesEncrypt(mnemonic, newPassword);   
+        const encryptedMnemonic = this.utilServ.aesEncrypt(mnemonic, newPassword);
         const encryptedSeed = this.utilServ.aesEncryptSeed(seed, newPassword);
         wallet.pwdHash = pwdHashStr;
         wallet.encryptedMnemonic = encryptedMnemonic;
@@ -175,7 +175,6 @@ export class WalletService {
     }
 
     updateToWalletList(wallet: Wallet, index: number) {
-
         this.storage.get('ecomwallets').subscribe((wallets: Wallet[]) => {
             if (!wallets) {
                 wallets = [];
@@ -196,5 +195,5 @@ export class WalletService {
     generateMnemonic() {
         const words = bip39.generateMnemonic();
         return words;
-    }    
+    }
 }

@@ -9,7 +9,7 @@ import * as Btc from 'bitcoinjs-lib';
 // import * as BIP32 from 'bitcoinjs-lib/node_modules/bip32/types/bip32';
 import * as BIP32 from 'bip32';
 import { environment } from '../../environments/environment';
-import * as hdkey from 'ethereumjs-wallet/hdkey';
+import * as hdkey from 'ethereumjs-wallet/dist/hdkey';
 import * as wif from 'wif';
 import { Address } from '../models/address';
 import { coin_list } from '../../environments/coins';
@@ -31,7 +31,7 @@ const tronWeb = new TronWeb(
 
 @Injectable({ providedIn: 'root' })
 export class CoinService {
-    txids: any;
+    txids: Array<{ txid: string; idx: number }> = [];
     constructor(private apiServ: ApiService, private web3Serv: Web3Service, private utilServ: UtilService) {
         this.txids = [];
     }
@@ -53,9 +53,7 @@ export class CoinService {
     }
 
     signedMessage(originalMessage: string, keyPair: any) {
-
-
-        let signature: Signature;
+        let signature: Signature = { r: '', s: '', v: '' };
         const name = keyPair.name;
         const tokenType = keyPair.tokenType;
 
@@ -241,9 +239,9 @@ export class CoinService {
         let totalInput = 0;
         let transFee = 0;
         let amountInTx = new BigNumber(0);
-        const txids = [];
+        const txids:{txid: string, idx:number}[] = [];
         const feePerInput = bytesPerInput * satoshisPerBytes;
-        const receiveAddsIndexArr = [];
+        const receiveAddsIndexArr: number[] = [];
         const changeAddsIndexArr = [];
         const totalAmount = Number(amount) + Number(extraTransactionFee);
 
@@ -486,7 +484,6 @@ export class CoinService {
             return null;
         }
 
-
         let path = 'm/44\'/' + environment.CoinType[(name == 'KANBAN') ? 'FAB' : name] + '\'/0\'/' + chain + '/' + index;
 
         if (name === 'BTC' || name === 'FAB'  || name == 'KANBAN' || name === 'LTC' || name === 'DOGE' || name === 'BCH') {
@@ -506,11 +503,15 @@ export class CoinService {
                 addr = bchaddr.toCashAddress(address);
             } else 
             if(name == 'KANBAN') {
-                addr = this.utilServ.fabToExgAddress(address);
+                if (address) {
+                    addr = this.utilServ.fabToExgAddress(address);
+                } else {
+                    throw new Error('Address is undefined');
+                }
             } else
             {
 
-                addr = address;
+                addr = address || '';
             }
             
             priKey = childNode.toWIF();
@@ -518,15 +519,13 @@ export class CoinService {
 
             buffer = wif.decode(priKey);
             priKeyDisp = priKey;
-        } else
-        if(name == 'TRX') {
+        } else if(name == 'TRX') {
             const root = BIP32.fromSeed(seed);
             const childNode = root.derivePath(path);
             priKey = childNode.privateKey;
 
             buffer = wif.decode(childNode.toWIF());
-            addr = 
-            TronWeb.utils.crypto.getBase58CheckAddress(TronWeb.utils.crypto.getAddressFromPriKey(priKey));
+            addr = TronWeb.utils.crypto.getBase58CheckAddress(TronWeb.utils.crypto.getAddressFromPriKey(priKey));
       
         } else {
             path = 'm/44\'/' + environment.CoinType.ETH + '\'/0\'/' + chain + '/' + index;
@@ -593,7 +592,7 @@ export class CoinService {
         let errMsg = '';
         let transFee = 0;
         let tranFeeUnit = '';
-        let txids = [];
+        let txids:{txid: string, idx: number}[] = [];
         let amountInTx = new BigNumber(0);
         let getTransFeeOnly = false;
         if (options) {
@@ -616,8 +615,8 @@ export class CoinService {
                 feeLimit = options.feeLimit;
             }
         }
-        const receiveAddsIndexArr = [];
-        const changeAddsIndexArr = [];
+        const receiveAddsIndexArr: number[] = [];
+        const changeAddsIndexArr: number[] = [];
 
 
         // let amountNum = amount * Math.pow(10, this.utilServ.getDecimal(mycoin));
@@ -812,8 +811,12 @@ export class CoinService {
                 txHex = res1.txHex;
                 errMsg = res1.errMsg;
                 transFee = res1.transFee;
-                amountInTx = res1.amountInTx;
-                txids = res1.txids;
+                if (res1.amountInTx) {
+                    amountInTx = res1.amountInTx;
+                } else {
+                    throw new Error('amountInTx is undefined');
+                }
+                txids = res1.txids || [];
                 transFee = new BigNumber(transFee).dividedBy(new BigNumber(1e8)).toNumber();
 
                 if (getTransFeeOnly) {
@@ -1061,7 +1064,7 @@ export class CoinService {
                             txHex = res1.txHex;
                             errMsg = res1.errMsg;
                             transFee = res1.transFee;
-                            txids = res1.txids;
+                            txids = res1.txids || [];
                             transFee = new BigNumber(transFee).dividedBy(new BigNumber(1e8)).toNumber();
 
                             if (getTransFeeOnly) {
