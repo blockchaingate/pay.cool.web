@@ -361,7 +361,6 @@ export class WalletDashboardComponent implements OnInit {
     this.toastr.error(this.translateServ.instant('Your password is invalid.'));
   }
 
-
   changeTab(tabName: string) {
     this.tab = tabName;
 
@@ -411,8 +410,6 @@ export class WalletDashboardComponent implements OnInit {
     });
   }
 
-
-
   addWallet() {
     this.router.navigate(['/wallet/create']);
   }
@@ -460,8 +457,6 @@ export class WalletDashboardComponent implements OnInit {
       }
     );
   }
-
-
 
   refreshAssets() {
     this.kanbanServ.getExchangeBalance(this.kanbanAddress).subscribe(
@@ -553,7 +548,6 @@ export class WalletDashboardComponent implements OnInit {
 
   }
 
-
   deleteWallet() {
     const initialState = {
       coins: this.coins,
@@ -581,9 +575,6 @@ export class WalletDashboardComponent implements OnInit {
      
     });
   }
-
-
-
 
   placeOrder() {
     if (this.referral && this.referral.length > 36) {

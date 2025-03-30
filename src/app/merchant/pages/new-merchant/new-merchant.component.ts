@@ -51,6 +51,7 @@ export class NewMerchantComponent implements OnInit {
   lockedDays: number | null;
   hideOnStore: boolean;
   coins = coins;
+  errMsg = '';
   
   constructor(
     private toastr: ToastrService,
@@ -76,7 +77,6 @@ export class NewMerchantComponent implements OnInit {
         if(walletAddress) {
           this.walletAddress = walletAddress;
         }
-
       }
     );
   }
@@ -203,6 +203,7 @@ export class NewMerchantComponent implements OnInit {
 
   createMerchantDo(seed) {
     if(this.referral == this.walletAddress) {
+      this.toastr.info('Self referral is not allowed');
       return;
     }
     const id = this.web3Serv.randomHex(32);

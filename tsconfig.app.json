@@ -3,6 +3,7 @@
   "extends": "./tsconfig.base.json",
   "enableIvy": true ,
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "./out-tsc/app",
     "paths": {
       "crypto": [
