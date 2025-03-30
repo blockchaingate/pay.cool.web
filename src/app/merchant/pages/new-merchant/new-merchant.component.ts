@@ -48,7 +48,7 @@ export class NewMerchantComponent implements OnInit {
   businessAddressChinese: string;
   contactNameChinese: string;
   businessContentsChinese: string;
-  lockedDays: number;
+  lockedDays: number | null;
   hideOnStore: boolean;
   coins = coins;
   
