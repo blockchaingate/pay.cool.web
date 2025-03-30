@@ -1,0 +1,18 @@
+<mat-card *ngIf="address">
+    <h2>{{ address.name || 'Address Details' }}</h2>
+    <p><strong>Suite:</strong> {{ address.suite }}</p>
+    <p><strong>Street #:</strong> {{ address.streetNumber }}</p>
+    <p><strong>Direction:</strong> {{ address.direction }}</p>
+    <p><strong>Street:</strong> {{ address.street }}</p>
+    <p><strong>District:</strong> {{ address.district }}</p>
+    <p><strong>City:</strong> {{ address.city }}</p>
+    <p><strong>Province:</strong> {{ address.province }} ({{ address.provinceCode }})</p>
+    <p><strong>Postcode:</strong> {{ address.postcode }}</p>
+    <p><strong>Country:</strong> {{ address.country }} ({{ address.countryCode }})</p>
+    <p><strong>Continent:</strong> {{ address.continent }} ({{ address.continentCode }})</p>
+    <p><strong>Longitude:</strong> {{ address.longitude }}</p>
+    <p><strong>Latitude:</strong> {{ address.latitude }}</p>
+    <p><strong>Hightitude:</strong> {{ address.hightitude }}</p>
+    <p><strong>Description:</strong> {{ address.description }}</p>
+  </mat-card>
+  
