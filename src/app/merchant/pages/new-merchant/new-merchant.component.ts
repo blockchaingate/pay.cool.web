@@ -242,7 +242,7 @@ export class NewMerchantComponent implements OnInit {
       lockedDays: this.lockedDays,
       hideOnStore: this.hideOnStore
     };
-    
+
     const merchantHex = hash(data);
     data['mhash'] = merchantHex;
     
@@ -275,7 +275,11 @@ export class NewMerchantComponent implements OnInit {
         } else {
           this.toastr.error('Merchant creation failed');
         }
-
+      }, 
+      (err: any) => {
+        alert(JSON.stringify(err));
+        this.toastr.error('Merchant creation failed');
+        console.log(err);
       }
     );
 
