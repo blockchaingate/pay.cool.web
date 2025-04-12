@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 import { HttpService } from './http.service';
 
 @Injectable({ providedIn: 'root' })
@@ -18,7 +18,7 @@ export class MerchantService {
     return this.http.getRaw(environment.endpoints.api + 'merchantnodeuser/' + pageSize + '/' + pageNum);
   }
 
-  getMerchant(id) {
+  getMerchant(id: string) {
     return this.http.getRaw(environment.endpoints.api + 'merchantreferral/' + id);
   }
 
