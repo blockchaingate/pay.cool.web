@@ -22,7 +22,7 @@
 
             <div class="py-2 text-center">
                 <div class="qrDiv">
-                    <qrcode [qrdata]="walletAddress" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+                    <qrcode [allowEmptyString]="true" [qrdata]="walletAddress" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
                 </div>
                 <div class="text-left">{{"Universal ID" | translate}}: {{walletAddress}}</div>
                 <div class="text-left">{{"Kanban address" | translate}}: {{walletAddress | tokb}}</div>

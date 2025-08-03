@@ -185,7 +185,7 @@
                 <label for="exampleInputEmail1">{{"Rceiving Address"|translate}}: {{receivingAddress}}</label>
             </div>
             <div class="text-center">
-                <qrcode [qrdata]="receivingAddress" id="address_qr_code" style="display: inline-block" [size]="150" [level]="'M'"></qrcode>
+                <qrcode [allowEmptyString]="true" [qrdata]="receivingAddress" id="address_qr_code" style="display: inline-block" [size]="150" [level]="'M'"></qrcode>
             </div>
 
             <div class="text-center">

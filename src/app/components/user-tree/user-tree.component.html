@@ -35,7 +35,7 @@
       </div>
       <div id="myWalletId">
         <div class="py-2">{{"My referral-code"| translate}}: {{walletAddress}}</div>
-        <qrcode [qrdata]="walletAddress" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+        <qrcode [allowEmptyString]="true" [qrdata]="walletAddress" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
       </div>
     </div>
 

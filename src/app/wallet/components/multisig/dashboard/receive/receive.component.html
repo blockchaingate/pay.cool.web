@@ -13,7 +13,7 @@
     </div>
 
     <div class="d-flex justify-content-center">
-        <qrcode [qrdata]="(multisigwallet.chain == 'KANBAN') ? (multisigwallet.address | tokb) : multisigwallet.address" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+        <qrcode [allowEmptyString]="true" [qrdata]="(multisigwallet.chain == 'KANBAN') ? (multisigwallet.address | tokb) : multisigwallet.address" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
     </div>
 
     <div class="d-flex">

@@ -320,12 +320,12 @@
 
                 <label for="exampleInputEmail1">{{"Please pay"| translate}} 2000 {{paymentMethod}} ({{chainRadio}}) {{"to below address"|translate}}: </label>
                 <div *ngIf="chainRadio === 'TRC-20'">
-                    <qrcode [qrdata]="officialUSDTTRC20add" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+                    <qrcode [allowEmptyString]="true" [qrdata]="officialUSDTTRC20add" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
                     <div>{{"Receiving address"| translate}} (TRC-20 USDT): </div>
                     <div class="address"> {{officialUSDTTRC20add}} </div>
                 </div>
                 <div *ngIf="chainRadio === 'ERC-20'">
-                    <qrcode [qrdata]="officialUSDTERC20add" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+                    <qrcode [allowEmptyString]="true" [qrdata]="officialUSDTERC20add" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
                     <div>{{"Receiving address"| translate}} (ERC-20 USDT): </div>
                     <div class="address"> {{officialUSDTERC20add}}</div>
                 </div>

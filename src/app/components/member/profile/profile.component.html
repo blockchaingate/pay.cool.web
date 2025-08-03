@@ -14,7 +14,7 @@
     </nav>
 
     <div *ngIf="selectCode === 1" style="text-align: center;">
-        <qrcode [qrdata]="referralCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+        <qrcode [allowEmptyString]="true" [qrdata]="referralCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
         <div> {{"My referral code"|translate}}: {{referralCode}}</div>
         <div> {{"Referral link"|translate}}: https://campaignpen.com/member/signup/{{referralCode}}</div>
     </div>
