@@ -50,8 +50,8 @@ export class ResizeImageComponent implements OnInit {
   imageCropped(event: ImageCroppedEvent) {
     //this.croppedImage = event.base64;
     //this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl);
-    this.croppedImage = event.blob;
-    this.croppedImagePreview = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl);
+    this.croppedImage = event.base64;
+    this.croppedImagePreview = this.sanitizer.bypassSecurityTrustUrl(event.base64 ?? '');
     console.log('this.croppedImage===', this.croppedImage);
   }
 
@@ -68,17 +68,18 @@ export class ResizeImageComponent implements OnInit {
 
   }
 
-  dataURLtoFile(dataurl, filename) {
-    var arr = dataurl.split(','),
-        mime = arr[0].match(/:(.*?);/)[1],
-        bstr = atob(arr[arr.length - 1]), 
-        n = bstr.length, 
-        u8arr = new Uint8Array(n);
-    while(n--){
-        u8arr[n] = bstr.charCodeAt(n);
+  dataURLtoFile(dataurl: string, filename: string) {
+    const arr = dataurl.split(',');
+    const mimeMatch = arr[0]?.match(/:(.*?);/);
+    const mime = mimeMatch ? mimeMatch[1] : 'application/octet-stream';
+    const bstr = atob(arr[arr.length - 1] || '');
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
     }
-    return new File([u8arr], filename, {type:mime});
-}
+    return new File([u8arr], filename, { type: mime });
+  }
 
   uploadImage() {
 
@@ -99,8 +100,7 @@ export class ResizeImageComponent implements OnInit {
       (ret: any) => {
         const signedUrl = ret.signed_request;
         this.url = ret.url;
-        //const file = this.dataURLtoFile(this.croppedImage, fileName);
-        const file =  new File([this.croppedImage],fileName);;
+        const file = this.dataURLtoFile(this.croppedImage, fileName);
         console.log('file===', file);
         this.uploadService.uploadFileToSignedUrl(signedUrl, fileType, file).subscribe(
           retn => {

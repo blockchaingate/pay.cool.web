@@ -28,7 +28,7 @@ const routes: Routes = [
       },
  
       {
-        path: '', redirectTo: 'merchants'
+        path: '', redirectTo: 'merchants', pathMatch: 'full'
       },
       {
         path: 'merchants', component: MerchantsComponent
