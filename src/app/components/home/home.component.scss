@@ -272,7 +272,7 @@
 
 .home-page .about-box .cool-box {
     height: 100%;
-    padding: 24px 20px 28px;
+    padding: 0px 20px 36px;
     border-radius: 24px;
     background: rgba(255, 255, 255, 0.06);
 }
@@ -399,6 +399,10 @@
     .home-page .appDecs .appRow {
         padding: 10px 0;
     }
+
+    .cool-box-outer {
+        margin-bottom: 24px;
+    }
 }
 
 @media (max-width: 575.98px) {
@@ -427,5 +431,9 @@
 
     .home-page .apps-overview .inner-wrapper .button-group li {
         text-align: center;
+    }
+
+    .cool-box-outer {
+        margin-bottom: 24px;
     }
 }
