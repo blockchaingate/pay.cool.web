@@ -3,3 +3,10 @@
     padding-top: 72px;
     background: #0e0f26;
 }
+
+@media (max-width: 767px) {
+    .main-container {
+        margin-top: 56px;
+        padding-top: 56px;
+    }
+}
