@@ -1,0 +1,77 @@
+<section class="community-guidelines-page">
+  <div class="community-guidelines-shell">
+    <header class="hero-layout">
+      <div class="hero-copy">
+        <span class="hero-badge">{{ pageContent.badge }}</span>
+        <h1>{{ pageContent.title }}</h1>
+        <p class="hero-intro">{{ pageContent.intro }}</p>
+
+        <div class="hero-highlights">
+          <span class="hero-chip" *ngFor="let highlight of pageContent.highlights">
+            {{ highlight }}
+          </span>
+        </div>
+      </div>
+
+      <aside class="hero-summary">
+        <div class="meta-row">
+          <span class="meta-label">{{ pageContent.updatedLabel }}</span>
+          <strong>{{ pageContent.updatedDate }}</strong>
+        </div>
+
+        <div class="summary-card">
+          <h2>{{ pageContent.summaryTitle }}</h2>
+          <p>{{ pageContent.summaryBody }}</p>
+        </div>
+
+        <div class="facts-block">
+          <span class="subsection-label">{{ pageContent.factsTitle }}</span>
+          <div class="facts-grid">
+            <div class="fact-card" *ngFor="let fact of pageContent.facts">
+              <span>{{ fact.label }}</span>
+              <strong>{{ fact.value }}</strong>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </header>
+
+    <div class="content-grid">
+      <section class="guideline-sections">
+        <article class="guideline-card" *ngFor="let section of pageContent.sections; let i = index">
+          <div class="section-index">
+            {{ i + 1 < 10 ? '0' + (i + 1) : i + 1 }}
+          </div>
+
+          <div class="section-body">
+            <h3>{{ section.title }}</h3>
+
+            <p *ngFor="let paragraph of section.paragraphs">{{ paragraph }}</p>
+
+            <ul *ngIf="section.bullets?.length">
+              <li *ngFor="let bullet of section.bullets">{{ bullet }}</li>
+            </ul>
+
+            <p class="section-note" *ngIf="section.note">{{ section.note }}</p>
+          </div>
+        </article>
+      </section>
+
+      <aside class="info-rail">
+        <section class="rail-card">
+          <h3>{{ pageContent.expectationsTitle }}</h3>
+          <ul class="rail-list">
+            <li *ngFor="let expectation of pageContent.expectations">{{ expectation }}</li>
+          </ul>
+        </section>
+
+        <section class="rail-card rail-card-accent">
+          <span class="rail-label">{{ pageContent.contactLabel }}</span>
+          <h3>{{ pageContent.contactTitle }}</h3>
+          <p>{{ pageContent.contactText }}</p>
+          <a class="contact-link" [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
+        </section>
+      </aside>
+    </div>
+  </div>
+</section>
