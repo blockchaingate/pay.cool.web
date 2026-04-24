@@ -73,18 +73,18 @@
             <!-- subscribe box -->
             <div class="row pt-5">
                 <div class="col-md-2"></div>
-                <div class="col-md-8 center">
+                <div class="col-md-8 center footer-subscribe">
                     <h3>{{'subNews'| translate}}</h3>
-                    <form (ngSubmit)="onSubmit()" #emailForm="ngForm" class="in-row">
-                        <div class="form-group max-space">
-                            <input type="email" class="form-control" id="emailInput" name="email" [(ngModel)]="email" required placeholder="{{'signEml'|translate}}">
-                            <div *ngIf="emailForm.submitted && !emailValid" class="text-danger">
+                    <form (ngSubmit)="onSubmit()" #emailForm="ngForm" class="in-row subscribe-form">
+                        <div class="form-group max-space subscribe-field">
+                            <input type="email" class="form-control subscribe-input" id="emailInput" name="email" [(ngModel)]="email" required placeholder="{{'signEml'|translate}}">
+                            <div *ngIf="emailForm.submitted && !emailValid" class="text-danger subscribe-message">
                                 {{'emailVal'| translate}}
                             </div>
-                            <div *ngIf="emailForm.submitted && emailValid" class="text-success ">
+                            <div *ngIf="emailForm.submitted && emailValid" class="text-success subscribe-message">
                                 {{'succesScrib'|translate}}! </div>
                         </div>
-                        <button type="submit" class="btn btn-primary rounded-btn ">{{'Get Started'|translate}}</button>
+                        <button type="submit" class="btn btn-primary rounded-btn subscribe-btn">{{'Get Started'|translate}}</button>
                     </form>
                 </div>
                 <div class="col-md-2"></div>
