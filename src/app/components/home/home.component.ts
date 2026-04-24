@@ -1,9 +1,11 @@
-import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { UserReferralService } from 'src/app/services/userreferral.service';
 import { Web3Service } from 'src/app/services/web3.service';
 declare var anime: any;
+declare var AOS: any;
+declare var $: any;
 
 
 @Component({
@@ -11,7 +13,7 @@ declare var anime: any;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
   lan = 'en';
   errMsg = '';
   data = {};
@@ -53,7 +55,9 @@ export class HomeComponent implements OnInit {
   runAnimation() {
 
  }
+
   ngAfterViewInit(): void {
+    this.refreshPageEffects();
   }
 
 
@@ -96,6 +100,69 @@ export class HomeComponent implements OnInit {
       ],
       delay: anime.stagger(300, { grid: [this.x, this.y], from: 'center' }),
 
+    });
+  }
+
+  private refreshPageEffects() {
+    // The legacy theme script initializes AOS on window load only once.
+    // When Angular navigates back to Home later, data-aos nodes may remain hidden
+    // unless we explicitly refresh the library after the view is rendered.
+    window.setTimeout(() => {
+      if (typeof AOS !== 'undefined') {
+        if (typeof AOS.refreshHard === 'function') {
+          AOS.refreshHard();
+        } else if (typeof AOS.refresh === 'function') {
+          AOS.refresh();
+        } else if (typeof AOS.init === 'function') {
+          AOS.init({
+            duration: 1000,
+            mirror: true
+          });
+        }
+      }
+
+      this.initPartnerSlider();
+    });
+  }
+
+  private initPartnerSlider() {
+    if (typeof $ === 'undefined' || !$.fn?.owlCarousel) {
+      return;
+    }
+
+    const partnerSlider = $('.partner-slider');
+    if (!partnerSlider.length) {
+      return;
+    }
+
+    if (partnerSlider.hasClass('owl-loaded')) {
+      partnerSlider.trigger('refresh.owl.carousel');
+      return;
+    }
+
+    partnerSlider.owlCarousel({
+      loop: true,
+      nav: false,
+      dots: false,
+      autoplay: true,
+      autoplayTimeout: 4000,
+      smartSpeed: 1200,
+      autoplayHoverPause: true,
+      lazyLoad: true,
+      responsive: {
+        0: {
+          items: 2
+        },
+        768: {
+          items: 3
+        },
+        992: {
+          items: 4
+        },
+        1200: {
+          items: 5
+        }
+      }
     });
   }
 
