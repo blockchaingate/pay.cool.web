@@ -65,6 +65,7 @@ import { KanbanSmartContractService } from './services/kanban.smartcontract.serv
 import { EventService } from './services/event.service';
 import { MembershipComponent } from './components/membership/membership.component';
 import { PrivacyComponent } from './components/privacy/privacy.component';
+import { TermOfUseComponent } from './components/term-of-use/term-of-use.component';
 import { AboutComponent } from './components/about/about.component';
 import { JobComponent } from './components/job/job.component';
 import { VersionComponent } from './components/version/version.component';
@@ -101,6 +102,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     DeleteWalletModalComponent,
     FooterComponent,
     PrivacyComponent,
+    TermOfUseComponent,
     AboutComponent,
     JobComponent,
     MembershipComponent,

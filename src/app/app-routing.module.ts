@@ -21,6 +21,7 @@ import { AnnounceComponent } from './components/announce/announce.component';
 import { EventComponent } from './components/event/event.component';
 import { EventDetailComponent } from './components/event/event-detail/event-detail.component';
 import { AnimModule } from './animation/anim.module';
+import { TermOfUseComponent } from './components/term-of-use/term-of-use.component';
 // import { AnimComponent } from './components/animation/anim.component';
 
 const routes: Routes = [
@@ -104,6 +105,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'claim/:code', component: ClaimComponent },
   { path: ':lang/privacy', component: PrivacyComponent },
+  { path: ':lang/term-of-service', component: TermOfUseComponent },
   { path: 'support', component: SupportComponent },
   { path: 'about', component: AboutComponent },
   { path: 'job', component: JobComponent },
